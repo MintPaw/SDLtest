@@ -1,6 +1,7 @@
 //Using SDL and standard IO
 #include <SDL.h>
 #include <stdio.h>
+#include "mintSDL\input\input.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -27,7 +28,20 @@ int main(int argc, char* args[])
 	SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
 	SDL_UpdateWindowSurface(gWindow);
 
-	SDL_Delay(2000);
+	SDL_Event e;
+	char quit = 0;
+
+	while (!quit)
+	{
+		while(SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_QUIT) quit = 1;
+
+			printf("Key: %s", SDL_GetKeyName(e.key.keysym.sym));
+			printf("\t\tUnicode: %d\n", e.key.keysym.sym);
+		}
+	}
+
 	close();
 
 	return 0;
