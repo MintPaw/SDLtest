@@ -1,6 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include "texture.h"
+
+int getWidth(MintTexture* self);
+int getHeight(MintTexture* self);
+void render(MintTexture* self, int x, int y);
 
 char mint_DisplayTextureSetup()
 {
@@ -13,9 +19,9 @@ char mint_DisplayTextureSetup()
 	return 1;
 }
 
-SDL_Texture* mint_DisplayTextureLoadPNG(SDL_Renderer* renderer, char* path)
+MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path)
 {
-	SDL_Texture* texture = NULL;
+	MintTexture* mintTexture = (MintTexture*)malloc(sizeof(mintTexture));
 	SDL_Surface* surface = IMG_Load(path);
 
 	if (surface == NULL) {
@@ -23,12 +29,35 @@ SDL_Texture* mint_DisplayTextureLoadPNG(SDL_Renderer* renderer, char* path)
 		return NULL;
 	}
 
-	texture = SDL_CreateTextureFromSurface(renderer, surface);
-	if (texture == NULL) {
+	mintTexture->texture = SDL_CreateTextureFromSurface(renderer, surface);
+	mintTexture->renderer = renderer;
+	mintTexture->_width = surface->w;
+	mintTexture->_height = surface->h;
+	mintTexture->getWidth = &getWidth;
+	mintTexture->getHeight = &getHeight;
+	mintTexture->render = &render;
+
+	if (mintTexture->texture == NULL) {
 		printf("Failed to create texture from %s, SDL_Error: %s\n", path, SDL_GetError());
 	}
 
 	SDL_FreeSurface(surface);
 
-	return texture;
+	return mintTexture;
+}
+
+int getWidth(MintTexture* self)
+{
+	return self->_width;
+}
+
+int getHeight(MintTexture* self)
+{
+	return self->_height;
+}
+
+void render(MintTexture* self, int x, int y)
+{
+	SDL_Rect quad = { x, y, self->getWidth(self), self->getHeight(self) };
+	SDL_RenderCopy(self->renderer, self->texture, NULL, &quad);
 }

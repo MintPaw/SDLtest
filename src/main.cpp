@@ -31,6 +31,7 @@ int main(int argc, char* args[])
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
+	MintTexture texture = *mint_DisplayTextureFromPNG(sdlRenderer, "pngSplash.png");
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
@@ -43,8 +44,7 @@ int main(int argc, char* args[])
 
 			mint_DisplayClearRenderer(sdlRenderer);
 			
-			SDL_Texture* texture = mint_DisplayTextureLoadPNG(sdlRenderer, "pngSplash.png");
-			SDL_RenderCopy(sdlRenderer, texture, NULL, NULL);
+			texture.render(&texture, 0, 0);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
