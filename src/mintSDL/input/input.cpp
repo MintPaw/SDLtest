@@ -1,14 +1,21 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <SDL.h>
 #include "input.h"
 
-InputSetup *setupInput()
+InputSetup *mint_InputSetup()
 {
 	InputSetup *input = (InputSetup *)calloc(1, sizeof(InputSetup));
 
 	return input;
 }
 
-void updateInput(InputSetup *input, SDL_Key *key) {
+void mint_InputUpdate(InputSetup *input, SDL_KeyboardEvent *key)
+{
+	input->status[key->keysym.scancode] = key->state == SDL_PRESSED;
+}
 
+char mint_InputCheckStatus(InputSetup *input, int keycode)
+{
+	return input->status[keycode];
 }

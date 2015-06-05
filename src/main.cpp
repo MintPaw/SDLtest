@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <SDL.h>
 #include <stdio.h>
 #include "mintSDL\input\input.h"
 
@@ -27,6 +28,7 @@ int main(int argc, char* args[])
 	SDL_UpdateWindowSurface(gWindow);
 
 	SDL_Event e;
+	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	while (!quit)
@@ -35,11 +37,12 @@ int main(int argc, char* args[])
 		{
 			if (e.type == SDL_QUIT) quit = 1;
 
-			if (e.key) {
-				update
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
+				mint_InputUpdate(input, &e.key);
 			}
+
+			// printf("SDL_SCANCODE_A is %d\n", mint_InputCheckStatus(input, SDL_SCANCODE_A));
 			// printf("Key: %s", SDL_GetKeyName(e.key.keysym.sym));
-			// printf("\t\tUnicode: %d\n", e.key.keysym.sym);
 		}
 	}
 

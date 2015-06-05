@@ -7,7 +7,8 @@ struct InputSetup {
 	char status[281];
 };
 
-InputSetup *setupInput();
-void updateInput(InputSetup *input, SDL_Key *key);
+InputSetup *mint_InputSetup();
+void mint_InputUpdate(InputSetup *input, SDL_KeyboardEvent *key);
+char mint_InputCheckStatus(InputSetup *input, int keycode);
 
 #endif
