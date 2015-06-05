@@ -32,5 +32,5 @@ SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour)
 
 unsigned long mint_DisplayToSDLColorHex(SDL_Color* sdlColor)
 {   
-    return ((sdlColor->a & 0xff) << 32) + (sdlColor->r & 0xff) << 16) + ((sdlColor->g & 0xff) << 8) + (sdlColor->b & 0xff);
+    return (((sdlColor->a & 0xff) << 32) + ((sdlColor->r & 0xff) << 16) + ((sdlColor->g & 0xff) << 8) + (sdlColor->b & 0xff));
 }
