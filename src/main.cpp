@@ -1,10 +1,10 @@
 #include <SDL.h>
-#include <SDL_Image.h>
 #include <stdio.h>
 #include <string>
 #include "mintSDL\input.h"
 #include "mintSDL\display\display.h"
 #include "mintSDL\display\geom.h"
+#include "mintSDL\display\texture.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -12,11 +12,14 @@ const int SCREEN_HEIGHT = 480;
 char init();
 void close();
 
-//The window we'll be rendering to
+/*
+	Todo:
+		
+*/
+
 SDL_Window* sdlWindow = NULL;
-    
-//The surface contained by the window
 SDL_Surface* sdlScreenSurface = NULL;
+SDL_Renderer* sdlRenderer = NULL;
 
 int main(int argc, char* args[])
 {
@@ -25,7 +28,6 @@ int main(int argc, char* args[])
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	SDL_Event e;
-	SDL_Renderer *sdlRenderer = mint_DisplayCreateRenderer(sdlWindow);
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
@@ -39,10 +41,10 @@ int main(int argc, char* args[])
 
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			SDL_UpdateWindowSurface(sdlWindow);
 			mint_DisplayClearRenderer(sdlRenderer);
-			mint_GeomDrawRect(sdlRenderer, 0, 0, 100, 100, 0xFFFF00FF);
-			mint_GeomDrawLine(sdlRenderer, 100, 100, 200, 200, 0xFF0000FF);
+			
+			SDL_Texture* texture = mint_DisplayTextureLoadPNG(sdlRenderer, "pngSplash.png");
+			SDL_RenderCopy(sdlRenderer, texture, NULL, NULL);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
@@ -58,12 +60,10 @@ char init()
 {
 	char success = 1;
 
-	// Init
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("SDL failed to init SDL_ERROR: %s\n", SDL_GetError());
 		success = 0;
 	} else {
-		// Create window
 		sdlWindow = SDL_CreateWindow("SDL Test",
 		                             SDL_WINDOWPOS_UNDEFINED,
 		                             SDL_WINDOWPOS_UNDEFINED,
@@ -74,8 +74,8 @@ char init()
 			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
 			success = 0;
 		} else {
-			// Get surface
 			sdlScreenSurface = SDL_GetWindowSurface(sdlWindow);
+			sdlRenderer = mint_DisplayCreateRenderer(sdlWindow);
 		}
 	}
 
@@ -85,6 +85,7 @@ char init()
 void close()
 {
 	SDL_DestroyWindow(sdlWindow);
+	SDL_DestroyRenderer(sdlRenderer);
 	sdlWindow = NULL;
 
 	SDL_Quit();

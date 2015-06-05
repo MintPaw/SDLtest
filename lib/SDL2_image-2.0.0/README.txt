@@ -1,5 +1,5 @@
 
-SDL_image 1.2
+SDL_image 2.0
 
 The latest version of this library is available from:
 http://www.libsdl.org/projects/SDL_image/
@@ -37,4 +37,4 @@ sh ./configure CPPFLAGS="-I/somewhere/include" LDFLAGS="-L/somewhere/lib"
 If this works, you may need to add /somewhere/lib to your LD_LIBRARY_PATH
 so shared library loading works correctly.
 
-This library is under the zlib License, see the file "COPYING" for details.
+This library is under the zlib License, see the file "COPYING.txt" for details.
