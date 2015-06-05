@@ -22,6 +22,7 @@ void mint_DisplayClearRenderer(SDL_Renderer* renderer)
 SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour)
 {
 	SDL_Color *sdlColor = (SDL_Color*)malloc(sizeof(SDL_Color));
+
 	sdlColor->r = ((colour >> 24) & 0xFF);
 	sdlColor->g = ((colour >> 16) & 0xFF);
 	sdlColor->b = ((colour >> 8) & 0xFF);

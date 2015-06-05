@@ -172,7 +172,7 @@ void mintSetColourInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) colour.b -= 10;
 
 			texture.render(&texture, 0, 0);
-			texture.setColour(&texture, mint_DisplaySDLColorToHex(&colour));
+			texture.setColour(&texture, &colour);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);

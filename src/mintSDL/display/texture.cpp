@@ -8,7 +8,7 @@
 int getWidth(MintTexture* self);
 int getHeight(MintTexture* self);
 void render(MintTexture* self, int x, int y);
-void setColour(MintTexture* self, unsigned long colour);
+void setColour(MintTexture* self, SDL_Color* colour);
 
 char mint_DisplayTextureSetup()
 {
@@ -65,8 +65,7 @@ void render(MintTexture* self, int x, int y)
 	SDL_RenderCopy(self->renderer, self->texture, NULL, &quad);
 }
 
-void setColour(MintTexture* self, unsigned long colour)
+void setColour(MintTexture* self, SDL_Color* colour)
 {
-	SDL_Color* sdlColor = mint_DisplayHexToSDLColor(colour);
-	SDL_SetTextureColorMod(self->texture, sdlColor->r, sdlColor->g, sdlColor->b);
+	SDL_SetTextureColorMod(self->texture, colour->r, colour->g, colour->b);
 }
