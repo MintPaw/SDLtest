@@ -40,7 +40,8 @@ int main(int argc, char* args[])
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			mint_DisplayClearRenderer(sdlRenderer);
-			mint_DisplayDrawRect(sdlRenderer, 0, 0, 100, 100, 0xFF0000FF);
+			mint_DisplayDrawRect(sdlRenderer, 0, 0, 100, 100, 0xFFFF00FF);
+			mint_DisplayDrawLine(sdlRenderer, 100, 100, 200, 200, 0xFF0000FF);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
