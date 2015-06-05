@@ -24,7 +24,7 @@ int main(int argc, char* args[])
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	SDL_Event e;
-	SDL_Renderer *renderer = mint_DisplayCreateRenderer(sdlWindow);
+	SDL_Renderer *sdlRenderer = mint_DisplayCreateRenderer(sdlWindow);
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
@@ -32,18 +32,18 @@ int main(int argc, char* args[])
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_QUIT) quit = 1;
-
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
 				mint_InputUpdate(input, &e.key);
 			}
 
-			SDL_UpdateWindowSurface(sdlWindow);
-			mint_DisplayClearRenderer(renderer);
-			mint_DisplayDrawRect(renderer, 0, 0, 100, 100, 0xFF0000FF);
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			SDL_UpdateWindowSurface(sdlWindow);
-			SDL_RenderPresent(renderer);
+			mint_DisplayClearRenderer(sdlRenderer);
+			mint_DisplayDrawRect(sdlRenderer, 0, 0, 100, 100, 0xFF0000FF);
+
+			SDL_UpdateWindowSurface(sdlWindow);
+			SDL_RenderPresent(sdlRenderer);
 		}
 	}
 
