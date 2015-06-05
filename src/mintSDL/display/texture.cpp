@@ -8,6 +8,7 @@
 int getWidth(MintTexture* self);
 int getHeight(MintTexture* self);
 void render(MintTexture* self, int x, int y);
+void setColour(MintTexture* self, unsigned long colour);
 
 char mint_DisplayTextureSetup()
 {
@@ -36,6 +37,7 @@ MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path)
 	mintTexture->_height = surface->h;
 	mintTexture->getWidth = &getWidth;
 	mintTexture->getHeight = &getHeight;
+	mintTexture->setColour = &setColour;
 	mintTexture->render = &render;
 
 	if (mintTexture->texture == NULL) {
@@ -63,8 +65,8 @@ void render(MintTexture* self, int x, int y)
 	SDL_RenderCopy(self->renderer, self->texture, NULL, &quad);
 }
 
-void setColor(MintTexture* self, unsigned long colour)
+void setColour(MintTexture* self, unsigned long colour)
 {
-	//mint_DisplayHexToSDLColor()
-	//SDL_SetTextureColorMod( mTexture, red, green, blue );
+	SDL_Color* sdlColor = mint_DisplayHexToSDLColor(colour);
+	SDL_SetTextureColorMod(self->texture, sdlColor->r, sdlColor->g, sdlColor->b);
 }

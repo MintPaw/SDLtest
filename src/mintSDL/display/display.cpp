@@ -22,7 +22,7 @@ void mint_DisplayClearRenderer(SDL_Renderer* renderer)
 SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour)
 {
 	SDL_Color *sdlColor = (SDL_Color*)malloc(sizeof(SDL_Color));
-	sdlColor->r = ((colour >> 32) & 0xFF);
+	sdlColor->r = ((colour >> 24) & 0xFF);
 	sdlColor->g = ((colour >> 16) & 0xFF);
 	sdlColor->b = ((colour >> 8) & 0xFF);
 	sdlColor->a = (colour & 0xFF);
@@ -30,7 +30,7 @@ SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour)
 	return sdlColor;
 }
 
-unsigned long mint_DisplayToSDLColorHex(SDL_Color* sdlColor)
+unsigned long mint_DisplaySDLColorToHex(SDL_Color* sdlColor)
 {   
-    return (((sdlColor->a & 0xff) << 32) + ((sdlColor->r & 0xff) << 16) + ((sdlColor->g & 0xff) << 8) + (sdlColor->b & 0xff));
+    return (((sdlColor->r & 0xFF) << 24) + ((sdlColor->g & 0xFF) << 16) + ((sdlColor->b & 0xFF) << 8) + (sdlColor->a & 0xFF));
 }

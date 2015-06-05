@@ -10,6 +10,7 @@ struct MintTexture {
 	int _height;
 	int (*getWidth)(MintTexture* self);
 	int (*getHeight)(MintTexture* self);
+	void (*setColour)(MintTexture* self, unsigned long colour);
 	void (*render)(MintTexture* self, int x, int y);
 };
 

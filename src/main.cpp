@@ -13,6 +13,7 @@ void close();
 void gameLoop();
 void geomExampleLoop();
 void mintTextureExampleLoop();
+void mintSetColourInputExampleLoop();
 
 /*
 	Todo:
@@ -46,8 +47,8 @@ int main(int argc, char* args[])
 
 	// gameLoop();
 	// geomExampleLoop();
-	mintTextureExampleLoop();
-
+	// mintTextureExampleLoop();
+	mintSetColourInputExampleLoop();
 	close();
 
 	return 0;
@@ -135,6 +136,43 @@ void mintTextureExampleLoop()
 			mint_DisplayClearRenderer(sdlRenderer);
 			
 			texture.render(&texture, 0, 0);
+
+			SDL_UpdateWindowSurface(sdlWindow);
+			SDL_RenderPresent(sdlRenderer);
+		}
+	}
+
+}
+
+void mintSetColourInputExampleLoop()
+{
+	SDL_Event e;
+	InputSetup *input = mint_InputSetup();
+	char quit = 0;
+
+	MintTexture texture = *mint_DisplayTextureFromPNG(sdlRenderer, "pngSplash.png");
+	SDL_Color colour = { r: 255, g: 255, b: 255, a: 0 };
+	while (!quit)
+	{
+		while(SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
+				mint_InputUpdate(input, &e.key);
+			}
+
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+
+			mint_DisplayClearRenderer(sdlRenderer);
+			
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) colour.r += 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) colour.r -= 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) colour.g += 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) colour.g -= 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) colour.b += 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) colour.b -= 10;
+
+			texture.render(&texture, 0, 0);
+			texture.setColour(&texture, mint_DisplaySDLColorToHex(&colour));
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
