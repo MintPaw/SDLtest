@@ -3,7 +3,8 @@ del bin\game.exe
 cls
 g++ src\main.cpp^
 	src\mintSDL\input.cpp^
-	src\mintSDL\display.cpp^
+	src\mintSDL\display\display.cpp^
+	src\mintSDL\display\geom.cpp^
 	-I lib\SDL2-2.0.3\include\^
 	-I lib\SDL_image-1.2.12\include\^
 	-L lib\SDL2-2.0.3\lib\x86\^

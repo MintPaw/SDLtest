@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <string>
 #include "mintSDL\input.h"
-#include "mintSDL\display.h"
+#include "mintSDL\display\display.h"
+#include "mintSDL\display\geom.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -40,8 +41,8 @@ int main(int argc, char* args[])
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			mint_DisplayClearRenderer(sdlRenderer);
-			mint_DisplayDrawRect(sdlRenderer, 0, 0, 100, 100, 0xFFFF00FF);
-			mint_DisplayDrawLine(sdlRenderer, 100, 100, 200, 200, 0xFF0000FF);
+			mint_GeomDrawRect(sdlRenderer, 0, 0, 100, 100, 0xFFFF00FF);
+			mint_GeomDrawLine(sdlRenderer, 100, 100, 200, 200, 0xFF0000FF);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
