@@ -3,6 +3,6 @@
 
 SDL_Renderer* mint_DisplayCreateRenderer(SDL_Window* window);
 void mint_DisplayClearRenderer(SDL_Renderer* renderer);
-void mint_DisplayHexToSDLColor(SDL_Color* sdlColor, unsigned long colour);
+SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour);
 
 #endif

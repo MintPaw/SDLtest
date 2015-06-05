@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <SDL.h>
 #include "display.h"
 
@@ -18,10 +19,13 @@ void mint_DisplayClearRenderer(SDL_Renderer* renderer)
 	SDL_RenderClear(renderer);
 }
 
-void mint_DisplayHexToSDLColor(SDL_Color* sdlColor, unsigned long colour)
+SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour)
 {
+	SDL_Color *sdlColor = (SDL_Color*)malloc(sizeof(SDL_Color));
 	sdlColor->r = ((colour >> 32) & 0xFF);
 	sdlColor->g = ((colour >> 16) & 0xFF);
 	sdlColor->b = ((colour >> 8) & 0xFF);
 	sdlColor->a = (colour & 0xFF);
+
+	return sdlColor;
 }

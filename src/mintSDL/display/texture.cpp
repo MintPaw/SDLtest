@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "texture.h"
+#include "display.h"
 
 int getWidth(MintTexture* self);
 int getHeight(MintTexture* self);
@@ -60,4 +61,10 @@ void render(MintTexture* self, int x, int y)
 {
 	SDL_Rect quad = { x, y, self->getWidth(self), self->getHeight(self) };
 	SDL_RenderCopy(self->renderer, self->texture, NULL, &quad);
+}
+
+void setColor(MintTexture* self, unsigned long colour)
+{
+	//mint_DisplayHexToSDLColor()
+	//SDL_SetTextureColorMod( mTexture, red, green, blue );
 }
