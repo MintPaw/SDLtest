@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include "mintSDL\input.h"
+#include "mintSDL\display.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -23,6 +24,7 @@ int main(int argc, char* args[])
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	SDL_Event e;
+	SDL_Renderer *renderer = mint_DisplayCreateRenderer(sdlWindow);
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
@@ -36,8 +38,12 @@ int main(int argc, char* args[])
 				mint_InputUpdate(input, &e.key);
 			}
 
-			// printf("SDL_SCANCODE_A is %d\n", mint_InputCheckStatus(input, SDL_SCANCODE_A));
-			// printf("Key: %s", SDL_GetKeyName(e.key.keysym.sym));
+			SDL_UpdateWindowSurface(sdlWindow);
+			mint_DisplayClearRenderer(renderer);
+			mint_DisplayDrawRect(renderer, 0, 0, 100, 100, 0xFF0000FF);
+
+			SDL_UpdateWindowSurface(sdlWindow);
+			SDL_RenderPresent(renderer);
 		}
 	}
 
@@ -57,11 +63,11 @@ char init()
 	} else {
 		// Create window
 		sdlWindow = SDL_CreateWindow("SDL Test",
-		                           SDL_WINDOWPOS_UNDEFINED,
-		                           SDL_WINDOWPOS_UNDEFINED,
-		                           SCREEN_WIDTH,
-		                           SCREEN_HEIGHT,
-		                           SDL_WINDOW_SHOWN);
+		                             SDL_WINDOWPOS_UNDEFINED,
+		                             SDL_WINDOWPOS_UNDEFINED,
+		                             SCREEN_WIDTH,
+		                             SCREEN_HEIGHT,
+		                             SDL_WINDOW_SHOWN);
 		if (sdlWindow == NULL) {
 			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
 			success = 0;
