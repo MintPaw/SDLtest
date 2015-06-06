@@ -7,7 +7,7 @@
 
 int getWidth(MintTexture* self);
 int getHeight(MintTexture* self);
-void render(MintTexture* self, int x, int y);
+void render(MintTexture* self);
 void setColour(MintTexture* self, SDL_Color* colour);
 void setAlpha(MintTexture* self, char alpha);
 
@@ -36,11 +36,13 @@ MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path)
 	mintTexture->renderer = renderer;
 	mintTexture->_width = surface->w;
 	mintTexture->_height = surface->h;
+	mintTexture->_alpha = NULL;
+	mintTexture->x = 0;
+	mintTexture->y = 0;
 	mintTexture->getWidth = &getWidth;
 	mintTexture->getHeight = &getHeight;
 	mintTexture->setColour = &setColour;
 	mintTexture->setAlpha = &setAlpha;
-	mintTexture->_alpha = NULL;
 	mintTexture->render = &render;
 
 	if (mintTexture->texture == NULL) {
@@ -62,9 +64,9 @@ int getHeight(MintTexture* self)
 	return self->_height;
 }
 
-void render(MintTexture* self, int x, int y)
+void render(MintTexture* self)
 {
-	SDL_Rect quad = { x, y, self->getWidth(self), self->getHeight(self) };
+	SDL_Rect quad = { self->x, self->y, self->getWidth(self), self->getHeight(self) };
 	SDL_RenderCopy(self->renderer, self->texture, NULL, &quad);
 }
 

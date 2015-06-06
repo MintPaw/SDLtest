@@ -13,7 +13,7 @@ struct MintTexture {
 	int (*getHeight)(MintTexture* self);
 	void (*setColour)(MintTexture* self, SDL_Color* colour);
 	void (*setAlpha)(MintTexture* self, char alpha);
-	void (*render)(MintTexture* self, int x, int y);
+	void (*render)(MintTexture* self);
 };
 
 char mint_DisplayTextureSetup();

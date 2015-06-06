@@ -137,7 +137,7 @@ void mintTextureExampleLoop()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 			
-			texture.render(&texture, 0, 0);
+			texture.render(&texture);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
@@ -173,7 +173,7 @@ void mintSetColourInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) colour.b += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) colour.b -= 10;
 
-			texture.render(&texture, 0, 0);
+			texture.render(&texture);
 			texture.setColour(&texture, &colour);
 
 			SDL_UpdateWindowSurface(sdlWindow);
@@ -205,7 +205,7 @@ void mintSetAlphaInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) alpha += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) alpha -= 10;
 
-			texture.render(&texture, 0, 0);
+			texture.render(&texture);
 			texture.setAlpha(&texture, alpha);
 
 			SDL_UpdateWindowSurface(sdlWindow);
