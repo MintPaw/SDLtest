@@ -8,9 +8,11 @@ struct MintTexture {
 	int y;
 	int _width;
 	int _height;
+	int _alpha;
 	int (*getWidth)(MintTexture* self);
 	int (*getHeight)(MintTexture* self);
 	void (*setColour)(MintTexture* self, SDL_Color* colour);
+	void (*setAlpha)(MintTexture* self, char alpha);
 	void (*render)(MintTexture* self, int x, int y);
 };
 

@@ -9,6 +9,7 @@ int getWidth(MintTexture* self);
 int getHeight(MintTexture* self);
 void render(MintTexture* self, int x, int y);
 void setColour(MintTexture* self, SDL_Color* colour);
+void setAlpha(MintTexture* self, char alpha);
 
 char mint_DisplayTextureSetup()
 {
@@ -38,6 +39,8 @@ MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path)
 	mintTexture->getWidth = &getWidth;
 	mintTexture->getHeight = &getHeight;
 	mintTexture->setColour = &setColour;
+	mintTexture->setAlpha = &setAlpha;
+	mintTexture->_alpha = NULL;
 	mintTexture->render = &render;
 
 	if (mintTexture->texture == NULL) {
@@ -68,4 +71,12 @@ void render(MintTexture* self, int x, int y)
 void setColour(MintTexture* self, SDL_Color* colour)
 {
 	SDL_SetTextureColorMod(self->texture, colour->r, colour->g, colour->b);
+}
+
+void setAlpha(MintTexture* self, char alpha)
+{
+	if (self->_alpha == NULL) SDL_SetTextureBlendMode(self->texture, SDL_BLENDMODE_BLEND);
+
+	self->_alpha = alpha;
+	SDL_SetTextureAlphaMod(self->texture, self->_alpha);
 }

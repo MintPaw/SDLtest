@@ -14,10 +14,11 @@ void gameLoop();
 void geomExampleLoop();
 void mintTextureExampleLoop();
 void mintSetColourInputExampleLoop();
+void mintSetAlphaInputExampleLoop();
 
 /*
 	Todo:
-		
+		Remove x and y from render
 */
 
 SDL_Window* sdlWindow = NULL;
@@ -48,7 +49,8 @@ int main(int argc, char* args[])
 	// gameLoop();
 	// geomExampleLoop();
 	// mintTextureExampleLoop();
-	mintSetColourInputExampleLoop();
+	// mintSetColourInputExampleLoop();
+	mintSetAlphaInputExampleLoop();
 	close();
 
 	return 0;
@@ -173,6 +175,38 @@ void mintSetColourInputExampleLoop()
 
 			texture.render(&texture, 0, 0);
 			texture.setColour(&texture, &colour);
+
+			SDL_UpdateWindowSurface(sdlWindow);
+			SDL_RenderPresent(sdlRenderer);
+		}
+	}
+}
+
+void mintSetAlphaInputExampleLoop()
+{
+	SDL_Event e;
+	InputSetup *input = mint_InputSetup();
+	char quit = 0;
+
+	MintTexture texture = *mint_DisplayTextureFromPNG(sdlRenderer, "pngSplash.png");
+	char alpha = 255;
+	while (!quit)
+	{
+		while(SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
+				mint_InputUpdate(input, &e.key);
+			}
+
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+
+			mint_DisplayClearRenderer(sdlRenderer);
+			
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) alpha += 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) alpha -= 10;
+
+			texture.render(&texture, 0, 0);
+			texture.setAlpha(&texture, alpha);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
