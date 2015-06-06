@@ -40,7 +40,7 @@ int main(int argc, char* args[])
 			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
 		} else {
 			sdlScreenSurface = SDL_GetWindowSurface(sdlWindow);
-			sdlRenderer = mint_DisplayCreateRenderer(sdlWindow);
+			sdlRenderer = mint_DisplayCreateRenderer(sdlWindow, 1);
 		}
 	}
 

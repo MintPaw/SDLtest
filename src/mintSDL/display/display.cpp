@@ -3,9 +3,15 @@
 #include <SDL.h>
 #include "display.h"
 
-SDL_Renderer* mint_DisplayCreateRenderer(SDL_Window* window)
+SDL_Renderer* mint_DisplayCreateRenderer(SDL_Window* window, char vsync)
 {
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	SDL_Renderer* renderer;
+	if (vsync)
+	{
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	} else {
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	}
 	if (renderer == NULL) {
 		printf("Failed to create renderer, SDL_Error: \n", SDL_GetError());
 	}
