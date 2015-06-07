@@ -35,7 +35,7 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 
 	mintTexture->rend = (MintRend*)malloc(sizeof(MintRend));
 
-	mintTexture->rend->texture = mintTexture;
+	mintTexture->rend->mintTexture = mintTexture;
 	mintTexture->rend->renderer = renderer;
 	mintTexture->rend->_alpha = NULL;
 	mintTexture->rend->_clipRect = NULL;
@@ -96,7 +96,7 @@ void mint_TextureSetupAnimMan(MintTexture* mintTexture, int totalAnims)
 	mintTexture->animMan->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
 
 	mintTexture->animMan->currentAnim = NULL;
-	mintTexture->animMan->texture = mintTexture;
+	mintTexture->animMan->mintTexture = mintTexture;
 
 	int i;
 	for (i = 0; i < totalAnims; i++) {

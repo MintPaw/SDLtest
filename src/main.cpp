@@ -21,7 +21,6 @@ void mintTextureTransformExampleLoop();
 
 /*
 	Todo:
-		Change texture to mintTexture
 
 	Notes:
 		You can't push additional animations or frames after inits, is the a problem?

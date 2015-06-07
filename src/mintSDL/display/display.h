@@ -7,7 +7,7 @@ struct MintRend;
 #include "texture.h"
 
 struct MintRend {
-	MintTexture* texture;
+	MintTexture* mintTexture;
 	SDL_Renderer* renderer;
 	SDL_Rect* _clipRect;
 	int _alpha;

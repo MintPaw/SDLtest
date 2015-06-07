@@ -27,15 +27,15 @@ void mint_DisplayClearRenderer(SDL_Renderer* renderer)
 
 void mint_RendSetColour(MintRend* rend, SDL_Color* colour)
 {
-	SDL_SetTextureColorMod(rend->texture->texture, colour->r, colour->g, colour->b);
+	SDL_SetTextureColorMod(rend->mintTexture->texture, colour->r, colour->g, colour->b);
 }
 
 void mint_RendSetAlpha(MintRend* rend, char alpha)
 {
-	if (rend->_alpha == NULL) SDL_SetTextureBlendMode(rend->texture->texture, SDL_BLENDMODE_BLEND);
+	if (rend->_alpha == NULL) SDL_SetTextureBlendMode(rend->mintTexture->texture, SDL_BLENDMODE_BLEND);
 
 	rend->_alpha = alpha;
-	SDL_SetTextureAlphaMod(rend->texture->texture, rend->_alpha);
+	SDL_SetTextureAlphaMod(rend->mintTexture->texture, rend->_alpha);
 }
 
 SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour)

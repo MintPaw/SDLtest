@@ -27,13 +27,13 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 {
 	int i;
 	for (i = 0; i < anim->totalFrames; i++) {
-		mint_AnimDefineFrame(anim, i, frameWidth * i, 0, frameWidth, mint_TransGetHeight(anim->man->texture->trans));
+		mint_AnimDefineFrame(anim, i, frameWidth * i, 0, frameWidth, mint_TransGetHeight(anim->man->mintTexture->trans));
 	}
 
 	anim->currentFrame = 0;
 	anim->loop = loop;
 
-	anim->man->texture->rend->_clipRect = &anim->frameRects[0];
+	anim->man->mintTexture->rend->_clipRect = &anim->frameRects[0];
 }
 
 void mint_AnimNextFrame(MintAnimMan* animMan)
@@ -49,7 +49,7 @@ void mint_AnimNextFrame(MintAnimMan* animMan)
 
 void mint_AnimUpdate(MintAnimMan* animMan)
 {
-	animMan->texture->rend->_clipRect = &animMan->currentAnim->frameRects[animMan->currentAnim->currentFrame];	
+	animMan->mintTexture->rend->_clipRect = &animMan->currentAnim->frameRects[animMan->currentAnim->currentFrame];	
 }
 
 void mint_AnimPlayByIndex(MintAnimMan* animMan, int index)

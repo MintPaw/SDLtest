@@ -8,7 +8,7 @@ struct MintAnimMan;
 #include "texture.h"
 
 struct MintAnimMan {
-	MintTexture* texture;
+	MintTexture* mintTexture;
 	MintAnim* anims;
 	MintAnim* currentAnim;
 };
