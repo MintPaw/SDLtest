@@ -43,9 +43,14 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 	mintTexture->_clipRect->y = 0;
 	mintTexture->_clipRect->w = surface->w;
 	mintTexture->_clipRect->h = surface->h;
+	mintTexture->angle = 0;
+	mintTexture->centre = (SDL_Point*)malloc(sizeof(SDL_Point));
+	mintTexture->flip = SDL_FLIP_NONE;
 
 	mintTexture->x = 0;
 	mintTexture->y = 0;
+	mintTexture->centre->x = mintTexture->_width / 2;
+	mintTexture->centre->y = mintTexture->_height / 2;
 	mintTexture->currentAnim = NULL;
 
 	SDL_FreeSurface(surface);
@@ -66,7 +71,7 @@ int mint_TextureGetHeight(MintTexture* self)
 void mint_TextureRender(MintTexture* self)
 {
 	SDL_Rect quad = { self->x, self->y, self->_clipRect->w, self->_clipRect->h };
-	SDL_RenderCopy(self->renderer, self->texture, self->_clipRect, &quad);
+	SDL_RenderCopyEx(self->renderer, self->texture, self->_clipRect, &quad, self->angle, self->centre, self->flip);
 }
 
 void mint_TextureSetColour(MintTexture* self, SDL_Color* colour)
