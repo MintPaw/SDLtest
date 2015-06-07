@@ -3,24 +3,21 @@
 
 struct MintTexture;
 
-#include "trans.h"
 #include "anim.h"
+#include "display.h"
+#include "trans.h"
 
 struct MintTexture {
 	SDL_Texture* texture;
-	SDL_Renderer* renderer;
 	MintAnimMan* animMan;
 	MintTrans* trans;
-	int _alpha;
-	SDL_Rect* _clipRect;
+	MintRend* rend;
 };
 
 char mint_TextureSetup();
 MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path);
 
 void mint_TextureRender(MintTexture* self);
-void mint_TextureSetColour(MintTexture* self, SDL_Color* colour);
-void mint_TextureSetAlpha(MintTexture* self, char alpha);
 void mint_TextureSetupAnimMan(MintTexture* self, int totalAnims);
 
 #endif

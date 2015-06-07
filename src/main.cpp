@@ -23,6 +23,7 @@ void mintTextureTransformExampleLoop();
 	Todo:
 		Removed self's
 		Change env.bat to vs.bat
+		Change texture to mintTexture
 
 	Notes:
 		You can't push additional animations or frames after inits, is the a problem?
@@ -58,8 +59,8 @@ int main(int argc, char* args[])
 	// geomExampleLoop();
 	// mintTextureExampleLoop();
 	// mintSetColourInputExampleLoop();
-	// mintSetAlphaInputExampleLoop();
-	mintTextureAnimExampleLoop();
+	mintSetAlphaInputExampleLoop();
+	// mintTextureAnimExampleLoop();
 	// mintTextureTransformExampleLoop();
 
 	close();
@@ -169,7 +170,7 @@ void mintSetColourInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) colour.b -= 10;
 
 			mint_TextureRender(&texture);
-			mint_TextureSetColour(&texture, &colour);
+			mint_RendSetColour(texture.rend, &colour);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -196,8 +197,8 @@ void mintSetAlphaInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) alpha += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) alpha -= 10;
 
+			mint_RendSetAlpha(texture.rend, alpha);
 			mint_TextureRender(&texture);
-			mint_TextureSetAlpha(&texture, alpha);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
