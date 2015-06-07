@@ -6,6 +6,7 @@
 #include "texture.h"
 #include "display.h"
 
+
 char mint_TextureSetup()
 {
 	int imgFlags = IMG_INIT_PNG;
@@ -28,16 +29,24 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 	}
 
 	mintTexture->texture = SDL_CreateTextureFromSurface(renderer, surface);
+	if (mintTexture->texture == NULL) {
+		printf("Failed to create texture from %s, SDL_Error: %s\n", path, SDL_GetError());
+	}
+
 	mintTexture->renderer = renderer;
 	mintTexture->_width = surface->w;
 	mintTexture->_height = surface->h;
 	mintTexture->_alpha = NULL;
+
+	mintTexture->_clipRect = (SDL_Rect*)malloc(sizeof(SDL_Rect));
+	mintTexture->_clipRect->x = 0;
+	mintTexture->_clipRect->y = 0;
+	mintTexture->_clipRect->w = surface->w;
+	mintTexture->_clipRect->h = surface->h;
+
 	mintTexture->x = 0;
 	mintTexture->y = 0;
-
-	if (mintTexture->texture == NULL) {
-		printf("Failed to create texture from %s, SDL_Error: %s\n", path, SDL_GetError());
-	}
+	mintTexture->currentAnim = NULL;
 
 	SDL_FreeSurface(surface);
 
@@ -56,8 +65,8 @@ int mint_TextureGetHeight(MintTexture* self)
 
 void mint_TextureRender(MintTexture* self)
 {
-	SDL_Rect quad = { self->x, self->y, mint_TextureGetWidth(self), mint_TextureGetHeight(self) };
-	SDL_RenderCopy(self->renderer, self->texture, NULL, &quad);
+	SDL_Rect quad = { self->x, self->y, self->_clipRect->w, self->_clipRect->h };
+	SDL_RenderCopy(self->renderer, self->texture, self->_clipRect, &quad);
 }
 
 void mint_TextureSetColour(MintTexture* self, SDL_Color* colour)
@@ -73,8 +82,17 @@ void mint_TextureSetAlpha(MintTexture* self, char alpha)
 	SDL_SetTextureAlphaMod(self->texture, self->_alpha);
 }
 
-void mint_TextureSetupAnim(MintTexture* self, int totalAnims)
+void mint_TextureSetupAnims(MintTexture* self, int totalAnims)
 {
-	self->_totalAnims = 0;
 	self->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
+
+	int i;
+	for (i = 0; i < totalAnims; i++) {
+		self->anims[i].texture = self;
+	}
+}
+
+void mint_TexturePlayAnimByIndex(MintTexture* self, int index)
+{
+	self->currentAnim = &self->anims[index];
 }

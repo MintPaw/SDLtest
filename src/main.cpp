@@ -20,7 +20,7 @@ void mintTextureAnimExampleLoop();
 
 /*
 	Todo:
-		Removed crude attempt at locally scoped functions
+		Removed self's
 */
 
 SDL_Window* sdlWindow = NULL;
@@ -225,8 +225,12 @@ void mintTextureAnimExampleLoop()
 	char quit = 0;
 
 	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "animation.png");
-	mint_TextureSetupAnim(&texture, 1);
-	//mint_TextureAddAnim();
+	mint_TextureSetupAnims(&texture, 1);
+
+	mint_AnimSetup(&texture.anims[0], "anim1", 4);
+	mint_AnimDefineLinearStripFrames(&texture.anims[0], 64, 1);
+	mint_TexturePlayAnimByIndex(&texture, 0);
+
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
@@ -240,6 +244,7 @@ void mintTextureAnimExampleLoop()
 			mint_DisplayClearRenderer(sdlRenderer);
 
 			mint_TextureRender(&texture);
+			mint_AnimNextFrame(texture.currentAnim);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
