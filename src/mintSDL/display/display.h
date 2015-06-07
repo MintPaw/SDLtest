@@ -18,7 +18,7 @@ void mint_DisplayClearRenderer(SDL_Renderer* renderer);
 SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour);
 unsigned long mint_DisplaySDLColorToHex(SDL_Color* sdlColor);
 
-void mint_RendSetColour(MintRend* self, SDL_Color* colour);
-void mint_RendSetAlpha(MintRend* self, char alpha);
+void mint_RendSetColour(MintRend* rend, SDL_Color* colour);
+void mint_RendSetAlpha(MintRend* rend, char alpha);
 
 #endif

@@ -21,7 +21,6 @@ void mintTextureTransformExampleLoop();
 
 /*
 	Todo:
-		Removed self's
 		Change env.bat to vs.bat
 		Change texture to mintTexture
 

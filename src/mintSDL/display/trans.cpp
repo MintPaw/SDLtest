@@ -1,11 +1,11 @@
 #include "texture.h"
 
-int mint_TransGetWidth(MintTrans* self)
+int mint_TransGetWidth(MintTrans* trans)
 {
-	return self->_width;
+	return trans->_width;
 }
 
-int mint_TransGetHeight(MintTrans* self)
+int mint_TransGetHeight(MintTrans* trans)
 {
-	return self->_height;
+	return trans->_height;
 }

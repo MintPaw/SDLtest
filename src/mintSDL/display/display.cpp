@@ -25,9 +25,9 @@ void mint_DisplayClearRenderer(SDL_Renderer* renderer)
 	SDL_RenderClear(renderer);
 }
 
-void mint_RendSetColour(MintRend* self, SDL_Color* colour)
+void mint_RendSetColour(MintRend* rend, SDL_Color* colour)
 {
-	SDL_SetTextureColorMod(self->texture->texture, colour->r, colour->g, colour->b);
+	SDL_SetTextureColorMod(rend->texture->texture, colour->r, colour->g, colour->b);
 }
 
 void mint_RendSetAlpha(MintRend* rend, char alpha)
