@@ -128,7 +128,7 @@ void mintTextureExampleLoop()
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
-	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "pngSplash.png");
+	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/pngSplash.png");
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
@@ -155,7 +155,7 @@ void mintSetColourInputExampleLoop()
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
-	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "pngSplash.png");
+	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/pngSplash.png");
 	SDL_Color colour = { r: 255, g: 255, b: 255, a: 0 };
 	while (!quit)
 	{
@@ -190,7 +190,7 @@ void mintSetAlphaInputExampleLoop()
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
-	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "pngSplash.png");
+	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/pngSplash.png");
 	char alpha = 255;
 	while (!quit)
 	{
@@ -222,7 +222,7 @@ void mintTextureAnimExampleLoop()
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
-	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "animation.png");
+	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/animation.png");
 	mint_TextureSetupAnims(&texture, 1);
 
 	mint_AnimSetup(&texture.anims[0], "anim1", 4);
