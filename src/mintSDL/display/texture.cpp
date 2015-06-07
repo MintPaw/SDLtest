@@ -3,9 +3,9 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "anim.h"
-#include "texture.h"
 #include "display.h"
-
+#include "texture.h"
+#include "trans.h"
 
 char mint_TextureSetup()
 {
@@ -34,23 +34,26 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 	}
 
 	mintTexture->renderer = renderer;
-	mintTexture->_width = surface->w;
-	mintTexture->_height = surface->h;
 	mintTexture->_alpha = NULL;
+
+	mintTexture->trans = (MintTrans*)malloc(sizeof(MintTrans));
+	mintTexture->trans->x = 0;
+	mintTexture->trans->y = 0;
+	mintTexture->trans->_width = surface->w;
+	mintTexture->trans->_height = surface->h;
+	
+	mintTexture->trans->centre = (SDL_Point*)malloc(sizeof(SDL_Point));
+	mintTexture->trans->centre->x = mintTexture->trans->_width / 2;
+	mintTexture->trans->centre->y = mintTexture->trans->_height / 2;
+	mintTexture->trans->angle = 0;
+	mintTexture->trans->flip = SDL_FLIP_NONE;
 
 	mintTexture->_clipRect = (SDL_Rect*)malloc(sizeof(SDL_Rect));
 	mintTexture->_clipRect->x = 0;
 	mintTexture->_clipRect->y = 0;
 	mintTexture->_clipRect->w = surface->w;
 	mintTexture->_clipRect->h = surface->h;
-	mintTexture->angle = 0;
-	mintTexture->centre = (SDL_Point*)malloc(sizeof(SDL_Point));
-	mintTexture->flip = SDL_FLIP_NONE;
 
-	mintTexture->x = 0;
-	mintTexture->y = 0;
-	mintTexture->centre->x = mintTexture->_width / 2;
-	mintTexture->centre->y = mintTexture->_height / 2;
 	mintTexture->currentAnim = NULL;
 
 	SDL_FreeSurface(surface);
@@ -58,20 +61,10 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 	return mintTexture;
 }
 
-int mint_TextureGetWidth(MintTexture* self)
-{
-	return self->_width;
-}
-
-int mint_TextureGetHeight(MintTexture* self)
-{
-	return self->_height;
-}
-
 void mint_TextureRender(MintTexture* self)
 {
-	SDL_Rect quad = { self->x, self->y, self->_clipRect->w, self->_clipRect->h };
-	SDL_RenderCopyEx(self->renderer, self->texture, self->_clipRect, &quad, self->angle, self->centre, self->flip);
+	SDL_Rect quad = { self->trans->x, self->trans->y, self->_clipRect->w, self->_clipRect->h };
+	SDL_RenderCopyEx(self->renderer, self->texture, self->_clipRect, &quad, self->trans->angle, self->trans->centre, self->trans->flip);
 }
 
 void mint_TextureSetColour(MintTexture* self, SDL_Color* colour)

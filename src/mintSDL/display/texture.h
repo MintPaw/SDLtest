@@ -3,6 +3,7 @@
 
 struct MintTexture;
 
+#include "trans.h"
 #include "anim.h"
 
 struct MintTexture {
@@ -10,13 +11,7 @@ struct MintTexture {
 	SDL_Renderer* renderer;
 	MintAnim* anims;
 	MintAnim* currentAnim;
-	int x;
-	int y;
-	double angle;
-	SDL_Point* centre;
-	SDL_RendererFlip flip;
-	int _width;
-	int _height;
+	MintTrans* trans;
 	int _alpha;
 	SDL_Rect* _clipRect;
 };
@@ -24,8 +19,6 @@ struct MintTexture {
 char mint_TextureSetup();
 MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path);
 
-int mint_TextureGetWidth(MintTexture* self);
-int mint_TextureGetHeight(MintTexture* self);
 void mint_TextureRender(MintTexture* self);
 void mint_TextureSetColour(MintTexture* self, SDL_Color* colour);
 void mint_TextureSetAlpha(MintTexture* self, char alpha);

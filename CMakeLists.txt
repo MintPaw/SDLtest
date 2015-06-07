@@ -20,6 +20,7 @@ add_executable(SDLtest
 	src/mintSDL/display/display.cpp
 	src/mintSDL/display/geom.cpp
 	src/mintSDL/display/texture.cpp
+	src/mintSDL/display/trans.cpp
 	src/mintSDL/input.cpp
 )
 

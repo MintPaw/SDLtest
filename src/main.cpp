@@ -22,6 +22,7 @@ void mintTextureTransformExampleLoop();
 /*
 	Todo:
 		Removed self's
+		Change env.bat to vs.bat
 
 	Notes:
 		You can't push additional animations or frames after inits, is the a problem?
@@ -248,18 +249,18 @@ void mintTextureTransformExampleLoop()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) arrow.angle -= 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) arrow.angle += 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) arrow.trans->angle -= 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) arrow.trans->angle += 10;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) arrow.centre->y -= 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) arrow.centre->y += 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow.centre->x -= 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) arrow.centre->x += 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) arrow.trans->centre->y -= 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) arrow.trans->centre->y += 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow.trans->centre->x -= 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) arrow.trans->centre->x += 1;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_Z)) arrow.flip = SDL_FLIP_NONE;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_X)) arrow.flip = SDL_FLIP_HORIZONTAL;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_C)) arrow.flip = SDL_FLIP_VERTICAL;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_V)) arrow.flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_Z)) arrow.trans->flip = SDL_FLIP_NONE;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_X)) arrow.trans->flip = SDL_FLIP_HORIZONTAL;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_C)) arrow.trans->flip = SDL_FLIP_VERTICAL;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_V)) arrow.trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
 			mint_DisplayClearRenderer(sdlRenderer);
 

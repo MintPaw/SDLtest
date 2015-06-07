@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "anim.h"
 #include "texture.h"
+#include "trans.h"
 
 void mint_AnimSetup(MintAnim* anim, char* name, int totalFrames)
 {
@@ -28,7 +29,7 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 		anim->frameRects[i].x = frameWidth * i;
 		anim->frameRects[i].y = 0;
 		anim->frameRects[i].w = frameWidth;
-		anim->frameRects[i].h = mint_TextureGetHeight(anim->texture);
+		anim->frameRects[i].h = mint_TransGetHeight(anim->texture->trans);
 	}
 
 	anim->currentFrame = 0;
