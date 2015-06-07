@@ -150,7 +150,7 @@ void mintSetColourInputExampleLoop()
 	char quit = 0;
 
 	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/pngSplash.png");
-	SDL_Color colour = { r: 255, g: 255, b: 255, a: 0 };
+	SDL_Color colour = { 255, 255, 255, 0 };
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
