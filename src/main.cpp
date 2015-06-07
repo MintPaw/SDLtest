@@ -3,7 +3,7 @@
 #include <string>
 #include "mintSDL\input.h"
 #include "mintSDL\display\display.h"
-#include "mintSDL\display\animation.h"
+#include "mintSDL\display\anim.h"
 #include "mintSDL\display\geom.h"
 #include "mintSDL\display\texture.h"
 
@@ -16,7 +16,7 @@ void geomExampleLoop();
 void mintTextureExampleLoop();
 void mintSetColourInputExampleLoop();
 void mintSetAlphaInputExampleLoop();
-void mintTextureAnimationExampleLoop();
+void mintTextureAnimExampleLoop();
 
 /*
 	Todo:
@@ -53,7 +53,7 @@ int main(int argc, char* args[])
 	// mintTextureExampleLoop();
 	// mintSetColourInputExampleLoop();
 	// mintSetAlphaInputExampleLoop();
-	mintTextureAnimationExampleLoop();
+	mintTextureAnimExampleLoop();
 	close();
 
 	return 0;
@@ -218,15 +218,15 @@ void mintSetAlphaInputExampleLoop()
 }
 
 
-void mintTextureAnimationExampleLoop()
+void mintTextureAnimExampleLoop()
 {
 	SDL_Event e;
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "animation.png");
-	mint_TextureSetupAnimation(&texture, 1);
-	//texture.setupAnimation(&texture, 1);
+	mint_TextureSetupAnim(&texture, 1);
+	//mint_TextureAddAnim();
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)

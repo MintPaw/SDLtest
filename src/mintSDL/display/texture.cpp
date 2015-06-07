@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "animation.h"
+#include "anim.h"
 #include "texture.h"
 #include "display.h"
 
@@ -73,8 +73,8 @@ void mint_TextureSetAlpha(MintTexture* self, char alpha)
 	SDL_SetTextureAlphaMod(self->texture, self->_alpha);
 }
 
-void mint_TextureSetupAnimation(MintTexture* self, int totalAnims)
+void mint_TextureSetupAnim(MintTexture* self, int totalAnims)
 {
 	self->_totalAnims = 0;
-	self->anims = (MintAnimation*)malloc(sizeof(MintAnimation) * totalAnims);
+	self->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
 }

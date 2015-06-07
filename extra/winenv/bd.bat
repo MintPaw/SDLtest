@@ -3,7 +3,7 @@ del bin\game.exe
 cls
 g++ src\main.cpp^
 	src\mintSDL\input.cpp^
-	src\mintSDL\display\animation.cpp^
+	src\mintSDL\display\anim.cpp^
 	src\mintSDL\display\display.cpp^
 	src\mintSDL\display\geom.cpp^
 	src\mintSDL\display\texture.cpp^

@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-struct MintAnimation {
+struct MintAnim {
 	char* name;
 	SDL_Rect* frameRects;
 };

@@ -1,12 +1,12 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-#include "animation.h"
+#include "anim.h"
 
 struct MintTexture {
 	SDL_Texture* texture;
 	SDL_Renderer* renderer;
-	MintAnimation* anims;
+	MintAnim* anims;
 	int x;
 	int y;
 	int _width;
@@ -23,6 +23,6 @@ int mint_TextureGetHeight(MintTexture* self);
 void mint_TextureRender(MintTexture* self);
 void mint_TextureSetColour(MintTexture* self, SDL_Color* colour);
 void mint_TextureSetAlpha(MintTexture* self, char alpha);
-void mint_TextureSetupAnimation(MintTexture* self, int totalAnims);
+void mint_TextureSetupAnim(MintTexture* self, int totalAnims);
 
 #endif
