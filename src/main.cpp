@@ -3,6 +3,7 @@
 #include <string>
 #include "mintSDL\input.h"
 #include "mintSDL\display\display.h"
+#include "mintSDL\display\animation.h"
 #include "mintSDL\display\geom.h"
 #include "mintSDL\display\texture.h"
 
@@ -15,10 +16,11 @@ void geomExampleLoop();
 void mintTextureExampleLoop();
 void mintSetColourInputExampleLoop();
 void mintSetAlphaInputExampleLoop();
+void mintTextureAnimationExampleLoop();
 
 /*
 	Todo:
-		Remove x and y from render
+		Removed crude attempt at locally scoped functions
 */
 
 SDL_Window* sdlWindow = NULL;
@@ -50,7 +52,8 @@ int main(int argc, char* args[])
 	// geomExampleLoop();
 	// mintTextureExampleLoop();
 	// mintSetColourInputExampleLoop();
-	mintSetAlphaInputExampleLoop();
+	// mintSetAlphaInputExampleLoop();
+	mintTextureAnimationExampleLoop();
 	close();
 
 	return 0;
@@ -207,6 +210,35 @@ void mintSetAlphaInputExampleLoop()
 
 			texture.render(&texture);
 			texture.setAlpha(&texture, alpha);
+
+			SDL_UpdateWindowSurface(sdlWindow);
+			SDL_RenderPresent(sdlRenderer);
+		}
+	}
+}
+
+
+void mintTextureAnimationExampleLoop()
+{
+	SDL_Event e;
+	InputSetup *input = mint_InputSetup();
+	char quit = 0;
+
+	MintTexture texture = *mint_DisplayTextureFromPNG(sdlRenderer, "animation.png");
+	texture.setupAnimation(&texture, 1);
+	while (!quit)
+	{
+		while(SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
+				mint_InputUpdate(input, &e.key);
+			}
+
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+
+			mint_DisplayClearRenderer(sdlRenderer);
+
+			texture.render(&texture);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);

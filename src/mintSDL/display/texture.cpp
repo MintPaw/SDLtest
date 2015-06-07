@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include "animation.h"
 #include "texture.h"
 #include "display.h"
 
@@ -10,6 +11,7 @@ int getHeight(MintTexture* self);
 void render(MintTexture* self);
 void setColour(MintTexture* self, SDL_Color* colour);
 void setAlpha(MintTexture* self, char alpha);
+void setupAnimation(MintTexture* self, int totalAnimations);
 
 char mint_DisplayTextureSetup()
 {
@@ -43,6 +45,7 @@ MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path)
 	mintTexture->getHeight = &getHeight;
 	mintTexture->setColour = &setColour;
 	mintTexture->setAlpha = &setAlpha;
+	mintTexture->setupAnimation = &setupAnimation;
 	mintTexture->render = &render;
 
 	if (mintTexture->texture == NULL) {
@@ -81,4 +84,10 @@ void setAlpha(MintTexture* self, char alpha)
 
 	self->_alpha = alpha;
 	SDL_SetTextureAlphaMod(self->texture, self->_alpha);
+}
+
+void setupAnimation(MintTexture* self, int totalAnims)
+{
+	self->_totalAnims = 0;
+	self->anims = (MintAnimation*)malloc(sizeof(MintAnimation) * totalAnims);
 }
