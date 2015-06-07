@@ -13,15 +13,16 @@ struct MintTexture {
 	int _height;
 	int _alpha;
 	int _totalAnims;
-	int (*getWidth)(MintTexture* self);
-	int (*getHeight)(MintTexture* self);
-	void (*setColour)(MintTexture* self, SDL_Color* colour);
-	void (*setAlpha)(MintTexture* self, char alpha);
-	void (*setupAnimation)(MintTexture* self, int totalAnimations);
-	void (*render)(MintTexture* self);
 };
 
-char mint_DisplayTextureSetup();
-MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path);
+char mint_TextureSetup();
+MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path);
+
+int mint_TextureGetWidth(MintTexture* self);
+int mint_TextureGetHeight(MintTexture* self);
+void mint_TextureRender(MintTexture* self);
+void mint_TextureSetColour(MintTexture* self, SDL_Color* colour);
+void mint_TextureSetAlpha(MintTexture* self, char alpha);
+void mint_TextureSetupAnimation(MintTexture* self, int totalAnims);
 
 #endif

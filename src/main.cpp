@@ -127,7 +127,7 @@ void mintTextureExampleLoop()
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
-	MintTexture texture = *mint_DisplayTextureFromPNG(sdlRenderer, "pngSplash.png");
+	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "pngSplash.png");
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
@@ -140,7 +140,7 @@ void mintTextureExampleLoop()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 			
-			texture.render(&texture);
+			mint_TextureRender(&texture);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
@@ -155,7 +155,7 @@ void mintSetColourInputExampleLoop()
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
-	MintTexture texture = *mint_DisplayTextureFromPNG(sdlRenderer, "pngSplash.png");
+	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "pngSplash.png");
 	SDL_Color colour = { r: 255, g: 255, b: 255, a: 0 };
 	while (!quit)
 	{
@@ -176,8 +176,8 @@ void mintSetColourInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) colour.b += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) colour.b -= 10;
 
-			texture.render(&texture);
-			texture.setColour(&texture, &colour);
+			mint_TextureRender(&texture);
+			mint_TextureSetColour(&texture, &colour);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
@@ -191,7 +191,7 @@ void mintSetAlphaInputExampleLoop()
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
-	MintTexture texture = *mint_DisplayTextureFromPNG(sdlRenderer, "pngSplash.png");
+	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "pngSplash.png");
 	char alpha = 255;
 	while (!quit)
 	{
@@ -208,8 +208,8 @@ void mintSetAlphaInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) alpha += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) alpha -= 10;
 
-			texture.render(&texture);
-			texture.setAlpha(&texture, alpha);
+			mint_TextureRender(&texture);
+			mint_TextureSetAlpha(&texture, alpha);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);
@@ -224,8 +224,9 @@ void mintTextureAnimationExampleLoop()
 	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
-	MintTexture texture = *mint_DisplayTextureFromPNG(sdlRenderer, "animation.png");
-	texture.setupAnimation(&texture, 1);
+	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "animation.png");
+	mint_TextureSetupAnimation(&texture, 1);
+	//texture.setupAnimation(&texture, 1);
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
@@ -238,7 +239,7 @@ void mintTextureAnimationExampleLoop()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 
-			texture.render(&texture);
+			mint_TextureRender(&texture);
 
 			SDL_UpdateWindowSurface(sdlWindow);
 			SDL_RenderPresent(sdlRenderer);

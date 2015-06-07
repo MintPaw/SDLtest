@@ -6,14 +6,7 @@
 #include "texture.h"
 #include "display.h"
 
-int getWidth(MintTexture* self);
-int getHeight(MintTexture* self);
-void render(MintTexture* self);
-void setColour(MintTexture* self, SDL_Color* colour);
-void setAlpha(MintTexture* self, char alpha);
-void setupAnimation(MintTexture* self, int totalAnimations);
-
-char mint_DisplayTextureSetup()
+char mint_TextureSetup()
 {
 	int imgFlags = IMG_INIT_PNG;
 	if(!(IMG_Init(imgFlags) & imgFlags)) {
@@ -24,7 +17,7 @@ char mint_DisplayTextureSetup()
 	return 1;
 }
 
-MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path)
+MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 {
 	MintTexture* mintTexture = (MintTexture*)malloc(sizeof(mintTexture));
 	SDL_Surface* surface = IMG_Load(path);
@@ -41,12 +34,6 @@ MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path)
 	mintTexture->_alpha = NULL;
 	mintTexture->x = 0;
 	mintTexture->y = 0;
-	mintTexture->getWidth = &getWidth;
-	mintTexture->getHeight = &getHeight;
-	mintTexture->setColour = &setColour;
-	mintTexture->setAlpha = &setAlpha;
-	mintTexture->setupAnimation = &setupAnimation;
-	mintTexture->render = &render;
 
 	if (mintTexture->texture == NULL) {
 		printf("Failed to create texture from %s, SDL_Error: %s\n", path, SDL_GetError());
@@ -57,28 +44,28 @@ MintTexture* mint_DisplayTextureFromPNG(SDL_Renderer* renderer, char* path)
 	return mintTexture;
 }
 
-int getWidth(MintTexture* self)
+int mint_TextureGetWidth(MintTexture* self)
 {
 	return self->_width;
 }
 
-int getHeight(MintTexture* self)
+int mint_TextureGetHeight(MintTexture* self)
 {
 	return self->_height;
 }
 
-void render(MintTexture* self)
+void mint_TextureRender(MintTexture* self)
 {
-	SDL_Rect quad = { self->x, self->y, self->getWidth(self), self->getHeight(self) };
+	SDL_Rect quad = { self->x, self->y, mint_TextureGetWidth(self), mint_TextureGetHeight(self) };
 	SDL_RenderCopy(self->renderer, self->texture, NULL, &quad);
 }
 
-void setColour(MintTexture* self, SDL_Color* colour)
+void mint_TextureSetColour(MintTexture* self, SDL_Color* colour)
 {
 	SDL_SetTextureColorMod(self->texture, colour->r, colour->g, colour->b);
 }
 
-void setAlpha(MintTexture* self, char alpha)
+void mint_TextureSetAlpha(MintTexture* self, char alpha)
 {
 	if (self->_alpha == NULL) SDL_SetTextureBlendMode(self->texture, SDL_BLENDMODE_BLEND);
 
@@ -86,7 +73,7 @@ void setAlpha(MintTexture* self, char alpha)
 	SDL_SetTextureAlphaMod(self->texture, self->_alpha);
 }
 
-void setupAnimation(MintTexture* self, int totalAnims)
+void mint_TextureSetupAnimation(MintTexture* self, int totalAnims)
 {
 	self->_totalAnims = 0;
 	self->anims = (MintAnimation*)malloc(sizeof(MintAnimation) * totalAnims);
