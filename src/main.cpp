@@ -21,6 +21,9 @@ void mintTextureAnimExampleLoop();
 /*
 	Todo:
 		Removed self's
+
+	Notes:
+		You can't push additional animations or frames after inits, is the a problem?
 */
 
 SDL_Window* sdlWindow = NULL;
@@ -76,8 +79,7 @@ void gameLoop()
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_DisplayClearRenderer(sdlRenderer);
-
-			SDL_UpdateWindowSurface(sdlWindow);
+			
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
@@ -114,8 +116,7 @@ void geomExampleLoop()
 			mint_GeomDrawLine(sdlRenderer, 100, 100, 200, 200, 0xFF0000FF);
 			mint_GeomDrawLine(sdlRenderer, 200, 200, 300, 100, 0xFF0000FF);
 			mint_GeomDrawRect(sdlRenderer, 300, 50, 100, 50, 0xFF00FFFF);
-
-			SDL_UpdateWindowSurface(sdlWindow);
+			
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
@@ -141,8 +142,7 @@ void mintTextureExampleLoop()
 			mint_DisplayClearRenderer(sdlRenderer);
 			
 			mint_TextureRender(&texture);
-
-			SDL_UpdateWindowSurface(sdlWindow);
+			
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
@@ -178,8 +178,7 @@ void mintSetColourInputExampleLoop()
 
 			mint_TextureRender(&texture);
 			mint_TextureSetColour(&texture, &colour);
-
-			SDL_UpdateWindowSurface(sdlWindow);
+			
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
@@ -210,8 +209,7 @@ void mintSetAlphaInputExampleLoop()
 
 			mint_TextureRender(&texture);
 			mint_TextureSetAlpha(&texture, alpha);
-
-			SDL_UpdateWindowSurface(sdlWindow);
+			
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
@@ -245,8 +243,7 @@ void mintTextureAnimExampleLoop()
 
 			mint_TextureRender(&texture);
 			mint_AnimNextFrame(texture.currentAnim);
-
-			SDL_UpdateWindowSurface(sdlWindow);
+			
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
