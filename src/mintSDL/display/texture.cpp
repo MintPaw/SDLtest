@@ -48,13 +48,11 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 	mintTexture->trans->angle = 0;
 	mintTexture->trans->flip = SDL_FLIP_NONE;
 
-	mintTexture->_clipRect = (SDL_Rect*)malloc(sizeof(SDL_Rect));
-	mintTexture->_clipRect->x = 0;
-	mintTexture->_clipRect->y = 0;
-	mintTexture->_clipRect->w = surface->w;
-	mintTexture->_clipRect->h = surface->h;
+	mintTexture->_clipRect = NULL;
 
-	mintTexture->currentAnim = NULL;
+	mintTexture->animMan = (MintAnimMan*)malloc(sizeof(MintAnimMan));
+	mintTexture->animMan->currentAnim = NULL;
+	mintTexture->animMan->texture = mintTexture;
 
 	SDL_FreeSurface(surface);
 
@@ -63,8 +61,13 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 
 void mint_TextureRender(MintTexture* self)
 {
-	SDL_Rect quad = { self->trans->x, self->trans->y, self->_clipRect->w, self->_clipRect->h };
-	SDL_RenderCopyEx(self->renderer, self->texture, self->_clipRect, &quad, self->trans->angle, self->trans->centre, self->trans->flip);
+	if (self->_clipRect) {
+		SDL_Rect quad = { self->trans->x, self->trans->y, self->_clipRect->w, self->_clipRect->h };
+		SDL_RenderCopyEx(self->renderer, self->texture, self->_clipRect, &quad, self->trans->angle, self->trans->centre, self->trans->flip);
+	} else {
+		SDL_Rect quad = { self->trans->x, self->trans->y, self->trans->_width, self->trans->_height };
+		SDL_RenderCopyEx(self->renderer, self->texture, NULL, &quad, self->trans->angle, self->trans->centre, self->trans->flip);
+	}
 }
 
 void mint_TextureSetColour(MintTexture* self, SDL_Color* colour)
@@ -80,17 +83,17 @@ void mint_TextureSetAlpha(MintTexture* self, char alpha)
 	SDL_SetTextureAlphaMod(self->texture, self->_alpha);
 }
 
-void mint_TextureSetupAnims(MintTexture* self, int totalAnims)
+void mint_TexturePlayAnimByIndex(MintTexture* self, int index)
 {
-	self->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
+	self->animMan->currentAnim = &self->animMan->anims[index];
+}
+
+void mint_AnimSetupMan(MintTexture* self, int totalAnims)
+{
+	self->animMan->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
 
 	int i;
 	for (i = 0; i < totalAnims; i++) {
-		self->anims[i].texture = self;
+		self->animMan->anims[i].texture = self;
 	}
-}
-
-void mint_TexturePlayAnimByIndex(MintTexture* self, int index)
-{
-	self->currentAnim = &self->anims[index];
 }

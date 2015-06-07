@@ -9,8 +9,7 @@ struct MintTexture;
 struct MintTexture {
 	SDL_Texture* texture;
 	SDL_Renderer* renderer;
-	MintAnim* anims;
-	MintAnim* currentAnim;
+	MintAnimMan* animMan;
 	MintTrans* trans;
 	int _alpha;
 	SDL_Rect* _clipRect;
@@ -24,5 +23,6 @@ void mint_TextureSetColour(MintTexture* self, SDL_Color* colour);
 void mint_TextureSetAlpha(MintTexture* self, char alpha);
 void mint_TextureSetupAnims(MintTexture* self, int totalAnims);
 void mint_TexturePlayAnimByIndex(MintTexture* self, int index);
+void mint_AnimSetupMan(MintTexture* self, int totalAnims);
 
 #endif

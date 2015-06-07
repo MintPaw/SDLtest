@@ -2,9 +2,16 @@
 #define ANIM_H
 
 struct MintAnim;
+struct MintAnimMan;
 
 #include <SDL.h>
 #include "texture.h"
+
+struct MintAnimMan {
+	MintTexture* texture;
+	MintAnim* anims;
+	MintAnim* currentAnim;
+};
 
 struct MintAnim {
 	char* name;

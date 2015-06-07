@@ -10,6 +10,7 @@ void mint_AnimSetup(MintAnim* anim, char* name, int totalFrames)
 	anim->name = name;
 	anim->frameRects = (SDL_Rect*)malloc(sizeof(SDL_Rect) * totalFrames);
 	anim->totalFrames = totalFrames;
+	anim->totalFrames = totalFrames;
 }
 
 void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height)
@@ -35,7 +36,6 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 	anim->currentFrame = 0;
 	anim->loop = loop;
 
-	if (anim->texture->_clipRect != NULL) free(&anim->texture->_clipRect);
 	anim->texture->_clipRect = &anim->frameRects[0];
 }
 
