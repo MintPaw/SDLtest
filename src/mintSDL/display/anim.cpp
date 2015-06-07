@@ -27,30 +27,35 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 {
 	int i;
 	for (i = 0; i < anim->totalFrames; i++) {
-		anim->frameRects[i].x = frameWidth * i;
-		anim->frameRects[i].y = 0;
-		anim->frameRects[i].w = frameWidth;
-		anim->frameRects[i].h = mint_TransGetHeight(anim->texture->trans);
+		mint_AnimDefineFrame(anim, i, frameWidth * i, 0, frameWidth, mint_TransGetHeight(anim->man->texture->trans));
 	}
 
 	anim->currentFrame = 0;
 	anim->loop = loop;
 
-	anim->texture->_clipRect = &anim->frameRects[0];
+	anim->man->texture->_clipRect = &anim->frameRects[0];
 }
 
-void mint_AnimNextFrame(MintAnim* anim)
+void mint_AnimNextFrame(MintAnimMan* animMan)
 {
-	if (anim->currentFrame < anim->totalFrames - 1) {
-		anim->currentFrame++;
-	} else if (anim->loop) {
-		anim->currentFrame = 0;
+	if (animMan->currentAnim->currentFrame < animMan->currentAnim->totalFrames - 1) {
+		animMan->currentAnim->currentFrame++;
+	} else if (animMan->currentAnim->loop) {
+		animMan->currentAnim->currentFrame = 0;
 	}
+
+	// printf("Frame %d of %d\n", animMan->currentAnim->currentFrame, animMan->currentAnim->totalFrames);
 	
-	mint_AnimUpdateAnim(anim);
+	mint_AnimUpdate(animMan);
 }
 
-void mint_AnimUpdateAnim(MintAnim* anim)
+void mint_AnimUpdate(MintAnimMan* animMan)
 {
-	anim->texture->_clipRect = &anim->frameRects[anim->currentFrame];	
+	animMan->texture->_clipRect = &animMan->currentAnim->frameRects[animMan->currentAnim->currentFrame];	
+	// printf("Clip rect: x: %d, y: %d, w: %d, h: %d\n", animMan->texture->_clipRect->x, animMan->texture->_clipRect->y, animMan->texture->_clipRect->w, animMan->texture->_clipRect->h);
+}
+
+void mint_AnimPlayByIndex(MintAnimMan* animMan, int index)
+{
+	animMan->currentAnim = &animMan->anims[index];
 }

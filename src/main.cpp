@@ -211,11 +211,11 @@ void mintTextureAnimExampleLoop()
 	char quit = 0;
 
 	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
-	mint_AnimSetupMan(&texture, 1);
+	mint_TextureSetupAnimMan(&texture, 1);
 
 	mint_AnimSetup(&texture.animMan->anims[0], "anim1", 4);
 	mint_AnimDefineLinearStripFrames(&texture.animMan->anims[0], 64, 1);
-	mint_TexturePlayAnimByIndex(&texture, 0);
+	mint_AnimPlayByIndex(texture.animMan, 0);
 
 	while (!quit)
 	{
@@ -227,7 +227,7 @@ void mintTextureAnimExampleLoop()
 			mint_DisplayClearRenderer(sdlRenderer);
 
 			mint_TextureRender(&texture);
-			mint_AnimNextFrame(texture.animMan->currentAnim);
+			mint_AnimNextFrame(texture.animMan);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}

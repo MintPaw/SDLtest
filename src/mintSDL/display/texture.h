@@ -21,8 +21,6 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path);
 void mint_TextureRender(MintTexture* self);
 void mint_TextureSetColour(MintTexture* self, SDL_Color* colour);
 void mint_TextureSetAlpha(MintTexture* self, char alpha);
-void mint_TextureSetupAnims(MintTexture* self, int totalAnims);
-void mint_TexturePlayAnimByIndex(MintTexture* self, int index);
-void mint_AnimSetupMan(MintTexture* self, int totalAnims);
+void mint_TextureSetupAnimMan(MintTexture* self, int totalAnims);
 
 #endif

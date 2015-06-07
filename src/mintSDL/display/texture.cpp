@@ -50,10 +50,6 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 
 	mintTexture->_clipRect = NULL;
 
-	mintTexture->animMan = (MintAnimMan*)malloc(sizeof(MintAnimMan));
-	mintTexture->animMan->currentAnim = NULL;
-	mintTexture->animMan->texture = mintTexture;
-
 	SDL_FreeSurface(surface);
 
 	return mintTexture;
@@ -62,6 +58,7 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 void mint_TextureRender(MintTexture* self)
 {
 	if (self->_clipRect) {
+		// printf("Rendering anim\n");
 		SDL_Rect quad = { self->trans->x, self->trans->y, self->_clipRect->w, self->_clipRect->h };
 		SDL_RenderCopyEx(self->renderer, self->texture, self->_clipRect, &quad, self->trans->angle, self->trans->centre, self->trans->flip);
 	} else {
@@ -83,17 +80,16 @@ void mint_TextureSetAlpha(MintTexture* self, char alpha)
 	SDL_SetTextureAlphaMod(self->texture, self->_alpha);
 }
 
-void mint_TexturePlayAnimByIndex(MintTexture* self, int index)
+void mint_TextureSetupAnimMan(MintTexture* self, int totalAnims)
 {
-	self->animMan->currentAnim = &self->animMan->anims[index];
-}
-
-void mint_AnimSetupMan(MintTexture* self, int totalAnims)
-{
+	self->animMan = (MintAnimMan*)malloc(sizeof(MintAnimMan));
 	self->animMan->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
+
+	self->animMan->currentAnim = NULL;
+	self->animMan->texture = self;
 
 	int i;
 	for (i = 0; i < totalAnims; i++) {
-		self->animMan->anims[i].texture = self;
+		self->animMan->anims[i].man = self->animMan;
 	}
 }
