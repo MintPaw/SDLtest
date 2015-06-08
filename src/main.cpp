@@ -55,16 +55,15 @@ int main(int argc, char* args[])
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	// gameLoop();
-	geomExampleLoop();
-	// mintTextureExampleLoop();
+	// geomExampleLoop();
+	mintTextureExampleLoop();
 	// mintSetColourInputExampleLoop();
 	// mintSetAlphaInputExampleLoop();
 	// mintTextureAnimExampleLoop();
 	// mintTextureTransformExampleLoop();
 
 	close();
-
-	_CrtDumpMemoryLeaks();
+	
 	return 0;
 }
 

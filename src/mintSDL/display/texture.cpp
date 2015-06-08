@@ -20,7 +20,6 @@ char mint_TextureSetup()
 
 MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 {
-	MintTexture* mintTexture = (MintTexture*)malloc(sizeof(mintTexture));
 	SDL_Surface* surface = IMG_Load(path);
 
 	if (surface == NULL) {
@@ -28,9 +27,20 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 		return NULL;
 	}
 
+	MintTexture* mintTexture = mint_TextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	return mintTexture;
+}
+
+MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surface)
+{
+	MintTexture* mintTexture = (MintTexture*)malloc(sizeof(MintTexture));
+
 	mintTexture->texture = SDL_CreateTextureFromSurface(renderer, surface);
 	if (mintTexture->texture == NULL) {
-		printf("Failed to create texture from %s, SDL_Error: %s\n", path, SDL_GetError());
+		printf("Failed to create texture from, SDL_Error: %s\n", SDL_GetError());
 	}
 
 	mintTexture->rend = (MintRend*)malloc(sizeof(MintRend));
@@ -51,9 +61,6 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 	mintTexture->trans->centre->y = mintTexture->trans->_height / 2;
 	mintTexture->trans->angle = 0;
 	mintTexture->trans->flip = SDL_FLIP_NONE;
-
-
-	SDL_FreeSurface(surface);
 
 	return mintTexture;
 }

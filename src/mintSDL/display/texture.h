@@ -16,6 +16,7 @@ struct MintTexture {
 
 char mint_TextureSetup();
 MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path);
+MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surface);
 
 void mint_TextureRender(MintTexture* mintTexture);
 void mint_TextureSetupAnimMan(MintTexture* mintTexture, int totalAnims);
