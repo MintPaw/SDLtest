@@ -30,7 +30,7 @@ void mintTextureTransformExampleLoop();
 SDL_Window* sdlWindow = NULL;
 SDL_Surface* sdlScreenSurface = NULL;
 SDL_Renderer* sdlRenderer = NULL;
-InputSetup *input;
+MintInput *input;
 
 int main(int argc, char* args[])
 {

@@ -3,13 +3,13 @@
 
 #include <SDL.h>
 
-struct InputSetup {
+struct MintInput {
 	char status[281];
 };
 
-InputSetup* mint_InputSetup();
-void mint_InputUpdate(InputSetup* input, SDL_KeyboardEvent* key);
-char mint_InputCheckStatus(InputSetup* input, int keycode);
-void mint_InputFree(InputSetup* input);
+MintInput* mint_InputSetup();
+void mint_InputUpdate(MintInput* input, SDL_KeyboardEvent* key);
+char mint_InputCheckStatus(MintInput* input, int keycode);
+void mint_InputFree(MintInput* input);
 
 #endif
