@@ -14,7 +14,7 @@ void mint_InputUpdate(MintInput* input, SDL_Event* event)
 {
 	if (event->type == SDL_KEYDOWN || event->type == SDL_KEYUP) {
 		input->keyStatus[event->key.keysym.scancode] = event->key.state == SDL_PRESSED;
-	} else if (event->type == SDL_MOUSEBUTTONUP || event->type == SDL_MOUSEBUTTONUP) {
+	} else if (event->type == SDL_MOUSEBUTTONUP || event->type == SDL_MOUSEBUTTONDOWN) {
 		if (event->button.button == SDL_BUTTON_LEFT) {
 			input->mouseButtonStatus[0] = event->button.state == SDL_PRESSED;
 		} else if (event->button.button == SDL_BUTTON_RIGHT) {

@@ -6,6 +6,7 @@ struct MintAnimMan;
 
 #include <SDL.h>
 #include "texture.h"
+#include "../input.h"
 
 struct MintAnimMan {
 	MintTexture* mintTexture;
@@ -15,19 +16,22 @@ struct MintAnimMan {
 
 struct MintAnim {
 	char* name;
-	int totalFrames;
 	char loop;
+	int totalFrames;
 	int currentFrame;
 	SDL_Rect* frameRects;
 	MintAnimMan* man;
 };
 
-void mint_AnimSetup(MintAnim* anim, char* name, int totalFrames);
+void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames);
 void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height);
 void mint_AnimDefineFrames(MintAnim* anim, SDL_Rect* frameRects);
 void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop);
-void mint_AnimNextFrame(MintAnimMan* animMan);
 void mint_AnimUpdate(MintAnimMan* animMan);
-void mint_AnimPlayByIndex(MintAnimMan* animMan, int index);
+void mint_AnimUpdateAsButton(MintAnimMan* animMan, MintInput* input);
+MintAnim* mint_AnimGetByIndex(MintAnimMan* animMan, int index);
+void mint_AnimPlay(MintAnim* anim);
+void mint_AnimNextFrame(MintAnimMan* animMan);
+void mint_AnimGotoFrame(MintAnimMan* animMan, int index);
 
 #endif

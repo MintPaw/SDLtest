@@ -25,11 +25,11 @@ void mintTextureButtonExampleLoop();
 
 /*
 	Todo:
-		Change to ref only animMan, never single anims
+		Free MintTexture
 
 	Notes:
 		You can't push additional animations or frames after inits, is the a problem?
-		Centre point is going to break when animations happen, also width breaks
+		Centre point is going to break when animations happen, also size breaks
 */
 
 SDL_Window* sdlWindow = NULL;
@@ -232,9 +232,9 @@ void mintTextureAnimExampleLoop()
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
 	mint_TextureSetupAnimMan(texture, 1);
 
-	mint_AnimSetup(&texture->animMan->anims[0], "anim1", 4);
-	mint_AnimDefineLinearStripFrames(&texture->animMan->anims[0], 64, 1);
-	mint_AnimPlayByIndex(texture->animMan, 0);
+	mint_AnimCreate(texture->animMan, 0, "anim1", 4);
+	mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(texture->animMan, 0), 64, 1);
+	mint_AnimPlay(mint_AnimGetByIndex(texture->animMan, 0));
 
 	while (!quit)
 	{
@@ -324,9 +324,9 @@ void mintTextureButtonExampleLoop()
 		buttons[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/button.png");
 
 		mint_TextureSetupAnimMan(buttons[i], 1);
-		mint_AnimSetup(&buttons[i]->animMan->anims[0], "default", 3);
-		mint_AnimDefineLinearStripFrames(&buttons[i]->animMan->anims[0], 100, 0);
-		mint_AnimPlayByIndex(buttons[i]->animMan, 1);
+		mint_AnimCreate(buttons[i]->animMan, 0, "default", 3);
+		mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(buttons[i]->animMan, 0), 100, 0);
+		mint_AnimPlay(mint_AnimGetByIndex(buttons[i]->animMan, 0));
 
 		buttons[i]->trans->x = (mint_TransGetWidth(buttons[i]->trans) + 20) * i;
 	}
@@ -345,7 +345,10 @@ void mintTextureButtonExampleLoop()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 
-			for (i = 0; i < 3; i++) mint_TextureRender(buttons[i]);
+			for (i = 0; i < 3; i++) {
+				mint_AnimUpdateAsButton(buttons[i]->animMan, input);
+				mint_TextureRender(buttons[i]);
+			}
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
