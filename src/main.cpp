@@ -4,6 +4,7 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include "mintSDL\input.h"
+#include "mintSDL\timer.h"
 #include "mintSDL\display\display.h"
 #include "mintSDL\display\anim.h"
 #include "mintSDL\display\geom.h"
@@ -22,10 +23,14 @@ void mintTextureAnimExampleLoop();
 void mintTextureTransformExampleLoop();
 void mintTextureTTFExampleLoop();
 void mintTextureButtonExampleLoop();
+void mintTimerExampleLoop();
 
 /*
 	Todo:
 		Free MintTexture
+		Free MintTimer
+		Cap fps if no vsync
+		Impliment or remove timer pausing
 
 	Notes:
 		You can't push additional animations or frames after inits, is the a problem?
@@ -37,6 +42,7 @@ SDL_Surface* sdlScreenSurface = NULL;
 SDL_Renderer* sdlRenderer = NULL;
 TTF_Font *ttfOpenSans = NULL;
 MintInput *input;
+MintTimer *timer;
 
 int main(int argc, char* args[])
 {
@@ -71,6 +77,7 @@ int main(int argc, char* args[])
 	ttfOpenSans = TTF_OpenFont("assets/font/OpenSansRegular.ttf", 28);
 
 	input = mint_InputSetup();
+	timer = mint_TimerSetup();
 
 	SDL_UpdateWindowSurface(sdlWindow);
 
@@ -82,7 +89,8 @@ int main(int argc, char* args[])
 	// mintTextureAnimExampleLoop();
 	// mintTextureTransformExampleLoop();
 	// mintTextureTTFExampleLoop();
-	mintTextureButtonExampleLoop();
+	// mintTextureButtonExampleLoop();
+	mintTimerExampleLoop();
 
 	close();
 
@@ -203,7 +211,7 @@ void mintSetAlphaInputExampleLoop()
 	char quit = 0;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
-	char alpha = 255;
+	unsigned char alpha = 255;
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
@@ -352,5 +360,49 @@ void mintTextureButtonExampleLoop()
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
+	}
+}
+
+void mintTimerExampleLoop()
+{
+	SDL_Event e;
+	char quit = 0;
+
+	SDL_Point objectAt = { 0, 0 };
+	char dir = 1;
+	objectAt.x = SCREEN_WIDTH / 2;
+	timer->msPerReport = 1000;
+	timer->msSinceLastReport = 1000;
+
+	while (!quit)
+	{
+		while(SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN ||
+				e.type == SDL_KEYUP ||
+				e.type == SDL_MOUSEMOTION ||
+				e.type == SDL_MOUSEBUTTONDOWN ||
+				e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+		}
+
+		mint_TimerUpdate(timer, SDL_GetTicks());
+
+		objectAt.y += (int)(dir * timer->elapsed);
+
+		if (objectAt.y > SCREEN_HEIGHT) {
+			dir = -1;
+			objectAt.y = SCREEN_HEIGHT;
+		}
+
+		if (objectAt.y < 0) {
+			dir = 1;
+			objectAt.y = 0;
+		}
+
+		mint_DisplayClearRenderer(sdlRenderer);
+		mint_GeomDrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, 0xFF0000FF);
+		SDL_RenderPresent(sdlRenderer);
 	}
 }

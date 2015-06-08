@@ -23,6 +23,7 @@ add_executable(SDLtest
 	src/mintSDL/display/trans.cpp
 	src/mintSDL/input.cpp
 	src/mintSDL/maths.cpp
+	src/mintSDL/timer.cpp
 )
 
 target_link_libraries(SDLtest
