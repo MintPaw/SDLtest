@@ -21,14 +21,15 @@ void mintSetAlphaInputExampleLoop();
 void mintTextureAnimExampleLoop();
 void mintTextureTransformExampleLoop();
 void mintTextureTTFExampleLoop();
+void mintTextureButtonExampleLoop();
 
 /*
 	Todo:
-		Remove function return deref
+		Change to ref only animMan, never single anims
 
 	Notes:
 		You can't push additional animations or frames after inits, is the a problem?
-		Centre point is going to break when animations happen
+		Centre point is going to break when animations happen, also width breaks
 */
 
 SDL_Window* sdlWindow = NULL;
@@ -80,7 +81,8 @@ int main(int argc, char* args[])
 	// mintSetAlphaInputExampleLoop();
 	// mintTextureAnimExampleLoop();
 	// mintTextureTransformExampleLoop();
-	mintTextureTTFExampleLoop();
+	// mintTextureTTFExampleLoop();
+	mintTextureButtonExampleLoop();
 
 	close();
 
@@ -96,7 +98,7 @@ void gameLoop()
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_DisplayClearRenderer(sdlRenderer);
@@ -127,7 +129,7 @@ void geomExampleLoop()
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_DisplayClearRenderer(sdlRenderer);
@@ -152,7 +154,7 @@ void mintTextureExampleLoop()
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_DisplayClearRenderer(sdlRenderer);
@@ -175,7 +177,7 @@ void mintSetColourInputExampleLoop()
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_DisplayClearRenderer(sdlRenderer);
@@ -206,7 +208,7 @@ void mintSetAlphaInputExampleLoop()
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_DisplayClearRenderer(sdlRenderer);
@@ -238,7 +240,7 @@ void mintTextureAnimExampleLoop()
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_DisplayClearRenderer(sdlRenderer);
@@ -262,7 +264,7 @@ void mintTextureTransformExampleLoop()
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
@@ -298,12 +300,52 @@ void mintTextureTTFExampleLoop()
 	{
 		while(SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_DisplayClearRenderer(sdlRenderer);
 
 			mint_TextureRender(text);
+			
+			SDL_RenderPresent(sdlRenderer);
+		}
+	}
+}
+
+void mintTextureButtonExampleLoop()
+{
+	SDL_Event e;
+	char quit = 0;
+
+	MintTexture* buttons[2];
+
+	int i;
+	for (i = 0; i < 3; i++) {
+		buttons[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/button.png");
+
+		mint_TextureSetupAnimMan(buttons[i], 1);
+		mint_AnimSetup(&buttons[i]->animMan->anims[0], "default", 3);
+		mint_AnimDefineLinearStripFrames(&buttons[i]->animMan->anims[0], 100, 0);
+		mint_AnimPlayByIndex(buttons[i]->animMan, 1);
+
+		buttons[i]->trans->x = (mint_TransGetWidth(buttons[i]->trans) + 20) * i;
+	}
+
+	while (!quit)
+	{
+		while(SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN ||
+				e.type == SDL_KEYUP ||
+				e.type == SDL_MOUSEMOTION ||
+				e.type == SDL_MOUSEBUTTONDOWN ||
+				e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+			    
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+
+			mint_DisplayClearRenderer(sdlRenderer);
+
+			for (i = 0; i < 3; i++) mint_TextureRender(buttons[i]);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}

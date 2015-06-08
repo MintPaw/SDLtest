@@ -4,11 +4,13 @@
 #include <SDL.h>
 
 struct MintInput {
-	char status[281];
+	char keyStatus[281];
+	char mouseButtonStatus[2];
+	SDL_Point mousePoint;
 };
 
 MintInput* mint_InputSetup();
-void mint_InputUpdate(MintInput* input, SDL_KeyboardEvent* key);
+void mint_InputUpdate(MintInput* input, SDL_Event* event);
 char mint_InputCheckStatus(MintInput* input, int keycode);
 void mint_InputFree(MintInput* input);
 
