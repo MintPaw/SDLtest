@@ -30,6 +30,7 @@ void mintTextureTransformExampleLoop();
 SDL_Window* sdlWindow = NULL;
 SDL_Surface* sdlScreenSurface = NULL;
 SDL_Renderer* sdlRenderer = NULL;
+InputSetup *input;
 
 int main(int argc, char* args[])
 {
@@ -50,25 +51,26 @@ int main(int argc, char* args[])
 		}
 	}
 
+	input = mint_InputSetup();
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	// gameLoop();
-	// geomExampleLoop();
+	geomExampleLoop();
 	// mintTextureExampleLoop();
 	// mintSetColourInputExampleLoop();
-	mintSetAlphaInputExampleLoop();
+	// mintSetAlphaInputExampleLoop();
 	// mintTextureAnimExampleLoop();
 	// mintTextureTransformExampleLoop();
 
 	close();
 
+	_CrtDumpMemoryLeaks();
 	return 0;
 }
 
 void gameLoop()
 {
 	SDL_Event e;
-	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	while (!quit)
@@ -89,6 +91,7 @@ void close()
 {
 	SDL_DestroyWindow(sdlWindow);
 	SDL_DestroyRenderer(sdlRenderer);
+	mint_InputFree(input);
 	sdlWindow = NULL;
 
 	SDL_Quit();
@@ -97,7 +100,6 @@ void close()
 void geomExampleLoop()
 {
 	SDL_Event e;
-	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	while (!quit)
@@ -122,7 +124,6 @@ void geomExampleLoop()
 void mintTextureExampleLoop()
 {
 	SDL_Event e;
-	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
@@ -145,7 +146,6 @@ void mintTextureExampleLoop()
 void mintSetColourInputExampleLoop()
 {
 	SDL_Event e;
-	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
@@ -177,7 +177,6 @@ void mintSetColourInputExampleLoop()
 void mintSetAlphaInputExampleLoop()
 {
 	SDL_Event e;
-	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
@@ -205,7 +204,6 @@ void mintSetAlphaInputExampleLoop()
 void mintTextureAnimExampleLoop()
 {
 	SDL_Event e;
-	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
@@ -235,7 +233,6 @@ void mintTextureAnimExampleLoop()
 void mintTextureTransformExampleLoop()
 {
 	SDL_Event e;
-	InputSetup *input = mint_InputSetup();
 	char quit = 0;
 
 	MintTexture arrow = *mint_TextureFromPNG(sdlRenderer, "assets/img/arrow.png");

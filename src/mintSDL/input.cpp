@@ -5,7 +5,7 @@
 
 InputSetup* mint_InputSetup()
 {
-	InputSetup* input = (InputSetup* )calloc(1, sizeof(InputSetup));
+	InputSetup* input = (InputSetup*)calloc(1, sizeof(InputSetup));
 
 	return input;
 }
@@ -18,4 +18,10 @@ void mint_InputUpdate(InputSetup* input, SDL_KeyboardEvent* key)
 char mint_InputCheckStatus(InputSetup* input, int keycode)
 {
 	return input->status[keycode];
+}
+
+void mint_InputFree(InputSetup* input)
+{
+	free(input);
+	input = NULL;
 }

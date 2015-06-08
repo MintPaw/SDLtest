@@ -10,5 +10,6 @@ struct InputSetup {
 InputSetup* mint_InputSetup();
 void mint_InputUpdate(InputSetup* input, SDL_KeyboardEvent* key);
 char mint_InputCheckStatus(InputSetup* input, int keycode);
+void mint_InputFree(InputSetup* input);
 
 #endif
