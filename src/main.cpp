@@ -147,7 +147,7 @@ void mintTextureExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
+	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
@@ -157,7 +157,7 @@ void mintTextureExampleLoop()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 			
-			mint_TextureRender(&texture);
+			mint_TextureRender(texture);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -169,7 +169,7 @@ void mintSetColourInputExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
+	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
 	SDL_Color colour = { 255, 255, 255, 0 };
 	while (!quit)
 	{
@@ -187,8 +187,8 @@ void mintSetColourInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) colour.b += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) colour.b -= 10;
 
-			mint_TextureRender(&texture);
-			mint_RendSetColour(texture.rend, &colour);
+			mint_TextureRender(texture);
+			mint_RendSetColour(texture->rend, &colour);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -200,7 +200,7 @@ void mintSetAlphaInputExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
+	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
 	char alpha = 255;
 	while (!quit)
 	{
@@ -214,8 +214,8 @@ void mintSetAlphaInputExampleLoop()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) alpha += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) alpha -= 10;
 
-			mint_RendSetAlpha(texture.rend, alpha);
-			mint_TextureRender(&texture);
+			mint_RendSetAlpha(texture->rend, alpha);
+			mint_TextureRender(texture);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -227,12 +227,12 @@ void mintTextureAnimExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	MintTexture texture = *mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
-	mint_TextureSetupAnimMan(&texture, 1);
+	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
+	mint_TextureSetupAnimMan(texture, 1);
 
-	mint_AnimSetup(&texture.animMan->anims[0], "anim1", 4);
-	mint_AnimDefineLinearStripFrames(&texture.animMan->anims[0], 64, 1);
-	mint_AnimPlayByIndex(texture.animMan, 0);
+	mint_AnimSetup(&texture->animMan->anims[0], "anim1", 4);
+	mint_AnimDefineLinearStripFrames(&texture->animMan->anims[0], 64, 1);
+	mint_AnimPlayByIndex(texture->animMan, 0);
 
 	while (!quit)
 	{
@@ -243,8 +243,8 @@ void mintTextureAnimExampleLoop()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 
-			mint_TextureRender(&texture);
-			mint_AnimNextFrame(texture.animMan);
+			mint_TextureRender(texture);
+			mint_AnimNextFrame(texture->animMan);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -256,7 +256,7 @@ void mintTextureTransformExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	MintTexture arrow = *mint_TextureFromPNG(sdlRenderer, "assets/img/arrow.png");
+	MintTexture* arrow = mint_TextureFromPNG(sdlRenderer, "assets/img/arrow.png");
 
 	while (!quit)
 	{
@@ -265,22 +265,22 @@ void mintTextureTransformExampleLoop()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) arrow.trans->angle -= 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) arrow.trans->angle += 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) arrow.trans->centre->y -= 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) arrow.trans->centre->y += 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow.trans->centre->x -= 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) arrow.trans->centre->x += 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) arrow->trans->centre->y -= 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) arrow->trans->centre->y += 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow->trans->centre->x -= 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) arrow->trans->centre->x += 1;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_Z)) arrow.trans->flip = SDL_FLIP_NONE;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_X)) arrow.trans->flip = SDL_FLIP_HORIZONTAL;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_C)) arrow.trans->flip = SDL_FLIP_VERTICAL;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_V)) arrow.trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
 			mint_DisplayClearRenderer(sdlRenderer);
 
-			mint_TextureRender(&arrow);
+			mint_TextureRender(arrow);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -292,7 +292,7 @@ void mintTextureTTFExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	MintTexture text = *mint_TextureFromText(sdlRenderer, ttfOpenSans, "This is some test text", {0, 0, 0, 0});
+	MintTexture* text = mint_TextureFromText(sdlRenderer, ttfOpenSans, "This is some test text", {0, 0, 0, 0});
 
 	while (!quit)
 	{
@@ -303,7 +303,7 @@ void mintTextureTTFExampleLoop()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 
-			mint_TextureRender(&text);
+			mint_TextureRender(text);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
