@@ -110,8 +110,10 @@ void close()
 {
 	SDL_DestroyWindow(sdlWindow);
 	SDL_DestroyRenderer(sdlRenderer);
-	mint_InputFree(input);
 	sdlWindow = NULL;
+
+	mint_InputFree(input);
+	TTF_CloseFont(ttfOpenSans);
 
 	SDL_Quit();
 }
