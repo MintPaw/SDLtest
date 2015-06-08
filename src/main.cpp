@@ -1,6 +1,8 @@
-#include <SDL.h>
 #include <stdio.h>
 #include <string>
+#include <SDL.h>
+#include <SDL_ttf.h>
+#include <SDL_image.h>
 #include "mintSDL\input.h"
 #include "mintSDL\display\display.h"
 #include "mintSDL\display\anim.h"
@@ -18,9 +20,11 @@ void mintSetColourInputExampleLoop();
 void mintSetAlphaInputExampleLoop();
 void mintTextureAnimExampleLoop();
 void mintTextureTransformExampleLoop();
+void mintTextureTTFExampleLoop();
 
 /*
 	Todo:
+		Remove function return deref
 
 	Notes:
 		You can't push additional animations or frames after inits, is the a problem?
@@ -30,6 +34,7 @@ void mintTextureTransformExampleLoop();
 SDL_Window* sdlWindow = NULL;
 SDL_Surface* sdlScreenSurface = NULL;
 SDL_Renderer* sdlRenderer = NULL;
+TTF_Font *ttfOpenSans = NULL;
 MintInput *input;
 
 int main(int argc, char* args[])
@@ -51,19 +56,34 @@ int main(int argc, char* args[])
 		}
 	}
 
+	int imgFlags = IMG_INIT_PNG;
+	if(!(IMG_Init(imgFlags) & imgFlags)) {
+		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+		return 0;
+	}
+
+	if(TTF_Init() == -1) {
+		printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+		return 0;
+	}
+
+	ttfOpenSans = TTF_OpenFont("assets/font/OpenSansRegular.ttf", 28);
+
 	input = mint_InputSetup();
+
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	// gameLoop();
 	// geomExampleLoop();
-	mintTextureExampleLoop();
+	// mintTextureExampleLoop();
 	// mintSetColourInputExampleLoop();
 	// mintSetAlphaInputExampleLoop();
 	// mintTextureAnimExampleLoop();
 	// mintTextureTransformExampleLoop();
+	mintTextureTTFExampleLoop();
 
 	close();
-	
+
 	return 0;
 }
 
@@ -259,6 +279,29 @@ void mintTextureTransformExampleLoop()
 			mint_DisplayClearRenderer(sdlRenderer);
 
 			mint_TextureRender(&arrow);
+			
+			SDL_RenderPresent(sdlRenderer);
+		}
+	}
+}
+
+void mintTextureTTFExampleLoop()
+{
+	SDL_Event e;
+	char quit = 0;
+
+	MintTexture text = *mint_TextureFromText(sdlRenderer, ttfOpenSans, "This is some test text", {0, 0, 0, 0});
+
+	while (!quit)
+	{
+		while(SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e.key);
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+
+			mint_DisplayClearRenderer(sdlRenderer);
+
+			mint_TextureRender(&text);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}

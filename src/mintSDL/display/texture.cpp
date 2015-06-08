@@ -2,21 +2,11 @@
 #include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include "anim.h"
 #include "display.h"
 #include "texture.h"
 #include "trans.h"
-
-char mint_TextureSetup()
-{
-	int imgFlags = IMG_INIT_PNG;
-	if(!(IMG_Init(imgFlags) & imgFlags)) {
-		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-		return 0;
-	}
-
-	return 1;
-}
 
 MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 {
@@ -24,6 +14,22 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 
 	if (surface == NULL) {
 		printf("Failed to create surface from %s, SDL_Error: %s\n", path, SDL_GetError());
+		return NULL;
+	}
+
+	MintTexture* mintTexture = mint_TextureFromSurface(renderer, surface);
+
+	SDL_FreeSurface(surface);
+
+	return mintTexture;
+}
+
+MintTexture* mint_TextureFromText(SDL_Renderer* renderer, TTF_Font* font, char* text, SDL_Color colour)
+{
+	SDL_Surface* surface = TTF_RenderText_Solid(font, text, colour);
+
+	if (surface == NULL) {
+		printf("Failed to create surface from TTF, SDL_Error: %s\n", SDL_GetError());
 		return NULL;
 	}
 
