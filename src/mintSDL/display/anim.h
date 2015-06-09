@@ -12,6 +12,7 @@ struct MintAnimMan {
 	MintTexture* mintTexture;
 	MintAnim* anims;
 	MintAnim* currentAnim;
+	int totalAnims;
 };
 
 struct MintAnim {
@@ -33,5 +34,6 @@ MintAnim* mint_AnimGetByIndex(MintAnimMan* animMan, int index);
 void mint_AnimPlay(MintAnim* anim);
 void mint_AnimNextFrame(MintAnimMan* animMan);
 void mint_AnimGotoFrame(MintAnimMan* animMan, int index);
+void mint_AnimManFree(MintAnimMan* animMan);
 
 #endif

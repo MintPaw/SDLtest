@@ -86,3 +86,14 @@ void mint_AnimGotoFrame(MintAnimMan* animMan, int index)
 	animMan->currentAnim->currentFrame = index;
 	mint_AnimUpdate(animMan);
 }
+
+void mint_AnimManFree(MintAnimMan* animMan)
+{
+	int i;
+	for (i = 0; i < animMan->totalAnims; i++) {
+		free(animMan->anims[i].frameRects);
+	}
+
+	free(animMan);
+	animMan = NULL;
+}

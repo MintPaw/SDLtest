@@ -59,7 +59,7 @@ int main(int argc, char* args[])
 			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
 		} else {
 			sdlScreenSurface = SDL_GetWindowSurface(sdlWindow);
-			sdlRenderer = mint_DisplayCreateRenderer(sdlWindow, 1);
+			sdlRenderer = mint_DisplayCreateRenderer(sdlWindow, 0);
 		}
 	}
 
@@ -371,8 +371,8 @@ void mintTimerExampleLoop()
 	SDL_Point objectAt = { 0, 0 };
 	char dir = 1;
 	objectAt.x = SCREEN_WIDTH / 2;
-	timer->msPerReport = 1000;
-	timer->msSinceLastReport = 1000;
+	// timer->msPerReport = 1000;
+	// timer->msSinceLastReport = 1000;
 
 	while (!quit)
 	{
@@ -402,7 +402,7 @@ void mintTimerExampleLoop()
 		}
 
 		mint_DisplayClearRenderer(sdlRenderer);
-		mint_GeomDrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, 0xFF0000FF);
+		// mint_GeomDrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, 0xFF0000FF);
 		SDL_RenderPresent(sdlRenderer);
 	}
 }
