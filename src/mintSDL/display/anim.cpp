@@ -95,7 +95,7 @@ void mint_AnimManFree(MintAnimMan* animMan)
 		animMan->anims[i].frameRects = NULL;
 		
 		free(animMan->anims);
-		animMan->anims[i] = NULL;
+		animMan->anims = NULL;
 	}
 
 	free(animMan);
