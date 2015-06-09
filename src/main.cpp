@@ -1,3 +1,7 @@
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
 #include <stdio.h>
 #include <string>
 #include <SDL.h>
@@ -93,6 +97,10 @@ int main(int argc, char* args[])
 	mintTimerExampleLoop();
 
 	close();
+	
+#ifdef _CRTDBG_MAP_ALLOC
+	_CrtDumpMemoryLeaks();
+#endif
 
 	return 0;
 }
@@ -133,6 +141,9 @@ void geomExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
+	SDL_Color colour0 = { 255, 0, 0, 255 };
+	SDL_Color colour1 = { 255, 0, 255, 255 };
+
 	while (!quit)
 	{
 		while(SDL_PollEvent(&e) != 0)
@@ -142,10 +153,10 @@ void geomExampleLoop()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 			
-			mint_GeomDrawRect(sdlRenderer, 0, 0, 100, 100, 0xFF0000FF);
-			mint_GeomDrawLine(sdlRenderer, 100, 100, 200, 200, 0xFF0000FF);
-			mint_GeomDrawLine(sdlRenderer, 200, 200, 300, 100, 0xFF0000FF);
-			mint_GeomDrawRect(sdlRenderer, 300, 50, 100, 50, 0xFF00FFFF);
+			mint_GeomDrawRect(sdlRenderer, 0, 0, 100, 100, &colour0);
+			mint_GeomDrawLine(sdlRenderer, 100, 100, 200, 200, &colour0);
+			mint_GeomDrawLine(sdlRenderer, 200, 200, 300, 100, &colour0);
+			mint_GeomDrawRect(sdlRenderer, 300, 50, 100, 50, &colour1);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -369,7 +380,9 @@ void mintTimerExampleLoop()
 	char quit = 0;
 
 	SDL_Point objectAt = { 0, 0 };
+	SDL_Color colour = { 255, 0, 0, 255 };
 	char dir = 1;
+
 	objectAt.x = SCREEN_WIDTH / 2;
 	// timer->msPerReport = 1000;
 	// timer->msSinceLastReport = 1000;
@@ -402,7 +415,7 @@ void mintTimerExampleLoop()
 		}
 
 		mint_DisplayClearRenderer(sdlRenderer);
-		// mint_GeomDrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, 0xFF0000FF);
+		mint_GeomDrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, &colour);
 		SDL_RenderPresent(sdlRenderer);
 	}
 }
