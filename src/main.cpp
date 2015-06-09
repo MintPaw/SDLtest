@@ -31,14 +31,12 @@ void mintTimerExampleLoop();
 
 /*
 	Todo:
-		Free MintTexture
-		Free MintTimer
+		Figure out why button example leaks
 		Cap fps if no vsync
 		Impliment or remove timer pausing
 
 	Notes:
-		You can't push additional animations or frames after inits, is the a problem?
-		Centre point is going to break when animations happen, also size breaks
+		Centre point is going to break when animations happen (They did)
 */
 
 SDL_Window* sdlWindow = NULL;
@@ -97,7 +95,7 @@ int main(int argc, char* args[])
 	mintTimerExampleLoop();
 
 	close();
-	
+
 #ifdef _CRTDBG_MAP_ALLOC
 	_CrtDumpMemoryLeaks();
 #endif
@@ -127,10 +125,12 @@ void gameLoop()
 void close()
 {
 	SDL_DestroyWindow(sdlWindow);
+	SDL_FreeSurface(sdlScreenSurface);
 	SDL_DestroyRenderer(sdlRenderer);
 	sdlWindow = NULL;
 
 	mint_InputFree(input);
+	mint_TimerFree(timer);
 	TTF_CloseFont(ttfOpenSans);
 
 	SDL_Quit();
@@ -183,6 +183,8 @@ void mintTextureExampleLoop()
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
+
+	mint_TextureFree(texture);
 }
 
 void mintSetColourInputExampleLoop()
@@ -214,6 +216,8 @@ void mintSetColourInputExampleLoop()
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
+
+	mint_TextureFree(texture);
 }
 
 void mintSetAlphaInputExampleLoop()
@@ -241,6 +245,8 @@ void mintSetAlphaInputExampleLoop()
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
+
+	mint_TextureFree(texture);
 }
 
 void mintTextureAnimExampleLoop()
@@ -270,6 +276,8 @@ void mintTextureAnimExampleLoop()
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
+
+	mint_TextureFree(texture);
 }
 
 void mintTextureTransformExampleLoop()
@@ -306,6 +314,8 @@ void mintTextureTransformExampleLoop()
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
+
+	mint_TextureFree(arrow);
 }
 
 void mintTextureTTFExampleLoop()
@@ -329,6 +339,8 @@ void mintTextureTTFExampleLoop()
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
+
+	mint_TextureFree(text);
 }
 
 void mintTextureButtonExampleLoop()
@@ -336,7 +348,7 @@ void mintTextureButtonExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	MintTexture* buttons[2];
+	MintTexture* buttons[3];
 
 	int i;
 	for (i = 0; i < 3; i++) {
@@ -372,6 +384,8 @@ void mintTextureButtonExampleLoop()
 			SDL_RenderPresent(sdlRenderer);
 		}
 	}
+
+	for (i = 0; i < 3; i++) mint_TextureFree(buttons[i]);
 }
 
 void mintTimerExampleLoop()

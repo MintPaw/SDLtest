@@ -5,7 +5,7 @@
 
 struct MintInput {
 	char keyStatus[281];
-	char mouseButtonStatus[2];
+	char mouseButtonStatus[3];
 	SDL_Point mousePoint;
 };
 

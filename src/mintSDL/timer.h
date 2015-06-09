@@ -13,5 +13,6 @@ struct MintTimer {
 
 MintTimer* mint_TimerSetup();
 void mint_TimerUpdate(MintTimer* timer, int ticks);
+void mint_TimerFree(MintTimer* timer);
 
 #endif

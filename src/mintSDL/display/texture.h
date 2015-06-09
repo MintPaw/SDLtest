@@ -21,5 +21,6 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 
 void mint_TextureRender(MintTexture* mintTexture);
 void mint_TextureSetupAnimMan(MintTexture* mintTexture, int totalAnims);
+void mint_TextureFree(MintTexture* mintTexture);
 
 #endif

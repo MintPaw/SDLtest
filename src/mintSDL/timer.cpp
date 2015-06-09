@@ -22,3 +22,9 @@ void mint_TimerUpdate(MintTimer* timer, int ticks)
 		}
 	}
 }
+
+void mint_TimerFree(MintTimer* timer)
+{
+	free(timer);
+	timer = NULL;
+}
