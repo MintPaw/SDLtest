@@ -40,7 +40,6 @@ void mintTimerExampleLoop();
 */
 
 SDL_Window* sdlWindow = NULL;
-SDL_Surface* sdlScreenSurface = NULL;
 SDL_Renderer* sdlRenderer = NULL;
 TTF_Font *ttfOpenSans = NULL;
 MintInput *input;
@@ -60,7 +59,6 @@ int main(int argc, char* args[])
 		if (sdlWindow == NULL) {
 			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
 		} else {
-			sdlScreenSurface = SDL_GetWindowSurface(sdlWindow);
 			sdlRenderer = mint_DisplayCreateRenderer(sdlWindow, 0);
 		}
 	}
@@ -125,7 +123,6 @@ void gameLoop()
 void close()
 {
 	SDL_DestroyWindow(sdlWindow);
-	SDL_FreeSurface(sdlScreenSurface);
 	SDL_DestroyRenderer(sdlRenderer);
 	sdlWindow = NULL;
 
@@ -398,8 +395,8 @@ void mintTimerExampleLoop()
 	char dir = 1;
 
 	objectAt.x = SCREEN_WIDTH / 2;
-	// timer->msPerReport = 1000;
-	// timer->msSinceLastReport = 1000;
+	timer->msPerReport = 1000;
+	timer->msSinceLastReport = 1000;
 
 	while (!quit)
 	{
