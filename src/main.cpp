@@ -89,8 +89,8 @@ int main(int argc, char* args[])
 	// mintTextureAnimExampleLoop();
 	// mintTextureTransformExampleLoop();
 	// mintTextureTTFExampleLoop();
-	// mintTextureButtonExampleLoop();
-	mintTimerExampleLoop();
+	mintTextureButtonExampleLoop();
+	// mintTimerExampleLoop();
 
 	close();
 
@@ -108,7 +108,7 @@ void gameLoop()
 
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
@@ -143,7 +143,7 @@ void geomExampleLoop()
 
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
@@ -168,7 +168,7 @@ void mintTextureExampleLoop()
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
@@ -193,7 +193,7 @@ void mintSetColourInputExampleLoop()
 	SDL_Color colour = { 255, 255, 255, 0 };
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
@@ -226,7 +226,7 @@ void mintSetAlphaInputExampleLoop()
 	unsigned char alpha = 255;
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
@@ -260,7 +260,7 @@ void mintTextureAnimExampleLoop()
 
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
@@ -286,7 +286,7 @@ void mintTextureTransformExampleLoop()
 
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
@@ -324,7 +324,7 @@ void mintTextureTTFExampleLoop()
 
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
@@ -361,7 +361,7 @@ void mintTextureButtonExampleLoop()
 
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN ||
 				e.type == SDL_KEYUP ||
@@ -400,7 +400,7 @@ void mintTimerExampleLoop()
 
 	while (!quit)
 	{
-		while(SDL_PollEvent(&e) != 0)
+		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN ||
 				e.type == SDL_KEYUP ||
