@@ -41,6 +41,9 @@ void physExample();
 		Consider moving MintTrans to maths directory
 		Make auto-tester
 		Define stucts before includes in headers?
+		Shrink ball?
+		Why is physExample leaking?
+		Linux?
 
 	Notes:
 		Centre point is going to break when animations happen (They did)
@@ -95,12 +98,12 @@ int main(int argc, char* args[])
 	// mintTextureExample();
 	// setColourInputExample();
 	// setAlphaInputExample();
-	animationExample();
+	// animationExample();
 	// transformExample();
 	// textExample();
 	// buttonExample();
 	// timerExample();
-	// physExample();
+	physExample();
 
 	close();
 

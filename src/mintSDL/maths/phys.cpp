@@ -1,4 +1,18 @@
+#include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
+
+MintPhys* mint_PhysCreate(MintTexture* mintTexture)
+{
+	MintPhys* phys = (MintPhys*)malloc(sizeof(MintPhys));
+
+	phys->mintTexture = mintTexture;
+	phys->velocity = { 0, 0 };
+	phys->accel = { 0, 0 };
+	phys->drag = { 0, 0 };
+	phys->maxVelocity = { 0, 0 };
+
+	return phys;
+}
 
 void mint_PhysUpdate(MintPhys* phys, double elapsed)
 {
@@ -48,4 +62,10 @@ double mint_PhysComputeVelocity(double velocity, double accel, double drag, doub
 	}
 
 	return velocity;
+}
+
+void mint_PhysFree(MintPhys* phys)
+{
+	free(phys);
+	phys = NULL;
 }
