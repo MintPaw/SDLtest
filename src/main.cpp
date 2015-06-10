@@ -32,15 +32,15 @@ void transformExample();
 void textExample();
 void buttonExample();
 void timerExample();
-void physExample();
+void physicsExample();
+void collisionExample();
 
 /*
 	Todo:
-		Move maths stuff into maths directory
+		Create update functions
 		Cap fps if no vsync (And maybe in all cases)
 		Make fps/other-stat counter
-		Move MintFloatPoint and make point structs
-		Consider moving MintTrans to maths directory
+		Move MintFloatPoint and make point/rect structs
 		Make auto-tester
 		Linux?
 		Mingw?
@@ -105,7 +105,8 @@ int main(int argc, char* args[])
 	// textExample();
 	// buttonExample();
 	// timerExample();
-	physExample();
+	// physicsExample();
+	collisionExample();
 
 	close();
 
@@ -447,7 +448,7 @@ void timerExample()
 	}
 }
 
-void physExample()
+void physicsExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -493,4 +494,30 @@ void physExample()
 	}
 
 	mint_TextureFree(texture);
+}
+
+void collisionExample()
+{
+	SDL_Event e;
+	char quit = 0;
+
+	while (!quit)
+	{
+		mint_TimerUpdate(timer, SDL_GetTicks() / 1000.0);
+
+		while (SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN ||
+			    e.type == SDL_KEYUP ||
+			    e.type == SDL_MOUSEMOTION ||
+			    e.type == SDL_MOUSEBUTTONDOWN ||
+			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+		}
+
+		mint_RendClearSdlRenderer(sdlRenderer);
+
+		SDL_RenderPresent(sdlRenderer);
+	}
 }

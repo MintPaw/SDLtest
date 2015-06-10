@@ -18,10 +18,18 @@ char mint_GeomPointInRect(SDL_Point* point, SDL_Rect* rect)
 	int dax = dx - ax;
 	int day = dy - ay;
 
-	if ((point->x - ax) * bax + (point->y - ay) * bay < 0) return false;
-	if ((point->x - bx) * bax + (point->y - by) * bay > 0) return false;
-	if ((point->x - ax) * dax + (point->y - ay) * day < 0) return false;
-	if ((point->x - dx) * dax + (point->y - dy) * day > 0) return false;
+	if ((point->x - ax) * bax + (point->y - ay) * bay < 0) return 0;
+	if ((point->x - bx) * bax + (point->y - by) * bay > 0) return 0;
+	if ((point->x - ax) * dax + (point->y - ay) * day < 0) return 0;
+	if ((point->x - dx) * dax + (point->y - dy) * day > 0) return 0;
 
-	return true;
+	return 1;
+}
+
+char mint_GeomRectInRect(SDL_Rect* a, SDL_Rect* b)
+{
+	if(a->x + a->w < b->x || a->x > b->x + b->w) return 0;
+	if(a->y + a->h < b->y || a->y > b->y + b->h) return 0;
+
+	return 1;
 }

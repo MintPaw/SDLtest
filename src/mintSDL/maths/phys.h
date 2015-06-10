@@ -18,6 +18,8 @@ struct MintPhys {
 	MintDoublePoint accel;
 	MintDoublePoint drag;
 	MintDoublePoint maxVelocity;
+
+	SDL_Rect aabb;
 };
 
 MintPhys* mint_PhysCreate(MintTexture* mintTexture);
