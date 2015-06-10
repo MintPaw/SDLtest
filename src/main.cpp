@@ -45,6 +45,7 @@ void physExample();
 		Look into better reletive paths for includes
 		Figure out if I need unsigned chars for colour and alpha
 		Consider moving MintTrans to maths directory
+		Fix the SDL_Color converters
 
 	Notes:
 		Centre point is going to break when animations happen (They did)
@@ -306,10 +307,10 @@ void transformExample()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) arrow->trans->centre->y -= 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) arrow->trans->centre->y += 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow->trans->centre->x -= 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) arrow->trans->centre->x += 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow->trans->centre.x -= 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
 
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;

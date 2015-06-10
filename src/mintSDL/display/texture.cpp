@@ -62,10 +62,8 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 	mintTexture->trans->y = 0;
 	mintTexture->trans->_width = surface->w;
 	mintTexture->trans->_height = surface->h;
-	
-	mintTexture->trans->centre = (SDL_Point*)malloc(sizeof(SDL_Point));
-	mintTexture->trans->centre->x = mintTexture->trans->_width / 2;
-	mintTexture->trans->centre->y = mintTexture->trans->_height / 2;
+	mintTexture->trans->centre.x = mintTexture->trans->_width / 2;
+	mintTexture->trans->centre.y = mintTexture->trans->_height / 2;
 	mintTexture->trans->angle = 0;
 	mintTexture->trans->flip = SDL_FLIP_NONE;
 
@@ -84,19 +82,18 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 void mint_TextureRender(MintTexture* mintTexture)
 {
 	if (mintTexture->rend->_clipRect) {
-		// printf("Rendering anim\n");
 		SDL_Rect quad = { mintTexture->trans->x,
 		                  mintTexture->trans->y,
 		                  mintTexture->rend->_clipRect->w,
 		                  mintTexture->rend->_clipRect->h };
 
 		SDL_RenderCopyEx(mintTexture->rend->renderer,
-			               mintTexture->texture,
-			               mintTexture->rend->_clipRect,
-			               &quad,
-			               mintTexture->trans->angle,
-			               mintTexture->trans->centre,
-			               mintTexture->trans->flip);
+		                 mintTexture->texture,
+		                 mintTexture->rend->_clipRect,
+		                 &quad,
+		                 mintTexture->trans->angle,
+		                 &mintTexture->trans->centre,
+		                 mintTexture->trans->flip);
 	} else {
 		SDL_Rect quad = { mintTexture->trans->x,
 		                  mintTexture->trans->y,
@@ -108,7 +105,7 @@ void mint_TextureRender(MintTexture* mintTexture)
 		                 NULL,
 		                 &quad,
 		                 mintTexture->trans->angle,
-		                 mintTexture->trans->centre,
+		                 &mintTexture->trans->centre,
 		                 mintTexture->trans->flip);
 	}
 }
@@ -131,7 +128,6 @@ void mint_TextureSetupAnimMan(MintTexture* mintTexture, int totalAnims)
 void mint_TextureFree(MintTexture* mintTexture)
 {
 	SDL_DestroyTexture(mintTexture->texture);
-	free(mintTexture->trans->centre);
 	free(mintTexture->trans);
 	free(mintTexture->rend);
 
