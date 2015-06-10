@@ -7,6 +7,7 @@
 #include "display.h"
 #include "texture.h"
 #include "trans.h"
+#include "../maths/phys.h"
 
 MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 {
@@ -69,6 +70,13 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 	mintTexture->trans->flip = SDL_FLIP_NONE;
 
 	mintTexture->animMan = NULL;
+
+	mintTexture->phys = (MintPhys*)malloc(sizeof(MintPhys));
+	mintTexture->phys->mintTexture = mintTexture;
+	mintTexture->phys->velocity = { 0, 0 };
+	mintTexture->phys->accel = { 0, 0 };
+	mintTexture->phys->drag = { 0, 0 };
+	mintTexture->phys->maxVelocity = { 0, 0 };
 
 	return mintTexture;
 }

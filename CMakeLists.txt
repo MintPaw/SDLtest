@@ -21,6 +21,7 @@ add_executable(SDLtest
 	src/mintSDL/display/geom.cpp
 	src/mintSDL/display/texture.cpp
 	src/mintSDL/display/trans.cpp
+	src/mintSDL/maths/phys.cpp
 	src/mintSDL/input.cpp
 	src/mintSDL/maths.cpp
 	src/mintSDL/timer.cpp

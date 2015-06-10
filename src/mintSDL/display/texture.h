@@ -7,12 +7,14 @@ struct MintTexture;
 #include "anim.h"
 #include "display.h"
 #include "trans.h"
+#include "../maths/phys.h"
 
 struct MintTexture {
 	SDL_Texture* texture;
 	MintAnimMan* animMan;
 	MintTrans* trans;
 	MintRend* rend;
+	MintPhys* phys;
 };
 
 MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path);

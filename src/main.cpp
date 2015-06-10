@@ -7,12 +7,14 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
-#include "mintSDL\input.h"
-#include "mintSDL\timer.h"
-#include "mintSDL\display\display.h"
-#include "mintSDL\display\anim.h"
-#include "mintSDL\display\geom.h"
-#include "mintSDL\display\texture.h"
+#include "mintSDL/input.h"
+#include "mintSDL/timer.h"
+#include "mintSDL/display/display.h"
+#include "mintSDL/display/anim.h"
+#include "mintSDL/display/geom.h"
+#include "mintSDL/display/texture.h"
+#include "mintSDL/display/texture.h"
+#include "mintSDL/maths/phys.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -28,12 +30,26 @@ void mintTextureTransformExampleLoop();
 void mintTextureTTFExampleLoop();
 void mintTextureButtonExampleLoop();
 void mintTimerExampleLoop();
+void mintPhysExampleLoop();
 
 /*
-	Todo:
+	Todo (Actually do these):
 		Figure out why button example leaks
-		Cap fps if no vsync
+		Cap fps if no vsync (And maybe in all cases)
 		Impliment or remove timer pausing
+		Move maths stuff into maths directory
+		Consider changing Display to Rend
+		Consider creating setup and free for things like MintTrans and MintRend
+		Remove the unneeded "ExampleLoop" and maybe the "Texture" too
+		Add other paths to winenv
+		Make winenv copy bin files
+		Make fps/other-stat counter
+		Consider pointer vs non-pointer for structs
+		Move MintFloatPoint and make point structs
+		Consider measuring elapsed in seconds
+		Look into how the optimizer cleans up rename variables
+		Look into better reletive paths for includes
+		Figure out if I need unsigned chars for colour and alpha
 
 	Notes:
 		Centre point is going to break when animations happen (They did)
@@ -89,8 +105,9 @@ int main(int argc, char* args[])
 	// mintTextureAnimExampleLoop();
 	// mintTextureTransformExampleLoop();
 	// mintTextureTTFExampleLoop();
-	mintTextureButtonExampleLoop();
+	// mintTextureButtonExampleLoop();
 	// mintTimerExampleLoop();
+	mintPhysExampleLoop();
 
 	close();
 
@@ -427,6 +444,49 @@ void mintTimerExampleLoop()
 
 		mint_DisplayClearRenderer(sdlRenderer);
 		mint_GeomDrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, &colour);
+		SDL_RenderPresent(sdlRenderer);
+	}
+}
+
+void mintPhysExampleLoop()
+{
+	SDL_Event e;
+	char quit = 0;
+
+	double velocityChange = 10;
+	double drag = .5;
+	double maxVelocity = 1;
+
+	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
+	texture->phys->drag = { drag, drag };
+	texture->phys->maxVelocity = { maxVelocity, maxVelocity };
+
+	while (!quit)
+	{
+		mint_TimerUpdate(timer, SDL_GetTicks());
+		while (SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN ||
+				e.type == SDL_KEYUP ||
+				e.type == SDL_MOUSEMOTION ||
+				e.type == SDL_MOUSEBUTTONDOWN ||
+				e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+
+			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+		}
+
+		texture->phys->accel.x = 0;
+		texture->phys->accel.y = 0;
+		if (mint_InputCheckStatus(input, SDL_SCANCODE_LEFT)) texture->phys->accel.x -= velocityChange;
+		if (mint_InputCheckStatus(input, SDL_SCANCODE_RIGHT)) texture->phys->accel.x += velocityChange;
+		
+		mint_PhysUpdate(texture->phys, timer->elapsed);
+		// printf("Velo: %lf %lf elapsed: %f\n", texture->phys->velocity.x, texture->phys->velocity.y, timer->elapsed);
+
+		mint_DisplayClearRenderer(sdlRenderer);
+
+		mint_TextureRender(texture);
+
 		SDL_RenderPresent(sdlRenderer);
 	}
 }
