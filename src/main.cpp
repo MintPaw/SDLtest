@@ -40,7 +40,6 @@ void physExample();
 		Consider moving MintTrans to maths directory
 		Make auto-tester
 		Define stucts before includes in headers?
-		Shrink ball?
 		Linux?
 
 	Notes:
