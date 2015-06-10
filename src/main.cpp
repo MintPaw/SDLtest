@@ -1,6 +1,9 @@
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
+// #define _CRTDBG_MAP_ALLOC
+
+#ifdef _CRTDBG_MAP_ALLOC
+	#include <stdlib.h>
+	#include <crtdbg.h>
+#endif
 
 #include <stdio.h>
 #include <string>
@@ -54,7 +57,9 @@ MintFrameTimer *timer;
 
 int main(int argc, char* args[])
 {
+#ifdef _CRTDBG_MAP_ALLOC
 	// _CrtSetBreakAlloc(112);
+#endif
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("SDL failed to init SDL_ERROR: %s\n", SDL_GetError());
