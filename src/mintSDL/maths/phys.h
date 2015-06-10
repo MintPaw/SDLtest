@@ -5,7 +5,7 @@ struct MintFloatPoint;
 struct MintPhys;
 
 #include <SDL.h>
-#include "../display/texture.h"
+#include "mintSDL/display/texture.h"
 
 struct MintDoublePoint {
 	double x;

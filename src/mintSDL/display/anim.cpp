@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL.h>
-#include "anim.h"
-#include "texture.h"
-#include "trans.h"
-#include "..\maths.h"
+#include "mintSDL/display/anim.h"
+#include "mintSDL/display/texture.h"
+#include "mintSDL/display/trans.h"
+#include "mintSDL/maths.h"
 
 void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames)
 {

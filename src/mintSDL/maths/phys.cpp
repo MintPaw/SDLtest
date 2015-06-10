@@ -1,4 +1,4 @@
-#include "phys.h"
+#include "mintSDL/maths/phys.h"
 
 void mint_PhysUpdate(MintPhys* phys, double elapsed)
 {

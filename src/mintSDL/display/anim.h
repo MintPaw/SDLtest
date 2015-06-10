@@ -6,7 +6,7 @@ struct MintAnimMan;
 
 #include <SDL.h>
 #include "texture.h"
-#include "../input.h"
+#include "mintSDL/input.h"
 
 struct MintAnimMan {
 	MintTexture* mintTexture;

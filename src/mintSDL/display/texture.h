@@ -4,10 +4,10 @@
 struct MintTexture;
 
 #include <SDL_ttf.h>
-#include "anim.h"
-#include "rend.h"
-#include "trans.h"
-#include "../maths/phys.h"
+#include "mintSDL/display/anim.h"
+#include "mintSDL/display/rend.h"
+#include "mintSDL/display/trans.h"
+#include "mintSDL/maths/phys.h"
 
 struct MintTexture {
 	SDL_Texture* texture;

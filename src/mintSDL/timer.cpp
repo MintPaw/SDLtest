@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <SDL.h>
-#include "timer.h"
+#include "mintSDL/timer.h"
 
 MintFrameTimer* mint_TimerSetup()
 {

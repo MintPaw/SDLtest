@@ -1,4 +1,4 @@
-#include "texture.h"
+#include "mintSDL/display/texture.h"
 
 int mint_TransGetWidth(MintTrans* trans)
 {

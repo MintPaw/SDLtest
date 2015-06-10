@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL.h>
-#include "rend.h"
+#include "mintSDL/display/rend.h"
 
 SDL_Renderer* mint_RendCreateRenderer(SDL_Window* window, char vsync)
 {

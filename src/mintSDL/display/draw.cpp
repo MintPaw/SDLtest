@@ -1,6 +1,6 @@
 #include <SDL.h>
-#include "rend.h"
-#include "draw.h"
+#include "mintSDL/display/rend.h"
+#include "mintSDL/display/draw.h"
 
 void mint_DrawRect(SDL_Renderer* renderer, int x, int y, int width, int height, SDL_Color* colour)
 {

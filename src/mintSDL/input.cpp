@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL.h>
-#include "input.h"
+#include "mintSDL/input.h"
 
 MintInput* mint_InputSetup()
 {

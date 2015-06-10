@@ -32,14 +32,13 @@ void timerExample();
 void physExample();
 
 /*
-	Todo (Actually do these):
+	Todo:
+		Move maths stuff into maths directory (Waiting for responce)
 		Cap fps if no vsync (And maybe in all cases)
-		Move maths stuff into maths directory
-		Consider changing Display to Rend
 		Consider creating setup and free for things like MintTrans and MintRend
 		Make fps/other-stat counter
 		Move MintFloatPoint and make point structs
-		Look into how the optimizer cleans up rename variables
+		
 		Look into better reletive paths for includes
 		Figure out if I need unsigned chars for colour and alpha
 		Consider moving MintTrans to maths directory
@@ -93,11 +92,11 @@ int main(int argc, char* args[])
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	// gameLoop();
-	drawExample();
+	// drawExample();
 	// mintTextureExample();
 	// setColourInputExample();
 	// setAlphaInputExample();
-	// animationExample();
+	animationExample();
 	// transformExample();
 	// textExample();
 	// buttonExample();

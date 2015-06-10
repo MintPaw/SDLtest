@@ -4,7 +4,7 @@
 struct MintRend;
 
 #include <SDL.h>
-#include "texture.h"
+#include "mintSDL/display/texture.h"
 
 struct MintRend {
 	MintTexture* mintTexture;
