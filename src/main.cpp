@@ -35,14 +35,12 @@ void physExample();
 	Todo:
 		Move maths stuff into maths directory (Waiting for responce)
 		Cap fps if no vsync (And maybe in all cases)
-		Consider creating setup and free for things like MintTrans and MintRend
 		Make fps/other-stat counter
 		Move MintFloatPoint and make point structs
 		Consider moving MintTrans to maths directory
 		Make auto-tester
 		Define stucts before includes in headers?
 		Shrink ball?
-		Why is physExample leaking?
 		Linux?
 
 	Notes:
