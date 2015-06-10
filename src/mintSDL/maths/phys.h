@@ -20,7 +20,7 @@ struct MintPhys {
 	MintDoublePoint maxVelocity;
 };
 
-void mint_PhysUpdate(MintPhys* phys, float elapsed);
+void mint_PhysUpdate(MintPhys* phys, double elapsed);
 double mint_PhysComputeVelocity(double velocity, double accel, double drag, double max, double elapsed);
 
 #endif

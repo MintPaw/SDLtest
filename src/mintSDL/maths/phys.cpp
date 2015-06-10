@@ -1,6 +1,6 @@
 #include "phys.h"
 
-void mint_PhysUpdate(MintPhys* phys, float elapsed)
+void mint_PhysUpdate(MintPhys* phys, double elapsed)
 {
 	double velocityDelta;
 	double delta;
@@ -27,7 +27,6 @@ void mint_PhysUpdate(MintPhys* phys, float elapsed)
 double mint_PhysComputeVelocity(double velocity, double accel, double drag, double max, double elapsed)
 {
 	double drag2;
-	elapsed /= 1000;
 
 	if (accel) {
 		velocity += accel * elapsed;

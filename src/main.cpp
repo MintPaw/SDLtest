@@ -410,6 +410,7 @@ void mintTimerExampleLoop()
 	SDL_Point objectAt = { 0, 0 };
 	SDL_Color colour = { 255, 0, 0, 255 };
 	char dir = 1;
+	double speed = 1000;
 
 	objectAt.x = SCREEN_WIDTH / 2;
 	timer->msPerReport = 1000;
@@ -428,9 +429,9 @@ void mintTimerExampleLoop()
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		mint_TimerUpdate(timer, SDL_GetTicks());
+		mint_TimerUpdate(timer, SDL_GetTicks() / 1000.0);
 
-		objectAt.y += (int)(dir * timer->elapsed);
+		objectAt.y += (int)(dir * timer->elapsed * speed);
 
 		if (objectAt.y > SCREEN_HEIGHT) {
 			dir = -1;
@@ -453,9 +454,9 @@ void mintPhysExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	double velocityChange = 1;
-	double drag = 1;
-	double maxVelocity = 1;
+	double maxVelocity = 400;
+	double velocityChange = maxVelocity * 10;
+	double drag = maxVelocity * 10;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
 	texture->phys->drag = { drag, drag };
@@ -463,7 +464,8 @@ void mintPhysExampleLoop()
 
 	while (!quit)
 	{
-		mint_TimerUpdate(timer, SDL_GetTicks());
+		mint_TimerUpdate(timer, SDL_GetTicks() / 1000.0);
+
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN ||

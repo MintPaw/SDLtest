@@ -8,16 +8,16 @@ MintFrameTimer* mint_TimerSetup()
 	return timer;
 }
 
-void mint_TimerUpdate(MintFrameTimer* timer, int ticks)
+void mint_TimerUpdate(MintFrameTimer* timer, double seconds)
 {
-	timer->elapsed = ticks - timer->ticks;
-	timer->ticks = ticks;
+	timer->elapsed = seconds - timer->seconds;
+	timer->seconds = seconds;
 	timer->frames++;
 
 	if (timer->msSinceLastReport > 0) {
 		timer->msSinceLastReport -= timer->elapsed;
 		if (timer->msSinceLastReport <= 0) {
-			printf("Average frame rate: %f\n", (float)timer->frames / ((float)timer->ticks / 1000.0));
+			printf("Average frame rate: %f\n", (double)timer->frames / ((double)timer->seconds / 1000.0));
 			timer->msSinceLastReport = timer->msPerReport;
 		}
 	}

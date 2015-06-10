@@ -2,15 +2,15 @@
 #define TIMER_H
 
 struct MintFrameTimer {
-	int ticks;
+	double seconds;
 	int frames;
-	int elapsed;
+	double elapsed;
 	float msPerReport;
 	float msSinceLastReport;
 };
 
 MintFrameTimer* mint_TimerSetup();
-void mint_TimerUpdate(MintFrameTimer* timer, int ticks);
+void mint_TimerUpdate(MintFrameTimer* timer, double seconds);
 void mint_TimerFree(MintFrameTimer* timer);
 
 #endif
