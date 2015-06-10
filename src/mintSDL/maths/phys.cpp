@@ -35,7 +35,7 @@ double mint_PhysComputeVelocity(double velocity, double accel, double drag, doub
 		drag2 = drag * elapsed;
 		if (velocity - drag2 > 0) {
 			velocity -= drag2;
-		} else if (velocity - drag2 < 0) {
+		} else if (velocity + drag2 < 0) {
 			velocity += drag2;
 		} else {
 			velocity = 0;

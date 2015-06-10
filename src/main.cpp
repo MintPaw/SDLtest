@@ -50,6 +50,7 @@ void mintPhysExampleLoop();
 		Look into how the optimizer cleans up rename variables
 		Look into better reletive paths for includes
 		Figure out if I need unsigned chars for colour and alpha
+		Consider moving MintTrans to maths directory
 
 	Notes:
 		Centre point is going to break when animations happen (They did)
@@ -453,8 +454,8 @@ void mintPhysExampleLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	double velocityChange = 10;
-	double drag = .5;
+	double velocityChange = 1;
+	double drag = 1;
 	double maxVelocity = 1;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
@@ -479,6 +480,8 @@ void mintPhysExampleLoop()
 		texture->phys->accel.y = 0;
 		if (mint_InputCheckStatus(input, SDL_SCANCODE_LEFT)) texture->phys->accel.x -= velocityChange;
 		if (mint_InputCheckStatus(input, SDL_SCANCODE_RIGHT)) texture->phys->accel.x += velocityChange;
+		if (mint_InputCheckStatus(input, SDL_SCANCODE_UP)) texture->phys->accel.y -= velocityChange;
+		if (mint_InputCheckStatus(input, SDL_SCANCODE_DOWN)) texture->phys->accel.y += velocityChange;
 		
 		mint_PhysUpdate(texture->phys, timer->elapsed);
 		// printf("Velo: %lf %lf elapsed: %f\n", texture->phys->velocity.x, texture->phys->velocity.y, timer->elapsed);
