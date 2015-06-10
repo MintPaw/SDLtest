@@ -2,13 +2,13 @@
 #include <SDL.h>
 #include "timer.h"
 
-MintTimer* mint_TimerSetup()
+MintFrameTimer* mint_TimerSetup()
 {
-	MintTimer* timer = (MintTimer*)calloc(1, sizeof(MintTimer));
+	MintFrameTimer* timer = (MintFrameTimer*)calloc(1, sizeof(MintFrameTimer));
 	return timer;
 }
 
-void mint_TimerUpdate(MintTimer* timer, int ticks)
+void mint_TimerUpdate(MintFrameTimer* timer, int ticks)
 {
 	timer->elapsed = ticks - timer->ticks;
 	timer->ticks = ticks;
@@ -23,7 +23,7 @@ void mint_TimerUpdate(MintTimer* timer, int ticks)
 	}
 }
 
-void mint_TimerFree(MintTimer* timer)
+void mint_TimerFree(MintFrameTimer* timer)
 {
 	free(timer);
 	timer = NULL;

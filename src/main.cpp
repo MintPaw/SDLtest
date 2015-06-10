@@ -34,7 +34,6 @@ void mintPhysExampleLoop();
 
 /*
 	Todo (Actually do these):
-		Figure out why button example leaks
 		Cap fps if no vsync (And maybe in all cases)
 		Impliment or remove timer pausing
 		Move maths stuff into maths directory
@@ -60,7 +59,7 @@ SDL_Window* sdlWindow = NULL;
 SDL_Renderer* sdlRenderer = NULL;
 TTF_Font *ttfOpenSans = NULL;
 MintInput *input;
-MintTimer *timer;
+MintFrameTimer *timer;
 
 int main(int argc, char* args[])
 {

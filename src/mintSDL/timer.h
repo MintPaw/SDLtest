@@ -1,9 +1,7 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-struct MintTimer {
-	char isStarted;
-	char isPaused;
+struct MintFrameTimer {
 	int ticks;
 	int frames;
 	int elapsed;
@@ -11,8 +9,8 @@ struct MintTimer {
 	float msSinceLastReport;
 };
 
-MintTimer* mint_TimerSetup();
-void mint_TimerUpdate(MintTimer* timer, int ticks);
-void mint_TimerFree(MintTimer* timer);
+MintFrameTimer* mint_TimerSetup();
+void mint_TimerUpdate(MintFrameTimer* timer, int ticks);
+void mint_TimerFree(MintFrameTimer* timer);
 
 #endif
