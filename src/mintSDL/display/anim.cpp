@@ -4,7 +4,7 @@
 #include "mintSDL/display/anim.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/display/trans.h"
-#include "mintSDL/maths.h"
+#include "mintSDL/maths/geom.h"
 
 MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture)
 {

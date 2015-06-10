@@ -36,13 +36,12 @@ void physExample();
 
 /*
 	Todo:
-		Move maths stuff into maths directory (Waiting for responce)
+		Move maths stuff into maths directory
 		Cap fps if no vsync (And maybe in all cases)
 		Make fps/other-stat counter
 		Move MintFloatPoint and make point structs
 		Consider moving MintTrans to maths directory
 		Make auto-tester
-		Define stucts before includes in headers?
 		Linux?
 		Mingw?
 

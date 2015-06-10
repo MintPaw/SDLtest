@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include "mintSDL/maths/geom.h"
 
 char mint_MathsPointInRect(SDL_Point* point, SDL_Rect* rect)
 {
