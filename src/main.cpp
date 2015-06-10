@@ -37,6 +37,8 @@ void collisionExample();
 
 /*
 	Todo:
+		Remove quad from mint_TextureRender
+		Make animation work properly
 		Create update functions
 		Cap fps if no vsync (And maybe in all cases)
 		Make fps/other-stat counter
@@ -105,8 +107,8 @@ int main(int argc, char* args[])
 	// textExample();
 	// buttonExample();
 	// timerExample();
-	// physicsExample();
-	collisionExample();
+	physicsExample();
+	// collisionExample();
 
 	close();
 
@@ -483,11 +485,11 @@ void physicsExample()
 		if (mint_InputCheckStatus(input, SDL_SCANCODE_UP)) texture->phys->accel.y -= velocityChange;
 		if (mint_InputCheckStatus(input, SDL_SCANCODE_DOWN)) texture->phys->accel.y += velocityChange;
 		
-		mint_PhysUpdate(texture->phys, timer->elapsed);
 		// printf("Velo: %lf %lf elapsed: %f\n", texture->phys->velocity.x, texture->phys->velocity.y, timer->elapsed);
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 
+		mint_TextureUpdate(texture, timer->elapsed);
 		mint_TextureRender(texture);
 
 		SDL_RenderPresent(sdlRenderer);

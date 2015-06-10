@@ -59,6 +59,11 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 	return mintTexture;
 }
 
+void mint_TextureUpdate(MintTexture* mintTexture, double elapsed)
+{
+	mint_PhysUpdate(mintTexture->phys, elapsed);
+}
+
 void mint_TextureRender(MintTexture* mintTexture)
 {
 	if (mintTexture->rend->_clipRect) {
