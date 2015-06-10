@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <SDL.h>
 #include "mintSDL/timer.h"

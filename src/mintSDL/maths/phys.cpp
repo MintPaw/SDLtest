@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
 
