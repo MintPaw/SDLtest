@@ -24,6 +24,7 @@ struct MintAnim {
 	MintAnimMan* man;
 };
 
+MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture);
 void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames);
 void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height);
 void mint_AnimDefineFrames(MintAnim* anim, SDL_Rect* frameRects);
@@ -35,5 +36,6 @@ void mint_AnimPlay(MintAnim* anim);
 void mint_AnimNextFrame(MintAnimMan* animMan);
 void mint_AnimGotoFrame(MintAnimMan* animMan, int index);
 void mint_AnimManFree(MintAnimMan* animMan);
+void mint_AnimManInit(MintAnimMan* animMan, int totalAnims);
 
 #endif

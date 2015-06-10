@@ -54,7 +54,7 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 	mintTexture->trans = mint_TransSetup(surface->w, surface->h);
 	mintTexture->phys = mint_PhysCreate(mintTexture);
 
-	mintTexture->animMan = NULL;
+	mintTexture->animMan = mint_AnimManSetup(mintTexture);
 
 	return mintTexture;
 }
@@ -90,30 +90,14 @@ void mint_TextureRender(MintTexture* mintTexture)
 	}
 }
 
-void mint_TextureSetupAnimMan(MintTexture* mintTexture, int totalAnims)
-{
-	mintTexture->animMan = (MintAnimMan*)malloc(sizeof(MintAnimMan));
-	mintTexture->animMan->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
-	mintTexture->animMan->totalAnims = totalAnims;
-
-	mintTexture->animMan->currentAnim = NULL;
-	mintTexture->animMan->mintTexture = mintTexture;
-
-	int i;
-	for (i = 0; i < totalAnims; i++) {
-		mintTexture->animMan->anims[i].man = mintTexture->animMan;
-	}
-}
-
 void mint_TextureFree(MintTexture* mintTexture)
 {
 	SDL_DestroyTexture(mintTexture->texture);
 	mint_RendFree(mintTexture->rend);
 	mint_TransFree(mintTexture->trans);
 	mint_PhysFree(mintTexture->phys);
-
-	if (mintTexture->animMan) mint_AnimManFree(mintTexture->animMan);
-
+	mint_AnimManFree(mintTexture->animMan);
+	
 	free(mintTexture);
 	mintTexture = NULL;
 }

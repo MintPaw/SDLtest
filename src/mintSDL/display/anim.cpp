@@ -6,6 +6,26 @@
 #include "mintSDL/display/trans.h"
 #include "mintSDL/maths.h"
 
+MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture)
+{
+	MintAnimMan* animMan = (MintAnimMan*)malloc(sizeof(MintAnimMan));
+
+	animMan->totalAnims = 0;
+	animMan->currentAnim = NULL;
+	animMan->mintTexture = mintTexture;
+
+	return animMan;
+}
+
+void mint_AnimManInit(MintAnimMan* animMan, int totalAnims)
+{
+	animMan->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
+	animMan->totalAnims = totalAnims;
+
+	int i;
+	for (i = 0; i < totalAnims; i++) animMan->anims[i].man = animMan;
+}
+
 void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames)
 {
 	MintAnim* anim = mint_AnimGetByIndex(animMan, index);

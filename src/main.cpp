@@ -57,7 +57,7 @@ MintFrameTimer *timer;
 
 int main(int argc, char* args[])
 {
-	// _CrtSetBreakAlloc(109);
+	// _CrtSetBreakAlloc(112);
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("SDL failed to init SDL_ERROR: %s\n", SDL_GetError());
@@ -265,7 +265,7 @@ void animationExample()
 	char quit = 0;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
-	mint_TextureSetupAnimMan(texture, 1);
+	mint_AnimManInit(texture->animMan, 1);
 
 	mint_AnimCreate(texture->animMan, 0, "anim1", 4);
 	mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(texture->animMan, 0), 64, 1);
@@ -364,7 +364,7 @@ void buttonExample()
 	for (i = 0; i < 3; i++) {
 		buttons[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/button.png");
 
-		mint_TextureSetupAnimMan(buttons[i], 1);
+		mint_AnimManInit(buttons[i]->animMan, 1);
 		mint_AnimCreate(buttons[i]->animMan, 0, "default", 3);
 		mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(buttons[i]->animMan, 0), 100, 0);
 		mint_AnimPlay(mint_AnimGetByIndex(buttons[i]->animMan, 0));
@@ -489,4 +489,6 @@ void physExample()
 
 		SDL_RenderPresent(sdlRenderer);
 	}
+
+	mint_TextureFree(texture);
 }

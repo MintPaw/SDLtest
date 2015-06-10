@@ -22,7 +22,6 @@ MintTexture* mint_TextureFromText(SDL_Renderer* renderer, TTF_Font* font, char* 
 MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surface);
 
 void mint_TextureRender(MintTexture* mintTexture);
-void mint_TextureSetupAnimMan(MintTexture* mintTexture, int totalAnims);
 void mint_TextureFree(MintTexture* mintTexture);
 
 #endif
