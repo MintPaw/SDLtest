@@ -38,7 +38,6 @@ void physExample();
 		Move maths stuff into maths directory
 		Consider changing Display to Rend
 		Consider creating setup and free for things like MintTrans and MintRend
-		Make batch file to copy bin files
 		Make fps/other-stat counter
 		Consider pointer vs non-pointer for structs
 		Move MintFloatPoint and make point structs
