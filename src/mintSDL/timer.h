@@ -6,7 +6,7 @@ struct MintTimer {
 	char isPaused;
 	int ticks;
 	int frames;
-	float elapsed;
+	int elapsed;
 	float msPerReport;
 	float msSinceLastReport;
 };

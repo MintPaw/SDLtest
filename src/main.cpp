@@ -75,7 +75,7 @@ int main(int argc, char* args[])
 		if (sdlWindow == NULL) {
 			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
 		} else {
-			sdlRenderer = mint_DisplayCreateRenderer(sdlWindow, 0);
+			sdlRenderer = mint_DisplayCreateRenderer(sdlWindow, 1);
 		}
 	}
 
