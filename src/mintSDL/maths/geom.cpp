@@ -1,7 +1,7 @@
 #include <SDL.h>
 #include "mintSDL/maths/geom.h"
 
-char mint_MathsPointInRect(SDL_Point* point, SDL_Rect* rect)
+char mint_GeomPointInRect(SDL_Point* point, SDL_Rect* rect)
 {
 	// Corners in ax,ay,bx,by,dx,dy
 	// Point in x, y

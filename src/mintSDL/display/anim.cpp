@@ -69,7 +69,7 @@ void mint_AnimUpdate(MintAnimMan* animMan)
 void mint_AnimUpdateAsButton(MintAnimMan* animMan, MintInput* input)
 {
 	SDL_Rect rect = { animMan->mintTexture->trans->x, animMan->mintTexture->trans->y, animMan->mintTexture->trans->_width, animMan->mintTexture->trans->_height };
-	if (mint_MathsPointInRect(&input->mousePoint, &rect)) {
+	if (mint_GeomPointInRect(&input->mousePoint, &rect)) {
 		if (input->mouseButtonStatus[0]) {
 			mint_AnimGotoFrame(animMan, 2);
 		} else {
