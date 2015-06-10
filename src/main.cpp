@@ -21,31 +21,29 @@ const int SCREEN_HEIGHT = 480;
 
 void close();
 void gameLoop();
-void geomExampleLoop();
-void mintTextureExampleLoop();
-void mintSetColourInputExampleLoop();
-void mintSetAlphaInputExampleLoop();
-void mintTextureAnimExampleLoop();
-void mintTextureTransformExampleLoop();
-void mintTextureTTFExampleLoop();
-void mintTextureButtonExampleLoop();
-void mintTimerExampleLoop();
-void mintPhysExampleLoop();
+void geomExample();
+void mintTextureExample();
+void setColourInputExample();
+void setAlphaInputExample();
+void animationExample();
+void transformExample();
+void textExample();
+void buttonExample();
+void timerExample();
+void physExample();
 
 /*
 	Todo (Actually do these):
 		Cap fps if no vsync (And maybe in all cases)
-		Impliment or remove timer pausing
 		Move maths stuff into maths directory
 		Consider changing Display to Rend
 		Consider creating setup and free for things like MintTrans and MintRend
-		Remove the unneeded "ExampleLoop" and maybe the "Texture" too
+		Remove the unneeded "Example" and maybe the "Texture" too
 		Add other paths to winenv
 		Make winenv copy bin files
 		Make fps/other-stat counter
 		Consider pointer vs non-pointer for structs
 		Move MintFloatPoint and make point structs
-		Consider measuring elapsed in seconds
 		Look into how the optimizer cleans up rename variables
 		Look into better reletive paths for includes
 		Figure out if I need unsigned chars for colour and alpha
@@ -98,16 +96,16 @@ int main(int argc, char* args[])
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	// gameLoop();
-	// geomExampleLoop();
-	// mintTextureExampleLoop();
-	// mintSetColourInputExampleLoop();
-	// mintSetAlphaInputExampleLoop();
-	// mintTextureAnimExampleLoop();
-	// mintTextureTransformExampleLoop();
-	// mintTextureTTFExampleLoop();
-	// mintTextureButtonExampleLoop();
-	mintTimerExampleLoop();
-	// mintPhysExampleLoop();
+	// geomExample();
+	// mintTextureExample();
+	// setColourInputExample();
+	// setAlphaInputExample();
+	// animationExample();
+	// transformExample();
+	// textExample();
+	// buttonExample();
+	timerExample();
+	// physExample();
 
 	close();
 
@@ -150,7 +148,7 @@ void close()
 	SDL_Quit();
 }
 
-void geomExampleLoop()
+void geomExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -177,7 +175,7 @@ void geomExampleLoop()
 	}
 }
 
-void mintTextureExampleLoop()
+void mintTextureExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -201,7 +199,7 @@ void mintTextureExampleLoop()
 	mint_TextureFree(texture);
 }
 
-void mintSetColourInputExampleLoop()
+void setColourInputExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -234,7 +232,7 @@ void mintSetColourInputExampleLoop()
 	mint_TextureFree(texture);
 }
 
-void mintSetAlphaInputExampleLoop()
+void setAlphaInputExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -263,7 +261,7 @@ void mintSetAlphaInputExampleLoop()
 	mint_TextureFree(texture);
 }
 
-void mintTextureAnimExampleLoop()
+void animationExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -294,7 +292,7 @@ void mintTextureAnimExampleLoop()
 	mint_TextureFree(texture);
 }
 
-void mintTextureTransformExampleLoop()
+void transformExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -332,7 +330,7 @@ void mintTextureTransformExampleLoop()
 	mint_TextureFree(arrow);
 }
 
-void mintTextureTTFExampleLoop()
+void textExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -357,7 +355,7 @@ void mintTextureTTFExampleLoop()
 	mint_TextureFree(text);
 }
 
-void mintTextureButtonExampleLoop()
+void buttonExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -402,7 +400,7 @@ void mintTextureButtonExampleLoop()
 	for (i = 0; i < 3; i++) mint_TextureFree(buttons[i]);
 }
 
-void mintTimerExampleLoop()
+void timerExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -449,7 +447,7 @@ void mintTimerExampleLoop()
 	}
 }
 
-void mintPhysExampleLoop()
+void physExample()
 {
 	SDL_Event e;
 	char quit = 0;
