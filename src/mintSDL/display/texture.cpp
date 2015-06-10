@@ -4,7 +4,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include "anim.h"
-#include "display.h"
+#include "rend.h"
 #include "texture.h"
 #include "trans.h"
 #include "../maths/phys.h"

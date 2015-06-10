@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL.h>
-#include "display.h"
+#include "rend.h"
 
-SDL_Renderer* mint_DisplayCreateRenderer(SDL_Window* window, char vsync)
+SDL_Renderer* mint_RendCreateRenderer(SDL_Window* window, char vsync)
 {
 	SDL_Renderer* renderer;
 	if (vsync)
@@ -19,7 +19,7 @@ SDL_Renderer* mint_DisplayCreateRenderer(SDL_Window* window, char vsync)
 	return renderer;
 }
 
-void mint_DisplayClearRenderer(SDL_Renderer* renderer)
+void mint_RendClearRenderer(SDL_Renderer* renderer)
 {
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
@@ -38,7 +38,7 @@ void mint_RendSetAlpha(MintRend* rend, char alpha)
 	SDL_SetTextureAlphaMod(rend->mintTexture->texture, rend->_alpha);
 }
 
-SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour)
+SDL_Color* mint_RendHexToSDLColor(unsigned long colour)
 {
 	SDL_Color *sdlColor = (SDL_Color*)malloc(sizeof(SDL_Color));
 
@@ -50,7 +50,7 @@ SDL_Color* mint_DisplayHexToSDLColor(unsigned long colour)
 	return sdlColor;
 }
 
-unsigned long mint_DisplaySDLColorToHex(SDL_Color* sdlColor)
+unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor)
 {   
     return (((sdlColor->r & 0xFF) << 24) + ((sdlColor->g & 0xFF) << 16) + ((sdlColor->b & 0xFF) << 8) + (sdlColor->a & 0xFF));
 }

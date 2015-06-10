@@ -5,7 +5,7 @@ struct MintTexture;
 
 #include <SDL_ttf.h>
 #include "anim.h"
-#include "display.h"
+#include "rend.h"
 #include "trans.h"
 #include "../maths/phys.h"
 

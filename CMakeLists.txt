@@ -17,8 +17,8 @@ link_directories(
 add_executable(SDLtest
 	src/main.cpp
 	src/mintSDL/display/anim.cpp
-	src/mintSDL/display/display.cpp
 	src/mintSDL/display/draw.cpp
+	src/mintSDL/display/rend.cpp
 	src/mintSDL/display/texture.cpp
 	src/mintSDL/display/trans.cpp
 	src/mintSDL/maths/phys.cpp
