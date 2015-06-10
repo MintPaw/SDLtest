@@ -1,6 +1,8 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+struct MintInput;
+
 #include <SDL.h>
 
 struct MintInput {

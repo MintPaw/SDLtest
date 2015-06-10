@@ -44,6 +44,7 @@ void physExample();
 		Make auto-tester
 		Define stucts before includes in headers?
 		Linux?
+		Mingw?
 
 	Notes:
 		Centre point is going to break when animations happen (They did)

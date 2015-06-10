@@ -1,6 +1,8 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+struct MintFrameTimer;
+
 struct MintFrameTimer {
 	double seconds;
 	int frames;

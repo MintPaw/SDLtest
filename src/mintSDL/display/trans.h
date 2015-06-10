@@ -1,6 +1,8 @@
 #ifndef TRANS_H
 #define TRANS_H
 
+struct MintTrans;
+
 #include <SDL.h>
 
 struct MintTrans {
