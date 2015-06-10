@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include "mintSDL/display/rend.h"
 
-SDL_Renderer* mint_RendCreateRenderer(SDL_Window* window, char vsync)
+SDL_Renderer* mint_RendCreateSdlRenderer(SDL_Window* window, char vsync)
 {
 	SDL_Renderer* renderer;
 	if (vsync)
@@ -19,10 +19,35 @@ SDL_Renderer* mint_RendCreateRenderer(SDL_Window* window, char vsync)
 	return renderer;
 }
 
-void mint_RendClearRenderer(SDL_Renderer* renderer)
+void mint_RendClearSdlRenderer(SDL_Renderer* renderer)
 {
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
+}
+
+void mint_RendHexToSDLColor(unsigned long colour, SDL_Color* sdlColor)
+{
+	sdlColor->r = ((colour >> 24) & 0xFF);
+	sdlColor->g = ((colour >> 16) & 0xFF);
+	sdlColor->b = ((colour >> 8) & 0xFF);
+	sdlColor->a = (colour & 0xFF);
+}
+
+unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor)
+{
+		return (((sdlColor->r & 0xFF) << 24) + ((sdlColor->g & 0xFF) << 16) + ((sdlColor->b & 0xFF) << 8) + (sdlColor->a & 0xFF));
+}
+
+MintRend* mint_RendSetup(MintTexture* mintTexture, SDL_Renderer* renderer)
+{
+	MintRend* rend = (MintRend*)malloc(sizeof(MintRend));
+
+	rend->mintTexture = mintTexture;
+	rend->renderer = renderer;
+	rend->_alpha = 255;
+	rend->_clipRect = NULL;
+
+	return rend;
 }
 
 void mint_RendSetColour(MintRend* rend, SDL_Color* colour)
@@ -38,15 +63,8 @@ void mint_RendSetAlpha(MintRend* rend, char alpha)
 	SDL_SetTextureAlphaMod(rend->mintTexture->texture, rend->_alpha);
 }
 
-void mint_RendHexToSDLColor(unsigned long colour, SDL_Color* sdlColor)
+void mint_RendFree(MintRend* rend)
 {
-	sdlColor->r = ((colour >> 24) & 0xFF);
-	sdlColor->g = ((colour >> 16) & 0xFF);
-	sdlColor->b = ((colour >> 8) & 0xFF);
-	sdlColor->a = (colour & 0xFF);
-}
-
-unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor)
-{   
-    return (((sdlColor->r & 0xFF) << 24) + ((sdlColor->g & 0xFF) << 16) + ((sdlColor->b & 0xFF) << 8) + (sdlColor->a & 0xFF));
+	free(rend);
+	rend = NULL;
 }

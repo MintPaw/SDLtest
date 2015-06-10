@@ -50,12 +50,7 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 		printf("Failed to create texture from, SDL_Error: %s\n", SDL_GetError());
 	}
 
-	mintTexture->rend = (MintRend*)malloc(sizeof(MintRend));
-
-	mintTexture->rend->mintTexture = mintTexture;
-	mintTexture->rend->renderer = renderer;
-	mintTexture->rend->_alpha = NULL;
-	mintTexture->rend->_clipRect = NULL;
+	mintTexture->rend = mint_RendSetup(mintTexture, renderer);
 
 	mintTexture->trans = (MintTrans*)malloc(sizeof(MintTrans));
 	mintTexture->trans->x = 0;
@@ -128,8 +123,8 @@ void mint_TextureSetupAnimMan(MintTexture* mintTexture, int totalAnims)
 void mint_TextureFree(MintTexture* mintTexture)
 {
 	SDL_DestroyTexture(mintTexture->texture);
+	mint_RendFree(mintTexture->rend);
 	free(mintTexture->trans);
-	free(mintTexture->rend);
 
 	if (mintTexture->animMan) mint_AnimManFree(mintTexture->animMan);
 

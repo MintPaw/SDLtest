@@ -40,6 +40,7 @@ void physExample();
 		Move MintFloatPoint and make point structs
 		Consider moving MintTrans to maths directory
 		Make auto-tester
+		Define stucts before includes in headers?
 
 	Notes:
 		Centre point is going to break when animations happen (They did)
@@ -53,6 +54,8 @@ MintFrameTimer *timer;
 
 int main(int argc, char* args[])
 {
+	// _CrtSetBreakAlloc(109);
+
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("SDL failed to init SDL_ERROR: %s\n", SDL_GetError());
 	} else {
@@ -65,7 +68,7 @@ int main(int argc, char* args[])
 		if (sdlWindow == NULL) {
 			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
 		} else {
-			sdlRenderer = mint_RendCreateRenderer(sdlWindow, 1);
+			sdlRenderer = mint_RendCreateSdlRenderer(sdlWindow, 1);
 		}
 	}
 
@@ -120,7 +123,7 @@ void gameLoop()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -155,7 +158,7 @@ void drawExample()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 			
 			mint_DrawRect(sdlRenderer, 0, 0, 100, 100, &colour0);
 			mint_DrawLine(sdlRenderer, 100, 100, 200, 200, &colour0);
@@ -180,7 +183,7 @@ void mintTextureExample()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 			
 			mint_TextureRender(texture);
 			
@@ -205,7 +208,7 @@ void setColourInputExample()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 			
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) colour.r += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) colour.r -= 10;
@@ -238,7 +241,7 @@ void setAlphaInputExample()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 			
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) alpha += 10;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) alpha -= 10;
@@ -272,7 +275,7 @@ void animationExample()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 
 			mint_TextureRender(texture);
 			mint_AnimNextFrame(texture->animMan);
@@ -311,7 +314,7 @@ void transformExample()
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 
 			mint_TextureRender(arrow);
 			
@@ -336,7 +339,7 @@ void textExample()
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 
 			mint_TextureRender(text);
 			
@@ -378,7 +381,7 @@ void buttonExample()
 			    
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearRenderer(sdlRenderer);
+			mint_RendClearSdlRenderer(sdlRenderer);
 
 			for (i = 0; i < 3; i++) {
 				mint_AnimUpdateAsButton(buttons[i]->animMan, input);
@@ -433,7 +436,7 @@ void timerExample()
 			objectAt.y = 0;
 		}
 
-		mint_RendClearRenderer(sdlRenderer);
+		mint_RendClearSdlRenderer(sdlRenderer);
 		mint_DrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, &colour);
 		SDL_RenderPresent(sdlRenderer);
 	}
@@ -477,7 +480,7 @@ void physExample()
 		mint_PhysUpdate(texture->phys, timer->elapsed);
 		// printf("Velo: %lf %lf elapsed: %f\n", texture->phys->velocity.x, texture->phys->velocity.y, timer->elapsed);
 
-		mint_RendClearRenderer(sdlRenderer);
+		mint_RendClearSdlRenderer(sdlRenderer);
 
 		mint_TextureRender(texture);
 
