@@ -106,8 +106,8 @@ int main(int argc, char* args[])
 	// mintTextureTransformExampleLoop();
 	// mintTextureTTFExampleLoop();
 	// mintTextureButtonExampleLoop();
-	// mintTimerExampleLoop();
-	mintPhysExampleLoop();
+	mintTimerExampleLoop();
+	// mintPhysExampleLoop();
 
 	close();
 
@@ -413,8 +413,8 @@ void mintTimerExampleLoop()
 	double speed = 1000;
 
 	objectAt.x = SCREEN_WIDTH / 2;
-	timer->msPerReport = 1000;
-	timer->msSinceLastReport = 1000;
+	timer->secondsPerReport = 1;
+	timer->secondsSinceLastReport = 1;
 
 	while (!quit)
 	{

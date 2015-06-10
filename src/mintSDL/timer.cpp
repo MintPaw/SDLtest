@@ -14,11 +14,11 @@ void mint_TimerUpdate(MintFrameTimer* timer, double seconds)
 	timer->seconds = seconds;
 	timer->frames++;
 
-	if (timer->msSinceLastReport > 0) {
-		timer->msSinceLastReport -= timer->elapsed;
-		if (timer->msSinceLastReport <= 0) {
-			printf("Average frame rate: %f\n", (double)timer->frames / ((double)timer->seconds / 1000.0));
-			timer->msSinceLastReport = timer->msPerReport;
+	if (timer->secondsSinceLastReport > 0) {
+		timer->secondsSinceLastReport -= timer->elapsed;
+		if (timer->secondsSinceLastReport <= 0) {
+			printf("Average frame rate: %f\n", timer->frames / timer->seconds);
+			timer->secondsSinceLastReport = timer->secondsPerReport;
 		}
 	}
 }

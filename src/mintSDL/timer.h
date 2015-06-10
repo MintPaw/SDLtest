@@ -5,8 +5,8 @@ struct MintFrameTimer {
 	double seconds;
 	int frames;
 	double elapsed;
-	float msPerReport;
-	float msSinceLastReport;
+	double secondsPerReport;
+	double secondsSinceLastReport;
 };
 
 MintFrameTimer* mint_TimerSetup();
