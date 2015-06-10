@@ -3,6 +3,7 @@ cmake_policy(SET CMP0015 NEW)
 project (SDLtest)
 
 include_directories(
+	src
 	lib/win32/SDL2-2.0.3/include
 	lib/win32/SDL2_image-2.0.0/include
 	lib/win32/SDL2_ttf-2.0.12/include
