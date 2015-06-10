@@ -38,11 +38,8 @@ void physExample();
 		Consider creating setup and free for things like MintTrans and MintRend
 		Make fps/other-stat counter
 		Move MintFloatPoint and make point structs
-		
-		Look into better reletive paths for includes
-		Figure out if I need unsigned chars for colour and alpha
 		Consider moving MintTrans to maths directory
-		Fix the SDL_Color converters
+
 		Make auto-tester
 
 	Notes:

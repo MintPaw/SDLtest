@@ -38,16 +38,12 @@ void mint_RendSetAlpha(MintRend* rend, char alpha)
 	SDL_SetTextureAlphaMod(rend->mintTexture->texture, rend->_alpha);
 }
 
-SDL_Color* mint_RendHexToSDLColor(unsigned long colour)
+void mint_RendHexToSDLColor(unsigned long colour, SDL_Color* sdlColor)
 {
-	SDL_Color *sdlColor = (SDL_Color*)malloc(sizeof(SDL_Color));
-
 	sdlColor->r = ((colour >> 24) & 0xFF);
 	sdlColor->g = ((colour >> 16) & 0xFF);
 	sdlColor->b = ((colour >> 8) & 0xFF);
 	sdlColor->a = (colour & 0xFF);
-
-	return sdlColor;
 }
 
 unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor)

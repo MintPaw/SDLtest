@@ -15,7 +15,7 @@ struct MintRend {
 
 SDL_Renderer* mint_RendCreateRenderer(SDL_Window* window, char vsync);
 void mint_RendClearRenderer(SDL_Renderer* renderer);
-SDL_Color* mint_RendHexToSDLColor(unsigned long colour);
+void mint_RendHexToSDLColor(unsigned long colour, SDL_Color* sdlColour);
 unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor);
 
 void mint_RendSetColour(MintRend* rend, SDL_Color* colour);
