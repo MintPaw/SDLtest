@@ -38,9 +38,7 @@ void physExample();
 		Move maths stuff into maths directory
 		Consider changing Display to Rend
 		Consider creating setup and free for things like MintTrans and MintRend
-		Remove the unneeded "Example" and maybe the "Texture" too
-		Add other paths to winenv
-		Make winenv copy bin files
+		Make batch file to copy bin files
 		Make fps/other-stat counter
 		Consider pointer vs non-pointer for structs
 		Move MintFloatPoint and make point structs
