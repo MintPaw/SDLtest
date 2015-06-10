@@ -39,7 +39,6 @@ void physExample();
 		Make fps/other-stat counter
 		Move MintFloatPoint and make point structs
 		Consider moving MintTrans to maths directory
-
 		Make auto-tester
 
 	Notes:

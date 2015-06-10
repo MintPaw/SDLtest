@@ -7,7 +7,7 @@
 #include "mintSDL/display/rend.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/display/trans.h"
-#include "mintSDL//maths/phys.h"
+#include "mintSDL/maths/phys.h"
 
 MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 {
