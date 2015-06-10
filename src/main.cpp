@@ -107,8 +107,8 @@ int main(int argc, char* args[])
 	// textExample();
 	// buttonExample();
 	// timerExample();
-	physicsExample();
-	// collisionExample();
+	// physicsExample();
+	collisionExample();
 
 	close();
 

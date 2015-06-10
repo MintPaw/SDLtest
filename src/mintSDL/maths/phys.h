@@ -6,11 +6,7 @@ struct MintPhys;
 
 #include <SDL.h>
 #include "mintSDL/display/texture.h"
-
-struct MintDoublePoint {
-	double x;
-	double y;
-};
+#include "mintSDL/maths/geom.h"
 
 struct MintPhys {
 	MintTexture* mintTexture;
