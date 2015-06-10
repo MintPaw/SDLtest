@@ -382,10 +382,10 @@ void mintTextureButtonExampleLoop()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN ||
-				e.type == SDL_KEYUP ||
-				e.type == SDL_MOUSEMOTION ||
-				e.type == SDL_MOUSEBUTTONDOWN ||
-				e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+			    e.type == SDL_KEYUP ||
+			    e.type == SDL_MOUSEMOTION ||
+			    e.type == SDL_MOUSEBUTTONDOWN ||
+			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 			    
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
@@ -421,10 +421,10 @@ void mintTimerExampleLoop()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN ||
-				e.type == SDL_KEYUP ||
-				e.type == SDL_MOUSEMOTION ||
-				e.type == SDL_MOUSEBUTTONDOWN ||
-				e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+			    e.type == SDL_KEYUP ||
+	        e.type == SDL_MOUSEMOTION ||
+			    e.type == SDL_MOUSEBUTTONDOWN ||
+			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
@@ -468,10 +468,10 @@ void mintPhysExampleLoop()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN ||
-				e.type == SDL_KEYUP ||
-				e.type == SDL_MOUSEMOTION ||
-				e.type == SDL_MOUSEBUTTONDOWN ||
-				e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+			    e.type == SDL_KEYUP ||
+			    e.type == SDL_MOUSEMOTION ||
+			    e.type == SDL_MOUSEBUTTONDOWN ||
+			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
