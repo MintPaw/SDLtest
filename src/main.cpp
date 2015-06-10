@@ -10,13 +10,13 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
-#include "mintSDL/input.h"
-#include "mintSDL/timer.h"
 #include "mintSDL/display/anim.h"
 #include "mintSDL/display/draw.h"
 #include "mintSDL/display/rend.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
+#include "mintSDL/util/input.h"
+#include "mintSDL/util/timer.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;

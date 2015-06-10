@@ -24,8 +24,8 @@ add_executable(SDLtest
 	src/mintSDL/display/trans.cpp
 	src/mintSDL/maths/geom.cpp
 	src/mintSDL/maths/phys.cpp
-	src/mintSDL/input.cpp
-	src/mintSDL/timer.cpp
+	src/mintSDL/util/input.cpp
+	src/mintSDL/util/timer.cpp
 )
 
 target_link_libraries(SDLtest
