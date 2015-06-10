@@ -13,7 +13,9 @@ struct MintTrans {
 	int _height;
 };
 
+MintTrans* mint_TransSetup(int width, int height);
 int mint_TransGetWidth(MintTrans* trans);
 int mint_TransGetHeight(MintTrans* trans);
+void mint_TransFree(MintTrans* trans);
 
 #endif
