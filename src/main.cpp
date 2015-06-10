@@ -11,7 +11,7 @@
 #include "mintSDL/timer.h"
 #include "mintSDL/display/display.h"
 #include "mintSDL/display/anim.h"
-#include "mintSDL/display/geom.h"
+#include "mintSDL/display/draw.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
@@ -21,7 +21,7 @@ const int SCREEN_HEIGHT = 480;
 
 void close();
 void gameLoop();
-void geomExample();
+void drawExample();
 void mintTextureExample();
 void setColourInputExample();
 void setAlphaInputExample();
@@ -39,13 +39,13 @@ void physExample();
 		Consider changing Display to Rend
 		Consider creating setup and free for things like MintTrans and MintRend
 		Make fps/other-stat counter
-		Consider pointer vs non-pointer for structs
 		Move MintFloatPoint and make point structs
 		Look into how the optimizer cleans up rename variables
 		Look into better reletive paths for includes
 		Figure out if I need unsigned chars for colour and alpha
 		Consider moving MintTrans to maths directory
 		Fix the SDL_Color converters
+		Make auto-tester
 
 	Notes:
 		Centre point is going to break when animations happen (They did)
@@ -94,7 +94,7 @@ int main(int argc, char* args[])
 	SDL_UpdateWindowSurface(sdlWindow);
 
 	// gameLoop();
-	// geomExample();
+	drawExample();
 	// mintTextureExample();
 	// setColourInputExample();
 	// setAlphaInputExample();
@@ -102,7 +102,7 @@ int main(int argc, char* args[])
 	// transformExample();
 	// textExample();
 	// buttonExample();
-	timerExample();
+	// timerExample();
 	// physExample();
 
 	close();
@@ -146,7 +146,7 @@ void close()
 	SDL_Quit();
 }
 
-void geomExample()
+void drawExample()
 {
 	SDL_Event e;
 	char quit = 0;
@@ -163,10 +163,10 @@ void geomExample()
 
 			mint_DisplayClearRenderer(sdlRenderer);
 			
-			mint_GeomDrawRect(sdlRenderer, 0, 0, 100, 100, &colour0);
-			mint_GeomDrawLine(sdlRenderer, 100, 100, 200, 200, &colour0);
-			mint_GeomDrawLine(sdlRenderer, 200, 200, 300, 100, &colour0);
-			mint_GeomDrawRect(sdlRenderer, 300, 50, 100, 50, &colour1);
+			mint_DrawRect(sdlRenderer, 0, 0, 100, 100, &colour0);
+			mint_DrawLine(sdlRenderer, 100, 100, 200, 200, &colour0);
+			mint_DrawLine(sdlRenderer, 200, 200, 300, 100, &colour0);
+			mint_DrawRect(sdlRenderer, 300, 50, 100, 50, &colour1);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}
@@ -440,7 +440,7 @@ void timerExample()
 		}
 
 		mint_DisplayClearRenderer(sdlRenderer);
-		mint_GeomDrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, &colour);
+		mint_DrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, &colour);
 		SDL_RenderPresent(sdlRenderer);
 	}
 }
