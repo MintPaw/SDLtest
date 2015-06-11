@@ -123,8 +123,7 @@ void mint_PhysResolveRectCollision(MintPhys* a, MintPhys* b, MintDoublePoint* no
 	if(velAlongNormal > 0) return;
 
 	// Calculate restitution
-	// TODO(jeru): Add min/max
-	double e = a->restitution < b->restitution ? a->restitution : a->restitution;
+	double e = mint_MathMin(a->restitution, b->restitution);
 
 	// Calculate impulse scalar
 	double j = -(1 + e) * velAlongNormal;
