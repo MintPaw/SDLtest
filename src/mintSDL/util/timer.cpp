@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL.h>
@@ -12,6 +13,7 @@ MintFrameTimer* mint_TimerSetup()
 void mint_TimerUpdate(MintFrameTimer* timer, double seconds)
 {
 	timer->elapsed = seconds - timer->seconds;
+	timer->elapsed = round(timer->elapsed * 100) / 100;
 	timer->seconds = seconds;
 	timer->frames++;
 
