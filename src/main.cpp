@@ -1,4 +1,4 @@
-// #define _CRTDBG_MAP_ALLOC
+#define _CRTDBG_MAP_ALLOC
 
 #ifdef _CRTDBG_MAP_ALLOC
 	#include <stdlib.h>
@@ -40,7 +40,6 @@ void collisionExample();
 
 	Todo:
 		Do scaling, this includes mass
-		Figure out if build defining structs leaks
 		Add clamp phys.cpp#67 also maybe min and max
 		Need to list all headers
 		Figure out what to do about subpixels
