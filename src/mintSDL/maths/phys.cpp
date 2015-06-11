@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
+#include "mintSDL/maths/maths.h"
 
 MintPhys* mint_PhysCreate(MintTexture* mintTexture)
 {
@@ -66,9 +67,7 @@ double mint_PhysComputeVelocity(double velocity, double accel, double drag, doub
 	}
 
 	if (velocity && max) {
-		// NOTE(jeru): Add clamp?
-		if (velocity > max) velocity = max;
-		if (velocity < -max) velocity = -max;
+		velocity = mint_MathClamp(velocity, -max, max);
 	}
 
 	return velocity;
