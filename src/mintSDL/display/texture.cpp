@@ -80,15 +80,10 @@ void mint_TextureRender(MintTexture* mintTexture)
 		                 &mintTexture->trans->centre,
 		                 mintTexture->trans->flip);
 	} else {
-		SDL_Rect quad = { mintTexture->trans->x,
-		                  mintTexture->trans->y,
-		                  mintTexture->trans->_width,
-		                  mintTexture->trans->_height };
-
 		SDL_RenderCopyEx(mintTexture->rend->renderer,
 		                 mintTexture->texture,
 		                 NULL,
-		                 &quad,
+		                 &mintTexture->phys->rect,
 		                 mintTexture->trans->angle,
 		                 &mintTexture->trans->centre,
 		                 mintTexture->trans->flip);

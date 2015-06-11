@@ -40,10 +40,8 @@ void collisionExample();
 
 	Todo:
 		Do scaling, this includes mass
-		Add clamp phys.cpp#67 also maybe min and max
+		Do a better job making all needed math structs and functions
 		Need to list all headers
-		Figure out what to do about subpixels
-		Remove quad from mint_TextureRender
 		Make animation work properly
 		Create update functions
 		Cap fps if no vsync (And maybe in all cases)
