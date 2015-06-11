@@ -51,7 +51,7 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 	}
 
 	mintTexture->rend = mint_RendSetup(mintTexture, renderer);
-	mintTexture->trans = mint_TransSetup(mintTexture, surface->w, surface->h);
+	mintTexture->trans = mint_TransSetup(surface->w, surface->h);
 	mintTexture->phys = mint_PhysCreate(mintTexture);
 
 	mintTexture->animMan = mint_AnimManSetup(mintTexture);

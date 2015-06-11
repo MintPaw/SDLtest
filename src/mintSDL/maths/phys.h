@@ -18,7 +18,7 @@ struct MintPhys {
 	MintDoublePoint drag;
 	MintDoublePoint maxVelocity;
 
-	SDL_Rect _rect;
+	SDL_Rect rect;
 };
 
 MintPhys* mint_PhysCreate(MintTexture* mintTexture);
