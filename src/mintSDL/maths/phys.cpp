@@ -1,9 +1,20 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <Box2d/Box2d.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
 #include "mintSDL/maths/maths.h"
+
+MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY)
+{
+	MintPhysWorld* world = (MintPhysWorld*)malloc(sizeof(MintPhysWorld));
+	b2World boxWorld({gravityX, gravityY});
+	
+	world->world = boxWorld;
+
+	return world;
+}
 
 MintPhys* mint_PhysCreate(MintTexture* mintTexture)
 {

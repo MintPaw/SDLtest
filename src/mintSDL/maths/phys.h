@@ -27,6 +27,7 @@ struct MintPhys {
 	SDL_Rect rect;
 };
 
+MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY);
 MintPhys* mint_PhysCreate(MintTexture* mintTexture);
 void mint_PhysUpdate(MintPhys* phys, double elapsed);
 double mint_PhysComputeVelocity(double velocity, double accel, double drag, double max, double elapsed);

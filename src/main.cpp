@@ -39,6 +39,7 @@ void collisionExample();
 /*
 
 	Todo:
+		Rename mint_PhysCreate
 		Do scaling, this includes mass
 		Do a better job making all needed math structs and functions
 		Need to list all headers
@@ -61,6 +62,7 @@ SDL_Renderer* sdlRenderer = NULL;
 TTF_Font *ttfOpenSans = NULL;
 MintInput *input;
 MintFrameTimer *timer;
+MintPhysWorld *physWorld;
 
 int main(int argc, char* args[])
 {
@@ -99,6 +101,7 @@ int main(int argc, char* args[])
 
 	input = mint_InputSetup();
 	timer = mint_TimerSetup();
+	physWorld = mint_PhysSetupWorld(0, -10);
 
 	SDL_UpdateWindowSurface(sdlWindow);
 
@@ -112,8 +115,8 @@ int main(int argc, char* args[])
 	// textExample();
 	// buttonExample();
 	// timerExample();
-	// physicsExample();
-	collisionExample();
+	physicsExample();
+	// collisionExample();
 
 	close();
 
@@ -460,13 +463,7 @@ void physicsExample()
 	SDL_Event e;
 	char quit = 0;
 
-	double maxVelocity = 400;
-	double velocityChange = maxVelocity * 10;
-	double drag = maxVelocity * 10;
-
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
-	texture->phys->drag = { drag, drag };
-	texture->phys->maxVelocity = { maxVelocity, maxVelocity };
 
 	while (!quit)
 	{
@@ -482,15 +479,6 @@ void physicsExample()
 
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
-
-		texture->phys->accel.x = 0;
-		texture->phys->accel.y = 0;
-		if (mint_InputCheckStatus(input, SDL_SCANCODE_LEFT)) texture->phys->accel.x -= velocityChange;
-		if (mint_InputCheckStatus(input, SDL_SCANCODE_RIGHT)) texture->phys->accel.x += velocityChange;
-		if (mint_InputCheckStatus(input, SDL_SCANCODE_UP)) texture->phys->accel.y -= velocityChange;
-		if (mint_InputCheckStatus(input, SDL_SCANCODE_DOWN)) texture->phys->accel.y += velocityChange;
-		
-		// printf("Velo: %lf %lf elapsed: %f\n", texture->phys->velocity.x, texture->phys->velocity.y, timer->elapsed);
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 
@@ -508,7 +496,7 @@ void collisionExample()
 	SDL_Event e;
 	char quit = 0;
 
-	srand(time(NULL));
+	srand((int)time(NULL));
 
 	double secondsTillRegen = 0;
 
