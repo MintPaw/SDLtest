@@ -36,7 +36,12 @@ void physicsExample();
 void collisionExample();
 
 /*
+
 	Todo:
+		Figure out if build defining structs leaks
+		Add clamp phys.cpp#67 also maybe min and max
+		Need to list all headers
+		Figure out what to do about subpixels
 		Remove quad from mint_TextureRender
 		Make animation work properly
 		Create update functions
@@ -49,6 +54,7 @@ void collisionExample();
 
 	Notes:
 		Centre point is going to break when animations happen (They did)
+
 */
 
 SDL_Window* sdlWindow = NULL;
@@ -314,7 +320,7 @@ void transformExample()
 
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow->trans->centre.x -= 1;
+			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow->trans->centre.x-= 1;
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
 
 			if (mint_InputCheckStatus(input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
@@ -503,6 +509,30 @@ void collisionExample()
 	SDL_Event e;
 	char quit = 0;
 
+
+	SDL_Color red = { 255, 0, 0, 255 };
+	SDL_Color blue = { 0, 0, 255, 255 };
+
+	MintTexture* box1 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
+	box1->trans->x = 20;
+	box1->trans->y = SCREEN_HEIGHT / 2 - box1->trans->_height / 2;
+	box1->phys->maxVelocity = { 400, 400 };
+	box1->phys->velocity.x = 100;
+	box1->phys->velocity.y = 100;
+
+	MintTexture* box2 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
+	box2->trans->x = SCREEN_WIDTH - 20 - box2->trans->_width;
+	box2->trans->y = SCREEN_HEIGHT / 2 - box2->trans->_height / 2;
+	box2->phys->maxVelocity = { 400, 400 };
+	box2->phys->velocity.x = -100;
+	box2->phys->velocity.y = -75;
+
+	int changeX = 0;
+	int changeY = 0;
+
+	mint_RendSetColour(box1->rend, &red);
+	mint_RendSetColour(box2->rend, &blue);
+
 	while (!quit)
 	{
 		mint_TimerUpdate(timer, SDL_GetTicks() / 1000.0);
@@ -518,8 +548,54 @@ void collisionExample()
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
+		if (box1->trans->x < 0) {
+			box1->trans->x = 0;
+			box1->phys->velocity.x *= -1;
+		} else if (box1->trans->x > SCREEN_WIDTH - box1->trans->_width) {
+			box1->trans->x = SCREEN_WIDTH - box1->trans->_width;
+			box1->phys->velocity.x *= -1;
+		}
+
+		if (box1->trans->y < 0) {
+			box1->trans->y = 0;
+			box1->phys->velocity.y *= -1;
+		} else if (box1->trans->y > SCREEN_HEIGHT - box1->trans->_height) {
+			box1->trans->y = SCREEN_HEIGHT - box1->trans->_height;
+			box1->phys->velocity.y *= -1;
+		}
+
+		if (box2->trans->x < 0) {
+			box2->trans->x = 0;
+			box2->phys->velocity.x *= -1;
+		} else if (box2->trans->x > SCREEN_WIDTH - box2->trans->_width) {
+			box2->trans->x = SCREEN_WIDTH - box2->trans->_width;
+			box2->phys->velocity.x *= -1;
+		}
+
+		if (box2->trans->y < 0) {
+			box2->trans->y = 0;
+			box2->phys->velocity.y *= -1;
+		} else if (box2->trans->y > SCREEN_HEIGHT - box2->trans->_height) {
+			box2->trans->y = SCREEN_HEIGHT - box2->trans->_height;
+			box2->phys->velocity.y *= -1;
+		}
+
 		mint_RendClearSdlRenderer(sdlRenderer);
+
+		changeX = box1->trans->x;
+		changeY = box1->trans->y;
+		mint_TextureUpdate(box1, timer->elapsed);
+		changeX = box1->trans->x - changeX;
+		changeY = box1->trans->y - changeY;
+		printf("Change in pos: %d %d\n", changeX, changeY);
+		// mint_TextureUpdate(box2, timer->elapsed);
+
+		mint_TextureRender(box1);
+		// mint_TextureRender(box2);
 
 		SDL_RenderPresent(sdlRenderer);
 	}
+
+	mint_TextureFree(box1);
+	mint_TextureFree(box2);
 }
