@@ -52,7 +52,7 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 
 	mintTexture->rend = mint_RendSetup(mintTexture, renderer);
 	mintTexture->trans = mint_TransSetup(surface->w, surface->h);
-	mintTexture->phys = mint_PhysCreate(mintTexture);
+	mintTexture->phys = NULL;
 
 	mintTexture->animMan = mint_AnimManSetup(mintTexture);
 
@@ -80,10 +80,14 @@ void mint_TextureRender(MintTexture* mintTexture)
 		                 &mintTexture->trans->centre,
 		                 mintTexture->trans->flip);
 	} else {
+		SDL_Rect quad = { mintTexture->trans->x,
+		                  mintTexture->trans->y,
+		                  mintTexture->trans->_width,
+		                  mintTexture->trans->_height };
 		SDL_RenderCopyEx(mintTexture->rend->renderer,
 		                 mintTexture->texture,
 		                 NULL,
-		                 &mintTexture->phys->rect,
+		                 &quad,
 		                 mintTexture->trans->angle,
 		                 &mintTexture->trans->centre,
 		                 mintTexture->trans->flip);

@@ -62,7 +62,7 @@ SDL_Renderer* sdlRenderer = NULL;
 TTF_Font *ttfOpenSans = NULL;
 MintInput *input;
 MintFrameTimer *timer;
-MintPhysWorld *physWorld;
+MintPhysWorld *world;
 
 int main(int argc, char* args[])
 {
@@ -101,7 +101,7 @@ int main(int argc, char* args[])
 
 	input = mint_InputSetup();
 	timer = mint_TimerSetup();
-	physWorld = mint_PhysSetupWorld(0, -10);
+	world = mint_PhysSetupWorld(0, -10);
 
 	SDL_UpdateWindowSurface(sdlWindow);
 
@@ -192,6 +192,7 @@ void mintTextureExample()
 	char quit = 0;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
+
 	while (!quit)
 	{
 		while (SDL_PollEvent(&e) != 0)
@@ -216,6 +217,7 @@ void setColourInputExample()
 	char quit = 0;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
+
 	SDL_Color colour = { 255, 255, 255, 0 };
 	while (!quit)
 	{
@@ -249,6 +251,7 @@ void setAlphaInputExample()
 	char quit = 0;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
+
 	unsigned char alpha = 255;
 	while (!quit)
 	{
@@ -464,6 +467,7 @@ void physicsExample()
 	char quit = 0;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
+	texture->phys = mint_PhysCreate(texture, world, 1, 1);
 
 	while (!quit)
 	{
@@ -484,6 +488,8 @@ void physicsExample()
 
 		mint_TextureUpdate(texture, timer->elapsed);
 		mint_TextureRender(texture);
+		
+		mint_PhysStepWorld(world, timer->elapsed);
 
 		SDL_RenderPresent(sdlRenderer);
 	}
@@ -504,10 +510,8 @@ void collisionExample()
 	SDL_Color blue = { 0, 0, 255, 255 };
 
 	MintTexture* box1 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
-	box1->phys->drag = { 200, 200 };
 
 	MintTexture* box2 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
-	box2->phys->drag = { 200, 200 };
 
 	mint_RendSetColour(box1->rend, &red);
 	mint_RendSetColour(box2->rend, &blue);
@@ -531,69 +535,69 @@ void collisionExample()
 		if (secondsTillRegen <= 0) {
 			secondsTillRegen = 100;
 
-			if (rand() % 2) {
-				box1->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
-				box1->trans->y = (rand() % 20) + 20;
+			// if (rand() % 2) {
+			// 	box1->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
+			// 	box1->trans->y = (rand() % 20) + 20;
 
-				box2->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
-				box2->trans->y = SCREEN_HEIGHT - box1->trans->_height - (rand() % 20) - 20;
-			} else {
-				box1->trans->x = 20;
-				box1->trans->y = rand() % (SCREEN_HEIGHT - box1->trans->_height);
+			// 	box2->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
+			// 	box2->trans->y = SCREEN_HEIGHT - box1->trans->_height - (rand() % 20) - 20;
+			// } else {
+			// 	box1->trans->x = 20;
+			// 	box1->trans->y = rand() % (SCREEN_HEIGHT - box1->trans->_height);
 
-				box2->trans->x = SCREEN_WIDTH - box1->trans->_width - (rand() % 20) - 20;
-				box2->trans->y = rand() % (SCREEN_HEIGHT - box1->trans->_height);
-			}
+			// 	box2->trans->x = SCREEN_WIDTH - box1->trans->_width - (rand() % 20) - 20;
+			// 	box2->trans->y = rand() % (SCREEN_HEIGHT - box1->trans->_height);
+			// }
 
-			box1->phys->velocity.x = box2->trans->x - box1->trans->x;
-			box1->phys->velocity.y = box2->trans->y - box1->trans->y;
-			box2->phys->velocity.x = box1->trans->x - box2->trans->x;
-			box2->phys->velocity.y = box1->trans->y - box2->trans->y;
-			box2->phys->mass = 1000;
+			// box1->phys->velocity.x = box2->trans->x - box1->trans->x;
+			// box1->phys->velocity.y = box2->trans->y - box1->trans->y;
+			// box2->phys->velocity.x = box1->trans->x - box2->trans->x;
+			// box2->phys->velocity.y = box1->trans->y - box2->trans->y;
+			// box2->phys->mass = 1000;
 
 			// box1->phys->restitution = (rand() % 25) / 100.0 + .25;
 			// box2->phys->restitution = (rand() % 25) / 100.0 + .25;
 
-			box1->trans->x = 20;
-			box1->trans->y = 30;
-			box1->phys->velocity = { 500, 0 };
+			// box1->trans->x = 20;
+			// box1->trans->y = 30;
+			// box1->phys->velocity = { 500, 0 };
 
-			box2->trans->x = SCREEN_WIDTH - box2->trans->_width - 20;
-			box2->trans->y = 20;
-			box2->phys->velocity = { 0, 0 };
+			// box2->trans->x = SCREEN_WIDTH - box2->trans->_width - 20;
+			// box2->trans->y = 20;
+			// box2->phys->velocity = { 0, 0 };
 		}
 
-		if (box1->trans->x < 0) {
-			box1->trans->x = 0;
-			box1->phys->velocity.x *= -1;
-		} else if (box1->trans->x > SCREEN_WIDTH - box1->trans->_width) {
-			box1->trans->x = SCREEN_WIDTH - box1->trans->_width;
-			box1->phys->velocity.x *= -1;
-		}
+		// if (box1->trans->x < 0) {
+		// 	box1->trans->x = 0;
+		// 	box1->phys->velocity.x *= -1;
+		// } else if (box1->trans->x > SCREEN_WIDTH - box1->trans->_width) {
+		// 	box1->trans->x = SCREEN_WIDTH - box1->trans->_width;
+		// 	box1->phys->velocity.x *= -1;
+		// }
 
-		if (box1->trans->y < 0) {
-			box1->trans->y = 0;
-			box1->phys->velocity.y *= -1;
-		} else if (box1->trans->y > SCREEN_HEIGHT - box1->trans->_height) {
-			box1->trans->y = SCREEN_HEIGHT - box1->trans->_height;
-			box1->phys->velocity.y *= -1;
-		}
+		// if (box1->trans->y < 0) {
+		// 	box1->trans->y = 0;
+		// 	box1->phys->velocity.y *= -1;
+		// } else if (box1->trans->y > SCREEN_HEIGHT - box1->trans->_height) {
+		// 	box1->trans->y = SCREEN_HEIGHT - box1->trans->_height;
+		// 	box1->phys->velocity.y *= -1;
+		// }
 
-		if (box2->trans->x < 0) {
-			box2->trans->x = 0;
-			box2->phys->velocity.x *= -1;
-		} else if (box2->trans->x > SCREEN_WIDTH - box2->trans->_width) {
-			box2->trans->x = SCREEN_WIDTH - box2->trans->_width;
-			box2->phys->velocity.x *= -1;
-		}
+		// if (box2->trans->x < 0) {
+		// 	box2->trans->x = 0;
+		// 	box2->phys->velocity.x *= -1;
+		// } else if (box2->trans->x > SCREEN_WIDTH - box2->trans->_width) {
+		// 	box2->trans->x = SCREEN_WIDTH - box2->trans->_width;
+		// 	box2->phys->velocity.x *= -1;
+		// }
 
-		if (box2->trans->y < 0) {
-			box2->trans->y = 0;
-			box2->phys->velocity.y *= -1;
-		} else if (box2->trans->y > SCREEN_HEIGHT - box2->trans->_height) {
-			box2->trans->y = SCREEN_HEIGHT - box2->trans->_height;
-			box2->phys->velocity.y *= -1;
-		}
+		// if (box2->trans->y < 0) {
+		// 	box2->trans->y = 0;
+		// 	box2->phys->velocity.y *= -1;
+		// } else if (box2->trans->y > SCREEN_HEIGHT - box2->trans->_height) {
+		// 	box2->trans->y = SCREEN_HEIGHT - box2->trans->_height;
+		// 	box2->phys->velocity.y *= -1;
+		// }
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 

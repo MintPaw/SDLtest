@@ -6,7 +6,7 @@ struct MintPhysWorld;
 struct MintPhys;
 
 #include <SDL.h>
-#include <Box2d/Dynamics/b2World.h>
+#include <Box2D/Box2d.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/geom.h"
 
@@ -16,23 +16,19 @@ struct MintPhysWorld {
 
 struct MintPhys {
 	MintTexture* mintTexture;
-	double restitution;
-	double mass;
-
-	MintDoublePoint velocity;
-	MintDoublePoint accel;
-	MintDoublePoint drag;
-	MintDoublePoint maxVelocity;
+	MintPhysWorld* world;
+	b2PolygonShape shape;
+	b2Body* body;
 
 	SDL_Rect rect;
 };
 
 MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY);
-MintPhys* mint_PhysCreate(MintTexture* mintTexture);
+MintPhys* mint_PhysCreate(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density);
+float mint_PhysPixelToMetre(double pixel);
+
+void mint_PhysStepWorld(MintPhysWorld* world, double elapsed);
 void mint_PhysUpdate(MintPhys* phys, double elapsed);
-double mint_PhysComputeVelocity(double velocity, double accel, double drag, double max, double elapsed);
-void mint_PhysCollideRectRect(MintPhys* a, MintPhys* b);
-void mint_PhysResolveRectCollision(MintPhys* a, MintPhys* b, MintDoublePoint* normal);
 void mint_PhysFree(MintPhys* phys);
 
 #endif
