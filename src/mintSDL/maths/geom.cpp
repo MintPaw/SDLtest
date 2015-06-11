@@ -1,5 +1,7 @@
-#include <SDL.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <SDL.h>
 #include "mintSDL/maths/geom.h"
 
 int mint_GeomPointDisance(SDL_Point* a, SDL_Point* b)

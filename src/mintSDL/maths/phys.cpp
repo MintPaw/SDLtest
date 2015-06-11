@@ -133,6 +133,7 @@ void mint_PhysResolveRectCollision(MintPhys* a, MintPhys* b, MintDoublePoint* no
 	MintDoublePoint impulse;
 	impulse.x = j * normal->x;
 	impulse.y = j * normal->y;
+	// printf("%lf %lf %lf\n", impulse.x, impulse.y, j);
 
 	a->velocity.x -= 1 / a->mass * impulse.x;
 	a->velocity.y -= 1 / a->mass * impulse.y;

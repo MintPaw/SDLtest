@@ -508,6 +508,8 @@ void collisionExample()
 	SDL_Event e;
 	char quit = 0;
 
+	srand(time(NULL));
+
 	double secondsTillRegen = 0;
 
 	SDL_Color red = { 255, 0, 0, 255 };
@@ -539,7 +541,7 @@ void collisionExample()
 
 		secondsTillRegen -= timer->elapsed;
 		if (secondsTillRegen <= 0) {
-			secondsTillRegen = 1.5;
+			secondsTillRegen = 100;
 
 			if (rand() % 2) {
 				box1->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
@@ -559,9 +561,18 @@ void collisionExample()
 			box1->phys->velocity.y = box2->trans->y - box1->trans->y;
 			box2->phys->velocity.x = box1->trans->x - box2->trans->x;
 			box2->phys->velocity.y = box1->trans->y - box2->trans->y;
+			box2->phys->mass = 1000;
 
-			box1->phys->restitution = (rand() % 25) / 100.0 + .25;
-			box2->phys->restitution = (rand() % 25) / 100.0 + .25;
+			// box1->phys->restitution = (rand() % 25) / 100.0 + .25;
+			// box2->phys->restitution = (rand() % 25) / 100.0 + .25;
+
+			box1->trans->x = 20;
+			box1->trans->y = 30;
+			box1->phys->velocity = { 500, 0 };
+
+			box2->trans->x = SCREEN_WIDTH - box2->trans->_width - 20;
+			box2->trans->y = 20;
+			box2->phys->velocity = { 0, 0 };
 		}
 
 		if (box1->trans->x < 0) {
@@ -603,6 +614,8 @@ void collisionExample()
 
 		mint_PhysCollideRectRect(box1->phys, box2->phys);
 		// mint_PhysCollideRectRect(box2->phys, box1->phys);
+
+		// printf("%lf %lf\n", box1->phys->velocity.x, box1->phys->velocity.y);
 
 		mint_TextureRender(box1);
 		mint_TextureRender(box2);

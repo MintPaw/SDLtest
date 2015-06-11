@@ -7,12 +7,14 @@ include_directories(
 	lib/win32/SDL2-2.0.3/include
 	lib/win32/SDL2_image-2.0.0/include
 	lib/win32/SDL2_ttf-2.0.12/include
+	lib/win32/Box2d/include
 )
 
 link_directories(
 	lib/win32/SDL2-2.0.3/lib/x86
 	lib/win32/SDL2_image-2.0.0/lib/x86
 	lib/win32/SDL2_ttf-2.0.12/lib/x86
+	lib/win32/Box2d/lib
 )
 
 add_executable(SDLtest
@@ -34,4 +36,5 @@ target_link_libraries(SDLtest
 	SDL2
 	SDL2_image
 	SDL2_ttf
+	Box2D
 )
