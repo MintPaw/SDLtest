@@ -15,15 +15,16 @@ MintPhys* mint_PhysCreate(MintTexture* mintTexture)
 	phys->restitution = 0;
 	phys->mass = 1;
 
+	phys->_rect.x = 0;
+	phys->_rect.y = 0;
+	phys->_rect.w = phys->mintTexture->trans->_width;
+	phys->_rect.h = phys->mintTexture->trans->_height;
+
 	return phys;
 }
 
 void mint_PhysUpdate(MintPhys* phys, double elapsed)
 {
-	phys->rect.x = phys->mintTexture->trans->x;
-	phys->rect.y = phys->mintTexture->trans->y;
-	phys->rect.w = phys->mintTexture->trans->_width;
-	phys->rect.h = phys->mintTexture->trans->_height;
 
 	double velocityDelta;
 	double delta;
@@ -75,7 +76,7 @@ double mint_PhysComputeVelocity(double velocity, double accel, double drag, doub
 
 void mint_PhysCollideRectRect(MintPhys* a, MintPhys* b)
 {
-	if (mint_GeomRectInRect(&a->rect, &b->rect))
+	if (mint_GeomRectInRect(&a->_rect, &b->_rect))
 	{
 		// MintDoublePoint normal;
 		// if (a.x < b.x) normal.x = -1;
