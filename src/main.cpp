@@ -612,7 +612,7 @@ void collisionExample()
 		mint_TextureUpdate(box1, timer->elapsed);
 		mint_TextureUpdate(box2, timer->elapsed);
 
-		mint_PhysCollideRectRect(box1->phys, box2->phys);
+		// mint_PhysCollideRectRect(box1->phys, box2->phys);
 		// mint_PhysCollideRectRect(box2->phys, box1->phys);
 
 		// printf("%lf %lf\n", box1->phys->velocity.x, box1->phys->velocity.y);

@@ -2,11 +2,17 @@
 #define PHYS_H
 
 struct MintFloatPoint;
+struct MintPhysWorld;
 struct MintPhys;
 
 #include <SDL.h>
+#include <Box2d/Dynamics/b2World.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/geom.h"
+
+struct MintPhysWorld {
+	b2World world;
+};
 
 struct MintPhys {
 	MintTexture* mintTexture;
