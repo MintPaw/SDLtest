@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <time.h>
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -38,6 +39,7 @@ void collisionExample();
 /*
 
 	Todo:
+		Do scaling, this includes mass
 		Figure out if build defining structs leaks
 		Add clamp phys.cpp#67 also maybe min and max
 		Need to list all headers
@@ -509,26 +511,16 @@ void collisionExample()
 	SDL_Event e;
 	char quit = 0;
 
+	double secondsTillRegen = 0;
 
 	SDL_Color red = { 255, 0, 0, 255 };
 	SDL_Color blue = { 0, 0, 255, 255 };
 
 	MintTexture* box1 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
-	box1->trans->x = 20;
-	box1->trans->y = SCREEN_HEIGHT / 2 - box1->trans->_height / 2;
-	box1->phys->maxVelocity = { 400, 400 };
-	box1->phys->velocity.x = 100;
-	box1->phys->velocity.y = 100;
+	box1->phys->drag = { 200, 200 };
 
 	MintTexture* box2 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
-	box2->trans->x = SCREEN_WIDTH - 20 - box2->trans->_width;
-	box2->trans->y = SCREEN_HEIGHT / 2 - box2->trans->_height / 2;
-	box2->phys->maxVelocity = { 400, 400 };
-	box2->phys->velocity.x = -100;
-	box2->phys->velocity.y = -75;
-
-	int changeX = 0;
-	int changeY = 0;
+	box2->phys->drag = { 200, 200 };
 
 	mint_RendSetColour(box1->rend, &red);
 	mint_RendSetColour(box2->rend, &blue);
@@ -546,6 +538,33 @@ void collisionExample()
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+		}
+
+		secondsTillRegen -= timer->elapsed;
+		if (secondsTillRegen <= 0) {
+			secondsTillRegen = 1.5;
+
+			if (rand() % 2) {
+				box1->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
+				box1->trans->y = (rand() % 20) + 20;
+
+				box2->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
+				box2->trans->y = SCREEN_HEIGHT - box1->trans->_height - (rand() % 20) - 20;
+			} else {
+				box1->trans->x = 20;
+				box1->trans->y = rand() % (SCREEN_HEIGHT - box1->trans->_height);
+
+				box2->trans->x = SCREEN_WIDTH - box1->trans->_width - (rand() % 20) - 20;
+				box2->trans->y = rand() % (SCREEN_HEIGHT - box1->trans->_height);
+			}
+
+			box1->phys->velocity.x = box2->trans->x - box1->trans->x;
+			box1->phys->velocity.y = box2->trans->y - box1->trans->y;
+			box2->phys->velocity.x = box1->trans->x - box2->trans->x;
+			box2->phys->velocity.y = box1->trans->y - box2->trans->y;
+
+			box1->phys->restitution = (rand() % 25) / 100.0 + .25;
+			box2->phys->restitution = (rand() % 25) / 100.0 + .25;
 		}
 
 		if (box1->trans->x < 0) {
@@ -582,16 +601,14 @@ void collisionExample()
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 
-		changeX = box1->trans->x;
-		changeY = box1->trans->y;
 		mint_TextureUpdate(box1, timer->elapsed);
-		changeX = box1->trans->x - changeX;
-		changeY = box1->trans->y - changeY;
-		printf("Change in pos: %d %d\n", changeX, changeY);
-		// mint_TextureUpdate(box2, timer->elapsed);
+		mint_TextureUpdate(box2, timer->elapsed);
+
+		mint_PhysCollideRectRect(box1->phys, box2->phys);
+		// mint_PhysCollideRectRect(box2->phys, box1->phys);
 
 		mint_TextureRender(box1);
-		// mint_TextureRender(box2);
+		mint_TextureRender(box2);
 
 		SDL_RenderPresent(sdlRenderer);
 	}

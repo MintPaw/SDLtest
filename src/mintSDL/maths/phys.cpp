@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
 
@@ -77,9 +78,35 @@ void mint_PhysCollideRectRect(MintPhys* a, MintPhys* b)
 {
 	if (mint_GeomRectInRect(&a->rect, &b->rect))
 	{
-		// MintDoublePoint normal;
-		// if (a.x < b.x) normal.x = -1;
-		// mint_PhysResolveRectCollision(a, b, );
+		MintDoublePoint normal = { 0, 0 };
+		double xIn = 999;
+		double yIn = 999;
+
+		if (a->rect.x < b->rect.x) {
+			xIn = a->rect.x + a->rect.w - b->rect.x;
+		} else {
+			xIn = b->rect.x + b->rect.w - a->rect.x;
+			xIn = -xIn;
+		}
+
+		if (a->rect.y < b->rect.y) {
+			yIn = a->rect.y + a->rect.h - b->rect.y;
+		} else {
+			yIn = b->rect.y + b->rect.h - a->rect.y;
+			yIn = -yIn;
+		}
+
+		if (abs((int)xIn) < abs((int)yIn)) {
+			if (xIn == 0) return;
+			if (xIn > 0) normal = { 1, 0 };
+			if (xIn < 0) normal = { -1, 0 };
+		} else if (abs((int)xIn) > abs((int)yIn)) {
+			if (yIn == 0) return;
+			if (yIn > 0) normal = { 0, 1 };
+			if (yIn < 0) normal = { 0, -1 };
+		}
+
+		mint_PhysResolveRectCollision(a, b, &normal);
 	}
 }
 
