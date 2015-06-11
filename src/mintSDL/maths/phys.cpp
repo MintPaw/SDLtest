@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdlib.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
@@ -11,12 +12,19 @@ MintPhys* mint_PhysCreate(MintTexture* mintTexture)
 	phys->accel = { 0, 0 };
 	phys->drag = { 0, 0 };
 	phys->maxVelocity = { 0, 0 };
+	phys->restitution = 0;
+	phys->mass = 1;
 
 	return phys;
 }
 
 void mint_PhysUpdate(MintPhys* phys, double elapsed)
 {
+	phys->rect.x = phys->mintTexture->trans->x;
+	phys->rect.y = phys->mintTexture->trans->y;
+	phys->rect.w = phys->mintTexture->trans->_width;
+	phys->rect.h = phys->mintTexture->trans->_height;
+
 	double velocityDelta;
 	double delta;
 
@@ -63,6 +71,49 @@ double mint_PhysComputeVelocity(double velocity, double accel, double drag, doub
 	}
 
 	return velocity;
+}
+
+void mint_PhysCollideRectRect(MintPhys* a, MintPhys* b)
+{
+	if (mint_GeomRectInRect(&a->rect, &b->rect))
+	{
+		// MintDoublePoint normal;
+		// if (a.x < b.x) normal.x = -1;
+		// mint_PhysResolveRectCollision(a, b, );
+	}
+}
+
+void mint_PhysResolveRectCollision(MintPhys* a, MintPhys* b, MintDoublePoint* normal)
+{
+	// Calculate relative velocity
+	MintDoublePoint rv;
+	rv.x = b->velocity.x - a->velocity.x;
+	rv.y = b->velocity.y - a->velocity.y;
+
+	// Calculate relative velocity in terms of the normal direction
+	double velAlongNormal = mint_GeomDotProduct(&rv, normal);
+
+	// Do not resolve if velocities are separating
+	if(velAlongNormal > 0) return;
+
+	// Calculate restitution
+	// TODO(jeru): Add min/max
+	double e = a->restitution < b->restitution ? a->restitution : a->restitution;
+
+	// Calculate impulse scalar
+	double j = -(1 + e) * velAlongNormal;
+	j /= 1 / a->mass + 1 / b->mass;
+
+	// Apply impulse
+	MintDoublePoint impulse;
+	impulse.x = j * normal->x;
+	impulse.y = j * normal->y;
+
+	a->velocity.x -= 1 / a->mass * impulse.x;
+	a->velocity.y -= 1 / a->mass * impulse.y;
+
+	b->velocity.x += 1 / b->mass * impulse.x;
+	b->velocity.y += 1 / b->mass * impulse.y;
 }
 
 void mint_PhysFree(MintPhys* phys)
