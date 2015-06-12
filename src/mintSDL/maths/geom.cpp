@@ -42,19 +42,19 @@ char mint_GeomRectInRect(SDL_Rect* a, SDL_Rect* b)
 
 char mint_GeomCircleinCircle(MintCircle* a, MintCircle* b)
 {
-	double r = a->r + b->r;
+	float r = a->r + b->r;
 	r *= r;
 	return r < ((a->x + b->x)^2) + ((a->y + b->y)^2);
 }
 
-double mint_GeomDotProduct(MintDoublePoint* a, MintDoublePoint* b)
+float mint_GeomDotProduct(MintFloatPoint* a, MintFloatPoint* b)
 {
 	return a->x * b->x + a->y * b->y;
 }
 
-void mint_GeomNormalizeDoublePoint(MintDoublePoint* point, float multiply)
+void mint_GeomNormalizeFloatPoint(MintFloatPoint* point, float multiply)
 {
-	double highest = mint_MathMax(abs((int)point->x), abs((int)point->y));
+	float highest = mint_MathMax(abs((int)point->x), abs((int)point->y));
 	point->x /= highest;
 	point->y /= highest;
 

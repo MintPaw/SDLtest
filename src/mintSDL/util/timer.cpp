@@ -10,7 +10,7 @@ MintFrameTimer* mint_TimerSetup()
 	return timer;
 }
 
-void mint_TimerUpdate(MintFrameTimer* timer, double seconds)
+void mint_TimerUpdate(MintFrameTimer* timer, float seconds)
 {
 	timer->elapsed = seconds - timer->seconds;
 	timer->elapsed = round(timer->elapsed * 100) / 100;

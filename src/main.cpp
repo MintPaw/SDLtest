@@ -45,7 +45,7 @@ void collisionExample();
 		setX vs Xset
 		Maybe unround time?
 		Box2D debug draw
-		Change floats to doubles (other way around)
+		Change floats to floats (other way around)
 		Rename mint_PhysCreate
 		Do scaling, this includes mass
 		Do a better job making all needed math structs and functions
@@ -429,7 +429,7 @@ void timerExample()
 	SDL_Point objectAt = { 0, 0 };
 	SDL_Color colour = { 255, 0, 0, 255 };
 	char dir = 1;
-	double speed = 1000;
+	float speed = 1000;
 
 	objectAt.x = SCREEN_WIDTH / 2;
 	timer->secondsPerReport = 1;
@@ -448,7 +448,7 @@ void timerExample()
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		mint_TimerUpdate(timer, SDL_GetTicks() / 1000.0);
+		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		objectAt.y += (int)(dir * timer->elapsed * speed);
 
@@ -481,7 +481,7 @@ void physicsExample()
 
 	while (!quit)
 	{
-		mint_TimerUpdate(timer, SDL_GetTicks() / 1000.0);
+		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		while (SDL_PollEvent(&e) != 0)
 		{
@@ -519,7 +519,7 @@ void collisionExample()
 
 	srand((int)time(NULL));
 
-	double secondsTillRegen = 0;
+	float secondsTillRegen = 0;
 
 	SDL_Color red = { 255, 0, 0, 255 };
 	SDL_Color blue = { 0, 0, 255, 255 };
@@ -530,8 +530,8 @@ void collisionExample()
 	box1->phys = mint_PhysCreate(box1, world, 1, 1);
 	box2->phys = mint_PhysCreate(box2, world, 1, 1);
 
-	MintDoublePoint velo1;
-	MintDoublePoint velo2;
+	MintFloatPoint velo1;
+	MintFloatPoint velo2;
 
 	mint_RendSetColour(box1->rend, &red);
 	mint_RendSetColour(box2->rend, &blue);
@@ -540,7 +540,7 @@ void collisionExample()
 
 	while (!quit)
 	{
-		mint_TimerUpdate(timer, SDL_GetTicks() / 1000.0);
+		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		while (SDL_PollEvent(&e) != 0)
 		{
@@ -571,20 +571,20 @@ void collisionExample()
 				mint_TransSetY(box2->trans, rand() % (SCREEN_HEIGHT - box1->trans->_height));
 			}
 
-			velo1.x = box2->trans->_x - box1->trans->_x;
-			velo1.y = box2->trans->_y - box1->trans->_y;
-			velo2.x = box1->trans->_x - box2->trans->_x;
-			velo2.y = box1->trans->_y - box2->trans->_y;
+			velo1.x = (float)(box2->trans->_x - box1->trans->_x);
+			velo1.y = (float)(box2->trans->_y - box1->trans->_y);
+			velo2.x = (float)(box1->trans->_x - box2->trans->_x);
+			velo2.y = (float)(box1->trans->_y - box2->trans->_y);
 
-			mint_GeomNormalizeDoublePoint(&velo1, 10);
-			mint_GeomNormalizeDoublePoint(&velo2, 10);
+			mint_GeomNormalizeFloatPoint(&velo1, 10);
+			mint_GeomNormalizeFloatPoint(&velo2, 10);
 
 			mint_PhysSetVelocity(box1->phys, velo1.x, velo1.y);
 			mint_PhysSetVelocity(box2->phys, velo2.x, velo2.y);
 		}
 
 		mint_RendClearSdlRenderer(sdlRenderer);
-		
+
 		mint_PhysStepWorld(world, timer->elapsed);
 
 		mint_TextureUpdate(box1, timer->elapsed);

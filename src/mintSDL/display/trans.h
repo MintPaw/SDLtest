@@ -9,7 +9,7 @@ struct MintTrans;
 struct MintTrans {
 	MintTexture* mintTexture;
 
-	double angle;
+	float angle;
 	SDL_Point centre;
 	SDL_RendererFlip flip;
 	int _width;

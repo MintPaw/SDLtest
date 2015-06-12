@@ -4,15 +4,15 @@
 struct MintFrameTimer;
 
 struct MintFrameTimer {
-	double seconds;
+	float seconds;
 	int frames;
-	double elapsed;
-	double secondsPerReport;
-	double secondsSinceLastReport;
+	float elapsed;
+	float secondsPerReport;
+	float secondsSinceLastReport;
 };
 
 MintFrameTimer* mint_TimerSetup();
-void mint_TimerUpdate(MintFrameTimer* timer, double seconds);
+void mint_TimerUpdate(MintFrameTimer* timer, float seconds);
 void mint_TimerFree(MintFrameTimer* timer);
 
 #endif

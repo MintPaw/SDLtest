@@ -1,16 +1,16 @@
 #include "mintSDL/maths/maths.h"
 
-double mint_MathMin(double a, double b)
+float mint_MathMin(float a, float b)
 {
 	return a < b ? a : b;
 }
 
-double mint_MathMax(double a, double b)
+float mint_MathMax(float a, float b)
 {
 	return a > b ? a : b;
 }
 
-double mint_MathClamp(double a, double min, double max)
+float mint_MathClamp(float a, float min, float max)
 {
 	if (a < min) return min;
 	if (a > max) return max;

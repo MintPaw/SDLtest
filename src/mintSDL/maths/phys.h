@@ -25,14 +25,14 @@ struct MintPhys {
 
 MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY);
 MintPhys* mint_PhysCreate(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density);
-float mint_PhysMetreToPixel(double metre);
-float mint_PhysPixelToMetre(double pixel);
+float mint_PhysMetreToPixel(float metre);
+float mint_PhysPixelToMetre(float pixel);
 void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY);
 void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY);
 void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY);
 
-void mint_PhysStepWorld(MintPhysWorld* world, double elapsed);
-void mint_PhysUpdate(MintPhys* phys, double elapsed);
+void mint_PhysStepWorld(MintPhysWorld* world, float elapsed);
+void mint_PhysUpdate(MintPhys* phys, float elapsed);
 void mint_PhysFree(MintPhys* phys);
 
 #endif
