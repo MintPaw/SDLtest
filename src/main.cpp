@@ -40,6 +40,7 @@ void collisionExample();
 /*
 
 	Todo:
+		Make event handler
 		Make animation work properly
 		setX vs Xset
 		Box2D debug draw
@@ -110,13 +111,13 @@ int main(int argc, char* args[])
 	// mintTextureExample();
 	// setColourInputExample();
 	// setAlphaInputExample();
-	// animationExample();
+	animationExample();
 	// transformExample();
 	// textExample();
 	// buttonExample();
 	// timerExample();
 	// physicsExample();
-	collisionExample();
+	// collisionExample();
 
 	close();
 
@@ -289,6 +290,8 @@ void animationExample()
 
 	while (!quit)
 	{
+		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000));
+
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
@@ -296,8 +299,8 @@ void animationExample()
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 
+			mint_TextureUpdate(texture, timer->elapsed);
 			mint_TextureRender(texture);
-			mint_AnimNextFrame(texture->animMan);
 			
 			SDL_RenderPresent(sdlRenderer);
 		}

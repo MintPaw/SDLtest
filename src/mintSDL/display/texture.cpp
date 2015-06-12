@@ -61,6 +61,7 @@ MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surfac
 
 void mint_TextureUpdate(MintTexture* mintTexture, float elapsed)
 {
+	mint_AnimUpdate(mintTexture->animMan, elapsed);
 	mint_PhysUpdate(mintTexture->phys, elapsed);
 }
 
