@@ -22,7 +22,7 @@ MintPhys* mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, ch
 	b2BodyDef groundBodyDef;
 	groundBodyDef.type = dynamic ? b2_dynamicBody : b2_staticBody;
 	groundBodyDef.fixedRotation = true;
-	groundBodyDef.position.Set(mint_PhysPixelToMetre(mintTexture->trans->_x), mint_PhysPixelToMetre(mintTexture->trans->_y));
+	groundBodyDef.position.Set(mint_PhysPixelToMetre((float)mintTexture->trans->_x), mint_PhysPixelToMetre((float)mintTexture->trans->_y));
 
 	b2PolygonShape shape;
 	shape.SetAsBox(mint_PhysPixelToMetre(mintTexture->trans->_width / 2), mint_PhysPixelToMetre(mintTexture->trans->_height / 2));
@@ -57,6 +57,8 @@ void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY)
 
 void mint_PhysUpdate(MintPhys* phys, float elapsed)
 {
+	if (!phys) return;
+
 	b2Vec2 pos = phys->body->GetPosition();
 	pos.x = mint_PhysMetreToPixel(pos.x);
 	pos.y = mint_PhysMetreToPixel(pos.y);
