@@ -52,9 +52,12 @@ double mint_GeomDotProduct(MintDoublePoint* a, MintDoublePoint* b)
 	return a->x * b->x + a->y * b->y;
 }
 
-void mint_GeomNormalizeDoublePoint(MintDoublePoint* point)
+void mint_GeomNormalizeDoublePoint(MintDoublePoint* point, float multiply)
 {
-	double highest = mint_MathMax(point->x, point->y);
+	double highest = mint_MathMax(abs((int)point->x), abs((int)point->y));
 	point->x /= highest;
 	point->y /= highest;
+
+	point->x *= multiply;
+	point->y *= multiply;
 }

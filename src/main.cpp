@@ -16,6 +16,7 @@
 #include "mintSDL/display/rend.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
+#include "mintSDL/maths/geom.h"
 #include "mintSDL/util/input.h"
 #include "mintSDL/util/timer.h"
 
@@ -535,6 +536,8 @@ void collisionExample()
 	mint_RendSetColour(box1->rend, &red);
 	mint_RendSetColour(box2->rend, &blue);
 
+	mint_PhysSetGravity(world, 0, 5);
+
 	while (!quit)
 	{
 		mint_TimerUpdate(timer, SDL_GetTicks() / 1000.0);
@@ -572,15 +575,18 @@ void collisionExample()
 			// box2->phys->restitution = (rand() % 25) / 100.0 + .25;
 
 			velo1.x = box2->trans->_x - box1->trans->_x;
-			velo1.y = box1->trans->_y - box2->trans->_y;
+			velo1.y = box2->trans->_y - box1->trans->_y;
 			velo2.x = box1->trans->_x - box2->trans->_x;
 			velo2.y = box1->trans->_y - box2->trans->_y;
 
-			// mint_PhysSetVelocity(box1->phys, velo1.x, velo1.y);
-			// mint_PhysSetVelocity(box2->phys, velo2.x, velo2.y);
+			mint_GeomNormalizeDoublePoint(&velo1, 10);
+			mint_GeomNormalizeDoublePoint(&velo2, 10);
 
-			printf("velo 1: %lf, %lf", velo1.x, velo1.y);
-			printf(" velo 2: %lf, %lf\n", velo2.x, velo2.y);
+			mint_PhysSetVelocity(box1->phys, velo1.x, velo1.y);
+			mint_PhysSetVelocity(box2->phys, velo2.x, velo2.y);
+
+			// printf("velo 1: %lf, %lf", velo1.x, velo1.y);
+			// printf(" velo 2: %lf, %lf\n", velo2.x, velo2.y);
 
 			// mint_TransSetX(box1->trans, 20);
 			// mint_TransSetY(box1->trans, 30);
