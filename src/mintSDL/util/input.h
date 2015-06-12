@@ -13,7 +13,7 @@ struct MintInput {
 
 MintInput* mint_InputSetup();
 void mint_InputUpdate(MintInput* input, SDL_Event* event);
-char mint_InputCheckStatus(MintInput* input, int keycode);
+char mint_InputCheckKey(MintInput* input, int keycode);
 void mint_InputFree(MintInput* input);
 
 #endif

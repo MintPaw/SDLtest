@@ -45,7 +45,6 @@ void collisionExample();
 		setX vs Xset
 		Maybe unround time?
 		Box2D debug draw
-		Change floats to floats (other way around)
 		Rename mint_PhysCreate
 		Do scaling, this includes mass
 		Do a better job making all needed math structs and functions
@@ -144,7 +143,7 @@ void gameLoop()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 			
@@ -179,7 +178,7 @@ void drawExample()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 			
@@ -205,7 +204,7 @@ void mintTextureExample()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 			
@@ -231,16 +230,16 @@ void setColourInputExample()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 			
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) colour.r += 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) colour.r -= 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) colour.g += 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) colour.g -= 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) colour.b += 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) colour.b -= 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) colour.r += 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_A)) colour.r -= 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_W)) colour.g += 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_S)) colour.g -= 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_E)) colour.b += 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_D)) colour.b -= 10;
 
 			mint_TextureRender(texture);
 			mint_RendSetColour(texture->rend, &colour);
@@ -265,12 +264,12 @@ void setAlphaInputExample()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 			
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) alpha += 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) alpha -= 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) alpha += 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_A)) alpha -= 10;
 
 			mint_RendSetAlpha(texture->rend, alpha);
 			mint_TextureRender(texture);
@@ -299,7 +298,7 @@ void animationExample()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 
@@ -325,20 +324,20 @@ void transformExample()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_A)) arrow->trans->centre.x-= 1;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_A)) arrow->trans->centre.x-= 1;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
 
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
-			if (mint_InputCheckStatus(input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+			if (mint_InputCheckKey(input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
+			if (mint_InputCheckKey(input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 
@@ -363,7 +362,7 @@ void textExample()
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 
@@ -405,7 +404,7 @@ void buttonExample()
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 			    
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			mint_RendClearSdlRenderer(sdlRenderer);
 
@@ -445,7 +444,7 @@ void timerExample()
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
@@ -491,13 +490,13 @@ void physicsExample()
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		if (mint_InputCheckStatus(input, SDL_SCANCODE_RIGHT)) mint_PhysApplyForce(texture->phys, speed, 0);
-		if (mint_InputCheckStatus(input, SDL_SCANCODE_LEFT)) mint_PhysApplyForce(texture->phys, -speed, 0);
-		if (mint_InputCheckStatus(input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture->phys, 0, -speed);
-		if (mint_InputCheckStatus(input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture->phys, 0, speed);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_RIGHT)) mint_PhysApplyForce(texture->phys, speed, 0);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_LEFT)) mint_PhysApplyForce(texture->phys, -speed, 0);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture->phys, 0, -speed);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture->phys, 0, speed);
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 
@@ -550,7 +549,7 @@ void collisionExample()
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
 		secondsTillRegen -= timer->elapsed;
