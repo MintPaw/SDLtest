@@ -391,7 +391,7 @@ void buttonExample()
 		mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(buttons[i]->animMan, 0), 100, 0);
 		mint_AnimPlay(mint_AnimGetByIndex(buttons[i]->animMan, 0));
 
-		buttons[i]->trans->x = (mint_TransGetWidth(buttons[i]->trans) + 20) * i;
+		mint_TransSetX(buttons[i]->trans, (mint_TransGetWidth(buttons[i]->trans) + 20) * i);
 	}
 
 	while (!quit)
@@ -549,66 +549,64 @@ void collisionExample()
 			secondsTillRegen = 100;
 
 			// if (rand() % 2) {
-			// 	box1->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
-			// 	box1->trans->y = (rand() % 20) + 20;
+			// 	mint_TransSetX(box1->trans, rand() % (SCREEN_WIDTH - box1->trans->_width))
+			// 	mint_TransSetY(box1->trans, (rand() % 20) + 20);
 
-			// 	box2->trans->x = rand() % (SCREEN_WIDTH - box1->trans->_width);
-			// 	box2->trans->y = SCREEN_HEIGHT - box1->trans->_height - (rand() % 20) - 20;
+			// 	mint_TransSetX(box2->trans, rand() % (SCREEN_WIDTH - box1->trans->_width))
+			// 	mint_TransSetY(box2->trans, SCREEN_HEIGHT - box1->trans->_height - (rand() % 20) - 20);
 			// } else {
-			// 	box1->trans->x = 20;
-			// 	box1->trans->y = rand() % (SCREEN_HEIGHT - box1->trans->_height);
+			// 	mint_TransSetX(box1->trans, 20)
+			// 	mint_TransSetY(box1->trans, rand() % (SCREEN_HEIGHT - box1->trans->_height));
 
-			// 	box2->trans->x = SCREEN_WIDTH - box1->trans->_width - (rand() % 20) - 20;
-			// 	box2->trans->y = rand() % (SCREEN_HEIGHT - box1->trans->_height);
+			// 	mint_TransSetX(box2->trans, SCREEN_WIDTH - box1->trans->_width - (rand() % 20) - 20)
+			// 	mint_TransSetY(box2->trans, rand() % (SCREEN_HEIGHT - box1->trans->_height));
 			// }
 
 			// box1->phys->velocity.x = box2->trans->x - box1->trans->x;
-			// box1->phys->velocity.y = box2->trans->y - box1->trans->y;
-			// box2->phys->velocity.x = box1->trans->x - box2->trans->x;
-			// box2->phys->velocity.y = box1->trans->y - box2->trans->y;
-			// box2->phys->mass = 1000;
+			// box1->phys->velocity.y = mint_TransSetY(box2->trans, mint_TransSetY(box1->trans,			// box2->phys->velocity.x = box1->trans->x - box2->trans->x);
+			// box2->phys->velocity.y = mint_TransSetY(box1->trans, mint_TransSetY(box2->trans,			// box2->phys->mass = 1000);
 
 			// box1->phys->restitution = (rand() % 25) / 100.0 + .25;
 			// box2->phys->restitution = (rand() % 25) / 100.0 + .25;
 
-			// box1->trans->x = 20;
-			// box1->trans->y = 30;
+			// mint_TransSetX(box1->trans, 20)
+			// mint_TransSetY(box1->trans, 30);
 			// box1->phys->velocity = { 500, 0 };
 
-			// box2->trans->x = SCREEN_WIDTH - box2->trans->_width - 20;
-			// box2->trans->y = 20;
+			// mint_TransSetX(box2->trans, SCREEN_WIDTH - box2->trans->_width - 20)
+			// mint_TransSetY(box2->trans, 20);
 			// box2->phys->velocity = { 0, 0 };
 		}
 
 		// if (box1->trans->x < 0) {
-		// 	box1->trans->x = 0;
+		// 	mint_TransSetX(box1->trans, 0)
 		// 	box1->phys->velocity.x *= -1;
 		// } else if (box1->trans->x > SCREEN_WIDTH - box1->trans->_width) {
-		// 	box1->trans->x = SCREEN_WIDTH - box1->trans->_width;
+		// 	mint_TransSetX(box1->trans, SCREEN_WIDTH - box1->trans->_width)
 		// 	box1->phys->velocity.x *= -1;
 		// }
 
-		// if (box1->trans->y < 0) {
-		// 	box1->trans->y = 0;
+		// if (mint_TransSetY(box1->trans, 0) ){
+		// 	mint_TransSetY(box1->trans, 0);
 		// 	box1->phys->velocity.y *= -1;
-		// } else if (box1->trans->y > SCREEN_HEIGHT - box1->trans->_height) {
-		// 	box1->trans->y = SCREEN_HEIGHT - box1->trans->_height;
+		// } else if (mint_TransSetY(box1->trans, SCREEN_HEIGHT - box1->trans->_height) ){
+		// 	mint_TransSetY(box1->trans, SCREEN_HEIGHT - box1->trans->_height);
 		// 	box1->phys->velocity.y *= -1;
 		// }
 
 		// if (box2->trans->x < 0) {
-		// 	box2->trans->x = 0;
+		// 	mint_TransSetX(box2->trans, 0)
 		// 	box2->phys->velocity.x *= -1;
 		// } else if (box2->trans->x > SCREEN_WIDTH - box2->trans->_width) {
-		// 	box2->trans->x = SCREEN_WIDTH - box2->trans->_width;
+		// 	mint_TransSetX(box2->trans, SCREEN_WIDTH - box2->trans->_width)
 		// 	box2->phys->velocity.x *= -1;
 		// }
 
-		// if (box2->trans->y < 0) {
-		// 	box2->trans->y = 0;
+		// if (mint_TransSetY(box2->trans, 0) ){
+		// 	mint_TransSetY(box2->trans, 0);
 		// 	box2->phys->velocity.y *= -1;
-		// } else if (box2->trans->y > SCREEN_HEIGHT - box2->trans->_height) {
-		// 	box2->trans->y = SCREEN_HEIGHT - box2->trans->_height;
+		// } else if (mint_TransSetY(box2->trans, SCREEN_HEIGHT - box2->trans->_height) ){
+		// 	mint_TransSetY(box2->trans, SCREEN_HEIGHT - box2->trans->_height);
 		// 	box2->phys->velocity.y *= -1;
 		// }
 

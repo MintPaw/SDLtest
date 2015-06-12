@@ -7,21 +7,21 @@ MintTrans* mint_TransSetup(MintTexture* mintTexture, int width, int height)
 	MintTrans* trans = (MintTrans*)malloc(sizeof(MintTrans));
 
 	trans->mintTexture = mintTexture;
-	trans->x = 0;
-	trans->y = 0;
 	trans->_width = width;
 	trans->_height = height;
 	trans->centre.x = width / 2;
 	trans->centre.y = height / 2;
 	trans->angle = 0;
 	trans->flip = SDL_FLIP_NONE;
+	trans->_x = 0;
+	trans->_y = 0;
 
 	return trans;
 }
 
 void mint_TransSetX(MintTrans* trans, int value)
 {
-	trans->x = value;
+	trans->_x = value;
 
 	if (trans->mintTexture->phys) {
 		b2Body* body = trans->mintTexture->phys->body;
@@ -31,7 +31,7 @@ void mint_TransSetX(MintTrans* trans, int value)
 
 void mint_TransSetY(MintTrans* trans, int value)
 {
-	trans->y = value;
+	trans->_y = value;
 
 	if (trans->mintTexture->phys) {
 		b2Body* body = trans->mintTexture->phys->body;

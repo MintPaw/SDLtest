@@ -9,13 +9,13 @@ struct MintTrans;
 struct MintTrans {
 	MintTexture* mintTexture;
 
-	int x;
-	int y;
 	double angle;
 	SDL_Point centre;
 	SDL_RendererFlip flip;
 	int _width;
 	int _height;
+	int _x;
+	int _y;
 };
 
 MintTrans* mint_TransSetup(MintTexture* mintTexture, int width, int height);
