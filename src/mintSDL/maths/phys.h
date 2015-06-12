@@ -25,6 +25,7 @@ struct MintPhys {
 
 MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY);
 MintPhys* mint_PhysCreate(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density);
+float mint_PhysMetreToPixel(double metre);
 float mint_PhysPixelToMetre(double pixel);
 void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY);
 
