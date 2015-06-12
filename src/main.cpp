@@ -41,7 +41,6 @@ void collisionExample();
 
 	Todo:
 		Do something with quads
-		InputCheckStatus vs InputCheckKeyStatus
 		setX vs Xset
 		Maybe unround time?
 		Box2D debug draw
