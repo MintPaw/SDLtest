@@ -39,6 +39,7 @@ void collisionExample();
 /*
 
 	Todo:
+		Change floats to doubles
 		Rename mint_PhysCreate
 		Do scaling, this includes mass
 		Do a better job making all needed math structs and functions
@@ -101,7 +102,7 @@ int main(int argc, char* args[])
 
 	input = mint_InputSetup();
 	timer = mint_TimerSetup();
-	world = mint_PhysSetupWorld(0, -10);
+	world = mint_PhysSetupWorld(0, 10);
 
 	SDL_UpdateWindowSurface(sdlWindow);
 

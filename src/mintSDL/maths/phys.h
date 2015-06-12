@@ -11,7 +11,7 @@ struct MintPhys;
 #include "mintSDL/maths/geom.h"
 
 struct MintPhysWorld {
-	b2World world;
+	b2World* world;
 };
 
 struct MintPhys {
