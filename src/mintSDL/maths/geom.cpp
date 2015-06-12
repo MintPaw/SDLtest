@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <SDL.h>
 #include "mintSDL/maths/geom.h"
+#include "mintSDL/maths/maths.h"
 
 int mint_GeomPointDisance(SDL_Point* a, SDL_Point* b)
 {
@@ -49,4 +50,11 @@ char mint_GeomCircleinCircle(MintCircle* a, MintCircle* b)
 double mint_GeomDotProduct(MintDoublePoint* a, MintDoublePoint* b)
 {
 	return a->x * b->x + a->y * b->y;
+}
+
+void mint_GeomNormalizeDoublePoint(MintDoublePoint* point)
+{
+	double highest = mint_MathMax(point->x, point->y);
+	point->x /= highest;
+	point->y /= highest;
 }
