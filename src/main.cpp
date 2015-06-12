@@ -42,9 +42,7 @@ void collisionExample();
 	Todo:
 		Do something with quads
 		setX vs Xset
-		Maybe unround time?
 		Box2D debug draw
-		Rename mint_PhysCreate
 		Do scaling, this includes mass
 		Do a better job making all needed math structs and functions
 		Need to list all headers
@@ -472,7 +470,7 @@ void physicsExample()
 	char quit = 0;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
-	texture->phys = mint_PhysCreate(texture, world, 1, 3);
+	texture->phys = mint_PhysEnable(texture, world, 1, 3);
 	float speed = 5;
 
 	mint_PhysSetGravity(world, 0, 0);
@@ -525,8 +523,8 @@ void collisionExample()
 	MintTexture* box1 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
 	MintTexture* box2 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
 
-	box1->phys = mint_PhysCreate(box1, world, 1, 1);
-	box2->phys = mint_PhysCreate(box2, world, 1, 1);
+	box1->phys = mint_PhysEnable(box1, world, 1, 1);
+	box2->phys = mint_PhysEnable(box2, world, 1, 1);
 
 	MintFloatPoint velo1;
 	MintFloatPoint velo2;

@@ -14,7 +14,7 @@ MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY)
 	return world;
 }
 
-MintPhys* mint_PhysCreate(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density)
+MintPhys* mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density)
 {
 	MintPhys* phys = (MintPhys*)malloc(sizeof(MintPhys));
 	phys->mintTexture = mintTexture;
