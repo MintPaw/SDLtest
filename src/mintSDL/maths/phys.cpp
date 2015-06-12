@@ -39,25 +39,10 @@ MintPhys* mint_PhysCreate(MintTexture* mintTexture, MintPhysWorld* physWorld, ch
 	return phys;
 }
 
-void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY)
-{
-	world->world->SetGravity({ gravityX, gravityY });
-}
-
-void mint_PhysStepWorld(MintPhysWorld* world, double elapsed)
-{
-	world->world->Step((float)elapsed, 6, 2);
-}
-
-float mint_PhysMetreToPixel(double metre)
-{
-	return (float)(metre * 100);
-}
-
-float mint_PhysPixelToMetre(double pixel)
-{
-	return (float)(pixel / 100);
-}
+void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY) { world->world->SetGravity({ gravityX, gravityY }); }
+void mint_PhysStepWorld(MintPhysWorld* world, double elapsed) { world->world->Step((float)elapsed, 6, 2); }
+float mint_PhysMetreToPixel(double metre) { return (float)(metre * 100); }
+float mint_PhysPixelToMetre(double pixel) { return (float)(pixel / 100); }
 
 void mint_PhysUpdate(MintPhys* phys, double elapsed)
 {
