@@ -40,17 +40,14 @@ void collisionExample();
 /*
 
 	Todo:
-		Do something with quads
+		Make animation work properly
 		setX vs Xset
 		Box2D debug draw
 		Do scaling, this includes mass
-		Do a better job making all needed math structs and functions
+		Do a better job making all needed math structs and functions (Move MintFloatPoint and make point/rect structs)
 		Need to list all headers
-		Make animation work properly
-		Create update functions
 		Cap fps if no vsync (And maybe in all cases)
 		Make fps/other-stat counter
-		Move MintFloatPoint and make point/rect structs
 		Make auto-tester
 		Linux?
 		Mingw?
