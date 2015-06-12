@@ -21,6 +21,7 @@ MintPhys* mint_PhysCreate(MintTexture* mintTexture, MintPhysWorld* physWorld, ch
 
 	b2BodyDef groundBodyDef;
 	groundBodyDef.type = dynamic ? b2_dynamicBody : b2_staticBody;
+	groundBodyDef.fixedRotation = true;
 	groundBodyDef.position.Set(mint_PhysPixelToMetre(mintTexture->trans->x), mint_PhysPixelToMetre(mintTexture->trans->y));
 
 	b2PolygonShape shape;
