@@ -49,6 +49,11 @@ void mint_PhysStepWorld(MintPhysWorld* world, double elapsed)
 	world->world->Step((float)elapsed, 6, 2);
 }
 
+float mint_PhysMetreToPixel(double metre)
+{
+	return (float)(metre * 100);
+}
+
 float mint_PhysPixelToMetre(double pixel)
 {
 	return (float)(pixel / 100);
@@ -57,6 +62,9 @@ float mint_PhysPixelToMetre(double pixel)
 void mint_PhysUpdate(MintPhys* phys, double elapsed)
 {
 	b2Vec2 pos = phys->body->GetPosition();
+	pos.x = mint_PhysMetreToPixel(pos.x);
+	pos.y = mint_PhysMetreToPixel(pos.y);
+
 	phys->mintTexture->trans->x = pos.x;
 	phys->mintTexture->trans->y = pos.y;
 }
