@@ -9,7 +9,7 @@
 MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY)
 {
 	MintPhysWorld* world = (MintPhysWorld*)malloc(sizeof(MintPhysWorld));
-	world->world = new b2World({gravityX, gravityY});
+	world->world = new b2World({ gravityX, gravityY });
 
 	return world;
 }
@@ -37,6 +37,11 @@ MintPhys* mint_PhysCreate(MintTexture* mintTexture, MintPhysWorld* physWorld, ch
 	phys->body->CreateFixture(&fixtureDef);
 
 	return phys;
+}
+
+void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY)
+{
+	world->world->SetGravity({ gravityX, gravityY });
 }
 
 void mint_PhysStepWorld(MintPhysWorld* world, double elapsed)

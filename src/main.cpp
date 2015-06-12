@@ -39,7 +39,8 @@ void collisionExample();
 /*
 
 	Todo:
-		Change floats to doubles
+		Box2D debug draw
+		Change floats to doubles (other way around)
 		Rename mint_PhysCreate
 		Do scaling, this includes mass
 		Do a better job making all needed math structs and functions
@@ -469,6 +470,8 @@ void physicsExample()
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
 	texture->phys = mint_PhysCreate(texture, world, 1, 1);
+
+	mint_PhysSetGravity(world, 0, 0);
 
 	while (!quit)
 	{
