@@ -571,9 +571,6 @@ void collisionExample()
 				mint_TransSetY(box2->trans, rand() % (SCREEN_HEIGHT - box1->trans->_height));
 			}
 
-			// box1->phys->restitution = (rand() % 25) / 100.0 + .25;
-			// box2->phys->restitution = (rand() % 25) / 100.0 + .25;
-
 			velo1.x = box2->trans->_x - box1->trans->_x;
 			velo1.y = box2->trans->_y - box1->trans->_y;
 			velo2.x = box1->trans->_x - box2->trans->_x;
@@ -584,58 +581,14 @@ void collisionExample()
 
 			mint_PhysSetVelocity(box1->phys, velo1.x, velo1.y);
 			mint_PhysSetVelocity(box2->phys, velo2.x, velo2.y);
-
-			// printf("velo 1: %lf, %lf", velo1.x, velo1.y);
-			// printf(" velo 2: %lf, %lf\n", velo2.x, velo2.y);
-
-			// mint_TransSetX(box1->trans, 20);
-			// mint_TransSetY(box1->trans, 30);
-			// box1->phys->velocity = { 500, 0 };
-
-			// mint_TransSetX(box2->trans, SCREEN_WIDTH - box2->trans->_width - 20);
-			// mint_TransSetY(box2->trans, 20);
-			// box2->phys->velocity = { 0, 0 };
 		}
 
-		// if (box1->trans->x < 0) {
-		// 	mint_TransSetX(box1->trans, 0)
-		// 	box1->phys->velocity.x *= -1;
-		// } else if (box1->trans->x > SCREEN_WIDTH - box1->trans->_width) {
-		// 	mint_TransSetX(box1->trans, SCREEN_WIDTH - box1->trans->_width)
-		// 	box1->phys->velocity.x *= -1;
-		// }
-
-		// if (mint_TransSetY(box1->trans, 0) ){
-		// 	mint_TransSetY(box1->trans, 0);
-		// 	box1->phys->velocity.y *= -1;
-		// } else if (mint_TransSetY(box1->trans, SCREEN_HEIGHT - box1->trans->_height) ){
-		// 	mint_TransSetY(box1->trans, SCREEN_HEIGHT - box1->trans->_height);
-		// 	box1->phys->velocity.y *= -1;
-		// }
-
-		// if (box2->trans->x < 0) {
-		// 	mint_TransSetX(box2->trans, 0)
-		// 	box2->phys->velocity.x *= -1;
-		// } else if (box2->trans->x > SCREEN_WIDTH - box2->trans->_width) {
-		// 	mint_TransSetX(box2->trans, SCREEN_WIDTH - box2->trans->_width)
-		// 	box2->phys->velocity.x *= -1;
-		// }
-
-		// if (mint_TransSetY(box2->trans, 0) ){
-		// 	mint_TransSetY(box2->trans, 0);
-		// 	box2->phys->velocity.y *= -1;
-		// } else if (mint_TransSetY(box2->trans, SCREEN_HEIGHT - box2->trans->_height) ){
-		// 	mint_TransSetY(box2->trans, SCREEN_HEIGHT - box2->trans->_height);
-		// 	box2->phys->velocity.y *= -1;
-		// }
-
 		mint_RendClearSdlRenderer(sdlRenderer);
+		
+		mint_PhysStepWorld(world, timer->elapsed);
 
 		mint_TextureUpdate(box1, timer->elapsed);
 		mint_TextureUpdate(box2, timer->elapsed);
-		mint_PhysStepWorld(world, timer->elapsed);
-
-		// printf("%lf %lf\n", box1->phys->velocity.x, box1->phys->velocity.y);
 
 		mint_TextureRender(box1);
 		mint_TextureRender(box2);
