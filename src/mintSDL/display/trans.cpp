@@ -1,10 +1,12 @@
 #include <stdlib.h>
+#include <Box2D/Box2d.h>
 #include "mintSDL/display/texture.h"
 
-MintTrans* mint_TransSetup(int width, int height)
+MintTrans* mint_TransSetup(MintTexture* mintTexture, int width, int height)
 {
 	MintTrans* trans = (MintTrans*)malloc(sizeof(MintTrans));
 
+	trans->mintTexture = mintTexture;
 	trans->x = 0;
 	trans->y = 0;
 	trans->_width = width;
@@ -15,6 +17,26 @@ MintTrans* mint_TransSetup(int width, int height)
 	trans->flip = SDL_FLIP_NONE;
 
 	return trans;
+}
+
+void mint_TransSetX(MintTrans* trans, int value)
+{
+	trans->x = value;
+
+	if (trans->mintTexture->phys) {
+		b2Body* body = trans->mintTexture->phys->body;
+		body->SetTransform(b2Vec2((float)value, body->GetPosition().y), body->GetAngle());
+	}
+}
+
+void mint_TransSetY(MintTrans* trans, int value)
+{
+	trans->y = value;
+
+	if (trans->mintTexture->phys) {
+		b2Body* body = trans->mintTexture->phys->body;
+		body->SetTransform(b2Vec2(body->GetPosition().y, (float)value), body->GetAngle());
+	}
 }
 
 int mint_TransGetWidth(MintTrans* trans)

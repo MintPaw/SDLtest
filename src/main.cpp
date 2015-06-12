@@ -39,6 +39,7 @@ void collisionExample();
 /*
 
 	Todo:
+		Do something with quads
 		InputCheckStatus vs InputCheckKeyStatus
 		setX vs Xset
 		Maybe unround time?
@@ -523,7 +524,6 @@ void collisionExample()
 	SDL_Color blue = { 0, 0, 255, 255 };
 
 	MintTexture* box1 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
-
 	MintTexture* box2 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
 
 	mint_RendSetColour(box1->rend, &red);
