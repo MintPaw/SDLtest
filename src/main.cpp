@@ -39,6 +39,8 @@ void collisionExample();
 /*
 
 	Todo:
+		InputCheckStatus vs InputCheckKeyStatus
+		setX vs Xset
 		Maybe unround time?
 		Box2D debug draw
 		Change floats to doubles (other way around)
@@ -470,7 +472,8 @@ void physicsExample()
 	char quit = 0;
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
-	texture->phys = mint_PhysCreate(texture, world, 1, 1);
+	texture->phys = mint_PhysCreate(texture, world, 1, 3);
+	float speed = 5;
 
 	mint_PhysSetGravity(world, 0, 0);
 
@@ -488,6 +491,11 @@ void physicsExample()
 
 			if (e.type == SDL_QUIT || mint_InputCheckStatus(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
+
+		if (mint_InputCheckStatus(input, SDL_SCANCODE_RIGHT)) mint_PhysApplyForce(texture->phys, speed, 0);
+		if (mint_InputCheckStatus(input, SDL_SCANCODE_LEFT)) mint_PhysApplyForce(texture->phys, -speed, 0);
+		if (mint_InputCheckStatus(input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture->phys, 0, -speed);
+		if (mint_InputCheckStatus(input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture->phys, 0, speed);
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 

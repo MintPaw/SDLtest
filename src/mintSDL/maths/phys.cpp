@@ -45,6 +45,11 @@ void mint_PhysStepWorld(MintPhysWorld* world, double elapsed) { world->world->St
 float mint_PhysMetreToPixel(double metre) { return (float)(metre * 100); }
 float mint_PhysPixelToMetre(double pixel) { return (float)(pixel / 100); }
 
+void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY)
+{
+	phys->body->ApplyForce({ forceX, forceY }, phys->body->GetWorldCenter(), 1);
+}
+
 void mint_PhysUpdate(MintPhys* phys, double elapsed)
 {
 	b2Vec2 pos = phys->body->GetPosition();

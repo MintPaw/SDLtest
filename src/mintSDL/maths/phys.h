@@ -28,6 +28,7 @@ MintPhys* mint_PhysCreate(MintTexture* mintTexture, MintPhysWorld* physWorld, ch
 float mint_PhysMetreToPixel(double metre);
 float mint_PhysPixelToMetre(double pixel);
 void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY);
+void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY);
 
 void mint_PhysStepWorld(MintPhysWorld* world, double elapsed);
 void mint_PhysUpdate(MintPhys* phys, double elapsed);
