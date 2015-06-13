@@ -1,28 +1,28 @@
 #ifndef TEXTBOX_H
 #define TEXTBOX_H
 
-struct TextBox;
-struct BlinkingCaret;
+struct MintTextBox;
+struct MintBlinkingCaret;
 
 #include <SDL.h>
 #include <mintSDL\display\rend.h>
 #include <mintSDL\display\texture.h>
 
-struct TextBox {
+struct MintTextBox {
 	BlinkingCaret *caret;
 	MintTexture *textImage;
 	SDL_Rect bounds;
-	char text;
+	char *text;
 	int caretPos;
 	char focused;
 };
 
-struct BlinkingCaret {
+struct MintBlinkingCaret {
 	SDL_Rect bounds;
 	int blinkSpeed;
 };
 
-TextBox textbox_Create(int x, int y, int width, int height); //Create a textbox
+TextBox mint_CreateTextBox(int x, int y, int width, int height); //Create a textbox
 char textbox_GetFocus(TextBox *tb); //Check if this textbox has focus
 void textbox_BringFocus(TextBox *tb); //Make the textbox focused
 void textbox_EscapeFocus(TextBox *tb); //Make the textbox no longer have focus
