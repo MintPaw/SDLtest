@@ -111,13 +111,13 @@ int main(int argc, char* args[])
 	// mintTextureExample();
 	// setColourInputExample();
 	// setAlphaInputExample();
-	animationExample();
+	//animationExample();
 	// transformExample();
-	// textExample();
+	textExample();
 	// buttonExample();
 	// timerExample();
 	// physicsExample();
-	// collisionExample();
+	//collisionExample();
 
 	close();
 
