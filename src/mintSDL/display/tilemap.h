@@ -12,9 +12,9 @@ struct MintTilemap {
 	int offsetY;
 }
 
-MintTilemap mint_TilemapCreate(MintTexture* spritesheet, int offsetX, int offsetY);
-MintTexture mint_TilemapGetTexture(int col, int row);
-MintTexture mint_TilemapDrawFromJSON(char* fileName, MintTilemap* map);
+MintTilemap* mint_TilemapCreate(MintTexture* spritesheet, int offsetX, int offsetY);
+MintTexture* mint_TilemapGetTexture(int col, int row);
+MintTexture* mint_TilemapDrawFromJSON(char* fileName, MintTilemap* map);
 void mint_TilemapFree(MintTilemap* map);
 
 #endid
