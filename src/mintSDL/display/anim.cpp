@@ -34,7 +34,7 @@ void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrame
 	anim->frameRects = (SDL_Rect*)malloc(sizeof(SDL_Rect) * totalFrames);
 	anim->totalFrames = totalFrames;
 	anim->frameRate = frameRate;
-	anim->_timeTillNextFrame = 1 / frameRate;
+	anim->_timeTillNextFrame = 1.0 / frameRate;
 }
 
 void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height)
@@ -65,10 +65,10 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 void mint_AnimUpdate(MintAnimMan* animMan, float elapsed)
 {
 	MintAnim* anim = animMan->currentAnim;
-
+	
 	anim->_timeTillNextFrame -= elapsed;
 	if (anim->_timeTillNextFrame <= 0) {
-		anim->_timeTillNextFrame = 1 / anim->frameRate;
+		anim->_timeTillNextFrame = 1.0 / anim->frameRate;
 		mint_AnimNextFrame(animMan);
 	}
 }

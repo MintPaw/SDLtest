@@ -284,26 +284,26 @@ void animationExample()
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
 	mint_AnimManInit(texture->animMan, 1);
 
-	mint_AnimCreate(texture->animMan, 0, "anim1", 4, 60);
+	mint_AnimCreate(texture->animMan, 0, "anim1", 4, 15);
 	mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(texture->animMan, 0), 64, 1);
 	mint_AnimPlay(mint_AnimGetByIndex(texture->animMan, 0));
 
 	while (!quit)
 	{
-		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000));
+		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
-
-			mint_RendClearSdlRenderer(sdlRenderer);
-
-			mint_TextureUpdate(texture, timer->elapsed);
-			mint_TextureRender(texture);
-			
-			SDL_RenderPresent(sdlRenderer);
 		}
+
+		mint_RendClearSdlRenderer(sdlRenderer);
+
+		mint_TextureUpdate(texture, timer->elapsed);
+		mint_TextureRender(texture);
+		
+		SDL_RenderPresent(sdlRenderer);
 	}
 
 	mint_TextureFree(texture);
