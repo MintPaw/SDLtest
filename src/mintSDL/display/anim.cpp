@@ -31,12 +31,11 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 {
 	FILE* fp;
 	char buf[1024];
-	int i;
 
 	// TODO(jeru): Note this limitation
 	SDL_Rect rects[999];
 	char names[999][99];
-	int currentAnim = 0;
+	int frameCount = 0;
 	char* token;
 	char tokens[11][99];
 	char currentToken = 0;
@@ -59,16 +58,14 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 				token = strtok(NULL, "\"");
 			}
 
-			strcpy(names[currentAnim], tokens[1]);
-			rects[currentAnim].x = atoi(tokens[3]);
-			rects[currentAnim].y = atoi(tokens[5]);
-			rects[currentAnim].w = atoi(tokens[7]);
-			rects[currentAnim].h = atoi(tokens[9]);
-			currentAnim++;
+			strcpy(names[frameCount], tokens[1]);
+			rects[frameCount].x = atoi(tokens[3]);
+			rects[frameCount].y = atoi(tokens[5]);
+			rects[frameCount].w = atoi(tokens[7]);
+			rects[frameCount].h = atoi(tokens[9]);
+			frameCount++;
 		}
 	}
-
-	
 
 	fclose(fp);
 }
