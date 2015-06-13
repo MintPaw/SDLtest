@@ -27,12 +27,12 @@ void mint_AnimManInit(MintAnimMan* animMan, int totalAnims)
 	for (i = 0; i < totalAnims; i++) animMan->anims[i].man = animMan;
 }
 
-void mint_AnimParseFromJSON(MintAnimMan* animMan, char* jsonPath)
+void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 {
 	FILE* fp;
 	char buf[1024];
 
-	if ((fp = fopen(jsonPath, "r")) == NULL) {
+	if ((fp = fopen(xmlPath, "r")) == NULL) {
 		printf("Failed to load xml");
 		return;
 	}

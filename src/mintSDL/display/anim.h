@@ -40,6 +40,6 @@ void mint_AnimNextFrame(MintAnimMan* animMan);
 void mint_AnimGotoFrame(MintAnimMan* animMan, int index);
 void mint_AnimManFree(MintAnimMan* animMan);
 void mint_AnimManInit(MintAnimMan* animMan, int totalAnims);
-void mint_AnimParseFromJSON(MintAnimMan* animMan, char* jsonPath);
+void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath);
 
 #endif
