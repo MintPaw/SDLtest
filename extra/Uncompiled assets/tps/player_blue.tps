@@ -20,7 +20,7 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>json-array</string>
+        <string>xml</string>
         <key>textureFileName</key>
         <filename>../../../bin/assets/img/player_blue.png</filename>
         <key>flipPVR</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>../../../bin/assets/img/player_blue.json</filename>
+        <filename>../../../bin/assets/img/player_blue.xml</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>

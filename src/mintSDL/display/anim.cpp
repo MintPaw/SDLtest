@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 #include <SDL.h>
 #include "mintSDL/display/anim.h"
 #include "mintSDL/display/texture.h"
@@ -24,6 +25,27 @@ void mint_AnimManInit(MintAnimMan* animMan, int totalAnims)
 
 	int i;
 	for (i = 0; i < totalAnims; i++) animMan->anims[i].man = animMan;
+}
+
+void mint_AnimParseFromJSON(MintAnimMan* animMan, char* jsonPath)
+{
+	FILE* fp;
+	char buf[1024];
+
+	if ((fp = fopen(jsonPath, "r")) == NULL) {
+		printf("Failed to load xml");
+		return;
+	}
+
+	while (fgets(buf, sizeof(buf), fp) != NULL) {
+		buf[strlen(buf) - 1] = '\0';
+
+		if (buf[0] == ' ' && buf[4] == '<') {
+			printf("%s\n", buf);
+		}
+	}
+
+	fclose(fp);
 }
 
 void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames, int frameRate)

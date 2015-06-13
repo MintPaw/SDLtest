@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+	#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #define _CRTDBG_MAP_ALLOC
 
 #ifdef _CRTDBG_MAP_ALLOC
@@ -602,6 +606,18 @@ void texturePackerExample()
 {
 	SDL_Event e;
 	char quit = 0;
+
+	// TODO(jeru): Change the 10 to a more relevant number
+	const int ANIMS = 10;
+
+	MintTexture* player[ANIMS];
+
+	int i;
+	for (i = 0; i < ANIMS; i++) {
+		player[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
+		mint_AnimParseFromJSON(player[i]->animMan, "assets/img/player_blue.xml");
+		break;
+	}
 
 	while (!quit)
 	{
