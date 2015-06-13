@@ -21,13 +21,13 @@ struct MintAnim {
 	int totalFrames;
 	int currentFrame;
 	int frameRate;
-	float timeTillNextFrame;
 	SDL_Rect* frameRects;
 	MintAnimMan* man;
+	float _timeTillNextFrame;
 };
 
 MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture);
-void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames);
+void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames, int frameRate);
 void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height);
 void mint_AnimDefineFrames(MintAnim* anim, SDL_Rect* frameRects);
 void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop);

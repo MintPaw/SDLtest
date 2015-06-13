@@ -26,14 +26,15 @@ void mint_AnimManInit(MintAnimMan* animMan, int totalAnims)
 	for (i = 0; i < totalAnims; i++) animMan->anims[i].man = animMan;
 }
 
-void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames)
+void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames, int frameRate)
 {
 	MintAnim* anim = mint_AnimGetByIndex(animMan, index);
 
 	anim->name = name;
 	anim->frameRects = (SDL_Rect*)malloc(sizeof(SDL_Rect) * totalFrames);
 	anim->totalFrames = totalFrames;
-	anim->totalFrames = totalFrames;
+	anim->frameRate = frameRate;
+	anim->_timeTillNextFrame = 1 / frameRate;
 }
 
 void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height)

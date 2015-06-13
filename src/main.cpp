@@ -284,7 +284,7 @@ void animationExample()
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
 	mint_AnimManInit(texture->animMan, 1);
 
-	mint_AnimCreate(texture->animMan, 0, "anim1", 4);
+	mint_AnimCreate(texture->animMan, 0, "anim1", 4, 60);
 	mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(texture->animMan, 0), 64, 1);
 	mint_AnimPlay(mint_AnimGetByIndex(texture->animMan, 0));
 
@@ -384,7 +384,7 @@ void buttonExample()
 		buttons[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/button.png");
 
 		mint_AnimManInit(buttons[i]->animMan, 1);
-		mint_AnimCreate(buttons[i]->animMan, 0, "default", 3);
+		mint_AnimCreate(buttons[i]->animMan, 0, "default", 3, 60);
 		mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(buttons[i]->animMan, 0), 100, 0);
 		mint_AnimPlay(mint_AnimGetByIndex(buttons[i]->animMan, 0));
 
