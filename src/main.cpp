@@ -1,7 +1,3 @@
-#ifdef _MSC_VER
-	#define _CRT_SECURE_NO_WARNINGS
-#endif
-
 #define _CRTDBG_MAP_ALLOC
 
 #ifdef _CRTDBG_MAP_ALLOC
