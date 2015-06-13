@@ -31,6 +31,15 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 {
 	FILE* fp;
 	char buf[1024];
+	int i;
+
+	// TODO(jeru): Note this limitation
+	SDL_Rect rects[999];
+	char names[999][99];
+	int currentAnim = 0;
+	char* token;
+	char tokens[11][99];
+	char currentToken = 0;
 
 	if ((fp = fopen(xmlPath, "r")) == NULL) {
 		printf("Failed to load xml");
@@ -41,9 +50,25 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 		buf[strlen(buf) - 1] = '\0';
 
 		if (buf[0] == ' ' && buf[4] == '<') {
-			printf("%s\n", buf);
+			currentToken = 0;
+			token = strtok(buf, "\"");
+
+			while (token != NULL) {
+				strcpy(tokens[currentToken], token);
+				currentToken++;
+				token = strtok(NULL, "\"");
+			}
+
+			strcpy(names[currentAnim], tokens[1]);
+			rects[currentAnim].x = atoi(tokens[3]);
+			rects[currentAnim].y = atoi(tokens[5]);
+			rects[currentAnim].w = atoi(tokens[7]);
+			rects[currentAnim].h = atoi(tokens[9]);
+			currentAnim++;
 		}
 	}
+
+	
 
 	fclose(fp);
 }
