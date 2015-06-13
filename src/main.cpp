@@ -36,6 +36,7 @@ void buttonExample();
 void timerExample();
 void physicsExample();
 void collisionExample();
+void texturePackerExample();
 
 /*
 
@@ -111,13 +112,14 @@ int main(int argc, char* args[])
 	// mintTextureExample();
 	// setColourInputExample();
 	// setAlphaInputExample();
-	animationExample();
+	// animationExample();
 	// transformExample();
 	// textExample();
 	// buttonExample();
 	// timerExample();
 	// physicsExample();
 	// collisionExample();
+	texturePackerExample();
 
 	close();
 
@@ -594,4 +596,32 @@ void collisionExample()
 
 	mint_TextureFree(box1);
 	mint_TextureFree(box2);
+}
+
+void texturePackerExample()
+{
+	SDL_Event e;
+	char quit = 0;
+
+	while (!quit)
+	{
+		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
+		
+		while (SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN ||
+			    e.type == SDL_KEYUP ||
+			    e.type == SDL_MOUSEMOTION ||
+			    e.type == SDL_MOUSEBUTTONDOWN ||
+			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+		}
+
+		mint_RendClearSdlRenderer(sdlRenderer);
+		
+
+
+		SDL_RenderPresent(sdlRenderer);
+	}
 }
