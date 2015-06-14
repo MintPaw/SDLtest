@@ -38,7 +38,9 @@ void mint_TilemapCreateFromCSV(SDL_Renderer* renderer, SDL_Surface* destSurface,
 	{
 		buffer[strlen(buffer) - 1] = '\0';
 
-		printf(buffer);
+
+
+		printf("Line: %s\n", buffer);
 	}
 
 	free(data);
