@@ -1,465 +1,482 @@
-<sprite n="player_blue_SMG_downRight_running_0001.png" x="704" y="1190" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0002.png" x="650" y="1126" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0003.png" x="596" y="1126" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0004.png" x="542" y="1126" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0005.png" x="488" y="1126" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0006.png" x="434" y="1061" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0007.png" x="380" y="995" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0008.png" x="326" y="995" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0009.png" x="272" y="995" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0010.png" x="56" y="1068" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0011.png" x="2" y="1068" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0012.png" x="110" y="1063" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0013.png" x="164" y="1061" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0014.png" x="218" y="995" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0015.png" x="920" y="1181" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0016.png" x="866" y="1164" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0017.png" x="812" y="1122" w="52" h="66"/>
-<sprite n="player_blue_SMG_downRight_running_0018.png" x="758" y="1122" w="52" h="66"/>
-<sprite n="player_blue_SMG_down_running_0001.png" x="370" y="1898" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0002.png" x="324" y="1962" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0003.png" x="324" y="1760" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0004.png" x="324" y="1829" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0005.png" x="324" y="1898" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0006.png" x="278" y="1962" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0007.png" x="278" y="1760" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0008.png" x="278" y="1829" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0009.png" x="278" y="1898" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0010.png" x="324" y="1696" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0011.png" x="278" y="1696" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0012.png" x="508" y="1641" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0013.png" x="370" y="1695" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0014.png" x="416" y="1691" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0015.png" x="462" y="1641" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0016.png" x="600" y="1585" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0017.png" x="554" y="1585" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_running_0018.png" x="324" y="1632" w="44" h="62"/>
-<sprite n="player_blue_SMG_down_standing.png" x="278" y="1632" w="44" h="62"/>
-<sprite n="player_blue_SMG_right_running_0001.png" x="181" y="541" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0002.png" x="59" y="546" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0003.png" x="2" y="546" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0004.png" x="124" y="541" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0005.png" x="368" y="478" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0006.png" x="921" y="455" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0007.png" x="864" y="410" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0008.png" x="807" y="410" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0009.png" x="750" y="410" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0010.png" x="693" y="410" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0011.png" x="636" y="410" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0012.png" x="579" y="410" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0013.png" x="522" y="410" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0014.png" x="465" y="410" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0015.png" x="311" y="473" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0016.png" x="254" y="473" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0017.png" x="197" y="473" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_running_0018.png" x="67" y="478" w="55" h="66"/>
-<sprite n="player_blue_SMG_right_standing.png" x="975" y="1062" w="45" h="61"/>
-<sprite n="player_blue_SMG_upRight_running_0001.png" x="660" y="782" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0002.png" x="606" y="782" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0003.png" x="552" y="782" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0004.png" x="326" y="855" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0005.png" x="381" y="787" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0006.png" x="438" y="785" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0007.png" x="498" y="782" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0008.png" x="930" y="769" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0009.png" x="876" y="752" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0010.png" x="822" y="710" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0011.png" x="768" y="710" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0012.png" x="714" y="710" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0013.png" x="660" y="710" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0014.png" x="606" y="710" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0015.png" x="552" y="710" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0016.png" x="498" y="710" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0017.png" x="56" y="928" w="52" h="70"/>
-<sprite n="player_blue_SMG_upRight_running_0018.png" x="2" y="928" w="52" h="70"/>
-<sprite n="player_blue_SMG_up_running_0001.png" x="854" y="1719" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0002.png" x="900" y="1686" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0003.png" x="946" y="1613" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0004.png" x="808" y="1702" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0005.png" x="854" y="1646" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0006.png" x="900" y="1613" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0007.png" x="946" y="1540" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0008.png" x="762" y="1660" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0009.png" x="808" y="1629" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0010.png" x="854" y="1573" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0011.png" x="900" y="1540" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0012.png" x="716" y="1593" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0013.png" x="670" y="1576" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0014.png" x="624" y="1512" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0015.png" x="578" y="1512" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0016.png" x="762" y="1587" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0017.png" x="808" y="1556" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_running_0018.png" x="762" y="1514" w="44" h="71"/>
-<sprite n="player_blue_SMG_up_standing.png" x="946" y="1686" w="44" h="70"/>
-<sprite n="player_blue_blaster_downRight_running_0001.png" x="2" y="478" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0002.png" x="132" y="473" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0003.png" x="400" y="410" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0004.png" x="936" y="387" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0005.png" x="871" y="342" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0006.png" x="806" y="342" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0007.png" x="741" y="342" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0008.png" x="676" y="342" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0009.png" x="611" y="342" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0010.png" x="546" y="342" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0011.png" x="481" y="342" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0012.png" x="335" y="405" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0013.png" x="270" y="405" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0014.png" x="205" y="405" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0015.png" x="67" y="410" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0016.png" x="2" y="410" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0017.png" x="140" y="405" w="63" h="66"/>
-<sprite n="player_blue_blaster_downRight_running_0018.png" x="416" y="342" w="63" h="66"/>
-<sprite n="player_blue_blaster_down_running_0001.png" x="508" y="1577" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0002.png" x="370" y="1631" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0003.png" x="416" y="1627" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0004.png" x="462" y="1577" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0005.png" x="324" y="1568" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0006.png" x="278" y="1568" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0007.png" x="508" y="1513" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0008.png" x="370" y="1567" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0009.png" x="416" y="1563" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0010.png" x="462" y="1513" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0011.png" x="324" y="1504" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0012.png" x="278" y="1504" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0013.png" x="370" y="1503" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0014.png" x="324" y="1440" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0015.png" x="278" y="1440" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0016.png" x="416" y="1499" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0017.png" x="370" y="1439" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_running_0018.png" x="324" y="1376" w="44" h="62"/>
-<sprite n="player_blue_blaster_down_standing.png" x="278" y="1376" w="44" h="62"/>
-<sprite n="player_blue_blaster_right_running_0001.png" x="71" y="342" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0002.png" x="2" y="342" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0003.png" x="899" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0004.png" x="830" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0005.png" x="761" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0006.png" x="692" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0007.png" x="623" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0008.png" x="554" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0009.png" x="485" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0010.png" x="416" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0011.png" x="347" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0012.png" x="278" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0013.png" x="209" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0014.png" x="140" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0015.png" x="71" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0016.png" x="2" y="274" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0017.png" x="899" y="206" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_running_0018.png" x="830" y="206" w="67" h="66"/>
-<sprite n="player_blue_blaster_right_standing.png" x="347" y="342" w="67" h="61"/>
-<sprite n="player_blue_blaster_upRight_running_0001.png" x="56" y="851" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0002.png" x="110" y="843" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0003.png" x="273" y="775" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0004.png" x="219" y="775" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0005.png" x="330" y="703" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0006.png" x="390" y="635" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0007.png" x="943" y="617" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0008.png" x="889" y="600" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0009.png" x="835" y="558" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0010.png" x="781" y="558" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0011.png" x="727" y="558" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0012.png" x="673" y="558" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0013.png" x="619" y="558" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0014.png" x="565" y="558" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0015.png" x="511" y="558" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0016.png" x="457" y="558" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0017.png" x="966" y="540" w="52" h="75"/>
-<sprite n="player_blue_blaster_upRight_running_0018.png" x="912" y="523" w="52" h="75"/>
-<sprite n="player_blue_blaster_up_running_0001.png" x="540" y="1194" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0002.png" x="494" y="1194" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0003.png" x="348" y="1230" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0004.png" x="302" y="1230" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0005.png" x="48" y="1303" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0006.png" x="2" y="1303" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0007.png" x="94" y="1298" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0008.png" x="140" y="1296" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0009.png" x="202" y="1233" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0010.png" x="256" y="1230" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0011.png" x="394" y="1214" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0012.png" x="448" y="1194" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0013.png" x="348" y="1148" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0014.png" x="302" y="1148" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0015.png" x="256" y="1148" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0016.png" x="48" y="1221" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0017.png" x="2" y="1221" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_running_0018.png" x="94" y="1216" w="44" h="80"/>
-<sprite n="player_blue_blaster_up_standing.png" x="156" y="1214" w="44" h="80"/>
-<sprite n="player_blue_laser_downRight_running_0001.png" x="704" y="1122" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0002.png" x="650" y="1058" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0003.png" x="596" y="1058" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0004.png" x="542" y="1058" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0005.png" x="488" y="1058" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0006.png" x="920" y="1113" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0007.png" x="866" y="1096" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0008.png" x="812" y="1054" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0009.png" x="758" y="1054" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0010.png" x="704" y="1054" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0011.png" x="650" y="990" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0012.png" x="596" y="990" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0013.png" x="542" y="990" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0014.png" x="434" y="993" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0015.png" x="488" y="990" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0016.png" x="380" y="927" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0017.png" x="326" y="927" w="52" h="66"/>
-<sprite n="player_blue_laser_downRight_running_0018.png" x="272" y="927" w="52" h="66"/>
-<sprite n="player_blue_laser_down_running_0001.png" x="416" y="1435" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0002.png" x="370" y="1375" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0003.png" x="324" y="1312" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0004.png" x="278" y="1312" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0005.png" x="232" y="1315" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0006.png" x="232" y="1435" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0007.png" x="232" y="1513" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0008.png" x="232" y="1585" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0009.png" x="232" y="1666" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0010.png" x="232" y="1733" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0011.png" x="232" y="1962" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0012.png" x="232" y="1829" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0013.png" x="232" y="1898" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0014.png" x="186" y="1315" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0015.png" x="186" y="1435" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0016.png" x="186" y="1513" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0017.png" x="186" y="1585" w="44" h="62"/>
-<sprite n="player_blue_laser_down_running_0018.png" x="186" y="1666" w="44" h="62"/>
-<sprite n="player_blue_laser_down_standing.png" x="186" y="1733" w="44" h="62"/>
-<sprite n="player_blue_laser_right_running_0001.png" x="761" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0002.png" x="692" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0003.png" x="623" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0004.png" x="554" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0005.png" x="485" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0006.png" x="416" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0007.png" x="347" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0008.png" x="278" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0009.png" x="209" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0010.png" x="140" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0011.png" x="71" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0012.png" x="2" y="206" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0013.png" x="899" y="138" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0014.png" x="830" y="138" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0015.png" x="761" y="138" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0016.png" x="692" y="138" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0017.png" x="623" y="138" w="67" h="66"/>
-<sprite n="player_blue_laser_right_running_0018.png" x="554" y="138" w="67" h="66"/>
-<sprite n="player_blue_laser_right_standing.png" x="278" y="342" w="67" h="61"/>
-<sprite n="player_blue_laser_upRight_running_0001.png" x="2" y="691" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0002.png" x="167" y="686" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0003.png" x="112" y="686" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0004.png" x="281" y="618" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0005.png" x="226" y="618" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0006.png" x="348" y="546" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0007.png" x="425" y="478" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0008.png" x="57" y="614" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0009.png" x="2" y="614" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0010.png" x="171" y="609" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0011.png" x="116" y="609" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0012.png" x="293" y="541" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0013.png" x="238" y="541" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0014.png" x="968" y="310" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0015.png" x="968" y="233" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0016.png" x="968" y="156" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0017.png" x="968" y="79" w="53" h="75"/>
-<sprite n="player_blue_laser_upRight_running_0018.png" x="968" y="2" w="53" h="75"/>
-<sprite n="player_blue_laser_up_running_0001.png" x="716" y="1514" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0002.png" x="854" y="1494" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0003.png" x="808" y="1477" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0004.png" x="762" y="1435" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0005.png" x="670" y="1497" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0006.png" x="716" y="1435" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0007.png" x="532" y="1434" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0008.png" x="486" y="1434" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0009.png" x="624" y="1433" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0010.png" x="578" y="1433" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0011.png" x="532" y="1355" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0012.png" x="440" y="1356" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0013.png" x="486" y="1355" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0014.png" x="670" y="1418" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0015.png" x="624" y="1354" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0016.png" x="578" y="1354" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0017.png" x="532" y="1276" w="44" h="77"/>
-<sprite n="player_blue_laser_up_running_0018.png" x="486" y="1276" w="44" h="77"/>
-<sprite n="player_blue_laser_up_standing.png" x="394" y="1296" w="44" h="77"/>
-<sprite n="player_blue_shotgun_downRight_running_0001.png" x="56" y="1000" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0002.png" x="2" y="1000" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0003.png" x="110" y="995" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0004.png" x="164" y="993" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0005.png" x="218" y="927" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0006.png" x="921" y="1045" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0007.png" x="867" y="1028" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0008.png" x="813" y="986" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0009.png" x="759" y="986" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0010.png" x="705" y="986" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0011.png" x="651" y="922" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0012.png" x="597" y="922" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0013.png" x="543" y="922" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0014.png" x="434" y="925" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0015.png" x="489" y="922" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0016.png" x="924" y="977" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0017.png" x="870" y="960" w="52" h="66"/>
-<sprite n="player_blue_shotgun_downRight_running_0018.png" x="816" y="918" w="52" h="66"/>
-<sprite n="player_blue_shotgun_down_running_0001.png" x="186" y="1962" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0002.png" x="186" y="1829" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0003.png" x="186" y="1898" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0004.png" x="140" y="1435" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0005.png" x="140" y="1513" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0006.png" x="140" y="1585" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0007.png" x="140" y="1666" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0008.png" x="140" y="1733" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0009.png" x="140" y="1962" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0010.png" x="140" y="1829" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0011.png" x="140" y="1898" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0012.png" x="94" y="1435" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0013.png" x="94" y="1513" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0014.png" x="94" y="1585" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0015.png" x="94" y="1666" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0016.png" x="94" y="1829" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0017.png" x="48" y="1666" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_running_0018.png" x="48" y="1829" w="44" h="62"/>
-<sprite n="player_blue_shotgun_down_standing.png" x="2" y="1666" w="44" h="62"/>
-<sprite n="player_blue_shotgun_right_running_0001.png" x="485" y="138" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0002.png" x="416" y="138" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0003.png" x="347" y="138" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0004.png" x="278" y="138" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0005.png" x="209" y="138" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0006.png" x="140" y="138" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0007.png" x="71" y="138" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0008.png" x="2" y="138" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0009.png" x="899" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0010.png" x="830" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0011.png" x="761" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0012.png" x="692" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0013.png" x="623" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0014.png" x="554" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0015.png" x="485" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0016.png" x="416" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0017.png" x="347" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_running_0018.png" x="278" y="70" w="67" h="66"/>
-<sprite n="player_blue_shotgun_right_standing.png" x="209" y="342" w="67" h="61"/>
-<sprite n="player_blue_shotgun_upRight_running_0001.png" x="858" y="478" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0002.png" x="804" y="478" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0003.png" x="750" y="478" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0004.png" x="696" y="478" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0005.png" x="642" y="478" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0006.png" x="588" y="478" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0007.png" x="534" y="478" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0008.png" x="165" y="763" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0009.png" x="2" y="848" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0010.png" x="56" y="771" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0011.png" x="111" y="763" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0012.png" x="276" y="695" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0013.png" x="222" y="695" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0014.png" x="336" y="623" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0015.png" x="403" y="555" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0016.png" x="480" y="478" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0017.png" x="2" y="768" w="52" h="78"/>
-<sprite n="player_blue_shotgun_upRight_running_0018.png" x="57" y="691" w="52" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0001.png" x="440" y="1276" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0002.png" x="954" y="1460" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0003.png" x="908" y="1460" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0004.png" x="954" y="1380" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0005.png" x="862" y="1414" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0006.png" x="908" y="1380" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0007.png" x="816" y="1397" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0008.png" x="770" y="1355" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0009.png" x="724" y="1355" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0010.png" x="862" y="1334" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0011.png" x="816" y="1317" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0012.png" x="770" y="1275" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0013.png" x="678" y="1338" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0014.png" x="724" y="1275" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0015.png" x="632" y="1274" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0016.png" x="586" y="1274" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0017.png" x="678" y="1258" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_running_0018.png" x="632" y="1194" w="44" h="78"/>
-<sprite n="player_blue_shotgun_up_standing.png" x="586" y="1194" w="44" h="78"/>
-<sprite n="player_blue_sticky_downRight_running_0001.png" x="762" y="918" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0002.png" x="708" y="918" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0003.png" x="654" y="854" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0004.png" x="600" y="854" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0005.png" x="546" y="854" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0006.png" x="380" y="859" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0007.png" x="435" y="857" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0008.png" x="492" y="854" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0009.png" x="930" y="909" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0010.png" x="876" y="892" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0011.png" x="822" y="850" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0012.png" x="768" y="850" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0013.png" x="714" y="850" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0014.png" x="930" y="841" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0015.png" x="876" y="824" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0016.png" x="822" y="782" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0017.png" x="768" y="782" w="52" h="66"/>
-<sprite n="player_blue_sticky_downRight_running_0018.png" x="714" y="782" w="52" h="66"/>
-<sprite n="player_blue_sticky_down_running_0001.png" x="94" y="1733" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0002.png" x="94" y="1968" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0003.png" x="94" y="1898" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0004.png" x="48" y="1435" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0005.png" x="48" y="1513" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0006.png" x="48" y="1585" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0007.png" x="48" y="1733" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0008.png" x="48" y="1968" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0009.png" x="48" y="1898" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0010.png" x="2" y="1435" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0011.png" x="2" y="1513" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0012.png" x="2" y="1585" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0013.png" x="2" y="1733" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0014.png" x="2" y="1968" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0015.png" x="2" y="1898" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0016.png" x="946" y="1828" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0017.png" x="900" y="1759" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_running_0018.png" x="946" y="1758" w="44" h="68"/>
-<sprite n="player_blue_sticky_down_standing.png" x="2" y="1829" w="44" h="67"/>
-<sprite n="player_blue_sticky_right_running_0001.png" x="209" y="70" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0002.png" x="140" y="70" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0003.png" x="71" y="70" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0004.png" x="2" y="70" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0005.png" x="899" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0006.png" x="830" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0007.png" x="761" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0008.png" x="692" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0009.png" x="623" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0010.png" x="554" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0011.png" x="485" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0012.png" x="416" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0013.png" x="347" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0014.png" x="278" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0015.png" x="209" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0016.png" x="140" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0017.png" x="71" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_running_0018.png" x="2" y="2" w="67" h="66"/>
-<sprite n="player_blue_sticky_right_standing.png" x="140" y="342" w="67" h="61"/>
-<sprite n="player_blue_sticky_upRight_running_0001.png" x="272" y="852" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0002.png" x="110" y="920" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0003.png" x="164" y="918" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0004.png" x="218" y="852" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0005.png" x="327" y="780" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0006.png" x="384" y="712" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0007.png" x="444" y="710" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0008.png" x="930" y="694" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0009.png" x="876" y="677" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0010.png" x="822" y="635" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0011.png" x="768" y="635" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0012.png" x="714" y="635" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0013.png" x="660" y="635" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0014.png" x="606" y="635" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0015.png" x="552" y="635" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0016.png" x="498" y="635" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0017.png" x="444" y="635" w="52" h="73"/>
-<sprite n="player_blue_sticky_upRight_running_0018.png" x="164" y="843" w="52" h="73"/>
-<sprite n="player_blue_sticky_up_running_0001.png" x="210" y="1148" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0002.png" x="402" y="1129" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0003.png" x="356" y="1063" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0004.png" x="310" y="1063" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0005.png" x="264" y="1063" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0006.png" x="48" y="1136" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0007.png" x="2" y="1136" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0008.png" x="110" y="1131" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0009.png" x="164" y="1129" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0010.png" x="218" y="1063" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0011.png" x="942" y="1295" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0012.png" x="896" y="1249" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0013.png" x="850" y="1232" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0014.png" x="804" y="1190" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0015.png" x="758" y="1190" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0016.png" x="974" y="1210" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0017.png" x="974" y="1125" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_running_0018.png" x="978" y="977" w="44" h="83"/>
-<sprite n="player_blue_sticky_up_standing.png" x="978" y="455" w="44" h="83"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:65591c079997e0296d80c91129184a95:1/1$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="player_blue.png" width="1024" height="2048">
+    <sprite n="player_blue_SMG_downRight_running_0001.png" x="704" y="1190" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0002.png" x="650" y="1126" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0003.png" x="596" y="1126" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0004.png" x="542" y="1126" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0005.png" x="488" y="1126" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0006.png" x="434" y="1061" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0007.png" x="380" y="995" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0008.png" x="326" y="995" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0009.png" x="272" y="995" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0010.png" x="56" y="1068" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0011.png" x="2" y="1068" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0012.png" x="110" y="1063" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0013.png" x="164" y="1061" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0014.png" x="218" y="995" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0015.png" x="920" y="1181" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0016.png" x="866" y="1164" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0017.png" x="812" y="1122" w="52" h="66"/>
+    <sprite n="player_blue_SMG_downRight_running_0018.png" x="758" y="1122" w="52" h="66"/>
+    <sprite n="player_blue_SMG_down_running_0001.png" x="370" y="1898" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0002.png" x="324" y="1962" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0003.png" x="324" y="1760" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0004.png" x="324" y="1829" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0005.png" x="324" y="1898" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0006.png" x="278" y="1962" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0007.png" x="278" y="1760" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0008.png" x="278" y="1829" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0009.png" x="278" y="1898" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0010.png" x="324" y="1696" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0011.png" x="278" y="1696" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0012.png" x="508" y="1641" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0013.png" x="370" y="1695" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0014.png" x="416" y="1691" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0015.png" x="462" y="1641" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0016.png" x="600" y="1585" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0017.png" x="554" y="1585" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_running_0018.png" x="324" y="1632" w="44" h="62"/>
+    <sprite n="player_blue_SMG_down_standing_0001.png" x="278" y="1632" w="44" h="62"/>
+    <sprite n="player_blue_SMG_right_running_0001.png" x="181" y="541" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0002.png" x="59" y="546" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0003.png" x="2" y="546" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0004.png" x="124" y="541" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0005.png" x="368" y="478" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0006.png" x="921" y="455" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0007.png" x="864" y="410" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0008.png" x="807" y="410" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0009.png" x="750" y="410" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0010.png" x="693" y="410" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0011.png" x="636" y="410" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0012.png" x="579" y="410" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0013.png" x="522" y="410" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0014.png" x="465" y="410" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0015.png" x="311" y="473" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0016.png" x="254" y="473" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0017.png" x="197" y="473" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_running_0018.png" x="67" y="478" w="55" h="66"/>
+    <sprite n="player_blue_SMG_right_standing_0001.png" x="975" y="1062" w="45" h="61"/>
+    <sprite n="player_blue_SMG_upRight_running_0001.png" x="660" y="782" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0002.png" x="606" y="782" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0003.png" x="552" y="782" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0004.png" x="326" y="855" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0005.png" x="381" y="787" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0006.png" x="438" y="785" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0007.png" x="498" y="782" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0008.png" x="930" y="769" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0009.png" x="876" y="752" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0010.png" x="822" y="710" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0011.png" x="768" y="710" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0012.png" x="714" y="710" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0013.png" x="660" y="710" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0014.png" x="606" y="710" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0015.png" x="552" y="710" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0016.png" x="498" y="710" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0017.png" x="56" y="928" w="52" h="70"/>
+    <sprite n="player_blue_SMG_upRight_running_0018.png" x="2" y="928" w="52" h="70"/>
+    <sprite n="player_blue_SMG_up_running_0001.png" x="854" y="1719" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0002.png" x="900" y="1686" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0003.png" x="946" y="1613" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0004.png" x="808" y="1702" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0005.png" x="854" y="1646" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0006.png" x="900" y="1613" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0007.png" x="946" y="1540" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0008.png" x="762" y="1660" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0009.png" x="808" y="1629" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0010.png" x="854" y="1573" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0011.png" x="900" y="1540" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0012.png" x="716" y="1593" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0013.png" x="670" y="1576" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0014.png" x="624" y="1512" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0015.png" x="578" y="1512" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0016.png" x="762" y="1587" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0017.png" x="808" y="1556" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_running_0018.png" x="762" y="1514" w="44" h="71"/>
+    <sprite n="player_blue_SMG_up_standing_0001.png" x="946" y="1686" w="44" h="70"/>
+    <sprite n="player_blue_blaster_downRight_running_0001.png" x="2" y="478" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0002.png" x="132" y="473" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0003.png" x="400" y="410" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0004.png" x="936" y="387" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0005.png" x="871" y="342" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0006.png" x="806" y="342" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0007.png" x="741" y="342" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0008.png" x="676" y="342" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0009.png" x="611" y="342" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0010.png" x="546" y="342" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0011.png" x="481" y="342" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0012.png" x="335" y="405" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0013.png" x="270" y="405" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0014.png" x="205" y="405" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0015.png" x="67" y="410" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0016.png" x="2" y="410" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0017.png" x="140" y="405" w="63" h="66"/>
+    <sprite n="player_blue_blaster_downRight_running_0018.png" x="416" y="342" w="63" h="66"/>
+    <sprite n="player_blue_blaster_down_running_0001.png" x="508" y="1577" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0002.png" x="370" y="1631" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0003.png" x="416" y="1627" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0004.png" x="462" y="1577" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0005.png" x="324" y="1568" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0006.png" x="278" y="1568" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0007.png" x="508" y="1513" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0008.png" x="370" y="1567" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0009.png" x="416" y="1563" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0010.png" x="462" y="1513" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0011.png" x="324" y="1504" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0012.png" x="278" y="1504" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0013.png" x="370" y="1503" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0014.png" x="324" y="1440" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0015.png" x="278" y="1440" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0016.png" x="416" y="1499" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0017.png" x="370" y="1439" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_running_0018.png" x="324" y="1376" w="44" h="62"/>
+    <sprite n="player_blue_blaster_down_standing_0001.png" x="278" y="1376" w="44" h="62"/>
+    <sprite n="player_blue_blaster_right_running_0001.png" x="71" y="342" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0002.png" x="2" y="342" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0003.png" x="899" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0004.png" x="830" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0005.png" x="761" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0006.png" x="692" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0007.png" x="623" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0008.png" x="554" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0009.png" x="485" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0010.png" x="416" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0011.png" x="347" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0012.png" x="278" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0013.png" x="209" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0014.png" x="140" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0015.png" x="71" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0016.png" x="2" y="274" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0017.png" x="899" y="206" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_running_0018.png" x="830" y="206" w="67" h="66"/>
+    <sprite n="player_blue_blaster_right_standing_0001.png" x="347" y="342" w="67" h="61"/>
+    <sprite n="player_blue_blaster_upRight_running_0001.png" x="56" y="851" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0002.png" x="110" y="843" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0003.png" x="273" y="775" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0004.png" x="219" y="775" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0005.png" x="330" y="703" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0006.png" x="390" y="635" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0007.png" x="943" y="617" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0008.png" x="889" y="600" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0009.png" x="835" y="558" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0010.png" x="781" y="558" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0011.png" x="727" y="558" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0012.png" x="673" y="558" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0013.png" x="619" y="558" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0014.png" x="565" y="558" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0015.png" x="511" y="558" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0016.png" x="457" y="558" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0017.png" x="966" y="540" w="52" h="75"/>
+    <sprite n="player_blue_blaster_upRight_running_0018.png" x="912" y="523" w="52" h="75"/>
+    <sprite n="player_blue_blaster_up_running_0001.png" x="540" y="1194" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0002.png" x="494" y="1194" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0003.png" x="348" y="1230" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0004.png" x="302" y="1230" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0005.png" x="48" y="1303" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0006.png" x="2" y="1303" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0007.png" x="94" y="1298" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0008.png" x="140" y="1296" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0009.png" x="202" y="1233" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0010.png" x="256" y="1230" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0011.png" x="394" y="1214" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0012.png" x="448" y="1194" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0013.png" x="348" y="1148" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0014.png" x="302" y="1148" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0015.png" x="256" y="1148" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0016.png" x="48" y="1221" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0017.png" x="2" y="1221" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_running_0018.png" x="94" y="1216" w="44" h="80"/>
+    <sprite n="player_blue_blaster_up_standing_0001.png" x="156" y="1214" w="44" h="80"/>
+    <sprite n="player_blue_laser_downRight_running_0001.png" x="704" y="1122" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0002.png" x="650" y="1058" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0003.png" x="596" y="1058" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0004.png" x="542" y="1058" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0005.png" x="488" y="1058" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0006.png" x="920" y="1113" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0007.png" x="866" y="1096" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0008.png" x="812" y="1054" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0009.png" x="758" y="1054" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0010.png" x="704" y="1054" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0011.png" x="650" y="990" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0012.png" x="596" y="990" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0013.png" x="542" y="990" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0014.png" x="434" y="993" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0015.png" x="488" y="990" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0016.png" x="380" y="927" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0017.png" x="326" y="927" w="52" h="66"/>
+    <sprite n="player_blue_laser_downRight_running_0018.png" x="272" y="927" w="52" h="66"/>
+    <sprite n="player_blue_laser_down_running_0001.png" x="416" y="1435" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0002.png" x="370" y="1375" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0003.png" x="324" y="1312" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0004.png" x="278" y="1312" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0005.png" x="232" y="1315" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0006.png" x="232" y="1435" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0007.png" x="232" y="1513" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0008.png" x="232" y="1585" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0009.png" x="232" y="1666" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0010.png" x="232" y="1733" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0011.png" x="232" y="1962" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0012.png" x="232" y="1829" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0013.png" x="232" y="1898" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0014.png" x="186" y="1315" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0015.png" x="186" y="1435" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0016.png" x="186" y="1513" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0017.png" x="186" y="1585" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_running_0018.png" x="186" y="1666" w="44" h="62"/>
+    <sprite n="player_blue_laser_down_standing_0001.png" x="186" y="1733" w="44" h="62"/>
+    <sprite n="player_blue_laser_right_running_0001.png" x="761" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0002.png" x="692" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0003.png" x="623" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0004.png" x="554" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0005.png" x="485" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0006.png" x="416" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0007.png" x="347" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0008.png" x="278" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0009.png" x="209" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0010.png" x="140" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0011.png" x="71" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0012.png" x="2" y="206" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0013.png" x="899" y="138" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0014.png" x="830" y="138" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0015.png" x="761" y="138" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0016.png" x="692" y="138" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0017.png" x="623" y="138" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_running_0018.png" x="554" y="138" w="67" h="66"/>
+    <sprite n="player_blue_laser_right_standing_0001.png" x="278" y="342" w="67" h="61"/>
+    <sprite n="player_blue_laser_upRight_running_0001.png" x="2" y="691" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0002.png" x="167" y="686" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0003.png" x="112" y="686" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0004.png" x="281" y="618" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0005.png" x="226" y="618" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0006.png" x="348" y="546" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0007.png" x="425" y="478" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0008.png" x="57" y="614" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0009.png" x="2" y="614" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0010.png" x="171" y="609" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0011.png" x="116" y="609" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0012.png" x="293" y="541" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0013.png" x="238" y="541" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0014.png" x="968" y="310" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0015.png" x="968" y="233" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0016.png" x="968" y="156" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0017.png" x="968" y="79" w="53" h="75"/>
+    <sprite n="player_blue_laser_upRight_running_0018.png" x="968" y="2" w="53" h="75"/>
+    <sprite n="player_blue_laser_up_running_0001.png" x="716" y="1514" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0002.png" x="854" y="1494" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0003.png" x="808" y="1477" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0004.png" x="762" y="1435" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0005.png" x="670" y="1497" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0006.png" x="716" y="1435" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0007.png" x="532" y="1434" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0008.png" x="486" y="1434" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0009.png" x="624" y="1433" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0010.png" x="578" y="1433" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0011.png" x="532" y="1355" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0012.png" x="440" y="1356" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0013.png" x="486" y="1355" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0014.png" x="670" y="1418" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0015.png" x="624" y="1354" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0016.png" x="578" y="1354" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0017.png" x="532" y="1276" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_running_0018.png" x="486" y="1276" w="44" h="77"/>
+    <sprite n="player_blue_laser_up_standing_0001.png" x="394" y="1296" w="44" h="77"/>
+    <sprite n="player_blue_shotgun_downRight_running_0001.png" x="56" y="1000" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0002.png" x="2" y="1000" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0003.png" x="110" y="995" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0004.png" x="164" y="993" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0005.png" x="218" y="927" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0006.png" x="921" y="1045" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0007.png" x="867" y="1028" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0008.png" x="813" y="986" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0009.png" x="759" y="986" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0010.png" x="705" y="986" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0011.png" x="651" y="922" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0012.png" x="597" y="922" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0013.png" x="543" y="922" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0014.png" x="434" y="925" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0015.png" x="489" y="922" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0016.png" x="924" y="977" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0017.png" x="870" y="960" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_downRight_running_0018.png" x="816" y="918" w="52" h="66"/>
+    <sprite n="player_blue_shotgun_down_running_0001.png" x="186" y="1962" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0002.png" x="186" y="1829" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0003.png" x="186" y="1898" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0004.png" x="140" y="1435" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0005.png" x="140" y="1513" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0006.png" x="140" y="1585" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0007.png" x="140" y="1666" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0008.png" x="140" y="1733" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0009.png" x="140" y="1962" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0010.png" x="140" y="1829" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0011.png" x="140" y="1898" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0012.png" x="94" y="1435" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0013.png" x="94" y="1513" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0014.png" x="94" y="1585" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0015.png" x="94" y="1666" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0016.png" x="94" y="1829" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0017.png" x="48" y="1666" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_running_0018.png" x="48" y="1829" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_down_standing_0001.png" x="2" y="1666" w="44" h="62"/>
+    <sprite n="player_blue_shotgun_right_running_0001.png" x="485" y="138" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0002.png" x="416" y="138" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0003.png" x="347" y="138" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0004.png" x="278" y="138" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0005.png" x="209" y="138" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0006.png" x="140" y="138" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0007.png" x="71" y="138" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0008.png" x="2" y="138" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0009.png" x="899" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0010.png" x="830" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0011.png" x="761" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0012.png" x="692" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0013.png" x="623" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0014.png" x="554" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0015.png" x="485" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0016.png" x="416" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0017.png" x="347" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_running_0018.png" x="278" y="70" w="67" h="66"/>
+    <sprite n="player_blue_shotgun_right_standing_0001.png" x="209" y="342" w="67" h="61"/>
+    <sprite n="player_blue_shotgun_upRight_running_0001.png" x="858" y="478" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0002.png" x="804" y="478" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0003.png" x="750" y="478" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0004.png" x="696" y="478" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0005.png" x="642" y="478" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0006.png" x="588" y="478" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0007.png" x="534" y="478" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0008.png" x="165" y="763" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0009.png" x="2" y="848" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0010.png" x="56" y="771" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0011.png" x="111" y="763" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0012.png" x="276" y="695" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0013.png" x="222" y="695" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0014.png" x="336" y="623" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0015.png" x="403" y="555" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0016.png" x="480" y="478" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0017.png" x="2" y="768" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_upRight_running_0018.png" x="57" y="691" w="52" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0001.png" x="440" y="1276" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0002.png" x="954" y="1460" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0003.png" x="908" y="1460" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0004.png" x="954" y="1380" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0005.png" x="862" y="1414" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0006.png" x="908" y="1380" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0007.png" x="816" y="1397" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0008.png" x="770" y="1355" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0009.png" x="724" y="1355" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0010.png" x="862" y="1334" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0011.png" x="816" y="1317" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0012.png" x="770" y="1275" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0013.png" x="678" y="1338" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0014.png" x="724" y="1275" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0015.png" x="632" y="1274" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0016.png" x="586" y="1274" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0017.png" x="678" y="1258" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_running_0018.png" x="632" y="1194" w="44" h="78"/>
+    <sprite n="player_blue_shotgun_up_standing_0001.png" x="586" y="1194" w="44" h="78"/>
+    <sprite n="player_blue_sticky_downRight_running_0001.png" x="762" y="918" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0002.png" x="708" y="918" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0003.png" x="654" y="854" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0004.png" x="600" y="854" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0005.png" x="546" y="854" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0006.png" x="380" y="859" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0007.png" x="435" y="857" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0008.png" x="492" y="854" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0009.png" x="930" y="909" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0010.png" x="876" y="892" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0011.png" x="822" y="850" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0012.png" x="768" y="850" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0013.png" x="714" y="850" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0014.png" x="930" y="841" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0015.png" x="876" y="824" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0016.png" x="822" y="782" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0017.png" x="768" y="782" w="52" h="66"/>
+    <sprite n="player_blue_sticky_downRight_running_0018.png" x="714" y="782" w="52" h="66"/>
+    <sprite n="player_blue_sticky_down_running_0001.png" x="94" y="1733" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0002.png" x="94" y="1968" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0003.png" x="94" y="1898" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0004.png" x="48" y="1435" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0005.png" x="48" y="1513" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0006.png" x="48" y="1585" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0007.png" x="48" y="1733" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0008.png" x="48" y="1968" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0009.png" x="48" y="1898" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0010.png" x="2" y="1435" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0011.png" x="2" y="1513" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0012.png" x="2" y="1585" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0013.png" x="2" y="1733" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0014.png" x="2" y="1968" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0015.png" x="2" y="1898" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0016.png" x="946" y="1828" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0017.png" x="900" y="1759" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_running_0018.png" x="946" y="1758" w="44" h="68"/>
+    <sprite n="player_blue_sticky_down_standing_0001.png" x="2" y="1829" w="44" h="67"/>
+    <sprite n="player_blue_sticky_right_running_0001.png" x="209" y="70" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0002.png" x="140" y="70" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0003.png" x="71" y="70" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0004.png" x="2" y="70" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0005.png" x="899" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0006.png" x="830" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0007.png" x="761" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0008.png" x="692" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0009.png" x="623" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0010.png" x="554" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0011.png" x="485" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0012.png" x="416" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0013.png" x="347" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0014.png" x="278" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0015.png" x="209" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0016.png" x="140" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0017.png" x="71" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_running_0018.png" x="2" y="2" w="67" h="66"/>
+    <sprite n="player_blue_sticky_right_standing_0001.png" x="140" y="342" w="67" h="61"/>
+    <sprite n="player_blue_sticky_upRight_running_0001.png" x="272" y="852" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0002.png" x="110" y="920" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0003.png" x="164" y="918" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0004.png" x="218" y="852" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0005.png" x="327" y="780" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0006.png" x="384" y="712" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0007.png" x="444" y="710" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0008.png" x="930" y="694" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0009.png" x="876" y="677" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0010.png" x="822" y="635" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0011.png" x="768" y="635" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0012.png" x="714" y="635" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0013.png" x="660" y="635" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0014.png" x="606" y="635" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0015.png" x="552" y="635" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0016.png" x="498" y="635" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0017.png" x="444" y="635" w="52" h="73"/>
+    <sprite n="player_blue_sticky_upRight_running_0018.png" x="164" y="843" w="52" h="73"/>
+    <sprite n="player_blue_sticky_up_running_0001.png" x="210" y="1148" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0002.png" x="402" y="1129" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0003.png" x="356" y="1063" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0004.png" x="310" y="1063" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0005.png" x="264" y="1063" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0006.png" x="48" y="1136" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0007.png" x="2" y="1136" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0008.png" x="110" y="1131" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0009.png" x="164" y="1129" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0010.png" x="218" y="1063" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0011.png" x="942" y="1295" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0012.png" x="896" y="1249" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0013.png" x="850" y="1232" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0014.png" x="804" y="1190" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0015.png" x="758" y="1190" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0016.png" x="974" y="1210" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0017.png" x="974" y="1125" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_running_0018.png" x="978" y="977" w="44" h="83"/>
+    <sprite n="player_blue_sticky_up_standing_0001.png" x="978" y="455" w="44" h="83"/>
+</TextureAtlas>

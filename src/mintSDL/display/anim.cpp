@@ -34,6 +34,7 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 	FILE* fp;
 	char buf[1024];
 	int i;
+	int j;
 
 	// TODO(jeru): Note this limitation
 	SDL_Rect rects[999];
@@ -60,13 +61,14 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 				currentToken++;
 				token = strtok(NULL, "\"");
 			}
-
+			// printf("Name %s", tokens[1]);
 			for (i = strlen(tokens[1]); ; i--) {
 				if (tokens[1][i] == '_') {
-					tokens[1][i] = '\0';
+					tokens[1][i+1] = '\0';
 					break;
 				}
 			}
+			// printf(" resolved to %s\n", tokens[1]);
 
 			strcpy(names[frameCount], tokens[1]);
 			rects[frameCount].x = atoi(tokens[3]);
@@ -79,12 +81,33 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 
 	fclose(fp);
 
-	mint_AnimManInit(animMan, frameCount);
+	int totalAnims = 0;
+	char* currentName = (char*)malloc(sizeof(char*)*99);
 
-	int currentFrame = 0;
-	char* currentName = (char*)malloc(sizeof(char)*99);
+	strcpy(currentName, names[0]);
+	totalAnims = 1;
+
 	for (i = 0; i < frameCount; i++) {
-		printf("%s\n", names[i]);
+		if (strcmp(currentName, names[i])) {
+			totalAnims++;
+			strcpy(currentName, names[i]);
+		}
+	}
+
+	mint_AnimManInit(animMan, totalAnims);
+
+	int startFrame = 0;
+	int endFrame = 0;
+
+	strcpy(currentName, names[0]);
+
+	for (i = 0; i < frameCount; i++) {
+		if (strcmp(currentName, names[i])) {
+			endFrame = i;
+			printf("Animation %s is %d frames long\n", currentName, endFrame - startFrame);
+			startFrame = endFrame;
+			strcpy(currentName, names[i]);
+		}
 	}
 
 	free(currentName);
@@ -94,10 +117,14 @@ void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrame
 {
 	MintAnim* anim = mint_AnimGetByIndex(animMan, index);
 
-	anim->name = name;
+	anim->name = (char*)malloc(sizeof(char)*strlen(name));
+	strcpy(anim->name, name);
+
 	anim->frameRects = (SDL_Rect*)malloc(sizeof(SDL_Rect) * totalFrames);
 	anim->totalFrames = totalFrames;
 	anim->frameRate = frameRate;
+	anim->loop = 0;
+	anim->currentFrame = 0;
 	anim->_timeTillNextFrame = 1.0 / frameRate;
 }
 
