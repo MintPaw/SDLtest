@@ -43,16 +43,13 @@ void playerExample();
 /*
 
 	Todo:
-		Fix warnings
 		Optimize XML
 		Make event handler
-		Make animation work properly
 		setX vs Xset
 		Box2D debug draw
 		Do scaling, this includes mass
 		Do a better job making all needed math structs and functions (Move MintFloatPoint and make point/rect structs)
 		Need to list all headers
-		Cap fps if no vsync (And maybe in all cases)
 		Make fps/other-stat counter
 		Make auto-tester
 		Linux?
