@@ -659,6 +659,10 @@ void playerExample()
 
 	MintTexture* player;
 	int i;
+	char left;
+	char right;
+	char up;
+	char down;
 
 	player = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
 	mint_PhysEnable(player, world, 1, 1);
@@ -688,10 +692,15 @@ void playerExample()
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		if (mint_InputCheckKey(input, SDL_SCANCODE_LEFT)) mint_PhysSetVelocity(player->phys, -5, mint_PhysGetVelocity(player->phys).y);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_RIGHT)) mint_PhysSetVelocity(player->phys, 5, mint_PhysGetVelocity(player->phys).x);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, -5);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, 5);
+		left = mint_InputCheckKey(input, SDL_SCANCODE_LEFT);
+		right = mint_InputCheckKey(input, SDL_SCANCODE_RIGHT);
+		up = mint_InputCheckKey(input, SDL_SCANCODE_UP);
+		down = mint_InputCheckKey(input, SDL_SCANCODE_DOWN);
+
+		if (left)	mint_PhysSetVelocity(player->phys, -5, mint_PhysGetVelocity(player->phys).y);
+		if (right)	mint_PhysSetVelocity(player->phys, 5, mint_PhysGetVelocity(player->phys).y);
+		if (up)	mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, -5);
+		if (down)	mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, 5);
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 		
