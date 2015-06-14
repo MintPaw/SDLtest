@@ -85,7 +85,6 @@ void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath)
 	char* currentName = (char*)malloc(sizeof(char*)*99);
 
 	strcpy(currentName, names[0]);
-	totalAnims = 1;
 
 	for (i = 0; i < frameCount; i++) {
 		if (strcmp(currentName, names[i])) {
@@ -240,7 +239,7 @@ void mint_AnimManFree(MintAnimMan* animMan)
 		// free(animMan->anims[i].name);
 		animMan->anims[i].frameRects = NULL;	
 	}
-	
+
 	free(animMan->anims);
 	animMan->anims = NULL;
 
