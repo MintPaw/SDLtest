@@ -34,5 +34,6 @@ void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY);
 void mint_PhysStepWorld(MintPhysWorld* world, float elapsed);
 void mint_PhysUpdate(MintPhys* phys, float elapsed);
 void mint_PhysFree(MintPhys* phys);
+void mint_PhysFreeWorld(MintPhysWorld* world);
 
 #endif

@@ -72,3 +72,9 @@ void mint_PhysFree(MintPhys* phys)
 	free(phys);
 	phys = NULL;
 }
+
+void mint_PhysFreeWorld(MintPhysWorld* world)
+{
+	free(world->world);
+	free(world);
+}

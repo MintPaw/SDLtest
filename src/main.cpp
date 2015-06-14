@@ -71,7 +71,7 @@ MintPhysWorld *world;
 int main(int argc, char* args[])
 {
 #ifdef _CRTDBG_MAP_ALLOC
-	// _CrtSetBreakAlloc(244);
+	// _CrtSetBreakAlloc(188);
 #endif
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -159,6 +159,7 @@ void close()
 
 	mint_InputFree(input);
 	mint_TimerFree(timer);
+	mint_PhysFreeWorld(world);
 	TTF_CloseFont(ttfOpenSans);
 
 	SDL_Quit();

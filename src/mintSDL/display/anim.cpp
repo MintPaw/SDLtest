@@ -234,7 +234,6 @@ void mint_AnimManFree(MintAnimMan* animMan)
 {
 	int i;
 	for (i = 0; i < animMan->totalAnims; i++) {
-		printf("free: %d\n", i);
 		free(animMan->anims[i].frameRects);
 		// free(animMan->anims[i].name);
 		animMan->anims[i].frameRects = NULL;	
