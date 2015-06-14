@@ -42,7 +42,7 @@ char mint_GeomRectInRect(SDL_Rect* a, SDL_Rect* b)
 
 char mint_GeomCircleinCircle(MintCircle* a, MintCircle* b)
 {
-	float r = a->r + b->r;
+	float r = (float)(a->r + b->r);
 	r *= r;
 	return r < ((a->x + b->x)^2) + ((a->y + b->y)^2);
 }

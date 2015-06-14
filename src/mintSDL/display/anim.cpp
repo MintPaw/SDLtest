@@ -132,7 +132,7 @@ void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrame
 	anim->frameRate = frameRate;
 	anim->loop = 0;
 	anim->currentFrame = 0;
-	anim->_timeTillNextFrame = 1.0 / frameRate;
+	anim->_timeTillNextFrame = (float)(1.0 / frameRate);
 }
 
 void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height)
@@ -166,7 +166,7 @@ void mint_AnimUpdate(MintAnimMan* animMan, float elapsed)
 	
 	anim->_timeTillNextFrame -= elapsed;
 	if (anim->_timeTillNextFrame <= 0) {
-		anim->_timeTillNextFrame = 1.0 / anim->frameRate;
+		anim->_timeTillNextFrame = (float)(1.0 / anim->frameRate);
 		mint_AnimNextFrame(animMan);
 	}
 }

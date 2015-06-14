@@ -42,7 +42,7 @@ void texturePackerExample();
 
 	Todo:
 		Fix warnings
-		Fix leaks
+		Optimize XML
 		Make event handler
 		Make animation work properly
 		setX vs Xset
