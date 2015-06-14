@@ -614,7 +614,11 @@ void texturePackerExample()
 	for (i = 0; i < ANIMS; i++) {
 		player[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
 		mint_AnimParseFromXML(player[i]->animMan, "assets/img/player_blue.xml");
-		break;
+		
+		mint_AnimPlay(mint_AnimGetByIndex(player[i]->animMan, i));
+		mint_AnimGetByIndex(player[i]->animMan, i)->loop = 1;
+
+		mint_TransSetX(player[i]->trans, 50 * i);
 	}
 
 	while (!quit)
@@ -634,7 +638,10 @@ void texturePackerExample()
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 		
-
+		for (i = 0; i < ANIMS; i++) {
+			mint_TextureUpdate(player[i], timer->elapsed);
+			mint_TextureRender(player[i]);
+		}
 
 		SDL_RenderPresent(sdlRenderer);
 	}
