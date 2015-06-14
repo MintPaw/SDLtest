@@ -44,16 +44,8 @@ void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY) {
 void mint_PhysStepWorld(MintPhysWorld* world, float elapsed) { world->world->Step((float)elapsed, 6, 2); }
 float mint_PhysMetreToPixel(float metre) { return (float)(metre * 100); }
 float mint_PhysPixelToMetre(float pixel) { return (float)(pixel / 100); }
-
-void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY)
-{
-	phys->body->ApplyForce({ forceX, forceY }, phys->body->GetWorldCenter(), 1);
-}
-
-void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY)
-{
-	phys->body->SetLinearVelocity(b2Vec2(veloX, veloY));
-}
+void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY) { phys->body->ApplyForce({ forceX, forceY }, phys->body->GetWorldCenter(), 1); }
+void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY) { phys->body->SetLinearVelocity(b2Vec2(veloX, veloY)); }
 
 void mint_PhysUpdate(MintPhys* phys, float elapsed)
 {
