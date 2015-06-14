@@ -162,6 +162,7 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 
 void mint_AnimUpdate(MintAnimMan* animMan, float elapsed)
 {
+	if (!animMan->currentAnim) return;
 	MintAnim* anim = animMan->currentAnim;
 	
 	anim->_timeTillNextFrame -= elapsed;
