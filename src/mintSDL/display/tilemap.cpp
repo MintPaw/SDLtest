@@ -34,12 +34,33 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 	}
 	//NOTE (luke): maybe there is a better way to read rows and cells from a CSV
 	char buffer[1024];
+	// NOTE(jeru): Note these limitations
+	char layerStrings[8][128][128*4] = { -99 };
+	char layerNumber = 0;
+	char rowNumber = 0;
+	char adding = 0;
 
 	while (fgets(buffer, sizeof(buffer), data) != NULL)
 	{
 		buffer[strlen(buffer) - 1] = '\0';
 
-		printf("Line: %s\n", buffer);
+		if (!adding && strstr(buffer, "<data encoding=\"csv\">") != NULL) {
+			rowNumber = 0;
+			adding = 1;
+			continue;
+		}
+		
+		if (adding && strstr(buffer, "</data>") != NULL) {
+			adding = 0;
+			layerNumber++;
+			continue;
+		}
+
+		if (adding) {
+			printf("Would add %s to [%d, %d, X]\n", buffer, layerNumber, rowNumber);
+			rowNumber++;
+		}
+
 	}
 
 	fclose(data);
