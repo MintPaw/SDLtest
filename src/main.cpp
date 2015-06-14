@@ -45,6 +45,7 @@ void tilemapExample();
 /*
 
 	Todo:
+		Clip, rect, quad, names?
 		Abstract texture loading?
 		Local/global transform
 		Add magic number defines

@@ -14,14 +14,13 @@ struct MintTilemap {
 	int tileWidth;
 	int tileHeight;
 
-	char graphicalTopLayerData[128][128];
-	char physicalLayerData[128][128];
-	char graphicalBotLayerData[128][128];
+	char layers[8][128][128];
 };
 
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight);
 void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath);
 void mint_TilemapFree(MintTilemap* map);
+void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer);
 char** strspl(char* str, char* del);
 
 #endif

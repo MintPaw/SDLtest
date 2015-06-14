@@ -96,6 +96,23 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 	fclose(data);
 }
 
+void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer)
+{
+	int i;
+	int j;
+	SDL_Rect quad;
+	SDL_Rect clip;
+
+	for (i = 0; i < TILES_HIGH; i++) {
+		for (j = 0; j < TILES_WIDE; j++) {
+			quad = { j * tilemap->tileWidth, i * tilemap->tileHeight, tilemap->tileWidth, tilemap->tileHeight };
+			clip = tilemap->tileRects[tilemap->layers[layer][j][i]];
+
+			SDL_RenderCopy(tilemap->renderer, tilemap->texture, &clip, &quad);
+		}
+	}
+}
+
 void mint_TilemapFree(MintTilemap* map)
 {
 	SDL_DestroyTexture(map->texture);
