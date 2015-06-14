@@ -12,6 +12,7 @@ MintFrameTimer* mint_TimerSetup()
 
 void mint_TimerUpdate(MintFrameTimer* timer, float seconds)
 {
+	timer->ticks = seconds * 1000.0;
 	timer->elapsed = seconds - timer->seconds;
 	timer->seconds = seconds;
 	timer->frames++;

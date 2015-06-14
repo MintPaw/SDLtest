@@ -6,6 +6,7 @@ struct MintFrameTimer;
 struct MintFrameTimer {
 	float seconds;
 	int frames;
+	int ticks;
 	float elapsed;
 	float secondsPerReport;
 	float secondsSinceLastReport;
