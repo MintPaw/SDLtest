@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-char* mint_ReadAllText(char* fileName);
+char* mint_IoAllText(char* fileName);
 
 #endif

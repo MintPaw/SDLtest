@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* mint_ReadAllText(char* fileName)
+char* mint_IoAllText(char* fileName)
 {
 	char* buffer;
 	FILE *pFile;
