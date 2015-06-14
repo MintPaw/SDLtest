@@ -15,7 +15,7 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 	tilemap->renderer = renderer;
 	tilemap->tileWidth = tileWidth;
 	tilemap->tileHeight = tileHeight;
-	tilemap->indexShift = indexShift;
+	tilemap->indexShift = indexShift - 1;
 	
 	SDL_Surface* surface = IMG_Load(graphicsPath);
 
@@ -32,9 +32,9 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 	int i;
 	int j;
 	int currentRect = 0;
-	for (i = 0; i < surface->w / tileWidth; i++) {
-		for (j = 0; j < surface->h / tileHeight; j++) {
-			tilemap->tileRects[currentRect] = { i * tileWidth, j * tileHeight, tileWidth, tileHeight };
+	for (i = 0; i < surface->h / tileHeight; i++) {
+		for (j = 0; j < surface->w / tileWidth; j++) {
+			tilemap->tileRects[currentRect] = { j * tileWidth, i * tileHeight, tileWidth, tileHeight };
 			currentRect++;
 		}
 	}
