@@ -56,7 +56,7 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 	//NOTE (luke): maybe there is a better way to read rows and cells from a CSV
 	char buffer[1024];
 	// NOTE(jeru): Note these limitations
-	char layerStrings[8][TILES_HIGH][TILES_WIDE] = { -99 };
+	memset(tilemap->layers, -1, sizeof(tilemap->layers));
 	char layerNumber = 0;
 	char rowNumber = 0;
 	char colNumber = 0;
@@ -84,7 +84,7 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 			token = strtok(buffer, ",");
 
 			while (token != NULL) {
-				layerStrings[layerNumber][rowNumber][colNumber] = atoi(token);
+				tilemap->layers[layerNumber][rowNumber][colNumber] = atoi(token);
 				token = strtok(NULL, ",");
 				colNumber++;
 			}
