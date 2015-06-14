@@ -46,6 +46,7 @@ void tilemapExample();
 
 	Todo:
 		Optimize XML
+		Add magic number defines
 		Make event handler
 		setX vs Xset
 		Box2D debug draw
