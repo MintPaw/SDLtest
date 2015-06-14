@@ -5,8 +5,8 @@ struct MintTextBox;
 struct MintBlinkingCaret;
 
 #include <SDL.h>
-#include <mintSDL\display\rend.h>
-#include <mintSDL\display\texture.h>
+#include "mintSDL\display\rend.h"
+#include "mintSDL\display\texture.h"
 
 struct MintTextBox {
 	BlinkingCaret *caret;

@@ -3,8 +3,8 @@
 #include <string.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "tilemap.h"
-#include "texture.h"
+#include "mintSDL/display/tilemap.h"
+#include "mintSDL/display/texture.h"
 #include "mintSDL/util/io.h"
 
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight)

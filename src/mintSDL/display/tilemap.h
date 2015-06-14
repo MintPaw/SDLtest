@@ -4,7 +4,7 @@
 struct MintTilemap;
 
 #include <SDL.h>
-#include "texture.h"
+#include "mintSDL/display/texture.h"
 
 struct MintTilemap {
 	MintTexture* map;
