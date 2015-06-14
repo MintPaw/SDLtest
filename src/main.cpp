@@ -41,6 +41,7 @@ void texturePackerExample();
 /*
 
 	Todo:
+		Fix leaks
 		Make event handler
 		Make animation work properly
 		setX vs Xset

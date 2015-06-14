@@ -70,6 +70,27 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 	}
 
 	fclose(fp);
+
+	// player_blue_SMG_downRight_running_0001.png
+	int i;
+	int j;
+	char* currentName = (char*)malloc(sizeof(char)*99);
+	for (i = 0; i < frameCount; i++) {
+		for (j = strlen(names[i]); ; j--) {
+			if (names[i][j] == '_') {
+				names[i][j] = '\0';
+				if (!currentName || strcmp(names[i], currentName))
+				{
+					//Change focused anim
+				}
+				strcpy(currentName, names[i]);
+				printf("%s\n", currentName);
+				break;
+			}
+		}
+	}
+
+	free(currentName);
 }
 
 void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames, int frameRate)
@@ -171,6 +192,7 @@ void mint_AnimManFree(MintAnimMan* animMan)
 	for (i = 0; i < animMan->totalAnims; i++) {
 		free(animMan->anims[i].frameRects);
 		animMan->anims[i].frameRects = NULL;
+		// TODO(jeru): Free names?
 		
 		free(animMan->anims);
 		animMan->anims = NULL;
