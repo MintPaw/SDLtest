@@ -24,11 +24,14 @@ add_executable(SDLtest
 	src/mintSDL/display/rend.cpp
 	src/mintSDL/display/texture.cpp
 	src/mintSDL/display/trans.cpp
+	src/mintSDL/display/tilemap.cpp
 	src/mintSDL/maths/geom.cpp
 	src/mintSDL/maths/phys.cpp
 	src/mintSDL/maths/maths.cpp
 	src/mintSDL/util/input.cpp
 	src/mintSDL/util/timer.cpp
+	src/mintSDL/util/io.cpp
+	src/mintSDL/gui/textbox.cpp
 )
 
 target_link_libraries(SDLtest
