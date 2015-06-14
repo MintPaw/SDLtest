@@ -13,7 +13,7 @@ struct MintTilemap {
 };
 
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight);
-void mint_TilemapCreateFromCSV(char* path, MintTilemap* map);
+void mint_TilemapGenerateFromCSV(MintTilemap* tilemap, char* dataPath);
 void mint_TilemapFree(MintTilemap* map);
 char** strspl(char* str, char* del);
 

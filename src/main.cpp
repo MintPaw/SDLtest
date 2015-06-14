@@ -775,11 +775,12 @@ void tilemapExample()
 	
 	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/Tilemap.png", 60, 60);
 
-	mint_TilemapCreateFromCSV("assets/info/tilemap_sample.txt", tilemap);
+	mint_TilemapGenerateFromCSV(tilemap, "assets/info/tilemap_sample.txt");
 
 	while (!quit)
 	{
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
+
 		if (SDL_PollEvent(&e) != 0)
 		{
 			if (e.type == SDL_KEYDOWN ||
@@ -787,9 +788,11 @@ void tilemapExample()
 			    e.type == SDL_MOUSEMOTION ||
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
-			
+
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
+
+
 	}
 
 	mint_TilemapFree(tilemap);

@@ -17,14 +17,14 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 	return tilemap;
 }
 
-void mint_TilemapCreateFromCSV(char* path, MintTilemap* tilemap)
+void mint_TilemapGenerateFromCSV(MintTilemap* tilemap, char* dataPath)
 {
 	SDL_Texture* source = tilemap->map->texture;
 
 	int colsInMap = mint_TransGetWidth(tilemap->map->trans) / tilemap->tileWidth;
 	int rowsInMap = mint_TransGetHeight(tilemap->map->trans) / tilemap->tileHeight;
 
-	FILE* data = fopen(path, "r");
+	FILE* data = fopen(dataPath, "r");
 	if (data == NULL)
 	{
 		printf("Error loading the file.");
