@@ -778,7 +778,7 @@ void tilemapExample()
 	SDL_Event e;
 	char quit = 0;
 	
-	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/tilemap.png", 64, 64);
+	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/tilemap.png", 64, 64, 1);
 
 	mint_TilemapGenerateFromTiled(tilemap, "assets/map/test1.tmx");
 

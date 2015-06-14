@@ -9,12 +9,13 @@
 #include "mintSDL/display/texture.h"
 #include "mintSDL/util/array.h"
 
-MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight)
+MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight, int indexShift)
 {
 	MintTilemap* tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
 	tilemap->renderer = renderer;
 	tilemap->tileWidth = tileWidth;
 	tilemap->tileHeight = tileHeight;
+	tilemap->indexShift = indexShift;
 	
 	SDL_Surface* surface = IMG_Load(graphicsPath);
 
@@ -103,8 +104,10 @@ void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer)
 
 	for (i = 0; i < TILES_HIGH; i++) {
 		for (j = 0; j < TILES_WIDE; j++) {
+			if (tilemap->layers[layer][j][i] <= 0) continue;
+
 			quad = { j * tilemap->tileWidth, i * tilemap->tileHeight, tilemap->tileWidth, tilemap->tileHeight };
-			clip = tilemap->tileRects[tilemap->layers[layer][j][i]];
+			clip = tilemap->tileRects[tilemap->layers[layer][j][i] + tilemap->indexShift];
 			// printf("quad: %d %d %d %d\n", quad.x, quad.y, quad.w, quad.h);
 
 			SDL_RenderCopy(tilemap->renderer, tilemap->texture, &clip, &quad);
