@@ -776,7 +776,7 @@ void tilemapExample()
 	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/Tilemap.png", 60, 60);
 	SDL_Surface* surface = NULL;
 
-	mint_TilemapCreateFromCSV(sdlRenderer, surface, "assets/info/tilemap_sample.txt", tilemap);
+	mint_TilemapCreateFromCSV(surface, "assets/info/tilemap_sample.txt", tilemap);
 
 	while (!quit)
 	{

@@ -6,18 +6,18 @@
 #include "mintSDL/display/tilemap.h"
 #include "mintSDL/display/texture.h"
 
-MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight)
+MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight)
 {
 	MintTilemap* tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
 
-	tilemap->map = mint_TextureFromPNG(renderer, fileName);
+	tilemap->map = mint_TextureFromPNG(renderer, graphicsPath);
 	tilemap->tileWidth = tileWidth;
 	tilemap->tileHeight = tileHeight;
 
 	return tilemap;
 }
 
-void mint_TilemapCreateFromCSV(SDL_Renderer* renderer, SDL_Surface* destSurface, char* path, MintTilemap* tilemap)
+void mint_TilemapCreateFromCSV(SDL_Surface* destSurface, char* path, MintTilemap* tilemap)
 {
 	SDL_Texture* source = tilemap->map->texture;
 
