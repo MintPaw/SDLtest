@@ -10,8 +10,6 @@
 #include <string>
 #include <time.h>
 #include <SDL.h>
-#include <SDL_ttf.h>
-#include <SDL_image.h>
 #include "mintSDL/display/anim.h"
 #include "mintSDL/display/draw.h"
 #include "mintSDL/display/rend.h"
@@ -23,25 +21,21 @@
 #include "mintSDL/util/timer.h"
 #include "mintSDL/system.h"
 
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 832;
-
-void close();
 void gameLoop();
-void drawExample();
-void mintTextureExample();
-void setColourInputExample();
-void setAlphaInputExample();
-void animationExample();
-void transformExample();
-void textExample();
-void buttonExample();
-void timerExample();
-void physicsExample();
-void collisionExample();
-void texturePackerExample();
-void playerExample();
-void tilemapExample();
+// void drawExample();
+// void mintTextureExample();
+// void setColourInputExample();
+// void setAlphaInputExample();
+// void animationExample();
+// void transformExample();
+// void textExample();
+// void buttonExample();
+// void timerExample();
+// void physicsExample();
+// void collisionExample();
+// void texturePackerExample();
+// void playerExample();
+// void tilemapExample();
 
 /*
 
@@ -69,10 +63,6 @@ void tilemapExample();
 
 */
 
-TTF_Font *ttfOpenSans = NULL;
-MintInput *input;
-MintFrameTimer *timer;
-MintPhysWorld *world;
 MintSystem* sys;
 
 int main(int argc, char* args[])
@@ -82,25 +72,7 @@ int main(int argc, char* args[])
 #endif
 
 	sys = mint_SystemSetup();
-
-	int imgFlags = IMG_INIT_PNG;
-	if(!(IMG_Init(imgFlags) & imgFlags)) {
-		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-		return 0;
-	}
-
-	if(TTF_Init() == -1) {
-		printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
-		return 0;
-	}
-
-	ttfOpenSans = TTF_OpenFont("assets/font/OpenSansRegular.ttf", 28);
-
-	input = mint_InputSetup();
-	timer = mint_TimerSetup();
-	world = mint_PhysSetupWorld(0, 10);
-
-	SDL_UpdateWindowSurface(sdlWindow);
+	mint_SystemInit(sys);
 
 	// gameLoop();
 	// drawExample();
@@ -118,9 +90,7 @@ int main(int argc, char* args[])
 	// texturePackerExample();
 	// playerExample();
 	// collisionExample();
-	tilemapExample();
-
-	close();
+	// tilemapExample();
 
 #ifdef _CRTDBG_MAP_ALLOC
 	_CrtDumpMemoryLeaks();
@@ -131,35 +101,9 @@ int main(int argc, char* args[])
 
 void gameLoop()
 {
-	SDL_Event e;
-	char quit = 0;
-
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
-
-			mint_RendClearSdlRenderer(sdlRenderer);
-			
-			SDL_RenderPresent(sdlRenderer);
-		}
-	}
+	
 }
-
-void close()
-{
-	SDL_DestroyWindow(sdlWindow);
-	SDL_DestroyRenderer(sdlRenderer);
-	sdlWindow = NULL;
-
-	mint_InputFree(input);
-	mint_TimerFree(timer);
-	mint_PhysFreeWorld(world);
-	TTF_CloseFont(ttfOpenSans);
-
-	SDL_Quit();
-}
-
+/*
 void drawExample()
 {
 	SDL_Event e;
@@ -769,3 +713,4 @@ void tilemapExample()
 
 	mint_TilemapFree(tilemap);
 }
+*/
