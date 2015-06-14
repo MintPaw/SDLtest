@@ -54,7 +54,7 @@ float mint_GeomDotProduct(MintFloatPoint* a, MintFloatPoint* b)
 
 void mint_GeomNormalizeFloatPoint(MintFloatPoint* point, float multiply)
 {
-	float highest = mint_MathMax(abs((int)point->x), abs((int)point->y));
+	float highest = (float)mint_MathMax(abs((int)point->x), abs((int)point->y));
 	point->x /= highest;
 	point->y /= highest;
 
