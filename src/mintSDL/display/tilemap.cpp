@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 #include <string.h>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -26,14 +25,28 @@ void mint_TilemapCreateFromCSV(SDL_Renderer* renderer, SDL_Surface* destSurface,
 	int colsInMap = mint_TransGetWidth(tilemap->map->trans) / tilemap->tileWidth;
 	int rowsInMap = mint_TransGetHeight(tilemap->map->trans) / tilemap->tileHeight;
 
-	char* data = mint_ReadAllText(path);
-	//NOTE (luke): maybe there is a better way to read rows and cells from a CSV
-	char **tokenLine, *toFree, *string, **tokenChar;
-
-	if (data != 0)
+	FILE* data = fopen(path, "r");
+	if (data == NULL)
 	{
-		
+		printf("Error loading the file.");
+		return;
+	}
+	//NOTE (luke): maybe there is a better way to read rows and cells from a CSV
+	char buffer[1024];
+
+	while (fgets(buffer, sizeof(buffer), data) != NULL)
+	{
+		buffer[strlen(buffer) - 1] = '\0';
+
+		printf(buffer);
 	}
 
 	free(data);
+}
+
+void mint_TilemapFree(MintTilemap* map)
+{
+	mint_TextureFree(map->map);
+	free(map);
+	map = NULL;
 }

@@ -15,6 +15,7 @@
 #include "mintSDL/display/draw.h"
 #include "mintSDL/display/rend.h"
 #include "mintSDL/display/texture.h"
+#include "mintSDL/display/tilemap.h"
 #include "mintSDL/maths/phys.h"
 #include "mintSDL/maths/geom.h"
 #include "mintSDL/util/input.h"
@@ -36,6 +37,7 @@ void buttonExample();
 void timerExample();
 void physicsExample();
 void collisionExample();
+void tilemapExample();
 
 /*
 
@@ -113,11 +115,12 @@ int main(int argc, char* args[])
 	// setAlphaInputExample();
 	//animationExample();
 	// transformExample();
-	textExample();
+	//textExample();
 	// buttonExample();
 	// timerExample();
 	// physicsExample();
 	//collisionExample();
+	tilemapExample();
 
 	close();
 
@@ -594,4 +597,25 @@ void collisionExample()
 
 	mint_TextureFree(box1);
 	mint_TextureFree(box2);
+}
+
+void tilemapExample()
+{
+	SDL_Event e;
+	char quit = 0;
+
+	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/Tilemap.png", 60, 60);
+	SDL_Surface* surface = NULL;
+
+	mint_TilemapCreateFromCSV(sdlRenderer, surface, "assets/info/tilemap_sample.txt", tilemap);
+
+	while (!quit)
+	{
+		if (SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+		}
+	}
+
+	mint_TilemapFree(tilemap);
 }
