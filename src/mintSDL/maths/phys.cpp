@@ -14,10 +14,11 @@ MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY)
 	return world;
 }
 
-MintPhys* mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density)
+void mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density)
 {
 	MintPhys* phys = (MintPhys*)malloc(sizeof(MintPhys));
 	phys->mintTexture = mintTexture;
+	mintTexture->phys = phys;
 
 	b2BodyDef groundBodyDef;
 	groundBodyDef.type = dynamic ? b2_dynamicBody : b2_staticBody;
@@ -36,8 +37,6 @@ MintPhys* mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, ch
 	phys->shape = shape;
 	phys->body = physWorld->world->CreateBody(&groundBodyDef);
 	phys->body->CreateFixture(&fixtureDef);
-
-	return phys;
 }
 
 void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY) { world->world->SetGravity({ gravityX, gravityY }); }
