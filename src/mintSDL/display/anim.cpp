@@ -15,6 +15,7 @@ MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture)
 
 	animMan->totalAnims = 0;
 	animMan->currentAnim = NULL;
+	animMan->anims = NULL;
 	animMan->mintTexture = mintTexture;
 
 	return animMan;
@@ -238,8 +239,10 @@ void mint_AnimManFree(MintAnimMan* animMan)
 		animMan->anims[i].frameRects = NULL;	
 	}
 
-	free(animMan->anims);
-	animMan->anims = NULL;
+	if (animMan->anims) {
+		free(animMan->anims);
+		animMan->anims = NULL;
+	}
 
 	free(animMan);
 	animMan = NULL;
