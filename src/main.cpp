@@ -21,7 +21,7 @@
 #include "mintSDL/util/timer.h"
 #include "mintSDL/system.h"
 
-void gameLoop();
+void gameLoop(MintSystem* sys);
 // void drawExample(MintSystem* sys);
 // void mintTextureExample(MintSystem* sys);
 // void setColourInputExample(MintSystem* sys);
@@ -72,25 +72,26 @@ int main(int argc, char* args[])
 #endif
 
 	sys = mint_SystemSetup();
-	mint_SystemInit(sys);
 
-	// sys->update = gameLoop(MintSystem* sys);
-	// sys->update = drawExample(MintSystem* sys);
-	// sys->update = mintTextureExample(MintSystem* sys);
-	// sys->update = setColourInputExample(MintSystem* sys);
-	// sys->update = setAlphaInputExample(MintSystem* sys);
-	// sys->update = animationExample(MintSystem* sys);
-	// sys->update = animationExample(MintSystem* sys);
-	// sys->update = transformExample(MintSystem* sys);
-	// sys->update = textExample(MintSystem* sys);
-	// sys->update = buttonExample(MintSystem* sys);
-	// sys->update = timerExample(MintSystem* sys);
-	// sys->update = physicsExample(MintSystem* sys);
-	// sys->update = collisionExample(MintSystem* sys);
-	// sys->update = texturePackerExample(MintSystem* sys);
-	// sys->update = playerExample(MintSystem* sys);
-	// sys->update = collisionExample(MintSystem* sys);
-	// sys->update = tilemapExample(MintSystem* sys);
+	sys->update = &gameLoop;
+	// sys->update = &drawExample;
+	// sys->update = &mintTextureExample;
+	// sys->update = &setColourInputExample;
+	// sys->update = &setAlphaInputExample;
+	// sys->update = &animationExample;
+	// sys->update = &animationExample;
+	// sys->update = &transformExample;
+	// sys->update = &textExample;
+	// sys->update = &buttonExample;
+	// sys->update = &timerExample;
+	// sys->update = &physicsExample;
+	// sys->update = &collisionExample;
+	// sys->update = &texturePackerExample;
+	// sys->update = &playerExample;
+	// sys->update = &collisionExample;
+	// sys->update = &tilemapExample;
+	
+	mint_SystemInit(sys);
 
 #ifdef _CRTDBG_MAP_ALLOC
 	_CrtDumpMemoryLeaks();
