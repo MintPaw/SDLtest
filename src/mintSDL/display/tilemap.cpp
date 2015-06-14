@@ -43,7 +43,7 @@ void mint_TilemapCreateFromCSV(SDL_Renderer* renderer, SDL_Surface* destSurface,
 		printf("Line: %s\n", buffer);
 	}
 
-	free(data);
+	fclose(data);
 }
 
 void mint_TilemapFree(MintTilemap* map)
