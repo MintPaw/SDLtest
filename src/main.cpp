@@ -41,6 +41,7 @@ void texturePackerExample();
 /*
 
 	Todo:
+		Fix warnings
 		Fix leaks
 		Make event handler
 		Make animation work properly
