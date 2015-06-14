@@ -1,4 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
+#define TILES_WIDE 30
+#define TILES_HIGH 16
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,7 +38,7 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 	//NOTE (luke): maybe there is a better way to read rows and cells from a CSV
 	char buffer[1024];
 	// NOTE(jeru): Note these limitations
-	char layerStrings[8][128][128] = { -99 };
+	char layerStrings[8][TILES_HIGH][TILES_WIDE] = { -99 };
 	char layerNumber = 0;
 	char rowNumber = 0;
 	char colNumber = 0;
@@ -74,7 +76,7 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 		}
 	}
 
-	mint_ArrayPrint(layerStrings[0][0], 20);
+	mint_ArrayPrint(layerStrings[0][0], TILES_WIDE);
 
 	fclose(data);
 }
