@@ -663,6 +663,7 @@ void playerExample()
 	player = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
 	mint_PhysEnable(player, world, 1, 1);
 	mint_PhysSetGravity(world, 0, 0);
+	mint_PhysSetDamping(player->phys, 50);
 	
 	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
 	for (i = 0; i < player->animMan->totalAnims; i++) mint_AnimGetByIndex(player->animMan, i)->loop = 1;
@@ -687,10 +688,10 @@ void playerExample()
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		if (mint_InputCheckKey(input, SDL_SCANCODE_LEFT)) mint_PhysSetVelocity(player->phys, -10, 0);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_RIGHT)) mint_PhysSetVelocity(player->phys, 10, 0);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysSetVelocity(player->phys, 0, -10);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysSetVelocity(player->phys, 0, 10);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_LEFT)) mint_PhysSetVelocity(player->phys, -5, 0);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_RIGHT)) mint_PhysSetVelocity(player->phys, 5, 0);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysSetVelocity(player->phys, 0, -5);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysSetVelocity(player->phys, 0, 5);
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 		
