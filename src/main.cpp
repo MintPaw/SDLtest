@@ -666,6 +666,7 @@ void playerExample()
 	char down;
 
 	char animStr[99];
+	char dirStr = GEOM_RIGHT;
 
 	player = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
 	mint_PhysEnable(player, world, 1, 1);
@@ -722,18 +723,30 @@ void playerExample()
 		} else if (left) {
 			strcat(animStr, "right");
 			player->trans->flip = SDL_FLIP_HORIZONTAL;
+			dirStr = GEOM_LEFT;
 		} else if (right) {
 			strcat(animStr, "right");
 			player->trans->flip = SDL_FLIP_NONE;
+			dirStr = GEOM_RIGHT;
 		} else if (up) {
 			strcat(animStr, "up");
 			player->trans->flip = SDL_FLIP_NONE;
+			dirStr = GEOM_UP;
 		} else if (down) {
 			strcat(animStr, "down");
 			player->trans->flip = SDL_FLIP_NONE;
+			dirStr = GEOM_DOWN;
 		} else {
-			strcat(animStr, "right");
-			player->trans->flip = SDL_FLIP_NONE;
+			if (dirStr == GEOM_LEFT) {
+				strcat(animStr, "right");
+				player->trans->flip = SDL_FLIP_HORIZONTAL;
+			} else {
+				player->trans->flip = SDL_FLIP_NONE;
+			}
+
+			if (dirStr == GEOM_RIGHT) strcat(animStr, "right");
+			if (dirStr == GEOM_UP) strcat(animStr, "up");
+			if (dirStr == GEOM_DOWN) strcat(animStr, "down");
 		}
 
 		strcat(animStr, up || down || left || right ? "_running_" : "_standing_");

@@ -1,6 +1,11 @@
 #ifndef GEOM_H
 #define GEOM_H
 
+#define GEOM_LEFT 0
+#define GEOM_RIGHT 1
+#define GEOM_UP 2
+#define GEOM_DOWN 3
+
 struct MintFloatPoint;
 struct MintCircle;
 
