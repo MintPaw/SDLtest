@@ -29,7 +29,7 @@ MintSystem* mint_SystemSetup()
 	sys->world = NULL;
 	sys->fonts = NULL;
 	sys->quit = 0;
-	
+
 	sys->init = NULL;
 	sys->preUpdate = NULL;
 	sys->update = NULL;
@@ -91,6 +91,8 @@ void _updateLoop(MintSystem* sys)
 		_draw(sys);
 		_postDraw(sys);
 	}
+
+	_close(sys);
 }
 
 void _preUpdate(MintSystem* sys)
@@ -134,9 +136,10 @@ void _close(MintSystem* sys)
 	SDL_DestroyRenderer(sys->sdlRenderer);
 	sys->sdlWindow = NULL;
 
-	// mint_InputFree(input);
-	// mint_TimerFree(timer);
-	// mint_PhysFreeWorld(world);
+	mint_InputFree(sys->input);
+	mint_TimerFree(sys->timer);
+	mint_PhysFreeWorld(sys->world);
+	free(sys);
 	// TTF_CloseFont(ttfOpenSans);
 
 	SDL_Quit();
