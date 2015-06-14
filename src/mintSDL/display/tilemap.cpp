@@ -14,6 +14,8 @@
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight)
 {
 	MintTilemap* tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
+	tilemap->tileWidth = tileWidth;
+	tilemap->tileHeight = tileHeight;
 	
 	SDL_Surface* surface = IMG_Load(graphicsPath);
 
@@ -27,10 +29,17 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 		printf("Failed to create texture from, SDL_Error: %s\n", SDL_GetError());
 	}
 
-	SDL_FreeSurface(surface);
+	int i;
+	int j;
+	int currentRect = 0;
+	for (i = 0; i < surface->h / tileHeight; i++) {
+		for (j = 0; j < surface->w / tileWidth; j++) {
+			tilemap->tileRects[currentRect] = { i * tileWidth, j * tileHeight, tileWidth, tileHeight };
+			currentRect++;
+		}
+	}
 
-	tilemap->tileWidth = tileWidth;
-	tilemap->tileHeight = tileHeight;
+	SDL_FreeSurface(surface);
 
 	return tilemap;
 }
@@ -82,9 +91,6 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 			rowNumber++;
 		}
 	}
-
-	int i;
-	for (i = 0; i < TILES_HIGH; i++) mint_ArrayPrint(layerStrings[0][i], TILES_WIDE);
 
 	fclose(data);
 }
