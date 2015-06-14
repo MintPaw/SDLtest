@@ -762,7 +762,7 @@ void playerExample()
 		mint_TextureRender(player);
 
 		SDL_RenderPresent(sdlRenderer);
-		if ((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks) > 0) SDL_Delay((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks));
+		if ((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks) > 0) SDL_Delay((int)((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks)));
 	}
 
 	mint_TextureFree(player);
