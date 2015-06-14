@@ -71,7 +71,7 @@ MintPhysWorld *world;
 int main(int argc, char* args[])
 {
 #ifdef _CRTDBG_MAP_ALLOC
-	// _CrtSetBreakAlloc(112);
+	// _CrtSetBreakAlloc(244);
 #endif
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -645,4 +645,6 @@ void texturePackerExample()
 
 		SDL_RenderPresent(sdlRenderer);
 	}
+
+	for (i = 0; i < ANIMS; i++) mint_TextureFree(player[i]);
 }
