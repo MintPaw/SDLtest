@@ -7,7 +7,9 @@ struct MintTilemap;
 #include "mintSDL/display/texture.h"
 
 struct MintTilemap {
-	MintTexture* map;
+	SDL_Texture* texture;
+	SDL_Rect tileRects[256];
+	
 	int tileWidth;
 	int tileHeight;
 

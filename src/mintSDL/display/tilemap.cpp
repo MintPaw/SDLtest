@@ -14,8 +14,21 @@
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight)
 {
 	MintTilemap* tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
+	
+	SDL_Surface* surface = IMG_Load(graphicsPath);
 
-	tilemap->map = mint_TextureFromPNG(renderer, graphicsPath);
+	if (surface == NULL) {
+		printf("Failed to create surface from %s, SDL_Error: %s\n", graphicsPath, SDL_GetError());
+		return NULL;
+	}
+
+	tilemap->texture = SDL_CreateTextureFromSurface(renderer, surface);
+	if (tilemap->texture == NULL) {
+		printf("Failed to create texture from, SDL_Error: %s\n", SDL_GetError());
+	}
+
+	SDL_FreeSurface(surface);
+
 	tilemap->tileWidth = tileWidth;
 	tilemap->tileHeight = tileHeight;
 
@@ -24,11 +37,6 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 
 void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 {
-	SDL_Texture* source = tilemap->map->texture;
-
-	int colsInMap = mint_TransGetWidth(tilemap->map->trans) / tilemap->tileWidth;
-	int rowsInMap = mint_TransGetHeight(tilemap->map->trans) / tilemap->tileHeight;
-
 	FILE* data = fopen(dataPath, "r");
 	if (data == NULL)
 	{
@@ -70,20 +78,20 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 				token = strtok(NULL, ",");
 				colNumber++;
 			}
-			// printf("Would add %s to [%d, %d, X]\n", buffer, layerNumber, rowNumber);
 
 			rowNumber++;
 		}
 	}
 
-	mint_ArrayPrint(layerStrings[0][0], TILES_WIDE);
+	int i;
+	for (i = 0; i < TILES_HIGH; i++) mint_ArrayPrint(layerStrings[0][i], TILES_WIDE);
 
 	fclose(data);
 }
 
 void mint_TilemapFree(MintTilemap* map)
 {
-	mint_TextureFree(map->map);
+	SDL_DestroyTexture(map->texture);
 	free(map);
 	map = NULL;
 }

@@ -45,6 +45,8 @@ void tilemapExample();
 /*
 
 	Todo:
+		Abstract texture loading?
+		Local/global transform
 		Add magic number defines
 		main.cpp brace format
 		Optimize XML
