@@ -61,14 +61,13 @@ void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath)
 				currentToken++;
 				token = strtok(NULL, "\"");
 			}
-			// printf("Name %s", tokens[1]);
+
 			for (i = strlen(tokens[1]); ; i--) {
 				if (tokens[1][i] == '_') {
 					tokens[1][i+1] = '\0';
 					break;
 				}
 			}
-			// printf(" resolved to %s\n", tokens[1]);
 
 			strcpy(names[frameCount], tokens[1]);
 			rects[frameCount].x = atoi(tokens[3]);
@@ -82,14 +81,14 @@ void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath)
 	fclose(fp);
 
 	int totalAnims = 0;
-	char* currentName = (char*)malloc(sizeof(char*)*99);
+	char* currentName;
 
-	strcpy(currentName, names[0]);
+	currentName = names[0];
 
 	for (i = 0; i < frameCount; i++) {
 		if (strcmp(currentName, names[i])) {
 			totalAnims++;
-			strcpy(currentName, names[i]);
+			currentName = names[i];
 		}
 	}
 
@@ -116,18 +115,16 @@ void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath)
 			}
 			startFrame = endFrame;
 			currentAnim++;
-			strcpy(currentName, names[i]);
+			currentName = names[i];
 		}
 	}
-
-	free(currentName);
 }
 
 void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames, int frameRate)
 {
 	MintAnim* anim = mint_AnimGetByIndex(animMan, index);
 
-	anim->name = (char*)malloc(sizeof(char)*strlen(name));
+	anim->name = (char*)malloc(sizeof(char)*(strlen(name) + 1));
 	strcpy(anim->name, name);
 
 	anim->frameRects = (SDL_Rect*)malloc(sizeof(SDL_Rect) * totalFrames);
@@ -235,7 +232,8 @@ void mint_AnimManFree(MintAnimMan* animMan)
 	int i;
 	for (i = 0; i < animMan->totalAnims; i++) {
 		free(animMan->anims[i].frameRects);
-		// free(animMan->anims[i].name);
+		free(animMan->anims[i].name);
+		animMan->anims[i].name = NULL;
 		animMan->anims[i].frameRects = NULL;	
 	}
 
