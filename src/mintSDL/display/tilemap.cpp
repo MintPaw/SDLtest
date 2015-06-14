@@ -105,6 +105,7 @@ void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer)
 		for (j = 0; j < TILES_WIDE; j++) {
 			quad = { j * tilemap->tileWidth, i * tilemap->tileHeight, tilemap->tileWidth, tilemap->tileHeight };
 			clip = tilemap->tileRects[tilemap->layers[layer][j][i]];
+			// printf("quad: %d %d %d %d\n", quad.x, quad.y, quad.w, quad.h);
 
 			SDL_RenderCopy(tilemap->renderer, tilemap->texture, &clip, &quad);
 		}

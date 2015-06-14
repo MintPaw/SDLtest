@@ -4,6 +4,7 @@
 #define TILES_WIDE 30
 #define TILES_HIGH 16
 #define TOTAL_LAYERS 5
+#define TOTAL_TILES 260
 
 struct MintTilemap;
 
@@ -13,7 +14,7 @@ struct MintTilemap;
 struct MintTilemap {
 	SDL_Renderer* renderer;
 	SDL_Texture* texture;
-	SDL_Rect tileRects[256];
+	SDL_Rect tileRects[TOTAL_TILES];
 
 	int tileWidth;
 	int tileHeight;
