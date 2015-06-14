@@ -164,6 +164,16 @@ MintAnim* mint_AnimGetByIndex(MintAnimMan* animMan, int index)
 	return &animMan->anims[index];
 }
 
+MintAnim* mint_AnimGetByName(MintAnimMan* animMan, char* name)
+{
+	int i;
+	for (i = 0; i < animMan->totalAnims; i++) {
+		if (!strcmp(animMan->anims[i].name, name)) return &animMan->anims[i];
+	}
+
+	return NULL;
+}
+
 void mint_AnimPlay(MintAnim* anim)
 {
 	anim->man->currentAnim = anim;

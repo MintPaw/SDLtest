@@ -35,6 +35,7 @@ void mint_AnimUpdate(MintAnimMan* animMan, float elapsed);
 void mint_AnimUpdateClip(MintAnimMan* animMan);
 void mint_AnimUpdateAsButton(MintAnimMan* animMan, MintInput* input);
 MintAnim* mint_AnimGetByIndex(MintAnimMan* animMan, int index);
+MintAnim* mint_AnimGetByName(MintAnimMan* animMan, char* name);
 void mint_AnimPlay(MintAnim* anim);
 void mint_AnimNextFrame(MintAnimMan* animMan);
 void mint_AnimGotoFrame(MintAnimMan* animMan, int index);
