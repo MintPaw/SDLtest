@@ -1,6 +1,4 @@
 #define _CRT_SECURE_NO_WARNINGS
-#define TILES_WIDE 30
-#define TILES_HIGH 16
 
 #include <stdio.h>
 #include <stdlib.h>

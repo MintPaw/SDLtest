@@ -1,6 +1,10 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
 
+#define TILES_WIDE 30
+#define TILES_HIGH 16
+#define TOTAL_LAYERS 5
+
 struct MintTilemap;
 
 #include <SDL.h>
@@ -14,7 +18,7 @@ struct MintTilemap {
 	int tileWidth;
 	int tileHeight;
 
-	char layers[8][128][128];
+	char layers[TOTAL_LAYERS][TILES_HIGH][TILES_WIDE];
 };
 
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight);
