@@ -14,6 +14,7 @@
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight)
 {
 	MintTilemap* tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
+	tilemap->renderer = renderer;
 	tilemap->tileWidth = tileWidth;
 	tilemap->tileHeight = tileHeight;
 	
