@@ -45,6 +45,7 @@ void tilemapExample();
 /*
 
 	Todo:
+		Build collision on tilemap
 		Make array type?
 		Clip, rect, quad, names?
 		Abstract texture loading?
@@ -148,10 +149,8 @@ void gameLoop()
 	SDL_Event e;
 	char quit = 0;
 
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
@@ -184,10 +183,8 @@ void drawExample()
 	SDL_Color colour0 = { 255, 0, 0, 255 };
 	SDL_Color colour1 = { 255, 0, 255, 255 };
 
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
@@ -210,10 +207,8 @@ void mintTextureExample()
 
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
 
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
@@ -236,10 +231,8 @@ void setColourInputExample()
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
 
 	SDL_Color colour = { 255, 255, 255, 0 };
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
@@ -270,10 +263,8 @@ void setAlphaInputExample()
 	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
 
 	unsigned char alpha = 255;
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
@@ -304,12 +295,10 @@ void animationExample()
 	mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(texture->animMan, 0), 64, 1);
 	mint_AnimPlay(mint_AnimGetByIndex(texture->animMan, 0));
 
-	while (!quit)
-	{
+	while (!quit) {
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
-		while (SDL_PollEvent(&e) != 0)
-		{
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
@@ -332,10 +321,8 @@ void transformExample()
 
 	MintTexture* arrow = mint_TextureFromPNG(sdlRenderer, "assets/img/arrow.png");
 
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
@@ -370,10 +357,8 @@ void textExample()
 
 	MintTexture* text = mint_TextureFromText(sdlRenderer, ttfOpenSans, "This is some test text", {0, 0, 0, 0});
 
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
@@ -407,10 +392,8 @@ void buttonExample()
 		mint_TransSetX(buttons[i]->trans, (mint_TransGetWidth(buttons[i]->trans) + 20) * i);
 	}
 
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
 			    e.type == SDL_KEYUP ||
 			    e.type == SDL_MOUSEMOTION ||
@@ -447,10 +430,8 @@ void timerExample()
 	timer->secondsPerReport = 1;
 	timer->secondsSinceLastReport = 1;
 
-	while (!quit)
-	{
-		while (SDL_PollEvent(&e) != 0)
-		{
+	while (!quit) {
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
 			    e.type == SDL_KEYUP ||
 	        e.type == SDL_MOUSEMOTION ||
@@ -491,12 +472,10 @@ void physicsExample()
 
 	mint_PhysSetGravity(world, 0, 0);
 
-	while (!quit)
-	{
+	while (!quit) {
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
-		while (SDL_PollEvent(&e) != 0)
-		{
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
 			    e.type == SDL_KEYUP ||
 			    e.type == SDL_MOUSEMOTION ||
@@ -550,12 +529,10 @@ void collisionExample()
 
 	mint_PhysSetGravity(world, 0, 5);
 
-	while (!quit)
-	{
+	while (!quit) {
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
-		while (SDL_PollEvent(&e) != 0)
-		{
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
 			    e.type == SDL_KEYUP ||
 			    e.type == SDL_MOUSEMOTION ||
@@ -633,12 +610,10 @@ void texturePackerExample()
 		mint_TransSetX(player[i]->trans, 50 * i);
 	}
 
-	while (!quit)
-	{
+	while (!quit) {
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 		
-		while (SDL_PollEvent(&e) != 0)
-		{
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
 			    e.type == SDL_KEYUP ||
 			    e.type == SDL_MOUSEMOTION ||
@@ -689,12 +664,10 @@ void playerExample()
 	mint_TransSetX(player->trans, 200);
 	mint_TransSetY(player->trans, 200);
 
-	while (!quit)
-	{
+	while (!quit) {
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 		
-		while (SDL_PollEvent(&e) != 0)
-		{
+		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
 			    e.type == SDL_KEYUP ||
 			    e.type == SDL_MOUSEMOTION ||
@@ -784,8 +757,7 @@ void tilemapExample()
 
 	mint_TilemapGenerateFromTiled(tilemap, "assets/map/test1.tmx");
 
-	while (!quit)
-	{
+	while (!quit) {
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		if (SDL_PollEvent(&e) != 0)
