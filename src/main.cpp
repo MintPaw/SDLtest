@@ -778,7 +778,7 @@ void tilemapExample()
 	SDL_Event e;
 	char quit = 0;
 	
-	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/tilemap.png", 60, 60);
+	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/tilemap.png", 64, 64);
 
 	mint_TilemapGenerateFromTiled(tilemap, "assets/map/test1.tmx");
 
@@ -797,7 +797,15 @@ void tilemapExample()
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
+		mint_RendClearSdlRenderer(sdlRenderer);
 
+		mint_TilemapRenderLayer(tilemap, 0);
+		mint_TilemapRenderLayer(tilemap, 1);
+		mint_TilemapRenderLayer(tilemap, 2);
+		mint_TilemapRenderLayer(tilemap, 3);
+		// mint_TilemapRenderLayer(tilemap, 4);
+
+		SDL_RenderPresent(sdlRenderer);
 	}
 
 	mint_TilemapFree(tilemap);
