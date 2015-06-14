@@ -98,14 +98,25 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 
 	int startFrame = 0;
 	int endFrame = 0;
+	int currentAnim = 0;
 
 	strcpy(currentName, names[0]);
 
+	// NOTE(jeru): Make sure everything ends with _XXXX.png
 	for (i = 0; i < frameCount; i++) {
 		if (strcmp(currentName, names[i])) {
 			endFrame = i;
-			printf("Animation %s is %d frames long\n", currentName, endFrame - startFrame);
+			mint_AnimCreate(animMan, currentAnim, currentName, endFrame - startFrame, 60);
+			for (j = startFrame; j < endFrame; j++) {
+				mint_AnimDefineFrame(mint_AnimGetByIndex(animMan, currentAnim),
+			                       j - startFrame,
+			                       rects[j].x,
+			                       rects[j].y,
+			                       rects[j].w,
+			                       rects[j].h);
+			}
 			startFrame = endFrame;
+			currentAnim++;
 			strcpy(currentName, names[i]);
 		}
 	}
