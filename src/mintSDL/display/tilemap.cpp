@@ -19,7 +19,7 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 	return tilemap;
 }
 
-void mint_TilemapGenerateFromCSV(MintTilemap* tilemap, char* dataPath)
+void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 {
 	SDL_Texture* source = tilemap->map->texture;
 

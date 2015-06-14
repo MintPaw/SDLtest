@@ -775,7 +775,7 @@ void tilemapExample()
 	
 	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/tilemap.png", 60, 60);
 
-	mint_TilemapGenerateFromCSV(tilemap, "assets/map/test1.tmx");
+	mint_TilemapGenerateFromTiled(tilemap, "assets/map/test1.tmx");
 
 	while (!quit)
 	{
