@@ -22,7 +22,7 @@
 #include "mintSDL/system.h"
 
 void gameLoop(MintSystem* sys);
-// void drawExample(MintSystem* sys);
+void drawExample(MintSystem* sys);
 // void mintTextureExample(MintSystem* sys);
 // void setColourInputExample(MintSystem* sys);
 // void setAlphaInputExample(MintSystem* sys);
@@ -73,8 +73,8 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup();
 
-	sys->update = &gameLoop;
-	// sys->update = &drawExample;
+	// sys->update = &gameLoop;
+	sys->update = &drawExample;
 	// sys->update = &mintTextureExample;
 	// sys->update = &setColourInputExample;
 	// sys->update = &setAlphaInputExample;
@@ -90,7 +90,7 @@ int main(int argc, char* args[])
 	// sys->update = &playerExample;
 	// sys->update = &collisionExample;
 	// sys->update = &tilemapExample;
-	
+
 	mint_SystemInit(sys);
 
 #ifdef _CRTDBG_MAP_ALLOC
@@ -104,49 +104,33 @@ void gameLoop(MintSystem* sys)
 {
 	
 }
-/*
+
 void drawExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
-
 	SDL_Color colour0 = { 255, 0, 0, 255 };
 	SDL_Color colour1 = { 255, 0, 255, 255 };
 
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 			
-			mint_DrawRect(sdlRenderer, 0, 0, 100, 100, &colour0);
-			mint_DrawLine(sdlRenderer, 100, 100, 200, 200, &colour0);
-			mint_DrawLine(sdlRenderer, 200, 200, 300, 100, &colour0);
-			mint_DrawRect(sdlRenderer, 300, 50, 100, 50, &colour1);
+			mint_DrawRect(sys, 0, 0, 100, 100, &colour0);
+			mint_DrawLine(sys, 100, 100, 200, 200, &colour0);
+			mint_DrawLine(sys, 200, 200, 300, 100, &colour0);
+			mint_DrawRect(sys, 300, 50, 100, 50, &colour1);
 			
-			SDL_RenderPresent(sdlRenderer);
-		}
-	}
+// Post render
 }
-
+/*
 void mintTextureExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
+	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
 
-	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
 
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
-
-			mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 			
 			mint_TextureRender(texture);
 			
-			SDL_RenderPresent(sdlRenderer);
+// Post render
 		}
 	}
 
@@ -155,18 +139,12 @@ void mintTextureExample(MintSystem* sys)
 
 void setColourInputExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
+	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
 
-	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
+	SDL_Color colour = { 255, 255, 255, 0 }
 
-	SDL_Color colour = { 255, 255, 255, 0 };
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 			
 			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) colour.r += 10;
 			if (mint_InputCheckKey(input, SDL_SCANCODE_A)) colour.r -= 10;
@@ -178,7 +156,7 @@ void setColourInputExample(MintSystem* sys)
 			mint_TextureRender(texture);
 			mint_RendSetColour(texture->rend, &colour);
 			
-			SDL_RenderPresent(sdlRenderer);
+// Post render
 		}
 	}
 
@@ -187,18 +165,12 @@ void setColourInputExample(MintSystem* sys)
 
 void setAlphaInputExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
+	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
 
-	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/pngSplash.png");
+	unsigned char alpha = 255
 
-	unsigned char alpha = 255;
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 			
 			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) alpha += 10;
 			if (mint_InputCheckKey(input, SDL_SCANCODE_A)) alpha -= 10;
@@ -206,7 +178,7 @@ void setAlphaInputExample(MintSystem* sys)
 			mint_RendSetAlpha(texture->rend, alpha);
 			mint_TextureRender(texture);
 			
-			SDL_RenderPresent(sdlRenderer);
+// Post render
 		}
 	}
 
@@ -215,10 +187,7 @@ void setAlphaInputExample(MintSystem* sys)
 
 void animationExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
-
-	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/animation.png");
+	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/animation.png");
 	mint_AnimManInit(texture->animMan, 1);
 
 	mint_AnimCreate(texture->animMan, 0, "anim1", 4, 15);
@@ -229,16 +198,14 @@ void animationExample(MintSystem* sys)
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 
 		mint_TextureUpdate(texture, timer->elapsed);
 		mint_TextureRender(texture);
 		
-		SDL_RenderPresent(sdlRenderer);
+// Post render
 	}
 
 	mint_TextureFree(texture);
@@ -246,15 +213,8 @@ void animationExample(MintSystem* sys)
 
 void transformExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
+	MintTexture* arrow = mint_TextureFromPNG(sys, "assets/img/arrow.png");
 
-	MintTexture* arrow = mint_TextureFromPNG(sdlRenderer, "assets/img/arrow.png");
-
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
 			if (mint_InputCheckKey(input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
@@ -269,11 +229,11 @@ void transformExample(MintSystem* sys)
 			if (mint_InputCheckKey(input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
 			if (mint_InputCheckKey(input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
-			mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 
 			mint_TextureRender(arrow);
 			
-			SDL_RenderPresent(sdlRenderer);
+// Post render
 		}
 	}
 
@@ -282,21 +242,14 @@ void transformExample(MintSystem* sys)
 
 void textExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
+	MintTexture* text = mint_TextureFromText(sys, ttfOpenSans, "This is some test text", {0, 0, 0, 0});
 
-	MintTexture* text = mint_TextureFromText(sdlRenderer, ttfOpenSans, "This is some test text", {0, 0, 0, 0});
 
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
-
-			mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 
 			mint_TextureRender(text);
 			
-			SDL_RenderPresent(sdlRenderer);
+// Post render
 		}
 	}
 
@@ -305,14 +258,11 @@ void textExample(MintSystem* sys)
 
 void buttonExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
-
 	MintTexture* buttons[3];
 
 	int i;
 	for (i = 0; i < 3; i++) {
-		buttons[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/button.png");
+		buttons[i] = mint_TextureFromPNG(sys, "assets/img/button.png");
 
 		mint_AnimManInit(buttons[i]->animMan, 1);
 		mint_AnimCreate(buttons[i]->animMan, 0, "default", 3, 60);
@@ -322,8 +272,6 @@ void buttonExample(MintSystem* sys)
 		mint_TransSetX(buttons[i]->trans, (mint_TransGetWidth(buttons[i]->trans) + 20) * i);
 	}
 
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
 			    e.type == SDL_KEYUP ||
 			    e.type == SDL_MOUSEMOTION ||
@@ -332,14 +280,14 @@ void buttonExample(MintSystem* sys)
 			    
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
-			mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 
 			for (i = 0; i < 3; i++) {
 				mint_AnimUpdateAsButton(buttons[i]->animMan, input);
 				mint_TextureRender(buttons[i]);
 			}
 			
-			SDL_RenderPresent(sdlRenderer);
+// Post render
 		}
 	}
 
@@ -348,9 +296,6 @@ void buttonExample(MintSystem* sys)
 
 void timerExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
-
 	SDL_Point objectAt = { 0, 0 };
 	SDL_Color colour = { 255, 0, 0, 255 };
 	char dir = 1;
@@ -360,8 +305,6 @@ void timerExample(MintSystem* sys)
 	timer->secondsPerReport = 1;
 	timer->secondsSinceLastReport = 1;
 
-	while (!quit) {
-		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
 			    e.type == SDL_KEYUP ||
 	        e.type == SDL_MOUSEMOTION ||
@@ -385,18 +328,15 @@ void timerExample(MintSystem* sys)
 			objectAt.y = 0;
 		}
 
-		mint_RendClearSdlRenderer(sdlRenderer);
-		mint_DrawRect(sdlRenderer, objectAt.x, objectAt.y, 10, 10, &colour);
-		SDL_RenderPresent(sdlRenderer);
+// Pre render
+		mint_DrawRect(sys, objectAt.x, objectAt.y, 10, 10, &colour);
+// Post render
 	}
 }
 
 void physicsExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
-
-	MintTexture* texture = mint_TextureFromPNG(sdlRenderer, "assets/img/ball.png");
+	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/ball.png");
 	mint_PhysEnable(texture, world, 1, 3);
 	float speed = 5;
 
@@ -420,14 +360,14 @@ void physicsExample(MintSystem* sys)
 		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture->phys, 0, -speed);
 		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture->phys, 0, speed);
 
-		mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 
 		mint_TextureUpdate(texture, timer->elapsed);
 		mint_TextureRender(texture);
 		
 		mint_PhysStepWorld(world, timer->elapsed);
 
-		SDL_RenderPresent(sdlRenderer);
+// Post render
 	}
 
 	mint_TextureFree(texture);
@@ -435,9 +375,6 @@ void physicsExample(MintSystem* sys)
 
 void collisionExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
-
 	srand((int)time(NULL));
 
 	float secondsTillRegen = 0;
@@ -445,8 +382,8 @@ void collisionExample(MintSystem* sys)
 	SDL_Color red = { 255, 0, 0, 255 };
 	SDL_Color blue = { 0, 0, 255, 255 };
 
-	MintTexture* box1 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
-	MintTexture* box2 = mint_TextureFromPNG(sdlRenderer, "assets/img/box.png");
+	MintTexture* box1 = mint_TextureFromPNG(sys, "assets/img/box.png");
+	MintTexture* box2 = mint_TextureFromPNG(sys, "assets/img/box.png");
 
 	mint_PhysEnable(box1, world, 1, 1);
 	mint_PhysEnable(box2, world, 1, 1);
@@ -502,7 +439,7 @@ void collisionExample(MintSystem* sys)
 			mint_PhysSetVelocity(box2->phys, velo2.x, velo2.y);
 		}
 
-		mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 
 		mint_PhysStepWorld(world, timer->elapsed);
 
@@ -512,7 +449,7 @@ void collisionExample(MintSystem* sys)
 		mint_TextureRender(box1);
 		mint_TextureRender(box2);
 
-		SDL_RenderPresent(sdlRenderer);
+// Post render
 	}
 
 	mint_TextureFree(box1);
@@ -521,9 +458,6 @@ void collisionExample(MintSystem* sys)
 
 void texturePackerExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
-
 	// TODO(jeru): Change the 10 to a more relevant number
 	const int ANIMS = 10;
 
@@ -531,7 +465,7 @@ void texturePackerExample(MintSystem* sys)
 
 	int i;
 	for (i = 0; i < ANIMS; i++) {
-		player[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
+		player[i] = mint_TextureFromPNG(sys, "assets/img/player_blue.png");
 		mint_AnimCreateFromXML(player[i]->animMan, "assets/img/player_blue.xml");
 		
 		mint_AnimPlay(mint_AnimGetByIndex(player[i]->animMan, i));
@@ -553,14 +487,14 @@ void texturePackerExample(MintSystem* sys)
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 		
 		for (i = 0; i < ANIMS; i++) {
 			mint_TextureUpdate(player[i], timer->elapsed);
 			mint_TextureRender(player[i]);
 		}
 
-		SDL_RenderPresent(sdlRenderer);
+// Post render
 	}
 
 	for (i = 0; i < ANIMS; i++) mint_TextureFree(player[i]);
@@ -568,9 +502,6 @@ void texturePackerExample(MintSystem* sys)
 
 void playerExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
-
 	MintTexture* player;
 	int i;
 	char left;
@@ -581,7 +512,7 @@ void playerExample(MintSystem* sys)
 	char animStr[99];
 	char dirStr = GEOM_RIGHT;
 
-	player = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
+	player = mint_TextureFromPNG(sys, "assets/img/player_blue.png");
 	mint_PhysEnable(player, world, 1, 1);
 	mint_PhysSetGravity(world, 0, 0);
 	mint_PhysSetDamping(player->phys, 50);
@@ -664,13 +595,13 @@ void playerExample(MintSystem* sys)
 
 		mint_AnimPlay(mint_AnimGetByName(player->animMan, animStr));
 
-		mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 		
 		mint_PhysStepWorld(world, timer->elapsed);
 		mint_TextureUpdate(player, timer->elapsed);
 		mint_TextureRender(player);
 
-		SDL_RenderPresent(sdlRenderer);
+// Post render
 		if ((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks) > 0) SDL_Delay((int)((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks)));
 	}
 
@@ -679,10 +610,8 @@ void playerExample(MintSystem* sys)
 
 void tilemapExample(MintSystem* sys)
 {
-	SDL_Event e;
-	char quit = 0;
 	
-	MintTilemap* tilemap = mint_TilemapCreate(sdlRenderer, "assets/img/tilemap.png", 64, 64, 0);
+	MintTilemap* tilemap = mint_TilemapCreate(sys, "assets/img/tilemap.png", 64, 64, 0);
 	mint_RendFullScreen(sdlWindow, 1);
 
 	mint_TilemapGenerateFromTiled(tilemap, "assets/map/test1.tmx");
@@ -701,7 +630,7 @@ void tilemapExample(MintSystem* sys)
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		mint_RendClearSdlRenderer(sdlRenderer);
+// Pre render
 
 		mint_TilemapRenderLayer(tilemap, 0);
 		mint_TilemapRenderLayer(tilemap, 1);
@@ -709,7 +638,7 @@ void tilemapExample(MintSystem* sys)
 		mint_TilemapRenderLayer(tilemap, 3);
 		// mint_TilemapRenderLayer(tilemap, 4);
 
-		SDL_RenderPresent(sdlRenderer);
+// Post render
 	}
 
 	mint_TilemapFree(tilemap);

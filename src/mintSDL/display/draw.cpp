@@ -1,17 +1,17 @@
 #include <SDL.h>
-#include "mintSDL/display/rend.h"
+#include "mintSDL/system.h"
 #include "mintSDL/display/draw.h"
 
-void mint_DrawRect(SDL_Renderer* renderer, int x, int y, int width, int height, SDL_Color* colour)
+void mint_DrawRect(MintSystem* sys, int x, int y, int width, int height, SDL_Color* colour)
 {
 	SDL_Rect rect = { x, y, width, height };
 
-	SDL_SetRenderDrawColor(renderer, colour->r, colour->g, colour->b, colour->a);
-	SDL_RenderFillRect(renderer, &rect);
+	SDL_SetRenderDrawColor(sys->sdlRenderer, colour->r, colour->g, colour->b, colour->a);
+	SDL_RenderFillRect(sys->sdlRenderer, &rect);
 }
 
-void mint_DrawLine(SDL_Renderer* renderer, int x1, int y1, int x2, int y2, SDL_Color* colour)
+void mint_DrawLine(MintSystem* sys, int x1, int y1, int x2, int y2, SDL_Color* colour)
 {
-	SDL_SetRenderDrawColor(renderer, colour->r, colour->g, colour->b, colour->a);
-	SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+	SDL_SetRenderDrawColor(sys->sdlRenderer, colour->r, colour->g, colour->b, colour->a);
+	SDL_RenderDrawLine(sys->sdlRenderer, x1, y1, x2, y2);
 }
