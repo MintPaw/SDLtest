@@ -779,8 +779,15 @@ void tilemapExample()
 
 	while (!quit)
 	{
+		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 		if (SDL_PollEvent(&e) != 0)
 		{
+			if (e.type == SDL_KEYDOWN ||
+			    e.type == SDL_KEYUP ||
+			    e.type == SDL_MOUSEMOTION ||
+			    e.type == SDL_MOUSEBUTTONDOWN ||
+			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+			
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 	}
