@@ -688,10 +688,10 @@ void playerExample()
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		if (mint_InputCheckKey(input, SDL_SCANCODE_LEFT)) mint_PhysSetVelocity(player->phys, -5, 0);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_RIGHT)) mint_PhysSetVelocity(player->phys, 5, 0);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysSetVelocity(player->phys, 0, -5);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysSetVelocity(player->phys, 0, 5);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_LEFT)) mint_PhysSetVelocity(player->phys, -5, mint_PhysGetVelocity(player->phys).y);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_RIGHT)) mint_PhysSetVelocity(player->phys, 5, mint_PhysGetVelocity(player->phys).x);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, -5);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, 5);
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 		

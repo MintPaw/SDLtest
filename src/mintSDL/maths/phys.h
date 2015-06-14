@@ -31,6 +31,7 @@ void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY);
 void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY);
 void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY);
 void mint_PhysSetDamping(MintPhys* phys, float damping);
+b2Vec2 mint_PhysGetVelocity(MintPhys* phys);
 
 void mint_PhysStepWorld(MintPhysWorld* world, float elapsed);
 void mint_PhysUpdate(MintPhys* phys, float elapsed);
