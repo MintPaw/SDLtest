@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 char* mint_ReadAllText(char* fileName)
 {
@@ -10,7 +11,7 @@ char* mint_ReadAllText(char* fileName)
 
 	fopen_s(&pFile, fileName, "rb");
 
-	if (pfile == NULL) {
+	if (pFile == NULL) {
 		printf("Could not open the file");
 		return 0;
 	}

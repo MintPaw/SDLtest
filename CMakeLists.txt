@@ -30,6 +30,7 @@ add_executable(SDLtest
 	src/mintSDL/maths/maths.cpp
 	src/mintSDL/util/input.cpp
 	src/mintSDL/util/timer.cpp
+	src/mintSDL/util/io.cpp
 	src/mintSDL/gui/textbox.cpp
 )
 
