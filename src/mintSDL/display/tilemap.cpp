@@ -32,8 +32,8 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 	int i;
 	int j;
 	int currentRect = 0;
-	for (i = 0; i < surface->h / tileHeight; i++) {
-		for (j = 0; j < surface->w / tileWidth; j++) {
+	for (i = 0; i < surface->w / tileWidth; i++) {
+		for (j = 0; j < surface->h / tileHeight; j++) {
 			tilemap->tileRects[currentRect] = { i * tileWidth, j * tileHeight, tileWidth, tileHeight };
 			currentRect++;
 		}
