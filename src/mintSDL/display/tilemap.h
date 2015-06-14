@@ -10,6 +10,10 @@ struct MintTilemap {
 	MintTexture* map;
 	int tileWidth;
 	int tileHeight;
+
+	char graphicalTopLayerData[128][128];
+	char physicalLayerData[128][128];
+	char graphicalBotLayerData[128][128];
 };
 
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight);
