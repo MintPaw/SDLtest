@@ -75,6 +75,7 @@ void mint_PhysFree(MintPhys* phys)
 
 void mint_PhysFreeWorld(MintPhysWorld* world)
 {
+	world->world->~b2World();
 	free(world->world);
 	free(world);
 }
