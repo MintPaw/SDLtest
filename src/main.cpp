@@ -803,7 +803,7 @@ void tilemapExample()
 		mint_TilemapRenderLayer(tilemap, 1);
 		mint_TilemapRenderLayer(tilemap, 2);
 		mint_TilemapRenderLayer(tilemap, 3);
-		// mint_TilemapRenderLayer(tilemap, 4);
+		mint_TilemapRenderLayer(tilemap, 4);
 
 		SDL_RenderPresent(sdlRenderer);
 	}
