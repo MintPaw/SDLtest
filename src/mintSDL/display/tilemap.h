@@ -26,6 +26,5 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tile
 void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath);
 void mint_TilemapFree(MintTilemap* map);
 void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer);
-char** strspl(char* str, char* del);
 
 #endif
