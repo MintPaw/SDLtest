@@ -22,8 +22,8 @@
 #include "mintSDL/util/input.h"
 #include "mintSDL/util/timer.h"
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 832;
 
 void close();
 void gameLoop();
@@ -45,6 +45,7 @@ void tilemapExample();
 /*
 
 	Todo:
+		Make array type?
 		Clip, rect, quad, names?
 		Abstract texture loading?
 		Local/global transform
