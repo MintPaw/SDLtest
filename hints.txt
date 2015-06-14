@@ -1,0 +1,251 @@
+
+struct MintAnim;
+struct MintAnimMan;
+
+
+struct MintAnimMan {
+	MintTexture* mintTexture;
+	MintAnim* anims;
+	MintAnim* currentAnim;
+	int totalAnims;
+};
+
+struct MintAnim {
+	char* name;
+	char loop;
+	int totalFrames;
+	int currentFrame;
+	int frameRate;
+	SDL_Rect* frameRects;
+	MintAnimMan* man;
+	float _timeTillNextFrame;
+};
+
+MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture);
+void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames, int frameRate);
+void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height);
+void mint_AnimDefineFrames(MintAnim* anim, SDL_Rect* frameRects);
+void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop);
+void mint_AnimUpdate(MintAnimMan* animMan, float elapsed);
+void mint_AnimUpdateClip(MintAnimMan* animMan);
+void mint_AnimUpdateAsButton(MintAnimMan* animMan, MintInput* input);
+MintAnim* mint_AnimGetByIndex(MintAnimMan* animMan, int index);
+MintAnim* mint_AnimGetByName(MintAnimMan* animMan, char* name);
+void mint_AnimPlay(MintAnim* anim);
+void mint_AnimNextFrame(MintAnimMan* animMan);
+void mint_AnimGotoFrame(MintAnimMan* animMan, int index);
+void mint_AnimManFree(MintAnimMan* animMan);
+void mint_AnimManInit(MintAnimMan* animMan, int totalAnims);
+void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath);
+
+
+void mint_DrawRect(SDL_Renderer* renderer, int x, int y, int width, int height, SDL_Color* colour);
+void mint_DrawLine(SDL_Renderer* renderer, int x1, int y1, int x2, int y2, SDL_Color* colour);
+
+
+struct MintRend;
+
+
+struct MintRend {
+	MintTexture* mintTexture;
+	SDL_Renderer* renderer;
+	SDL_Rect* _clipRect;
+	unsigned char _alpha;
+};
+
+SDL_Renderer* mint_RendCreateSdlRenderer(SDL_Window* window, char vsync);
+void mint_RendClearSdlRenderer(SDL_Renderer* renderer);
+void mint_RendHexToSDLColor(unsigned long colour, SDL_Color* sdlColour);
+unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor);
+
+MintRend* mint_RendSetup(MintTexture* mintTexture, SDL_Renderer* renderer);
+void mint_RendSetColour(MintRend* rend, SDL_Color* colour);
+void mint_RendSetAlpha(MintRend* rend, char alpha);
+void mint_RendFree(MintRend* rend);
+
+
+struct MintTexture;
+
+
+struct MintTexture {
+	SDL_Texture* texture;
+	MintAnimMan* animMan;
+	MintTrans* trans;
+	MintRend* rend;
+	MintPhys* phys;
+};
+
+MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path);
+MintTexture* mint_TextureFromText(SDL_Renderer* renderer, TTF_Font* font, char* text, SDL_Color colour);
+MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surface);
+
+void mint_TextureUpdate(MintTexture* mintTexture, float elapsed);
+void mint_TextureRender(MintTexture* mintTexture);
+void mint_TextureFree(MintTexture* mintTexture);
+
+
+struct MintTilemap;
+
+
+struct MintTilemap {
+	MintTexture* map;
+	int tileWidth;
+	int tileHeight;
+};
+
+MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight);
+void mint_TilemapCreateFromCSV(SDL_Renderer* renderer, SDL_Surface* destSurface, char* path, MintTilemap* map);
+void mint_TilemapFree(MintTilemap* map);
+char** strspl(char* str, char* del);
+
+
+struct MintTrans;
+
+
+struct MintTrans {
+	MintTexture* mintTexture;
+
+	float angle;
+	SDL_Point centre;
+	SDL_RendererFlip flip;
+	int _width;
+	int _height;
+	int _x;
+	int _y;
+};
+
+MintTrans* mint_TransSetup(MintTexture* mintTexture, int width, int height);
+void mint_TransSetX(MintTrans* trans, int value);
+void mint_TransSetY(MintTrans* trans, int value);
+int mint_TransGetWidth(MintTrans* trans);
+int mint_TransGetHeight(MintTrans* trans);
+void mint_TransFree(MintTrans* trans);
+
+
+struct MintTextBox;
+struct MintBlinkingCaret;
+
+
+struct MintTextBox {
+	BlinkingCaret *caret;
+	MintTexture *textImage;
+	SDL_Rect bounds;
+	char *text;
+	int caretPos;
+	char focused;
+};
+
+struct MintBlinkingCaret {
+	SDL_Rect bounds;
+	int blinkSpeed;
+};
+
+TextBox* mint_CreateTextBox(int x, int y, int width, int height); //Create a textbox
+char mint_TextBoxGetFocus(TextBox *tb); //Check if this textbox has focus
+void mint_TextBoxBringFocus(TextBox *tb); //Make the textbox focused
+void mint_TextBoxEscapeFocus(TextBox *tb); //Make the textbox no longer have focus
+void mint_TextBoxAppendText(TextBox *tb, char text, SDL_Color color); //Appends a textbox with a character with the specified color from the current caret position.
+float mint_TextBoxGetTextWidth(TextBox *tb); //Gets the pixel width of the text within the textbox
+void mint_TextBoxSetCaretPos(TextBox *tb, int pos); //Sets the position of the caret
+void mint_TextBoxHighlightText(TextBox *tb, int from, int to); //Highlights text from the given range
+void mint_TextBoxFree(TextBox *tb);
+
+
+
+struct MintFloatPoint;
+struct MintCircle;
+
+struct MintFloatPoint {
+	float x;
+	float y;
+};
+
+struct MintCircle {
+	int x;
+	int y;
+	int r;
+};
+
+int mint_GeomPointDisance(SDL_Point* a, SDL_Point* b);
+char mint_GeomPointInRect(SDL_Point* point, SDL_Rect* rect);
+char mint_GeomRectInRect(SDL_Rect* a, SDL_Rect* b);
+char mint_GeomCircleinCircle(MintCircle* a, MintCircle* b);
+float mint_GeomDotProduct(MintFloatPoint* a, MintFloatPoint* b);
+void mint_GeomNormalizeFloatPoint(MintFloatPoint* point, float multiply);
+
+
+float mint_MathMin(float a, float b);
+float mint_MathMax(float a, float b);
+int mint_MathMin(int a, int b);
+int mint_MathMax(int a, int b);
+float mint_MathClamp(float a, float min, float max);
+
+
+struct MintFloatPoint;
+struct MintPhysWorld;
+struct MintPhys;
+
+
+struct MintPhysWorld {
+	b2World* world;
+};
+
+struct MintPhys {
+	MintTexture* mintTexture;
+	MintPhysWorld* world;
+	b2PolygonShape shape;
+	b2Body* body;
+
+	SDL_Rect rect;
+};
+
+MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY);
+void mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density);
+float mint_PhysMetreToPixel(float metre);
+float mint_PhysPixelToMetre(float pixel);
+void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY);
+void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY);
+void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY);
+void mint_PhysSetDamping(MintPhys* phys, float damping);
+b2Vec2 mint_PhysGetVelocity(MintPhys* phys);
+
+void mint_PhysStepWorld(MintPhysWorld* world, float elapsed);
+void mint_PhysUpdate(MintPhys* phys, float elapsed);
+void mint_PhysFree(MintPhys* phys);
+void mint_PhysFreeWorld(MintPhysWorld* world);
+
+
+struct MintInput;
+
+
+struct MintInput {
+	char keyStatus[281];
+	char mouseButtonStatus[3];
+	SDL_Point mousePoint;
+};
+
+MintInput* mint_InputSetup();
+void mint_InputUpdate(MintInput* input, SDL_Event* event);
+char mint_InputCheckKey(MintInput* input, int keycode);
+void mint_InputFree(MintInput* input);
+
+
+
+char* mint_IoAllText(char* fileName);
+
+
+struct MintFrameTimer;
+
+struct MintFrameTimer {
+	float seconds;
+	int frames;
+	int ticks;
+	float elapsed;
+	float secondsPerReport;
+	float secondsSinceLastReport;
+};
+
+MintFrameTimer* mint_TimerSetup();
+void mint_TimerUpdate(MintFrameTimer* timer, float seconds);
+void mint_TimerFree(MintFrameTimer* timer);
+
