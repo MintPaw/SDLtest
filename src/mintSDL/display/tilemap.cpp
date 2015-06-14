@@ -17,7 +17,7 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 	return tilemap;
 }
 
-void mint_TilemapCreateFromCSV(SDL_Surface* destSurface, char* path, MintTilemap* tilemap)
+void mint_TilemapCreateFromCSV(char* path, MintTilemap* tilemap)
 {
 	SDL_Texture* source = tilemap->map->texture;
 
