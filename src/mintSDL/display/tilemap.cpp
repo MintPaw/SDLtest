@@ -74,6 +74,8 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 		}
 	}
 
+	mint_ArrayPrint(layerStrings[0][0], 20);
+
 	fclose(data);
 }
 
