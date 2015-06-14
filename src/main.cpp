@@ -21,6 +21,7 @@
 #include "mintSDL/maths/geom.h"
 #include "mintSDL/util/input.h"
 #include "mintSDL/util/timer.h"
+#include "mintSDL/system.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 832;
@@ -45,15 +46,14 @@ void tilemapExample();
 /*
 
 	Todo:
+		Make event handler
 		Build collision on tilemap
 		Make array type?
 		Clip, rect, quad, names?
 		Abstract texture loading?
 		Local/global transform
 		Add magic number defines
-		main.cpp brace format
 		Optimize XML
-		Make event handler
 		setX vs Xset
 		Box2D debug draw
 		Do scaling, this includes mass
@@ -69,12 +69,11 @@ void tilemapExample();
 
 */
 
-SDL_Window* sdlWindow = NULL;
-SDL_Renderer* sdlRenderer = NULL;
 TTF_Font *ttfOpenSans = NULL;
 MintInput *input;
 MintFrameTimer *timer;
 MintPhysWorld *world;
+MintSystem* sys;
 
 int main(int argc, char* args[])
 {
@@ -82,21 +81,7 @@ int main(int argc, char* args[])
 	// _CrtSetBreakAlloc(202);
 #endif
 
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		printf("SDL failed to init SDL_ERROR: %s\n", SDL_GetError());
-	} else {
-		sdlWindow = SDL_CreateWindow("SDL Test",
-		                             SDL_WINDOWPOS_UNDEFINED,
-		                             SDL_WINDOWPOS_UNDEFINED,
-		                             SCREEN_WIDTH,
-		                             SCREEN_HEIGHT,
-		                             SDL_WINDOW_SHOWN);
-		if (sdlWindow == NULL) {
-			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
-		} else {
-			sdlRenderer = mint_RendCreateSdlRenderer(sdlWindow, 1);
-		}
-	}
+	sys = mint_SystemSetup();
 
 	int imgFlags = IMG_INIT_PNG;
 	if(!(IMG_Init(imgFlags) & imgFlags)) {
@@ -132,7 +117,7 @@ int main(int argc, char* args[])
 	// collisionExample();
 	// texturePackerExample();
 	// playerExample();
-	//collisionExample();
+	// collisionExample();
 	tilemapExample();
 
 	close();
