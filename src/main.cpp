@@ -121,9 +121,9 @@ int main(int argc, char* args[])
 	// buttonExample();
 	// timerExample();
 	// physicsExample();
-	collisionExample();
+	// collisionExample();
 	// texturePackerExample();
-	// playerExample();
+	playerExample();
 
 	close();
 
@@ -658,12 +658,16 @@ void playerExample()
 	char quit = 0;
 
 	MintTexture* player;
+	int i;
 
 	player = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
-	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
+	mint_PhysEnable(player, world, 1, 1);
+	mint_PhysSetGravity(world, 0, 0);
 	
-	// mint_AnimPlay(mint_AnimGetByIndex(player->animMan, i));
-	// mint_AnimGetByIndex(player->animMan, i)->loop = 1;
+	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
+	for (i = 0; i < player->animMan->totalAnims; i++) mint_AnimGetByIndex(player->animMan, i)->loop = 1;
+
+	mint_AnimPlay(mint_AnimGetByName(player->animMan, "player_blue_SMG_downRight_running_"));
 
 	mint_TransSetX(player->trans, 200);
 	mint_TransSetY(player->trans, 200);
@@ -683,8 +687,14 @@ void playerExample()
 			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
+		if (mint_InputCheckKey(input, SDL_SCANCODE_LEFT)) mint_PhysSetVelocity(player->phys, -10, 0);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_RIGHT)) mint_PhysSetVelocity(player->phys, 10, 0);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysSetVelocity(player->phys, 0, -10);
+		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysSetVelocity(player->phys, 0, 10);
+
 		mint_RendClearSdlRenderer(sdlRenderer);
 		
+		mint_PhysStepWorld(world, timer->elapsed);
 		mint_TextureUpdate(player, timer->elapsed);
 		mint_TextureRender(player);
 
