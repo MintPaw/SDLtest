@@ -5,7 +5,6 @@
 #include <SDL_image.h>
 #include "mintSDL/display/tilemap.h"
 #include "mintSDL/display/texture.h"
-#include "mintSDL/util/io.h"
 
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight)
 {
@@ -37,8 +36,6 @@ void mint_TilemapCreateFromCSV(SDL_Renderer* renderer, SDL_Surface* destSurface,
 	while (fgets(buffer, sizeof(buffer), data) != NULL)
 	{
 		buffer[strlen(buffer) - 1] = '\0';
-
-
 
 		printf("Line: %s\n", buffer);
 	}
