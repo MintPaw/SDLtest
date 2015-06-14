@@ -11,12 +11,6 @@ const int SCREEN_HEIGHT = 832;
 #include "mintSDL/maths/phys.h"
 
 void _updateLoop(MintSystem* sys);
-void _preUpdate(MintSystem* sys);
-void _update(MintSystem* sys);
-void _postUpdate(MintSystem* sys);
-void _preDraw(MintSystem* sys);
-void _draw(MintSystem* sys);
-void _postDraw(MintSystem* sys);
 void _close(MintSystem* sys);
 
 MintSystem* mint_SystemSetup()
@@ -31,12 +25,7 @@ MintSystem* mint_SystemSetup()
 	sys->quit = 0;
 
 	sys->init = NULL;
-	sys->preUpdate = NULL;
 	sys->update = NULL;
-	sys->postUpdate = NULL;
-	sys->preDraw = NULL;
-	sys->draw = NULL;
-	sys->postDraw = NULL;
 
 	return sys;
 }
@@ -83,19 +72,12 @@ char mint_SystemInit(MintSystem* sys)
 
 void _updateLoop(MintSystem* sys)
 {
-	while (!sys->quit) {
-		_preUpdate(sys);
-		_update(sys);
-		_postUpdate(sys);
-		_preDraw(sys);
-		_draw(sys);
-		_postDraw(sys);
-	}
+	while (!sys->quit) sys->update(sys);
 
 	_close(sys);
 }
 
-void _preUpdate(MintSystem* sys)
+void mint_SystemPreUpdate(MintSystem* sys)
 {
 	{ // Handle Events
 		while (SDL_PollEvent(&sys->event) != 0) {
@@ -105,27 +87,27 @@ void _preUpdate(MintSystem* sys)
 	}
 }
 
-void _update(MintSystem* sys)
+void mint_SystemUpdate(MintSystem* sys)
 {
 
 }
 
-void _postUpdate(MintSystem* sys)
+void mint_SystemPostUpdate(MintSystem* sys)
 {
 
 }
 
-void _preDraw(MintSystem* sys)
+void mint_SystemPreDraw(MintSystem* sys)
 {
 	mint_RendClearSdlRenderer(sys->sdlRenderer);
 }
 
-void _draw(MintSystem* sys)
+void mint_SystemDraw(MintSystem* sys)
 {
 
 }
 
-void _postDraw(MintSystem* sys)
+void mint_SystemPostDraw(MintSystem* sys)
 {
 	SDL_RenderPresent(sys->sdlRenderer);
 }

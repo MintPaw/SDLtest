@@ -73,8 +73,8 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup();
 
-	// sys->update = &gameLoop;
-	sys->update = &drawExample;
+	sys->update = &gameLoop;
+	// sys->update = &drawExample;
 	// sys->update = &mintTextureExample;
 	// sys->update = &setColourInputExample;
 	// sys->update = &setAlphaInputExample;
@@ -102,7 +102,12 @@ int main(int argc, char* args[])
 
 void gameLoop(MintSystem* sys)
 {
-	
+	mint_SystemPreUpdate(sys);
+	mint_SystemUpdate(sys);
+	mint_SystemPostUpdate(sys);
+	mint_SystemPreDraw(sys);
+	mint_SystemDraw(sys);
+	mint_SystemPostDraw(sys);
 }
 
 void drawExample(MintSystem* sys)
