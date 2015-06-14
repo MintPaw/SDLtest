@@ -30,7 +30,7 @@ MintSystem* mint_SystemSetup()
 	sys->fonts = NULL;
 	sys->quit = 0;
 	sys->init = NULL;
-	
+
 	return sys;
 }
 
@@ -61,7 +61,13 @@ char mint_SystemInit(MintSystem* sys)
 		return 0;
 	}
 
+	sys->input = mint_InputSetup();
+	sys->timer = mint_TimerSetup();
+	sys->world = mint_PhysSetupWorld(0, 10);
+
 	SDL_UpdateWindowSurface(sys->sdlWindow);
+
+	_updateLoop(sys);
 
 	//- ttfOpenSans = TTF_OpenFont("assets/font/OpenSansRegular.ttf", 28);
 
@@ -83,10 +89,9 @@ void _updateLoop(MintSystem* sys)
 void _preUpdate(MintSystem* sys)
 {
 	{ // Handle Events
-		SDL_Event* e = NULL;
-		while (SDL_PollEvent(e) != 0) {
-			// if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) mint_InputUpdate(input, &e);
-			// if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+		while (SDL_PollEvent(&sys->event) != 0) {
+			if (sys->event.type == SDL_KEYDOWN || sys->event.type == SDL_KEYUP) mint_InputUpdate(sys->input, &sys->event);
+			if (sys->event.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) sys->quit = 1;
 		}
 	}
 }

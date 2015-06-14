@@ -15,6 +15,7 @@ struct MintSystem {
 	MintFrameTimer* timer;
 	MintPhysWorld* world;
 	TTF_Font* fonts;
+	SDL_Event event;
 	char quit;
 
 	void (*init)(MintSystem* sys);
