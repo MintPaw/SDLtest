@@ -613,7 +613,7 @@ void texturePackerExample()
 	int i;
 	for (i = 0; i < ANIMS; i++) {
 		player[i] = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
-		mint_AnimParseFromXML(player[i]->animMan, "assets/img/player_blue.xml");
+		mint_AnimCreateFromXML(player[i]->animMan, "assets/img/player_blue.xml");
 		
 		mint_AnimPlay(mint_AnimGetByIndex(player[i]->animMan, i));
 		mint_AnimGetByIndex(player[i]->animMan, i)->loop = 1;

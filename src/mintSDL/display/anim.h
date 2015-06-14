@@ -41,6 +41,6 @@ void mint_AnimNextFrame(MintAnimMan* animMan);
 void mint_AnimGotoFrame(MintAnimMan* animMan, int index);
 void mint_AnimManFree(MintAnimMan* animMan);
 void mint_AnimManInit(MintAnimMan* animMan, int totalAnims);
-void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath);
+void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath);
 
 #endif
