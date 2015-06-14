@@ -7,6 +7,7 @@
 #include <SDL_image.h>
 #include "mintSDL/display/tilemap.h"
 #include "mintSDL/display/texture.h"
+#include "mintSDL/util/array.h"
 
 MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight)
 {
@@ -71,7 +72,6 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 
 			rowNumber++;
 		}
-
 	}
 
 	fclose(data);

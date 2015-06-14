@@ -45,8 +45,9 @@ void tilemapExample();
 /*
 
 	Todo:
-		Optimize XML
 		Add magic number defines
+		main.cpp brace format
+		Optimize XML
 		Make event handler
 		setX vs Xset
 		Box2D debug draw
