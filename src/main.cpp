@@ -37,6 +37,7 @@ void timerExample();
 void physicsExample();
 void collisionExample();
 void texturePackerExample();
+void playerExample();
 
 /*
 
@@ -121,7 +122,8 @@ int main(int argc, char* args[])
 	// timerExample();
 	// physicsExample();
 	// collisionExample();
-	texturePackerExample();
+	// texturePackerExample();
+	playerExample();
 
 	close();
 
@@ -648,4 +650,46 @@ void texturePackerExample()
 	}
 
 	for (i = 0; i < ANIMS; i++) mint_TextureFree(player[i]);
+}
+
+void playerExample()
+{
+	SDL_Event e;
+	char quit = 0;
+
+	MintTexture* player;
+
+	player = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
+	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
+	
+	// mint_AnimPlay(mint_AnimGetByIndex(player->animMan, i));
+	// mint_AnimGetByIndex(player->animMan, i)->loop = 1;
+
+	mint_TransSetX(player->trans, 200);
+	mint_TransSetY(player->trans, 200);
+
+	while (!quit)
+	{
+		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
+		
+		while (SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_KEYDOWN ||
+			    e.type == SDL_KEYUP ||
+			    e.type == SDL_MOUSEMOTION ||
+			    e.type == SDL_MOUSEBUTTONDOWN ||
+			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+
+			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+		}
+
+		mint_RendClearSdlRenderer(sdlRenderer);
+		
+		mint_TextureUpdate(player, timer->elapsed);
+		mint_TextureRender(player);
+
+		SDL_RenderPresent(sdlRenderer);
+	}
+
+	mint_TextureFree(player);
 }
