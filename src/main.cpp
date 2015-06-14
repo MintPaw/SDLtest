@@ -664,6 +664,8 @@ void playerExample()
 	char up;
 	char down;
 
+	char animStr[99];
+
 	player = mint_TextureFromPNG(sdlRenderer, "assets/img/player_blue.png");
 	mint_PhysEnable(player, world, 1, 1);
 	mint_PhysSetGravity(world, 0, 0);
@@ -701,6 +703,41 @@ void playerExample()
 		if (right) mint_PhysSetVelocity(player->phys, 5, mint_PhysGetVelocity(player->phys).y);
 		if (up) mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, -5);
 		if (down) mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, 5);
+
+		strcpy(animStr, "player_blue_SMG_");
+
+		if (up && right) {
+			strcat(animStr, "upRight");
+			player->trans->flip = SDL_FLIP_NONE;
+		} else if (down && right) {
+			strcat(animStr, "downRight");
+			player->trans->flip = SDL_FLIP_NONE;
+		} else if (up && left) {
+			strcat(animStr, "upRight");
+			player->trans->flip = SDL_FLIP_HORIZONTAL;
+		} else if (down && left) {
+			strcat(animStr, "downRight");
+			player->trans->flip = SDL_FLIP_HORIZONTAL;
+		} else if (left) {
+			strcat(animStr, "right");
+			player->trans->flip = SDL_FLIP_HORIZONTAL;
+		} else if (right) {
+			strcat(animStr, "right");
+			player->trans->flip = SDL_FLIP_NONE;
+		} else if (up) {
+			strcat(animStr, "up");
+			player->trans->flip = SDL_FLIP_NONE;
+		} else if (down) {
+			strcat(animStr, "down");
+			player->trans->flip = SDL_FLIP_NONE;
+		} else {
+			strcat(animStr, "right");
+			player->trans->flip = SDL_FLIP_NONE;
+		}
+
+		strcat(animStr, up || down || left || right ? "_running_" : "_standing_");
+
+		mint_AnimPlay(mint_AnimGetByName(player->animMan, animStr));
 
 		mint_RendClearSdlRenderer(sdlRenderer);
 		
