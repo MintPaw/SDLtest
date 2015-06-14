@@ -29,8 +29,8 @@ MintSystem* mint_SystemSetup()
 	sys->world = NULL;
 	sys->fonts = NULL;
 	sys->quit = 0;
-
-	void (*init)(MintSystem* sys);
+	sys->init = NULL;
+	
 	return sys;
 }
 
