@@ -29,7 +29,14 @@ MintSystem* mint_SystemSetup()
 	sys->world = NULL;
 	sys->fonts = NULL;
 	sys->quit = 0;
+	
 	sys->init = NULL;
+	sys->preUpdate = NULL;
+	sys->update = NULL;
+	sys->postUpdate = NULL;
+	sys->preDraw = NULL;
+	sys->draw = NULL;
+	sys->postDraw = NULL;
 
 	return sys;
 }

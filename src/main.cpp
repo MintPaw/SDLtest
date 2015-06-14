@@ -22,20 +22,20 @@
 #include "mintSDL/system.h"
 
 void gameLoop();
-// void drawExample();
-// void mintTextureExample();
-// void setColourInputExample();
-// void setAlphaInputExample();
-// void animationExample();
-// void transformExample();
-// void textExample();
-// void buttonExample();
-// void timerExample();
-// void physicsExample();
-// void collisionExample();
-// void texturePackerExample();
-// void playerExample();
-// void tilemapExample();
+// void drawExample(MintSystem* sys);
+// void mintTextureExample(MintSystem* sys);
+// void setColourInputExample(MintSystem* sys);
+// void setAlphaInputExample(MintSystem* sys);
+// void animationExample(MintSystem* sys);
+// void transformExample(MintSystem* sys);
+// void textExample(MintSystem* sys);
+// void buttonExample(MintSystem* sys);
+// void timerExample(MintSystem* sys);
+// void physicsExample(MintSystem* sys);
+// void collisionExample(MintSystem* sys);
+// void texturePackerExample(MintSystem* sys);
+// void playerExample(MintSystem* sys);
+// void tilemapExample(MintSystem* sys);
 
 /*
 
@@ -74,23 +74,23 @@ int main(int argc, char* args[])
 	sys = mint_SystemSetup();
 	mint_SystemInit(sys);
 
-	// gameLoop();
-	// drawExample();
-	// mintTextureExample();
-	// setColourInputExample();
-	// setAlphaInputExample();
-	// animationExample();
-	// animationExample();
-	// transformExample();
-	// textExample();
-	// buttonExample();
-	// timerExample();
-	// physicsExample();
-	// collisionExample();
-	// texturePackerExample();
-	// playerExample();
-	// collisionExample();
-	// tilemapExample();
+	// sys->update = gameLoop(MintSystem* sys);
+	// sys->update = drawExample(MintSystem* sys);
+	// sys->update = mintTextureExample(MintSystem* sys);
+	// sys->update = setColourInputExample(MintSystem* sys);
+	// sys->update = setAlphaInputExample(MintSystem* sys);
+	// sys->update = animationExample(MintSystem* sys);
+	// sys->update = animationExample(MintSystem* sys);
+	// sys->update = transformExample(MintSystem* sys);
+	// sys->update = textExample(MintSystem* sys);
+	// sys->update = buttonExample(MintSystem* sys);
+	// sys->update = timerExample(MintSystem* sys);
+	// sys->update = physicsExample(MintSystem* sys);
+	// sys->update = collisionExample(MintSystem* sys);
+	// sys->update = texturePackerExample(MintSystem* sys);
+	// sys->update = playerExample(MintSystem* sys);
+	// sys->update = collisionExample(MintSystem* sys);
+	// sys->update = tilemapExample(MintSystem* sys);
 
 #ifdef _CRTDBG_MAP_ALLOC
 	_CrtDumpMemoryLeaks();
@@ -99,12 +99,12 @@ int main(int argc, char* args[])
 	return 0;
 }
 
-void gameLoop()
+void gameLoop(MintSystem* sys)
 {
 	
 }
 /*
-void drawExample()
+void drawExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -129,7 +129,7 @@ void drawExample()
 	}
 }
 
-void mintTextureExample()
+void mintTextureExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -152,7 +152,7 @@ void mintTextureExample()
 	mint_TextureFree(texture);
 }
 
-void setColourInputExample()
+void setColourInputExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -184,7 +184,7 @@ void setColourInputExample()
 	mint_TextureFree(texture);
 }
 
-void setAlphaInputExample()
+void setAlphaInputExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -212,7 +212,7 @@ void setAlphaInputExample()
 	mint_TextureFree(texture);
 }
 
-void animationExample()
+void animationExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -243,7 +243,7 @@ void animationExample()
 	mint_TextureFree(texture);
 }
 
-void transformExample()
+void transformExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -279,7 +279,7 @@ void transformExample()
 	mint_TextureFree(arrow);
 }
 
-void textExample()
+void textExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -302,7 +302,7 @@ void textExample()
 	mint_TextureFree(text);
 }
 
-void buttonExample()
+void buttonExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -345,7 +345,7 @@ void buttonExample()
 	for (i = 0; i < 3; i++) mint_TextureFree(buttons[i]);
 }
 
-void timerExample()
+void timerExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -390,7 +390,7 @@ void timerExample()
 	}
 }
 
-void physicsExample()
+void physicsExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -432,7 +432,7 @@ void physicsExample()
 	mint_TextureFree(texture);
 }
 
-void collisionExample()
+void collisionExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -518,7 +518,7 @@ void collisionExample()
 	mint_TextureFree(box2);
 }
 
-void texturePackerExample()
+void texturePackerExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -565,7 +565,7 @@ void texturePackerExample()
 	for (i = 0; i < ANIMS; i++) mint_TextureFree(player[i]);
 }
 
-void playerExample()
+void playerExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;
@@ -676,7 +676,7 @@ void playerExample()
 	mint_TextureFree(player);
 }
 
-void tilemapExample()
+void tilemapExample(MintSystem* sys)
 {
 	SDL_Event e;
 	char quit = 0;

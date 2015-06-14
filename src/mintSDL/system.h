@@ -19,6 +19,12 @@ struct MintSystem {
 	char quit;
 
 	void (*init)(MintSystem* sys);
+	void (*preUpdate)(MintSystem* sys);
+	void (*update)(MintSystem* sys);
+	void (*postUpdate)(MintSystem* sys);
+	void (*preDraw)(MintSystem* sys);
+	void (*draw)(MintSystem* sys);
+	void (*postDraw)(MintSystem* sys);
 };
 
 MintSystem* mint_SystemSetup();
