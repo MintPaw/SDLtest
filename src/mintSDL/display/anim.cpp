@@ -71,20 +71,24 @@ void mint_AnimParseFromXML(MintAnimMan* animMan, char* xmlPath)
 
 	fclose(fp);
 
-	// player_blue_SMG_downRight_running_0001.png
+	mint_AnimManInit(animMan, frameCount);
+
 	int i;
 	int j;
+	int currentFrame = 0;
 	char* currentName = (char*)malloc(sizeof(char)*99);
 	for (i = 0; i < frameCount; i++) {
 		for (j = strlen(names[i]); ; j--) {
 			if (names[i][j] == '_') {
 				names[i][j] = '\0';
+				strcpy(currentName, names[i]);
 				if (!currentName || strcmp(names[i], currentName))
 				{
-					//Change focused anim
+					// mint_AnimCreate()
+					currentFrame = 0;
 				}
-				strcpy(currentName, names[i]);
 				printf("%s\n", currentName);
+				currentFrame++;
 				break;
 			}
 		}
