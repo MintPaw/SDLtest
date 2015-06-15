@@ -75,7 +75,13 @@ void mint_SystemPreUpdate(MintSystem* sys)
 {
 	{ // Handle Events
 		while (SDL_PollEvent(&sys->event) != 0) {
-			if (sys->event.type == SDL_KEYDOWN || sys->event.type == SDL_KEYUP) mint_InputUpdate(sys->input, &sys->event);
+
+			if (sys->event.type == SDL_KEYDOWN ||
+			    sys->event.type == SDL_KEYUP ||
+	        sys->event.type == SDL_MOUSEMOTION ||
+			    sys->event.type == SDL_MOUSEBUTTONDOWN ||
+			    sys->event.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(sys->input, &sys->event);
+
 			if (sys->event.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) sys->quit = 1;
 		}
 	}

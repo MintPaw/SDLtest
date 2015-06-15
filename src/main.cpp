@@ -29,7 +29,7 @@ void setAlphaInputExample(MintSystem* sys);
 void animationExample(MintSystem* sys);
 void transformExample(MintSystem* sys);
 void textExample(MintSystem* sys);
-// void buttonExample(MintSystem* sys);
+void buttonExample(MintSystem* sys);
 // void timerExample(MintSystem* sys);
 // void physicsExample(MintSystem* sys);
 // void collisionExample(MintSystem* sys);
@@ -40,6 +40,7 @@ void textExample(MintSystem* sys);
 /*
 
 	Todo:
+		Get rid of calloc lol
 		Make better font system
 		Make event handler
 		Build collision on tilemap
@@ -81,8 +82,8 @@ int main(int argc, char* args[])
 	// sys->start = &setAlphaInputExample;
 	// sys->start = &animationExample;
 	// sys->start = &transformExample;
-	sys->start = &textExample;
-	// sys->start = &buttonExample;
+	// sys->start = &textExample;
+	sys->start = &buttonExample;
 	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
@@ -290,7 +291,7 @@ void textExample(MintSystem* sys)
 
 	mint_TextureFree(text);
 }
-/*
+
 void buttonExample(MintSystem* sys)
 {
 	MintTexture* buttons[3];
@@ -307,28 +308,25 @@ void buttonExample(MintSystem* sys)
 		mint_TransSetX(buttons[i]->trans, (mint_TransGetWidth(buttons[i]->trans) + 20) * i);
 	}
 
-			if (e.type == SDL_KEYDOWN ||
-			    e.type == SDL_KEYUP ||
-			    e.type == SDL_MOUSEMOTION ||
-			    e.type == SDL_MOUSEBUTTONDOWN ||
-			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
-			    
-			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
-// Pre render
-
-			for (i = 0; i < 3; i++) {
-				mint_AnimUpdateAsButton(buttons[i]->animMan, input);
-				mint_TextureRender(buttons[i]);
-			}
-			
-// Post render
+		for (i = 0; i < 3; i++) {
+			mint_AnimUpdateAsButton(buttons[i]->animMan, sys->input);
+			mint_TextureRender(buttons[i]);
 		}
+
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	for (i = 0; i < 3; i++) mint_TextureFree(buttons[i]);
 }
-
+/*
 void timerExample(MintSystem* sys)
 {
 	SDL_Point objectAt = { 0, 0 };
