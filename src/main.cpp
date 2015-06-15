@@ -37,7 +37,7 @@ void timerExample(MintSystem* sys);
 void physicsExample(MintSystem* sys);
 void collisionExample(MintSystem* sys);
 void texturePackerExample(MintSystem* sys);
-// void playerExample(MintSystem* sys);
+void playerExample(MintSystem* sys);
 // void tilemapExample(MintSystem* sys);
 
 /*
@@ -92,6 +92,7 @@ int main(int argc, char* args[])
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
 	sys->start = &texturePackerExample;
+	sys->start = &playerExample;
 	// sys->start = &tilemapExample;
 
 	mint_SystemInit(sys);
@@ -510,7 +511,7 @@ void texturePackerExample(MintSystem* sys)
 	
 	for (i = 0; i < ANIMS; i++) mint_TextureFree(player[i]);
 }
-/*
+
 void playerExample(MintSystem* sys)
 {
 	MintTexture* player;
@@ -524,8 +525,8 @@ void playerExample(MintSystem* sys)
 	char dirStr = GEOM_RIGHT;
 
 	player = mint_TextureFromPNG(sys, "assets/img/player_blue.png");
-	mint_PhysEnable(player, world, 1, 1);
-	mint_PhysSetGravity(world, 0, 0);
+	mint_PhysEnable(player, sys->world, 1, 1);
+	mint_PhysSetGravity(sys->world, 0, 0);
 	mint_PhysSetDamping(player->phys, 50);
 	
 	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
@@ -536,17 +537,9 @@ void playerExample(MintSystem* sys)
 	mint_TransSetX(player->trans, 200);
 	mint_TransSetY(player->trans, 200);
 
-	while (!quit) {
-		
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN ||
-			    e.type == SDL_KEYUP ||
-			    e.type == SDL_MOUSEMOTION ||
-			    e.type == SDL_MOUSEBUTTONDOWN ||
-			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
-
-			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
-		}
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
 
 		left = mint_InputCheckKey(sys->input, SDL_SCANCODE_LEFT);
 		right = mint_InputCheckKey(sys->input, SDL_SCANCODE_RIGHT);
@@ -605,19 +598,21 @@ void playerExample(MintSystem* sys)
 
 		mint_AnimPlay(mint_AnimGetByName(player->animMan, animStr));
 
-// Pre render
-		
-		mint_PhysStepWorld(world, sys->elapsed);
 		mint_TextureUpdate(player, sys->elapsed);
+
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
+
 		mint_TextureRender(player);
 
-// Post render
-		if ((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks) > 0) SDL_Delay((int)((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks)));
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(player);
 }
-
+/*
 void tilemapExample(MintSystem* sys)
 {
 	

@@ -114,8 +114,10 @@ void mint_SystemPostDraw(MintSystem* sys)
 {
 	SDL_RenderPresent(sys->sdlRenderer);
 
-
 	if (sys->quit) _close(sys);
+
+	// vsync
+	// if ((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks) > 0) SDL_Delay((int)((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks)));
 }
 
 void _close(MintSystem* sys)
