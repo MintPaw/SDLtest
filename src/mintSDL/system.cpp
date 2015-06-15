@@ -22,7 +22,7 @@ MintSystem* mint_SystemSetup()
 	sys->input = NULL;
 	sys->timer = NULL;
 	sys->world = NULL;
-	sys->fonts = NULL;
+	sys->font = NULL;
 	sys->quit = 0;
 	sys->elapsed = 0;
 
@@ -64,9 +64,9 @@ char mint_SystemInit(MintSystem* sys)
 
 	SDL_UpdateWindowSurface(sys->sdlWindow);
 
-	sys->start(sys);
+	sys->font = TTF_OpenFont("assets/font/OpenSansRegular.ttf", 28);
 
-	//- ttfOpenSans = TTF_OpenFont("assets/font/OpenSansRegular.ttf", 28);
+	sys->start(sys);
 
 	return 1;
 }

@@ -28,7 +28,7 @@ void setColourInputExample(MintSystem* sys);
 void setAlphaInputExample(MintSystem* sys);
 void animationExample(MintSystem* sys);
 void transformExample(MintSystem* sys);
-// void textExample(MintSystem* sys);
+void textExample(MintSystem* sys);
 // void buttonExample(MintSystem* sys);
 // void timerExample(MintSystem* sys);
 // void physicsExample(MintSystem* sys);
@@ -40,6 +40,7 @@ void transformExample(MintSystem* sys);
 /*
 
 	Todo:
+		Make better font system
 		Make event handler
 		Build collision on tilemap
 		Make array type?
@@ -79,8 +80,8 @@ int main(int argc, char* args[])
 	// sys->start = &setColourInputExample;
 	// sys->start = &setAlphaInputExample;
 	// sys->start = &animationExample;
-	sys->start = &transformExample;
-	// sys->start = &textExample;
+	// sys->start = &transformExample;
+	sys->start = &textExample;
 	// sys->start = &buttonExample;
 	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
@@ -239,6 +240,7 @@ void animationExample(MintSystem* sys)
 void transformExample(MintSystem* sys)
 {
 	MintTexture* arrow = mint_TextureFromPNG(sys, "assets/img/arrow.png");
+
 	for(;;)
 	{
 		mint_SystemPreUpdate(sys);
@@ -268,23 +270,27 @@ void transformExample(MintSystem* sys)
 
 	mint_TextureFree(arrow);
 }
-/*
+
 void textExample(MintSystem* sys)
 {
-	MintTexture* text = mint_TextureFromText(sys, ttfOpenSans, "This is some test text", {0, 0, 0, 0});
+	MintTexture* text = mint_TextureFromText(sys, sys->font, "This is some test text", {0, 0, 0, 0});
 
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
-// Pre render
+		mint_TextureRender(text);
 
-			mint_TextureRender(text);
-			
-// Post render
-		}
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(text);
 }
-
+/*
 void buttonExample(MintSystem* sys)
 {
 	MintTexture* buttons[3];
