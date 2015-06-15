@@ -23,7 +23,7 @@ struct MintTilemap {
 	char layers[TOTAL_LAYERS][TILES_HIGH][TILES_WIDE];
 };
 
-MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight, int indexShift);
+MintTilemap* mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWidth, int tileHeight, int indexShift);
 void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath);
 void mint_TilemapFree(MintTilemap* map);
 void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer);

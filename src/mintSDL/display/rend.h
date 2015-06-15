@@ -5,7 +5,6 @@
 #include "mintSDL/display/texture.h"
 
 SDL_Renderer* mint_RendCreateSdlRenderer(SDL_Window* window, char vsync);
-void mint_RendFullScreen(SDL_Window* sdlWindow, char fullscreen);
 void mint_RendClearSdlRenderer(SDL_Renderer* renderer);
 // void mint_RendHexToSDLColor(unsigned long colour, SDL_Color* sdlColour);
 // unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor);

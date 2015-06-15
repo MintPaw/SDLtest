@@ -19,11 +19,6 @@ SDL_Renderer* mint_RendCreateSdlRenderer(SDL_Window* window, char vsync)
 	return renderer;
 }
 
-void mint_RendFullScreen(SDL_Window* sdlWindow, char fullscreen)
-{
-	SDL_SetWindowFullscreen(sdlWindow, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
-}
-
 void mint_RendClearSdlRenderer(SDL_Renderer* renderer)
 {
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);

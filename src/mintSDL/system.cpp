@@ -71,6 +71,11 @@ char mint_SystemInit(MintSystem* sys)
 	return 1;
 }
 
+void mint_SystemFullScreen(MintSystem* sys, char fullscreen)
+{
+	SDL_SetWindowFullscreen(sys->sdlWindow, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+}
+
 void mint_SystemPreUpdate(MintSystem* sys)
 {
 	{ // Handle Events

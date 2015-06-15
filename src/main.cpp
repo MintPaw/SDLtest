@@ -38,7 +38,7 @@ void physicsExample(MintSystem* sys);
 void collisionExample(MintSystem* sys);
 void texturePackerExample(MintSystem* sys);
 void playerExample(MintSystem* sys);
-// void tilemapExample(MintSystem* sys);
+void tilemapExample(MintSystem* sys);
 
 /*
 
@@ -91,9 +91,9 @@ int main(int argc, char* args[])
 	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
-	sys->start = &texturePackerExample;
-	sys->start = &playerExample;
-	// sys->start = &tilemapExample;
+	// sys->start = &texturePackerExample;
+	// sys->start = &playerExample;
+	sys->start = &tilemapExample;
 
 	mint_SystemInit(sys);
 
@@ -612,39 +612,31 @@ void playerExample(MintSystem* sys)
 
 	mint_TextureFree(player);
 }
-/*
+
 void tilemapExample(MintSystem* sys)
-{
-	
+{	
 	MintTilemap* tilemap = mint_TilemapCreate(sys, "assets/img/tilemap.png", 64, 64, 0);
-	mint_RendFullScreen(sdlWindow, 1);
+
+	mint_SystemFullScreen(sys, 1);
 
 	mint_TilemapGenerateFromTiled(tilemap, "assets/map/test1.tmx");
 
-	while (!quit) {
-
-		if (SDL_PollEvent(&e) != 0)
-		{
-			if (e.type == SDL_KEYDOWN ||
-			    e.type == SDL_KEYUP ||
-			    e.type == SDL_MOUSEMOTION ||
-			    e.type == SDL_MOUSEBUTTONDOWN ||
-			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
-
-			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
-		}
-
-// Pre render
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
 		mint_TilemapRenderLayer(tilemap, 0);
 		mint_TilemapRenderLayer(tilemap, 1);
 		mint_TilemapRenderLayer(tilemap, 2);
 		mint_TilemapRenderLayer(tilemap, 3);
-		// mint_TilemapRenderLayer(tilemap, 4);
+		mint_TilemapRenderLayer(tilemap, 4);
 
-// Post render
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TilemapFree(tilemap);
 }
-*/

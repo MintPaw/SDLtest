@@ -24,6 +24,7 @@ struct MintSystem {
 
 MintSystem* mint_SystemSetup();
 char mint_SystemInit(MintSystem* sys);
+void mint_SystemFullScreen(MintSystem* sys, char fullscreen);
 
 void mint_SystemPreUpdate(MintSystem* sys);
 void mint_SystemUpdate(MintSystem* sys);

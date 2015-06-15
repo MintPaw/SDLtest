@@ -9,10 +9,10 @@
 #include "mintSDL/display/texture.h"
 #include "mintSDL/util/array.h"
 
-MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int tileWidth, int tileHeight, int indexShift)
+MintTilemap* mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWidth, int tileHeight, int indexShift)
 {
 	MintTilemap* tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
-	tilemap->renderer = renderer;
+	tilemap->renderer = sys->sdlRenderer;
 	tilemap->tileWidth = tileWidth;
 	tilemap->tileHeight = tileHeight;
 	tilemap->indexShift = indexShift - 1;
@@ -24,7 +24,7 @@ MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* graphicsPath, int 
 		return NULL;
 	}
 
-	tilemap->texture = SDL_CreateTextureFromSurface(renderer, surface);
+	tilemap->texture = SDL_CreateTextureFromSurface(sys->sdlRenderer, surface);
 	if (tilemap->texture == NULL) {
 		printf("Failed to create texture from, SDL_Error: %s\n", SDL_GetError());
 	}
