@@ -25,7 +25,7 @@ void gameExample(MintSystem* sys);
 void drawExample(MintSystem* sys);
 void mintTextureExample(MintSystem* sys);
 void setColourInputExample(MintSystem* sys);
-// void setAlphaInputExample(MintSystem* sys);
+void setAlphaInputExample(MintSystem* sys);
 // void animationExample(MintSystem* sys);
 // void transformExample(MintSystem* sys);
 // void textExample(MintSystem* sys);
@@ -76,8 +76,8 @@ int main(int argc, char* args[])
 	// sys->start = &gameExample;
 	// sys->start = &drawExample;
 	// sys->start = &mintTextureExample;
-	sys->start = &setColourInputExample;
-	// sys->start = &setAlphaInputExample;
+	// sys->start = &setColourInputExample;
+	sys->start = &setAlphaInputExample;
 	// sys->start = &animationExample;
 	// sys->start = &animationExample;
 	// sys->start = &transformExample;
@@ -181,29 +181,34 @@ void setColourInputExample(MintSystem* sys)
 
 	mint_TextureFree(texture);
 }
-/*
+
 void setAlphaInputExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
 
-	unsigned char alpha = 255
+	unsigned char alpha = 255;
 
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
 
-// Pre render
-			
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) alpha += 10;
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) alpha -= 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) alpha += 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) alpha -= 10;
 
-			mint_RendSetAlpha(texture->rend, alpha);
-			mint_TextureRender(texture);
-			
-// Post render
-		}
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
+
+		mint_TransSetAlpha(texture->trans, alpha);
+		mint_TextureRender(texture);
+
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(texture);
 }
-
+/*
 void animationExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/animation.png");

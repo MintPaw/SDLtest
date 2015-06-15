@@ -15,6 +15,7 @@ MintTrans* mint_TransSetup(MintTexture* mintTexture, int width, int height)
 	trans->flip = SDL_FLIP_NONE;
 	trans->_x = 0;
 	trans->_y = 0;
+	trans->_alpha = NULL;
 
 	return trans;
 }
