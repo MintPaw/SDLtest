@@ -6,7 +6,13 @@
 
 MintFrameTimer* mint_TimerSetup()
 {
-	MintFrameTimer* timer = (MintFrameTimer*)calloc(1, sizeof(MintFrameTimer));
+	MintFrameTimer* timer = (MintFrameTimer*)malloc(sizeof(MintFrameTimer));
+	timer->seconds = 0;
+	timer->frames = 0;
+	timer->ticks = 0;
+	timer->elapsed = 0;
+	timer->secondsPerReport = 0;
+	timer->secondsSinceLastReport = -1;
 	return timer;
 }
 

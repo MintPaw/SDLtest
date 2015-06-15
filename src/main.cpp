@@ -26,7 +26,7 @@ void drawExample(MintSystem* sys);
 void mintTextureExample(MintSystem* sys);
 void setColourInputExample(MintSystem* sys);
 void setAlphaInputExample(MintSystem* sys);
-// void animationExample(MintSystem* sys);
+void animationExample(MintSystem* sys);
 // void transformExample(MintSystem* sys);
 // void textExample(MintSystem* sys);
 // void buttonExample(MintSystem* sys);
@@ -77,8 +77,8 @@ int main(int argc, char* args[])
 	// sys->start = &drawExample;
 	// sys->start = &mintTextureExample;
 	// sys->start = &setColourInputExample;
-	sys->start = &setAlphaInputExample;
-	// sys->start = &animationExample;
+	// sys->start = &setAlphaInputExample;
+	sys->start = &animationExample;
 	// sys->start = &animationExample;
 	// sys->start = &transformExample;
 	// sys->start = &textExample;
@@ -173,7 +173,7 @@ void setColourInputExample(MintSystem* sys)
 		mint_SystemPostUpdate(sys);
 		mint_SystemPreDraw(sys);
 
-			mint_TextureRender(texture);
+		mint_TextureRender(texture);
 			
 		mint_SystemDraw(sys);
 		mint_SystemPostDraw(sys);
@@ -194,12 +194,12 @@ void setAlphaInputExample(MintSystem* sys)
 
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) alpha += 10;
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) alpha -= 10;
+		mint_TransSetAlpha(texture->trans, alpha);
 
 		mint_SystemUpdate(sys);
 		mint_SystemPostUpdate(sys);
 		mint_SystemPreDraw(sys);
 
-		mint_TransSetAlpha(texture->trans, alpha);
 		mint_TextureRender(texture);
 
 		mint_SystemDraw(sys);
@@ -208,7 +208,7 @@ void setAlphaInputExample(MintSystem* sys)
 
 	mint_TextureFree(texture);
 }
-/*
+
 void animationExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/animation.png");
@@ -218,27 +218,28 @@ void animationExample(MintSystem* sys)
 	mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(texture->animMan, 0), 64, 1);
 	mint_AnimPlay(mint_AnimGetByIndex(texture->animMan, 0));
 
-	while (!quit) {
-		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
 
-		while (SDL_PollEvent(&e) != 0) {
-		}
+		mint_TextureUpdate(texture, sys->elapsed);
 
-// Pre render
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
-		mint_TextureUpdate(texture, timer->elapsed);
 		mint_TextureRender(texture);
-		
-// Post render
+
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(texture);
 }
-
+/*
 void transformExample(MintSystem* sys)
 {
 	MintTexture* arrow = mint_TextureFromPNG(sys, "assets/img/arrow.png");
-
 
 			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
 			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_E)) arrow->trans->angle += 10;

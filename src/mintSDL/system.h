@@ -16,6 +16,7 @@ struct MintSystem {
 	MintPhysWorld* world;
 	TTF_Font* fonts;
 	SDL_Event event;
+	float elapsed;
 	char quit;
 
 	void (*start)(MintSystem* sys);

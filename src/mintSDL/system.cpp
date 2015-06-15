@@ -24,6 +24,7 @@ MintSystem* mint_SystemSetup()
 	sys->world = NULL;
 	sys->fonts = NULL;
 	sys->quit = 0;
+	sys->elapsed = 0;
 
 	sys->start = NULL;
 
@@ -82,7 +83,8 @@ void mint_SystemPreUpdate(MintSystem* sys)
 
 void mint_SystemUpdate(MintSystem* sys)
 {
-
+	mint_TimerUpdate(sys->timer, (float)(SDL_GetTicks() / 1000.0));
+	sys->elapsed = sys->timer->elapsed;
 }
 
 void mint_SystemPostUpdate(MintSystem* sys)
@@ -121,7 +123,7 @@ void _close(MintSystem* sys)
 	// TTF_CloseFont(ttfOpenSans);
 
 	SDL_Quit();
-	
+
 #ifdef _CRTDBG_MAP_ALLOC
 	_CrtDumpMemoryLeaks();
 #endif
