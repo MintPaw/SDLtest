@@ -46,6 +46,8 @@ void tilemapExample(MintSystem* sys);
 		Debugger
 		Pathfinding
 		Pooling
+		Textfields
+		Gamepad support
 
 	Todo minor:
 		Add screen width/height to system
