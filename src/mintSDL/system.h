@@ -18,8 +18,7 @@ struct MintSystem {
 	SDL_Event event;
 	char quit;
 
-	void (*init)(MintSystem* sys);
-	void (*update)(MintSystem* sys);
+	void (*start)(MintSystem* sys);
 };
 
 MintSystem* mint_SystemSetup();

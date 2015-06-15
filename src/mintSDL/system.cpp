@@ -2,6 +2,7 @@ const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 832;
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -24,8 +25,7 @@ MintSystem* mint_SystemSetup()
 	sys->fonts = NULL;
 	sys->quit = 0;
 
-	sys->init = NULL;
-	sys->update = NULL;
+	sys->start = NULL;
 
 	return sys;
 }
@@ -63,18 +63,11 @@ char mint_SystemInit(MintSystem* sys)
 
 	SDL_UpdateWindowSurface(sys->sdlWindow);
 
-	_updateLoop(sys);
+	sys->start(sys);
 
 	//- ttfOpenSans = TTF_OpenFont("assets/font/OpenSansRegular.ttf", 28);
 
 	return 1;
-}
-
-void _updateLoop(MintSystem* sys)
-{
-	while (!sys->quit) sys->update(sys);
-
-	_close(sys);
 }
 
 void mint_SystemPreUpdate(MintSystem* sys)
@@ -110,6 +103,9 @@ void mint_SystemDraw(MintSystem* sys)
 void mint_SystemPostDraw(MintSystem* sys)
 {
 	SDL_RenderPresent(sys->sdlRenderer);
+
+
+	if (sys->quit) _close(sys);
 }
 
 void _close(MintSystem* sys)
@@ -125,4 +121,9 @@ void _close(MintSystem* sys)
 	// TTF_CloseFont(ttfOpenSans);
 
 	SDL_Quit();
+	
+#ifdef _CRTDBG_MAP_ALLOC
+	_CrtDumpMemoryLeaks();
+#endif
+	exit(0);
 }

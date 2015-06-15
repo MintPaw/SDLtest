@@ -21,7 +21,7 @@
 #include "mintSDL/util/timer.h"
 #include "mintSDL/system.h"
 
-void gameLoop(MintSystem* sys);
+void gameExample(MintSystem* sys);
 void drawExample(MintSystem* sys);
 // void mintTextureExample(MintSystem* sys);
 // void setColourInputExample(MintSystem* sys);
@@ -73,48 +73,46 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup();
 
-	sys->update = &gameLoop;
-	// sys->update = &drawExample;
-	// sys->update = &mintTextureExample;
-	// sys->update = &setColourInputExample;
-	// sys->update = &setAlphaInputExample;
-	// sys->update = &animationExample;
-	// sys->update = &animationExample;
-	// sys->update = &transformExample;
-	// sys->update = &textExample;
-	// sys->update = &buttonExample;
-	// sys->update = &timerExample;
-	// sys->update = &physicsExample;
-	// sys->update = &collisionExample;
-	// sys->update = &texturePackerExample;
-	// sys->update = &playerExample;
-	// sys->update = &collisionExample;
-	// sys->update = &tilemapExample;
+	sys->start = &gameExample;
+	// sys->start = &drawExample;
+	// sys->start = &mintTextureExample;
+	// sys->start = &setColourInputExample;
+	// sys->start = &setAlphaInputExample;
+	// sys->start = &animationExample;
+	// sys->start = &animationExample;
+	// sys->start = &transformExample;
+	// sys->start = &textExample;
+	// sys->start = &buttonExample;
+	// sys->start = &timerExample;
+	// sys->start = &physicsExample;
+	// sys->start = &collisionExample;
+	// sys->start = &texturePackerExample;
+	// sys->start = &playerExample;
+	// sys->start = &collisionExample;
+	// sys->start = &tilemapExample;
 
 	mint_SystemInit(sys);
-
-#ifdef _CRTDBG_MAP_ALLOC
-	_CrtDumpMemoryLeaks();
-#endif
 
 	return 0;
 }
 
-void gameLoop(MintSystem* sys)
+void gameExample(MintSystem* sys)
 {
-	mint_SystemPreUpdate(sys);
-	mint_SystemUpdate(sys);
-	mint_SystemPostUpdate(sys);
-	mint_SystemPreDraw(sys);
-	mint_SystemDraw(sys);
-	mint_SystemPostDraw(sys);
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
+	}
 }
 
 void drawExample(MintSystem* sys)
 {
 	SDL_Color colour0 = { 255, 0, 0, 255 };
 	SDL_Color colour1 = { 255, 0, 255, 255 };
-
 
 // Pre render
 			
