@@ -35,7 +35,7 @@ void textExample(MintSystem* sys);
 void buttonExample(MintSystem* sys);
 void timerExample(MintSystem* sys);
 void physicsExample(MintSystem* sys);
-// void collisionExample(MintSystem* sys);
+void collisionExample(MintSystem* sys);
 // void texturePackerExample(MintSystem* sys);
 // void playerExample(MintSystem* sys);
 // void tilemapExample(MintSystem* sys);
@@ -89,11 +89,9 @@ int main(int argc, char* args[])
 	// sys->start = &textExample;
 	// sys->start = &buttonExample;
 	// sys->start = &timerExample;
-	sys->start = &physicsExample;
-	// sys->start = &collisionExample;
+	// sys->start = &physicsExample;
+	sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
-	// sys->start = &playerExample;
-	// sys->start = &collisionExample;
 	// sys->start = &tilemapExample;
 
 	mint_SystemInit(sys);
@@ -346,7 +344,7 @@ void timerExample(MintSystem* sys)
 	{
 		mint_SystemPreUpdate(sys);
 
-		objectAt.y += (int)(dir * sys->timer->elapsed * speed);
+		objectAt.y += (int)(dir * sys->elapsed * speed);
 
 		if (objectAt.y > SCREEN_HEIGHT) {
 			dir = -1;
@@ -390,16 +388,16 @@ void physicsExample(MintSystem* sys)
 		mint_SystemPostUpdate(sys);
 		mint_SystemPreDraw(sys);
 
-		mint_TextureUpdate(texture, sys->timer->elapsed);
+		mint_TextureUpdate(texture, sys->elapsed);
 		mint_TextureRender(texture);
-		
+
 		mint_SystemDraw(sys);
 		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(texture);
 }
-/*
+
 void collisionExample(MintSystem* sys)
 {
 	srand((int)time(NULL));
@@ -412,18 +410,22 @@ void collisionExample(MintSystem* sys)
 	MintTexture* box1 = mint_TextureFromPNG(sys, "assets/img/box.png");
 	MintTexture* box2 = mint_TextureFromPNG(sys, "assets/img/box.png");
 
-	mint_PhysEnable(box1, world, 1, 1);
-	mint_PhysEnable(box2, world, 1, 1);
+	mint_PhysEnable(box1, sys->world, 1, 1);
+	mint_PhysEnable(box2, sys->world, 1, 1);
 
 	MintFloatPoint velo1;
 	MintFloatPoint velo2;
 
-	mint_RendSetColour(box1->rend, &red);
-	mint_RendSetColour(box2->rend, &blue);
+	mint_TransSetColour(box1->trans, &red);
+	mint_TransSetColour(box2->trans, &blue);
 
-	mint_PhysSetGravity(world, 0, 5);
+	mint_PhysSetGravity(sys->world, 0, 5);
 
-		secondsTillRegen -= sys->timer->elapsed;
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
+
+		secondsTillRegen -= sys->elapsed;
 		if (secondsTillRegen <= 0) {
 			secondsTillRegen = 1;
 
@@ -453,23 +455,25 @@ void collisionExample(MintSystem* sys)
 			mint_PhysSetVelocity(box2->phys, velo2.x, velo2.y);
 		}
 
-// Pre render
+		mint_SystemUpdate(sys);
 
-		mint_PhysStepWorld(world, sys->timer->elapsed);
+		mint_TextureUpdate(box1, sys->elapsed);
+		mint_TextureUpdate(box2, sys->elapsed);
 
-		mint_TextureUpdate(box1, sys->timer->elapsed);
-		mint_TextureUpdate(box2, sys->timer->elapsed);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
 		mint_TextureRender(box1);
 		mint_TextureRender(box2);
 
-// Post render
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(box1);
 	mint_TextureFree(box2);
 }
-
+/*
 void texturePackerExample(MintSystem* sys)
 {
 	// TODO(jeru): Change the 10 to a more relevant number
@@ -503,7 +507,7 @@ void texturePackerExample(MintSystem* sys)
 // Pre render
 		
 		for (i = 0; i < ANIMS; i++) {
-			mint_TextureUpdate(player[i], sys->timer->elapsed);
+			mint_TextureUpdate(player[i], sys->elapsed);
 			mint_TextureRender(player[i]);
 		}
 
@@ -512,7 +516,7 @@ void texturePackerExample(MintSystem* sys)
 
 	for (i = 0; i < ANIMS; i++) mint_TextureFree(player[i]);
 }
-
+/*
 void playerExample(MintSystem* sys)
 {
 	MintTexture* player;
@@ -609,8 +613,8 @@ void playerExample(MintSystem* sys)
 
 // Pre render
 		
-		mint_PhysStepWorld(world, sys->timer->elapsed);
-		mint_TextureUpdate(player, sys->timer->elapsed);
+		mint_PhysStepWorld(world, sys->elapsed);
+		mint_TextureUpdate(player, sys->elapsed);
 		mint_TextureRender(player);
 
 // Post render
