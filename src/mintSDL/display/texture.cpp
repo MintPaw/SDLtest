@@ -3,13 +3,14 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include "mintSDL/system.h"
 #include "mintSDL/display/anim.h"
 #include "mintSDL/display/rend.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/display/trans.h"
 #include "mintSDL/maths/phys.h"
 
-MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
+MintTexture* mint_TextureFromPNG(MintSystem* sys, char* path)
 {
 	SDL_Surface* surface = IMG_Load(path);
 
@@ -18,14 +19,14 @@ MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path)
 		return NULL;
 	}
 
-	MintTexture* mintTexture = mint_TextureFromSurface(renderer, surface);
+	MintTexture* mintTexture = mint_TextureFromSurface(sys, surface);
 
 	SDL_FreeSurface(surface);
 
 	return mintTexture;
 }
 
-MintTexture* mint_TextureFromText(SDL_Renderer* renderer, TTF_Font* font, char* text, SDL_Color colour)
+MintTexture* mint_TextureFromText(MintSystem* sys, TTF_Font* font, char* text, SDL_Color colour)
 {
 	SDL_Surface* surface = TTF_RenderText_Solid(font, text, colour);
 
@@ -34,23 +35,23 @@ MintTexture* mint_TextureFromText(SDL_Renderer* renderer, TTF_Font* font, char* 
 		return NULL;
 	}
 
-	MintTexture* mintTexture = mint_TextureFromSurface(renderer, surface);
+	MintTexture* mintTexture = mint_TextureFromSurface(sys, surface);
 
 	SDL_FreeSurface(surface);
 
 	return mintTexture;
 }
 
-MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surface)
+MintTexture* mint_TextureFromSurface(MintSystem* sys, SDL_Surface* surface)
 {
 	MintTexture* mintTexture = (MintTexture*)malloc(sizeof(MintTexture));
 
-	mintTexture->texture = SDL_CreateTextureFromSurface(renderer, surface);
+	mintTexture->texture = SDL_CreateTextureFromSurface(sys->sdlRenderer, surface);
 	if (mintTexture->texture == NULL) {
 		printf("Failed to create texture from, SDL_Error: %s\n", SDL_GetError());
 	}
 
-	mintTexture->rend = mint_RendSetup(mintTexture, renderer);
+	mintTexture->sys = sys;
 	mintTexture->trans = mint_TransSetup(mintTexture, surface->w, surface->h);
 	mintTexture->phys = NULL;
 
@@ -68,19 +69,19 @@ void mint_TextureUpdate(MintTexture* mintTexture, float elapsed)
 void mint_TextureRender(MintTexture* mintTexture)
 {
 	SDL_Rect quad;
-	if (mintTexture->rend->_clipRect) {
-		quad = { mintTexture->trans->_x, mintTexture->trans->_y, mintTexture->rend->_clipRect->w, mintTexture->rend->_clipRect->h };
+	if (mintTexture->animMan->clipRect) {
+		quad = { mintTexture->trans->_x, mintTexture->trans->_y, mintTexture->animMan->clipRect->w, mintTexture->animMan->clipRect->h };
 
-		SDL_RenderCopyEx(mintTexture->rend->renderer,
+		SDL_RenderCopyEx(mintTexture->sys->sdlRenderer,
 		                 mintTexture->texture,
-		                 mintTexture->rend->_clipRect,
+		                 mintTexture->animMan->clipRect,
 		                 &quad,
 		                 mintTexture->trans->angle,
 		                 &mintTexture->trans->centre,
 		                 mintTexture->trans->flip);
 	} else {
 		quad = { mintTexture->trans->_x, mintTexture->trans->_y, mintTexture->trans->_width, mintTexture->trans->_height };
-		SDL_RenderCopyEx(mintTexture->rend->renderer,
+		SDL_RenderCopyEx(mintTexture->sys->sdlRenderer,
 		                 mintTexture->texture,
 		                 NULL,
 		                 &quad,
@@ -93,7 +94,6 @@ void mint_TextureRender(MintTexture* mintTexture)
 void mint_TextureFree(MintTexture* mintTexture)
 {
 	SDL_DestroyTexture(mintTexture->texture);
-	mint_RendFree(mintTexture->rend);
 	mint_TransFree(mintTexture->trans);
 	mint_PhysFree(mintTexture->phys);
 	mint_AnimManFree(mintTexture->animMan);

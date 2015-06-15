@@ -16,6 +16,7 @@ MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture)
 	animMan->totalAnims = 0;
 	animMan->currentAnim = NULL;
 	animMan->anims = NULL;
+	animMan->clipRect = NULL;
 	animMan->mintTexture = mintTexture;
 
 	return animMan;
@@ -156,7 +157,7 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 	anim->currentFrame = 0;
 	anim->loop = loop;
 
-	anim->man->mintTexture->rend->_clipRect = &anim->frameRects[0];
+	anim->man->clipRect = &anim->frameRects[0];
 	anim->man->mintTexture->trans->_width = anim->frameRects[0].w;
 	anim->man->mintTexture->trans->_height = anim->frameRects[0].h;
 }
@@ -175,7 +176,7 @@ void mint_AnimUpdate(MintAnimMan* animMan, float elapsed)
 
 void mint_AnimUpdateClip(MintAnimMan* animMan)
 {
-	animMan->mintTexture->rend->_clipRect = &animMan->currentAnim->frameRects[animMan->currentAnim->currentFrame];	
+	animMan->clipRect = &animMan->currentAnim->frameRects[animMan->currentAnim->currentFrame];	
 }
 
 void mint_AnimUpdateAsButton(MintAnimMan* animMan, MintInput* input)

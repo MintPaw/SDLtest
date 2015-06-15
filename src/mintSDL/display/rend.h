@@ -9,7 +9,6 @@ struct MintRend;
 struct MintRend {
 	MintTexture* mintTexture;
 	SDL_Renderer* renderer;
-	SDL_Rect* _clipRect;
 	unsigned char _alpha;
 };
 
@@ -19,9 +18,8 @@ void mint_RendClearSdlRenderer(SDL_Renderer* renderer);
 void mint_RendHexToSDLColor(unsigned long colour, SDL_Color* sdlColour);
 unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor);
 
-MintRend* mint_RendSetup(MintTexture* mintTexture, SDL_Renderer* renderer);
-void mint_RendSetColour(MintRend* rend, SDL_Color* colour);
-void mint_RendSetAlpha(MintRend* rend, char alpha);
-void mint_RendFree(MintRend* rend);
+// void mint_RendSetColour(MintRend* rend, SDL_Color* colour);
+// void mint_RendSetAlpha(MintRend* rend, char alpha);
+// void mint_RendFree(MintRend* rend);
 
 #endif

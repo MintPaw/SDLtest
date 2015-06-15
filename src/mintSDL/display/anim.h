@@ -12,6 +12,7 @@ struct MintAnimMan {
 	MintTexture* mintTexture;
 	MintAnim* anims;
 	MintAnim* currentAnim;
+	SDL_Rect* clipRect;
 	int totalAnims;
 };
 

@@ -50,26 +50,25 @@ MintRend* mint_RendSetup(MintTexture* mintTexture, SDL_Renderer* renderer)
 	rend->mintTexture = mintTexture;
 	rend->renderer = renderer;
 	rend->_alpha = 255;
-	rend->_clipRect = NULL;
 
 	return rend;
 }
 
-void mint_RendSetColour(MintRend* rend, SDL_Color* colour)
-{
-	SDL_SetTextureColorMod(rend->mintTexture->texture, colour->r, colour->g, colour->b);
-}
+// void mint_RendSetColour(MintRend* rend, SDL_Color* colour)
+// {
+// 	SDL_SetTextureColorMod(rend->mintTexture->texture, colour->r, colour->g, colour->b);
+// }
 
-void mint_RendSetAlpha(MintRend* rend, char alpha)
-{
-	if (rend->_alpha == NULL) SDL_SetTextureBlendMode(rend->mintTexture->texture, SDL_BLENDMODE_BLEND);
+// void mint_RendSetAlpha(MintRend* rend, char alpha)
+// {
+// 	if (rend->_alpha == NULL) SDL_SetTextureBlendMode(rend->mintTexture->texture, SDL_BLENDMODE_BLEND);
 
-	rend->_alpha = alpha;
-	SDL_SetTextureAlphaMod(rend->mintTexture->texture, rend->_alpha);
-}
+// 	rend->_alpha = alpha;
+// 	SDL_SetTextureAlphaMod(rend->mintTexture->texture, rend->_alpha);
+// }
 
-void mint_RendFree(MintRend* rend)
-{
-	free(rend);
-	rend = NULL;
-}
+// void mint_RendFree(MintRend* rend)
+// {
+// 	free(rend);
+// 	rend = NULL;
+// }

@@ -23,7 +23,7 @@
 
 void gameExample(MintSystem* sys);
 void drawExample(MintSystem* sys);
-// void mintTextureExample(MintSystem* sys);
+void mintTextureExample(MintSystem* sys);
 // void setColourInputExample(MintSystem* sys);
 // void setAlphaInputExample(MintSystem* sys);
 // void animationExample(MintSystem* sys);
@@ -74,8 +74,8 @@ int main(int argc, char* args[])
 	sys = mint_SystemSetup();
 
 	// sys->start = &gameExample;
-	sys->start = &drawExample;
-	// sys->start = &mintTextureExample;
+	// sys->start = &drawExample;
+	sys->start = &mintTextureExample;
 	// sys->start = &setColourInputExample;
 	// sys->start = &setAlphaInputExample;
 	// sys->start = &animationExample;
@@ -125,28 +125,32 @@ void drawExample(MintSystem* sys)
 		mint_DrawLine(sys, 100, 100, 200, 200, &colour0);
 		mint_DrawLine(sys, 200, 200, 300, 100, &colour0);
 		mint_DrawRect(sys, 300, 50, 100, 50, &colour1);
-		
+
 		mint_SystemDraw(sys);
 		mint_SystemPostDraw(sys);
 	}
 }
-/*
+
 void mintTextureExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
 
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
-// Pre render
-			
-			mint_TextureRender(texture);
-			
-// Post render
-		}
+		mint_TextureRender(texture);
+
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(texture);
 }
-
+/*
 void setColourInputExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
