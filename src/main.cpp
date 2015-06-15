@@ -24,7 +24,7 @@
 void gameExample(MintSystem* sys);
 void drawExample(MintSystem* sys);
 void mintTextureExample(MintSystem* sys);
-// void setColourInputExample(MintSystem* sys);
+void setColourInputExample(MintSystem* sys);
 // void setAlphaInputExample(MintSystem* sys);
 // void animationExample(MintSystem* sys);
 // void transformExample(MintSystem* sys);
@@ -75,8 +75,8 @@ int main(int argc, char* args[])
 
 	// sys->start = &gameExample;
 	// sys->start = &drawExample;
-	sys->start = &mintTextureExample;
-	// sys->start = &setColourInputExample;
+	// sys->start = &mintTextureExample;
+	sys->start = &setColourInputExample;
 	// sys->start = &setAlphaInputExample;
 	// sys->start = &animationExample;
 	// sys->start = &animationExample;
@@ -150,33 +150,38 @@ void mintTextureExample(MintSystem* sys)
 
 	mint_TextureFree(texture);
 }
-/*
+
 void setColourInputExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
 
-	SDL_Color colour = { 255, 255, 255, 0 }
+	SDL_Color colour = { 255, 255, 255, 0 };
 
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
 
-// Pre render
-			
-			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) colour.r += 10;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_A)) colour.r -= 10;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_W)) colour.g += 10;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_S)) colour.g -= 10;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_E)) colour.b += 10;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_D)) colour.b -= 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) colour.r += 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) colour.r -= 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_W)) colour.g += 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_S)) colour.g -= 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_E)) colour.b += 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_D)) colour.b -= 10;
+		mint_TransSetColour(texture->trans, &colour);
+
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
 			mint_TextureRender(texture);
-			mint_RendSetColour(texture->rend, &colour);
 			
-// Post render
-		}
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(texture);
 }
-
+/*
 void setAlphaInputExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
@@ -186,8 +191,8 @@ void setAlphaInputExample(MintSystem* sys)
 
 // Pre render
 			
-			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) alpha += 10;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_A)) alpha -= 10;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) alpha += 10;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) alpha -= 10;
 
 			mint_RendSetAlpha(texture->rend, alpha);
 			mint_TextureRender(texture);
@@ -230,18 +235,18 @@ void transformExample(MintSystem* sys)
 	MintTexture* arrow = mint_TextureFromPNG(sys, "assets/img/arrow.png");
 
 
-			if (mint_InputCheckKey(input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
 
-			if (mint_InputCheckKey(input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_A)) arrow->trans->centre.x-= 1;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) arrow->trans->centre.x-= 1;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
 
-			if (mint_InputCheckKey(input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
-			if (mint_InputCheckKey(input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
+			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
 // Pre render
 
@@ -292,7 +297,7 @@ void buttonExample(MintSystem* sys)
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 			    
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
 
 // Pre render
 
@@ -325,7 +330,7 @@ void timerExample(MintSystem* sys)
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
 		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
@@ -366,13 +371,13 @@ void physicsExample(MintSystem* sys)
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		if (mint_InputCheckKey(input, SDL_SCANCODE_RIGHT)) mint_PhysApplyForce(texture->phys, speed, 0);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_LEFT)) mint_PhysApplyForce(texture->phys, -speed, 0);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture->phys, 0, -speed);
-		if (mint_InputCheckKey(input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture->phys, 0, speed);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_RIGHT)) mint_PhysApplyForce(texture->phys, speed, 0);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_LEFT)) mint_PhysApplyForce(texture->phys, -speed, 0);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture->phys, 0, -speed);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture->phys, 0, speed);
 
 // Pre render
 
@@ -420,7 +425,7 @@ void collisionExample(MintSystem* sys)
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
 		secondsTillRegen -= timer->elapsed;
@@ -498,7 +503,7 @@ void texturePackerExample(MintSystem* sys)
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
 // Pre render
@@ -549,13 +554,13 @@ void playerExample(MintSystem* sys)
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		left = mint_InputCheckKey(input, SDL_SCANCODE_LEFT);
-		right = mint_InputCheckKey(input, SDL_SCANCODE_RIGHT);
-		up = mint_InputCheckKey(input, SDL_SCANCODE_UP);
-		down = mint_InputCheckKey(input, SDL_SCANCODE_DOWN);
+		left = mint_InputCheckKey(sys->input, SDL_SCANCODE_LEFT);
+		right = mint_InputCheckKey(sys->input, SDL_SCANCODE_RIGHT);
+		up = mint_InputCheckKey(sys->input, SDL_SCANCODE_UP);
+		down = mint_InputCheckKey(sys->input, SDL_SCANCODE_DOWN);
 
 		if (left) mint_PhysSetVelocity(player->phys, -5, mint_PhysGetVelocity(player->phys).y);
 		if (right) mint_PhysSetVelocity(player->phys, 5, mint_PhysGetVelocity(player->phys).y);
@@ -641,7 +646,7 @@ void tilemapExample(MintSystem* sys)
 			    e.type == SDL_MOUSEBUTTONDOWN ||
 			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
 
-			if (e.type == SDL_QUIT || mint_InputCheckKey(input, SDL_SCANCODE_ESCAPE)) quit = 1;
+			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
 // Pre render

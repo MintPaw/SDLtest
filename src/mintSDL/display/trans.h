@@ -16,6 +16,7 @@ struct MintTrans {
 	int _height;
 	int _x;
 	int _y;
+	unsigned char _alpha;
 };
 
 MintTrans* mint_TransSetup(MintTexture* mintTexture, int width, int height);
@@ -23,6 +24,9 @@ void mint_TransSetX(MintTrans* trans, int value);
 void mint_TransSetY(MintTrans* trans, int value);
 int mint_TransGetWidth(MintTrans* trans);
 int mint_TransGetHeight(MintTrans* trans);
+void mint_TransSetColour(MintTrans* trans, SDL_Color* colour);
+void mint_TransSetAlpha(MintTrans* trans, char alpha);
+
 void mint_TransFree(MintTrans* trans);
 
 #endif

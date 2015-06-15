@@ -54,3 +54,16 @@ void mint_TransFree(MintTrans* trans)
 	free(trans);
 	trans = NULL;
 }
+
+void mint_TransSetColour(MintTrans* trans, SDL_Color* colour)
+{
+	SDL_SetTextureColorMod(trans->mintTexture->texture, colour->r, colour->g, colour->b);
+}
+
+void mint_TransSetAlpha(MintTrans* trans, char alpha)
+{
+	if (trans->_alpha == NULL) SDL_SetTextureBlendMode(trans->mintTexture->texture, SDL_BLENDMODE_BLEND);
+
+	trans->_alpha = alpha;
+	SDL_SetTextureAlphaMod(trans->mintTexture->texture, trans->_alpha);
+}
