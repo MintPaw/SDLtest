@@ -43,7 +43,15 @@ char mint_SystemInit(MintSystem* sys)
 			return 0;
 		} else {
 			// TODO(jeru): Vsync option
-			sys->sdlRenderer = mint_RendCreateSdlRenderer(sys->sdlWindow, 1);
+			if (true)
+			{
+				sys->sdlRenderer = SDL_CreateRenderer(sys->sdlWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+			} else {
+				sys->sdlRenderer = SDL_CreateRenderer(sys->sdlWindow, -1, SDL_RENDERER_ACCELERATED);
+			}
+			if (sys->sdlRenderer == NULL) {
+				printf("Failed to create renderer, SDL_Error: \n", SDL_GetError());
+			}
 		}
 	}
 
@@ -107,7 +115,8 @@ void mint_SystemPostUpdate(MintSystem* sys)
 
 void mint_SystemPreDraw(MintSystem* sys)
 {
-	mint_RendClearSdlRenderer(sys->sdlRenderer);
+	SDL_SetRenderDrawColor(sys->sdlRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(sys->sdlRenderer);
 }
 
 void mint_SystemDraw(MintSystem* sys)

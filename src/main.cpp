@@ -15,7 +15,6 @@ const int SCREEN_HEIGHT = 832;
 #include <SDL.h>
 #include "mintSDL/display/anim.h"
 #include "mintSDL/display/draw.h"
-#include "mintSDL/display/rend.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/display/tilemap.h"
 #include "mintSDL/maths/phys.h"

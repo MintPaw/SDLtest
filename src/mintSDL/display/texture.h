@@ -6,7 +6,6 @@ struct MintTexture;
 #include <SDL_ttf.h>
 #include "mintSDL/system.h"
 #include "mintSDL/display/anim.h"
-#include "mintSDL/display/rend.h"
 #include "mintSDL/display/trans.h"
 #include "mintSDL/maths/phys.h"
 
