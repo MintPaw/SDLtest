@@ -34,7 +34,7 @@ void transformExample(MintSystem* sys);
 void textExample(MintSystem* sys);
 void buttonExample(MintSystem* sys);
 void timerExample(MintSystem* sys);
-// void physicsExample(MintSystem* sys);
+void physicsExample(MintSystem* sys);
 // void collisionExample(MintSystem* sys);
 // void texturePackerExample(MintSystem* sys);
 // void playerExample(MintSystem* sys);
@@ -88,8 +88,8 @@ int main(int argc, char* args[])
 	// sys->start = &transformExample;
 	// sys->start = &textExample;
 	// sys->start = &buttonExample;
-	sys->start = &timerExample;
-	// sys->start = &physicsExample;
+	// sys->start = &timerExample;
+	sys->start = &physicsExample;
 	// sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
 	// sys->start = &playerExample;
@@ -368,45 +368,38 @@ void timerExample(MintSystem* sys)
 		mint_SystemPostDraw(sys);
 	}
 }
-/*
+
 void physicsExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/ball.png");
-	mint_PhysEnable(texture, world, 1, 3);
+	mint_PhysEnable(texture, sys->world, 1, 3);
 	float speed = 5;
 
-	mint_PhysSetGravity(world, 0, 0);
+	mint_PhysSetGravity(sys->world, 0, 0);
 
-	while (!quit) {
-
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN ||
-			    e.type == SDL_KEYUP ||
-			    e.type == SDL_MOUSEMOTION ||
-			    e.type == SDL_MOUSEBUTTONDOWN ||
-			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
-
-			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
-		}
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
 
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_RIGHT)) mint_PhysApplyForce(texture->phys, speed, 0);
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_LEFT)) mint_PhysApplyForce(texture->phys, -speed, 0);
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture->phys, 0, -speed);
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture->phys, 0, speed);
 
-// Pre render
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
 		mint_TextureUpdate(texture, sys->timer->elapsed);
 		mint_TextureRender(texture);
 		
-		mint_PhysStepWorld(world, sys->timer->elapsed);
-
-// Post render
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(texture);
 }
-
+/*
 void collisionExample(MintSystem* sys)
 {
 	srand((int)time(NULL));
@@ -429,18 +422,6 @@ void collisionExample(MintSystem* sys)
 	mint_RendSetColour(box2->rend, &blue);
 
 	mint_PhysSetGravity(world, 0, 5);
-
-	while (!quit) {
-
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN ||
-			    e.type == SDL_KEYUP ||
-			    e.type == SDL_MOUSEMOTION ||
-			    e.type == SDL_MOUSEBUTTONDOWN ||
-			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
-
-			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
-		}
 
 		secondsTillRegen -= sys->timer->elapsed;
 		if (secondsTillRegen <= 0) {

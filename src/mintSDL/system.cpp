@@ -91,6 +91,8 @@ void mint_SystemUpdate(MintSystem* sys)
 {
 	mint_TimerUpdate(sys->timer, (float)(SDL_GetTicks() / 1000.0));
 	sys->elapsed = sys->timer->elapsed;
+
+	mint_PhysStepWorld(sys->world, sys->elapsed);
 }
 
 void mint_SystemPostUpdate(MintSystem* sys)
