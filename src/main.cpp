@@ -1,3 +1,6 @@
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 832;
+
 #define _CRT_SECURE_NO_WARNINGS
 #define _CRTDBG_MAP_ALLOC
 
@@ -30,7 +33,7 @@ void animationExample(MintSystem* sys);
 void transformExample(MintSystem* sys);
 void textExample(MintSystem* sys);
 void buttonExample(MintSystem* sys);
-// void timerExample(MintSystem* sys);
+void timerExample(MintSystem* sys);
 // void physicsExample(MintSystem* sys);
 // void collisionExample(MintSystem* sys);
 // void texturePackerExample(MintSystem* sys);
@@ -40,6 +43,7 @@ void buttonExample(MintSystem* sys);
 /*
 
 	Todo:
+		Add screen width/height to system
 		Get rid of calloc lol
 		Make better font system
 		Make event handler
@@ -83,8 +87,8 @@ int main(int argc, char* args[])
 	// sys->start = &animationExample;
 	// sys->start = &transformExample;
 	// sys->start = &textExample;
-	sys->start = &buttonExample;
-	// sys->start = &timerExample;
+	// sys->start = &buttonExample;
+	sys->start = &timerExample;
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
@@ -326,7 +330,7 @@ void buttonExample(MintSystem* sys)
 
 	for (i = 0; i < 3; i++) mint_TextureFree(buttons[i]);
 }
-/*
+
 void timerExample(MintSystem* sys)
 {
 	SDL_Point objectAt = { 0, 0 };
@@ -335,21 +339,14 @@ void timerExample(MintSystem* sys)
 	float speed = 1000;
 
 	objectAt.x = SCREEN_WIDTH / 2;
-	timer->secondsPerReport = 1;
-	timer->secondsSinceLastReport = 1;
+	sys->timer->secondsPerReport = 1;
+	sys->timer->secondsSinceLastReport = 1;
 
-			if (e.type == SDL_KEYDOWN ||
-			    e.type == SDL_KEYUP ||
-	        e.type == SDL_MOUSEMOTION ||
-			    e.type == SDL_MOUSEBUTTONDOWN ||
-			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
 
-			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
-		}
-
-		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
-
-		objectAt.y += (int)(dir * timer->elapsed * speed);
+		objectAt.y += (int)(dir * sys->timer->elapsed * speed);
 
 		if (objectAt.y > SCREEN_HEIGHT) {
 			dir = -1;
@@ -361,12 +358,17 @@ void timerExample(MintSystem* sys)
 			objectAt.y = 0;
 		}
 
-// Pre render
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
+
 		mint_DrawRect(sys, objectAt.x, objectAt.y, 10, 10, &colour);
-// Post render
+
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 }
-
+/*
 void physicsExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/ball.png");
@@ -376,7 +378,6 @@ void physicsExample(MintSystem* sys)
 	mint_PhysSetGravity(world, 0, 0);
 
 	while (!quit) {
-		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
@@ -395,10 +396,10 @@ void physicsExample(MintSystem* sys)
 
 // Pre render
 
-		mint_TextureUpdate(texture, timer->elapsed);
+		mint_TextureUpdate(texture, sys->timer->elapsed);
 		mint_TextureRender(texture);
 		
-		mint_PhysStepWorld(world, timer->elapsed);
+		mint_PhysStepWorld(world, sys->timer->elapsed);
 
 // Post render
 	}
@@ -430,7 +431,6 @@ void collisionExample(MintSystem* sys)
 	mint_PhysSetGravity(world, 0, 5);
 
 	while (!quit) {
-		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
@@ -442,7 +442,7 @@ void collisionExample(MintSystem* sys)
 			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
 		}
 
-		secondsTillRegen -= timer->elapsed;
+		secondsTillRegen -= sys->timer->elapsed;
 		if (secondsTillRegen <= 0) {
 			secondsTillRegen = 1;
 
@@ -474,10 +474,10 @@ void collisionExample(MintSystem* sys)
 
 // Pre render
 
-		mint_PhysStepWorld(world, timer->elapsed);
+		mint_PhysStepWorld(world, sys->timer->elapsed);
 
-		mint_TextureUpdate(box1, timer->elapsed);
-		mint_TextureUpdate(box2, timer->elapsed);
+		mint_TextureUpdate(box1, sys->timer->elapsed);
+		mint_TextureUpdate(box2, sys->timer->elapsed);
 
 		mint_TextureRender(box1);
 		mint_TextureRender(box2);
@@ -508,7 +508,6 @@ void texturePackerExample(MintSystem* sys)
 	}
 
 	while (!quit) {
-		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 		
 		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
@@ -523,7 +522,7 @@ void texturePackerExample(MintSystem* sys)
 // Pre render
 		
 		for (i = 0; i < ANIMS; i++) {
-			mint_TextureUpdate(player[i], timer->elapsed);
+			mint_TextureUpdate(player[i], sys->timer->elapsed);
 			mint_TextureRender(player[i]);
 		}
 
@@ -559,7 +558,6 @@ void playerExample(MintSystem* sys)
 	mint_TransSetY(player->trans, 200);
 
 	while (!quit) {
-		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 		
 		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_KEYDOWN ||
@@ -630,8 +628,8 @@ void playerExample(MintSystem* sys)
 
 // Pre render
 		
-		mint_PhysStepWorld(world, timer->elapsed);
-		mint_TextureUpdate(player, timer->elapsed);
+		mint_PhysStepWorld(world, sys->timer->elapsed);
+		mint_TextureUpdate(player, sys->timer->elapsed);
 		mint_TextureRender(player);
 
 // Post render
@@ -650,7 +648,6 @@ void tilemapExample(MintSystem* sys)
 	mint_TilemapGenerateFromTiled(tilemap, "assets/map/test1.tmx");
 
 	while (!quit) {
-		mint_TimerUpdate(timer, (float)(SDL_GetTicks() / 1000.0));
 
 		if (SDL_PollEvent(&e) != 0)
 		{
