@@ -36,7 +36,7 @@ void buttonExample(MintSystem* sys);
 void timerExample(MintSystem* sys);
 void physicsExample(MintSystem* sys);
 void collisionExample(MintSystem* sys);
-// void texturePackerExample(MintSystem* sys);
+void texturePackerExample(MintSystem* sys);
 // void playerExample(MintSystem* sys);
 // void tilemapExample(MintSystem* sys);
 
@@ -90,8 +90,8 @@ int main(int argc, char* args[])
 	// sys->start = &buttonExample;
 	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
-	sys->start = &collisionExample;
-	// sys->start = &texturePackerExample;
+	// sys->start = &collisionExample;
+	sys->start = &texturePackerExample;
 	// sys->start = &tilemapExample;
 
 	mint_SystemInit(sys);
@@ -473,7 +473,7 @@ void collisionExample(MintSystem* sys)
 	mint_TextureFree(box1);
 	mint_TextureFree(box2);
 }
-/*
+
 void texturePackerExample(MintSystem* sys)
 {
 	// TODO(jeru): Change the 10 to a more relevant number
@@ -492,28 +492,22 @@ void texturePackerExample(MintSystem* sys)
 		mint_TransSetX(player[i]->trans, 50 * i);
 	}
 
-	while (!quit) {
-		
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_KEYDOWN ||
-			    e.type == SDL_KEYUP ||
-			    e.type == SDL_MOUSEMOTION ||
-			    e.type == SDL_MOUSEBUTTONDOWN ||
-			    e.type == SDL_MOUSEBUTTONUP) mint_InputUpdate(input, &e);
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
 
-			if (e.type == SDL_QUIT || mint_InputCheckKey(sys->input, SDL_SCANCODE_ESCAPE)) quit = 1;
-		}
+		for (i = 0; i < ANIMS; i++) mint_TextureUpdate(player[i], sys->elapsed);
 
-// Pre render
-		
-		for (i = 0; i < ANIMS; i++) {
-			mint_TextureUpdate(player[i], sys->elapsed);
-			mint_TextureRender(player[i]);
-		}
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
-// Post render
+		for (i = 0; i < ANIMS; i++) mint_TextureRender(player[i]);
+
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
-
+	
 	for (i = 0; i < ANIMS; i++) mint_TextureFree(player[i]);
 }
 /*
