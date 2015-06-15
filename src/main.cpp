@@ -27,7 +27,7 @@ void mintTextureExample(MintSystem* sys);
 void setColourInputExample(MintSystem* sys);
 void setAlphaInputExample(MintSystem* sys);
 void animationExample(MintSystem* sys);
-// void transformExample(MintSystem* sys);
+void transformExample(MintSystem* sys);
 // void textExample(MintSystem* sys);
 // void buttonExample(MintSystem* sys);
 // void timerExample(MintSystem* sys);
@@ -78,9 +78,8 @@ int main(int argc, char* args[])
 	// sys->start = &mintTextureExample;
 	// sys->start = &setColourInputExample;
 	// sys->start = &setAlphaInputExample;
-	sys->start = &animationExample;
 	// sys->start = &animationExample;
-	// sys->start = &transformExample;
+	sys->start = &transformExample;
 	// sys->start = &textExample;
 	// sys->start = &buttonExample;
 	// sys->start = &timerExample;
@@ -236,35 +235,40 @@ void animationExample(MintSystem* sys)
 
 	mint_TextureFree(texture);
 }
-/*
+
 void transformExample(MintSystem* sys)
 {
 	MintTexture* arrow = mint_TextureFromPNG(sys, "assets/img/arrow.png");
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
 
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
 
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) arrow->trans->centre.x-= 1;
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) arrow->trans->centre.x-= 1;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
 
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
-			if (mint_InputCheckKey(sys->input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
-// Pre render
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
 
-			mint_TextureRender(arrow);
-			
-// Post render
-		}
+		mint_TextureRender(arrow);
+
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
 	}
 
 	mint_TextureFree(arrow);
 }
-
+/*
 void textExample(MintSystem* sys)
 {
 	MintTexture* text = mint_TextureFromText(sys, ttfOpenSans, "This is some test text", {0, 0, 0, 0});
