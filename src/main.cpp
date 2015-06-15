@@ -73,8 +73,8 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup();
 
-	sys->start = &gameExample;
-	// sys->start = &drawExample;
+	// sys->start = &gameExample;
+	sys->start = &drawExample;
 	// sys->start = &mintTextureExample;
 	// sys->start = &setColourInputExample;
 	// sys->start = &setAlphaInputExample;
@@ -114,14 +114,21 @@ void drawExample(MintSystem* sys)
 	SDL_Color colour0 = { 255, 0, 0, 255 };
 	SDL_Color colour1 = { 255, 0, 255, 255 };
 
-// Pre render
-			
-			mint_DrawRect(sys, 0, 0, 100, 100, &colour0);
-			mint_DrawLine(sys, 100, 100, 200, 200, &colour0);
-			mint_DrawLine(sys, 200, 200, 300, 100, &colour0);
-			mint_DrawRect(sys, 300, 50, 100, 50, &colour1);
-			
-// Post render
+	for(;;)
+	{
+		mint_SystemPreUpdate(sys);
+		mint_SystemUpdate(sys);
+		mint_SystemPostUpdate(sys);
+		mint_SystemPreDraw(sys);
+	
+		mint_DrawRect(sys, 0, 0, 100, 100, &colour0);
+		mint_DrawLine(sys, 100, 100, 200, 200, &colour0);
+		mint_DrawLine(sys, 200, 200, 300, 100, &colour0);
+		mint_DrawRect(sys, 300, 50, 100, 50, &colour1);
+		
+		mint_SystemDraw(sys);
+		mint_SystemPostDraw(sys);
+	}
 }
 /*
 void mintTextureExample(MintSystem* sys)
