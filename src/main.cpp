@@ -40,8 +40,14 @@ void playerExample(MintSystem* sys);
 void tilemapExample(MintSystem* sys);
 
 /*
+	Todo major:
+		States/scenes
+		Hitbox changes
+		Debugger
+		Pathfinding
+		Pooling
 
-	Todo:
+	Todo minor:
 		Add screen width/height to system
 		Get rid of calloc lol
 		Make better font system
