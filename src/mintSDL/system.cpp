@@ -22,22 +22,18 @@ MintSystem* mint_SystemSetup()
 	sys->input = NULL;
 	sys->timer = NULL;
 	sys->world = NULL;
-	sys->font = NULL;
 	sys->quit = 0;
 	sys->elapsed = 0;
 	sys->stage = -1;
 	sys->totalTextures = 0;
+	sys->totalFonts = 0;
 	
 	int i;
 	for (i = 0; i < MAX_TEXTURES; i++) sys->textures[i] = NULL;
+	for (i = 0; i < MAX_FONTS; i++) sys->fonts[i] = NULL;
 
 	sys->start = NULL;
 
-	return sys;
-}
-
-char mint_SystemInit(MintSystem* sys)
-{
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("SDL failed to init SDL_ERROR: %s\n", SDL_GetError());
 		return 0;
@@ -77,11 +73,20 @@ char mint_SystemInit(MintSystem* sys)
 
 	SDL_UpdateWindowSurface(sys->sdlWindow);
 
-	sys->font = TTF_OpenFont("assets/font/OpenSansRegular.ttf", 28);
+	return sys;
+}
 
+char mint_SystemInit(MintSystem* sys)
+{
 	sys->start(sys);
 
 	return 1;
+}
+
+void mint_SystemAddFont(MintSystem* sys, char* path)
+{
+	sys->fonts[sys->totalFonts] = TTF_OpenFont(path, 28);
+	sys->totalFonts++;
 }
 
 void mint_SystemFullScreen(MintSystem* sys, char fullscreen)
@@ -209,7 +214,13 @@ void _close(MintSystem* sys)
 	mint_InputFree(sys->input);
 	mint_TimerFree(sys->timer);
 	mint_PhysFreeWorld(sys->world);
-	TTF_CloseFont(sys->font);
+
+	int i;
+	for (i = 0; i < sys->totalFonts; i++) {
+		if (sys->fonts[i] == NULL) continue;
+		TTF_CloseFont(sys->fonts[i]);
+	}
+
 	free(sys);
 
 	SDL_Quit();

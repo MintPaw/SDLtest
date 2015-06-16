@@ -51,6 +51,7 @@ void systemExample(MintSystem* sys);
 		Gamepad support
 
 	Todo minor:
+		Reset totalTextures
 		Remove elapsed
 		Add screen width/height to system
 		Get rid of calloc lol
@@ -86,6 +87,7 @@ int main(int argc, char* args[])
 #endif
 
 	sys = mint_SystemSetup();
+	mint_SystemAddFont(sys, "assets/font/OpenSansRegular.ttf");
 
 	// sys->start = &gameExample;
 	// sys->start = &drawExample;
@@ -94,7 +96,7 @@ int main(int argc, char* args[])
 	// sys->start = &setAlphaInputExample;
 	// sys->start = &animationExample;
 	// sys->start = &transformExample;
-	// sys->start = &textExample;
+	sys->start = &textExample;
 	// sys->start = &buttonExample;
 	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
@@ -102,7 +104,7 @@ int main(int argc, char* args[])
 	// sys->start = &texturePackerExample;
 	// sys->start = &playerExample;
 	// sys->start = &tilemapExample;
-	sys->start = &systemExample;
+	// sys->start = &systemExample;
 
 	mint_SystemInit(sys);
 
@@ -286,7 +288,7 @@ void transformExample(MintSystem* sys)
 
 void textExample(MintSystem* sys)
 {
-	MintTexture* text = mint_TextureFromText(sys, sys->font, "This is some test text", {0, 0, 0, 0});
+	MintTexture* text = mint_TextureFromText(sys, sys->fonts[0], "This is some test text", {0, 0, 0, 0});
 
 	for(;;)
 	{

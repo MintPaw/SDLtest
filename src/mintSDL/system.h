@@ -9,6 +9,7 @@
 #define POST_DRAW 5
 
 #define MAX_TEXTURES 2048
+#define MAX_FONTS 16
 
 struct MintSystem;
 
@@ -23,10 +24,11 @@ struct MintSystem {
 	MintInput* input;
 	MintFrameTimer* timer;
 	MintPhysWorld* world;
-	TTF_Font* font;
+	TTF_Font* fonts[MAX_FONTS];
 	SDL_Event event;
 	MintTexture* textures[MAX_TEXTURES];
-	char totalTextures;
+	int totalTextures;
+	char totalFonts;
 	float elapsed;
 	char stage;
 	char quit;
@@ -36,6 +38,7 @@ struct MintSystem {
 
 MintSystem* mint_SystemSetup();
 char mint_SystemInit(MintSystem* sys);
+void mint_SystemAddFont(MintSystem* sys, char* path);
 void mint_SystemFullScreen(MintSystem* sys, char fullscreen);
 
 void mint_SystemPreUpdate(MintSystem* sys);
