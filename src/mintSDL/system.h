@@ -47,6 +47,6 @@ void mint_SystemPostDraw(MintSystem* sys);
 
 void mint_SystemAddTexture(MintSystem* sys, MintTexture* mintTexture);
 void mint_SystemRemoveTexture(MintSystem* sys, MintTexture* mintTexture, char free);
-
+void mint_SystemRemoveAll(MintSystem* sys);
 
 #endif

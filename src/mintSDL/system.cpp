@@ -189,13 +189,18 @@ void mint_SystemRemoveTexture(MintSystem* sys, MintTexture* mintTexture, char fr
 	if (free) mint_TextureFree(mintTexture);
 }
 
-void _close(MintSystem* sys)
+void mint_SystemRemoveAll(MintSystem* sys)
 {
 	int i;
 	for (i = 0; i < sys->totalTextures; i++) {
 		if (sys->textures[i] == NULL) continue;
 		mint_TextureFree(sys->textures[i]);
 	}
+}
+
+void _close(MintSystem* sys)
+{
+	mint_SystemRemoveAll(sys);
 
 	SDL_DestroyWindow(sys->sdlWindow);
 	SDL_DestroyRenderer(sys->sdlRenderer);
