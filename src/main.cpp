@@ -288,19 +288,17 @@ void transformExample(MintSystem* sys)
 
 void textExample(MintSystem* sys)
 {
-	MintTexture* text = mint_TextureFromText(sys, sys->fonts[0], "This is some test text", {0, 0, 0, 0});
+	MintTexture* text = mint_TextureFromNothing(sys);
 
 	for(;;)
 	{
-		mint_SystemPreUpdate(sys);
 		mint_SystemUpdate(sys);
-		mint_SystemPostUpdate(sys);
-		mint_SystemPreDraw(sys);
 
-		mint_TextureRender(text);
+		mint_TextureLoadText(text, sys->fonts[0], "Test text", { 0, 0, 0, 0 });
 
 		mint_SystemDraw(sys);
-		mint_SystemPostDraw(sys);
+		
+		mint_TextureRender(text);
 	}
 
 	mint_TextureFree(text);

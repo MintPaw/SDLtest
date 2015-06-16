@@ -17,10 +17,11 @@ struct MintTexture {
 	MintPhys* phys;
 };
 
+MintTexture* mint_TextureFromNothing(MintSystem* sys);
 MintTexture* mint_TextureFromPNG(MintSystem* sys, char* path);
-MintTexture* mint_TextureFromText(MintSystem* sys, TTF_Font* font, char* text, SDL_Color colour);
 MintTexture* mint_TextureFromSurface(MintSystem* sys, SDL_Surface* surface);
 
+void mint_TextureLoadText(MintTexture* mintTexture, TTF_Font* font, char* text, SDL_Color colour);
 void mint_TextureUpdate(MintTexture* mintTexture, float elapsed);
 void mint_TextureRender(MintTexture* mintTexture);
 void mint_TextureFree(MintTexture* mintTexture);
