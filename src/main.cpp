@@ -86,7 +86,7 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup();
 
-	// sys->start = &gameExample;
+	sys->start = &gameExample;
 	// sys->start = &drawExample;
 	// sys->start = &mintTextureExample;
 	// sys->start = &setColourInputExample;
@@ -100,7 +100,7 @@ int main(int argc, char* args[])
 	// sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
 	// sys->start = &playerExample;
-	sys->start = &tilemapExample;
+	// sys->start = &tilemapExample;
 
 	mint_SystemInit(sys);
 
@@ -111,12 +111,12 @@ void gameExample(MintSystem* sys)
 {
 	for(;;)
 	{
-		mint_SystemPreUpdate(sys);
+		// mint_SystemPreUpdate(sys);
 		mint_SystemUpdate(sys);
-		mint_SystemPostUpdate(sys);
-		mint_SystemPreDraw(sys);
+		// mint_SystemPostUpdate(sys);
+		// mint_SystemPreDraw(sys);
 		mint_SystemDraw(sys);
-		mint_SystemPostDraw(sys);
+		// mint_SystemPostDraw(sys);
 	}
 }
 

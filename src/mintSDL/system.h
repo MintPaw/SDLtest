@@ -1,6 +1,13 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+#define PRE_UPDATE 0
+#define UPDATE 1
+#define POST_UPDATE 2
+#define PRE_DRAW 3
+#define DRAW 4
+#define POST_DRAW 5
+
 struct MintSystem;
 
 #include <SDL.h>
@@ -17,6 +24,7 @@ struct MintSystem {
 	TTF_Font* font;
 	SDL_Event event;
 	float elapsed;
+	char stage;
 	char quit;
 
 	void (*start)(MintSystem* sys);

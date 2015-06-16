@@ -25,6 +25,7 @@ MintSystem* mint_SystemSetup()
 	sys->font = NULL;
 	sys->quit = 0;
 	sys->elapsed = 0;
+	sys->stage = -1;
 
 	sys->start = NULL;
 
@@ -86,6 +87,10 @@ void mint_SystemFullScreen(MintSystem* sys, char fullscreen)
 
 void mint_SystemPreUpdate(MintSystem* sys)
 {
+	if (sys->stage == DRAW) mint_SystemPostDraw(sys);
+	if (sys->stage != -1 && sys->stage != POST_DRAW) printf("Warning: forcing bad call of preupdate");
+	sys->stage = PRE_UPDATE;
+
 	{ // Handle Events
 		while (SDL_PollEvent(&sys->event) != 0) {
 
@@ -102,6 +107,11 @@ void mint_SystemPreUpdate(MintSystem* sys)
 
 void mint_SystemUpdate(MintSystem* sys)
 {
+	if (sys->stage == DRAW) mint_SystemPostDraw(sys);
+	if (sys->stage == -1 || sys->stage == POST_DRAW) mint_SystemPreUpdate(sys);
+	if (sys->stage != PRE_UPDATE) printf("Warning: forcing bad call of update");
+	sys->stage = UPDATE;
+
 	mint_TimerUpdate(sys->timer, (float)(SDL_GetTicks() / 1000.0));
 	sys->elapsed = sys->timer->elapsed;
 
@@ -110,22 +120,33 @@ void mint_SystemUpdate(MintSystem* sys)
 
 void mint_SystemPostUpdate(MintSystem* sys)
 {
-
+	if (sys->stage != UPDATE) printf("Warning: forcing bad call of postupdate");
+	sys->stage = POST_UPDATE;
 }
 
 void mint_SystemPreDraw(MintSystem* sys)
 {
+	if (sys->stage == UPDATE) mint_SystemPostUpdate(sys);
+	if (sys->stage != POST_UPDATE) printf("Warning: forcing bad call of predraw");
+	sys->stage = PRE_DRAW;
+
 	SDL_SetRenderDrawColor(sys->sdlRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(sys->sdlRenderer);
 }
 
 void mint_SystemDraw(MintSystem* sys)
 {
-
+	if (sys->stage == UPDATE) mint_SystemPostUpdate(sys);
+	if (sys->stage == POST_UPDATE) mint_SystemPreDraw(sys);
+	if (sys->stage != PRE_DRAW) printf("Warning: forcing bad call of draw");
+	sys->stage = DRAW;
 }
 
 void mint_SystemPostDraw(MintSystem* sys)
 {
+	if (sys->stage != DRAW) printf("Warning: forcing bad call of postupdate");
+	sys->stage = POST_DRAW;
+
 	SDL_RenderPresent(sys->sdlRenderer);
 
 	if (sys->quit) _close(sys);
