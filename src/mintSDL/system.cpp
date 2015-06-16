@@ -170,7 +170,7 @@ void mint_SystemDraw(MintSystem* sys)
 	if (sys->stage != PRE_DRAW) printf("Warning: forcing bad call of draw");
 	sys->stage = DRAW;
 
-	mint_TextureRender(sys->fpsCounter);
+	if (sys->fpsCounter) mint_TextureRender(sys->fpsCounter);
 
 	int i;
 	for (i = 0; i < sys->totalTextures; i++) {

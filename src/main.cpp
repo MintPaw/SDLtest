@@ -86,7 +86,7 @@ int main(int argc, char* args[])
 	// _CrtSetBreakAlloc(202);
 #endif
 
-	sys = mint_SystemSetup(1);
+	sys = mint_SystemSetup(0);
 	mint_SystemAddFont(sys, "assets/font/OpenSansRegular.ttf");
 
 	// sys->start = &gameExample;
@@ -106,7 +106,7 @@ int main(int argc, char* args[])
 	// sys->start = &tilemapExample;
 	// sys->start = &systemExample;
 
-	mint_SystemInit(sys, 1);
+	mint_SystemInit(sys, 0);
 
 	return 0;
 }
