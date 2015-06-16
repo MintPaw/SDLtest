@@ -26,6 +26,10 @@ MintSystem* mint_SystemSetup()
 	sys->quit = 0;
 	sys->elapsed = 0;
 	sys->stage = -1;
+	sys->totalTextures = 0;
+	
+	int i;
+	for (i = 0; i < MAX_TEXTURES; i++) sys->textures[i] = NULL;
 
 	sys->start = NULL;
 
@@ -116,6 +120,12 @@ void mint_SystemUpdate(MintSystem* sys)
 	sys->elapsed = sys->timer->elapsed;
 
 	mint_PhysStepWorld(sys->world, sys->elapsed);
+
+	int i;
+	for (i = 0; i < sys->totalTextures; i++) {
+		if (sys->textures[i] == NULL) continue;
+		mint_TextureUpdate(sys->textures[i], sys->timer->elapsed);
+	}
 }
 
 void mint_SystemPostUpdate(MintSystem* sys)
@@ -140,6 +150,12 @@ void mint_SystemDraw(MintSystem* sys)
 	if (sys->stage == POST_UPDATE) mint_SystemPreDraw(sys);
 	if (sys->stage != PRE_DRAW) printf("Warning: forcing bad call of draw");
 	sys->stage = DRAW;
+
+	int i;
+	for (i = 0; i < sys->totalTextures; i++) {
+		if (sys->textures[i] == NULL) continue;
+		mint_TextureRender(sys->textures[i]);
+	}
 }
 
 void mint_SystemPostDraw(MintSystem* sys)
@@ -155,8 +171,32 @@ void mint_SystemPostDraw(MintSystem* sys)
 	// if ((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks) > 0) SDL_Delay((int)((1.0 / 60.0 * 1000.0) - (SDL_GetTicks() - timer->ticks)));
 }
 
+void mint_SystemAddTexture(MintSystem* sys, MintTexture* mintTexture)
+{
+	sys->textures[sys->totalTextures] = mintTexture;
+	sys->totalTextures++;
+
+	// if (i == MAX_TEXTURES - 1) mint_SystemCompactTextures(sys);
+}
+
+void mint_SystemRemoveTexture(MintSystem* sys, MintTexture* mintTexture, char free)
+{
+	int i;
+	for (i = 0; i < MAX_TEXTURES; i++) if (sys->textures[i] == mintTexture) break;
+
+	if (i < MAX_TEXTURES - 1) sys->textures[i] = NULL;
+
+	if (free) mint_TextureFree(mintTexture);
+}
+
 void _close(MintSystem* sys)
 {
+	int i;
+	for (i = 0; i < sys->totalTextures; i++) {
+		if (sys->textures[i] == NULL) continue;
+		mint_TextureFree(sys->textures[i]);
+	}
+
 	SDL_DestroyWindow(sys->sdlWindow);
 	SDL_DestroyRenderer(sys->sdlRenderer);
 	sys->sdlWindow = NULL;
@@ -164,8 +204,8 @@ void _close(MintSystem* sys)
 	mint_InputFree(sys->input);
 	mint_TimerFree(sys->timer);
 	mint_PhysFreeWorld(sys->world);
+	TTF_CloseFont(sys->font);
 	free(sys);
-	// TTF_CloseFont(ttfOpenSans);
 
 	SDL_Quit();
 

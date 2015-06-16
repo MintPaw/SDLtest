@@ -38,6 +38,7 @@ void collisionExample(MintSystem* sys);
 void texturePackerExample(MintSystem* sys);
 void playerExample(MintSystem* sys);
 void tilemapExample(MintSystem* sys);
+void systemExample(MintSystem* sys);
 
 /*
 	Todo major:
@@ -50,10 +51,10 @@ void tilemapExample(MintSystem* sys);
 		Gamepad support
 
 	Todo minor:
+		Remove elapsed
 		Add screen width/height to system
 		Get rid of calloc lol
 		Make better font system
-		Make event handler
 		Build collision on tilemap
 		Make array type?
 		Clip, rect, quad, names?
@@ -86,7 +87,7 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup();
 
-	sys->start = &gameExample;
+	// sys->start = &gameExample;
 	// sys->start = &drawExample;
 	// sys->start = &mintTextureExample;
 	// sys->start = &setColourInputExample;
@@ -101,6 +102,7 @@ int main(int argc, char* args[])
 	// sys->start = &texturePackerExample;
 	// sys->start = &playerExample;
 	// sys->start = &tilemapExample;
+	sys->start = &systemExample;
 
 	mint_SystemInit(sys);
 
@@ -646,4 +648,16 @@ void tilemapExample(MintSystem* sys)
 	}
 
 	mint_TilemapFree(tilemap);
+}
+
+void systemExample(MintSystem* sys)
+{
+	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
+	mint_SystemAddTexture(sys, texture);
+
+	for(;;)
+	{
+		mint_SystemUpdate(sys);
+		mint_SystemDraw(sys);
+	}
 }

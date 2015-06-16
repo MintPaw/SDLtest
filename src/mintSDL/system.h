@@ -8,6 +8,8 @@
 #define DRAW 4
 #define POST_DRAW 5
 
+#define MAX_TEXTURES 2048
+
 struct MintSystem;
 
 #include <SDL.h>
@@ -23,6 +25,8 @@ struct MintSystem {
 	MintPhysWorld* world;
 	TTF_Font* font;
 	SDL_Event event;
+	MintTexture* textures[MAX_TEXTURES];
+	char totalTextures;
 	float elapsed;
 	char stage;
 	char quit;
@@ -40,6 +44,9 @@ void mint_SystemPostUpdate(MintSystem* sys);
 void mint_SystemPreDraw(MintSystem* sys);
 void mint_SystemDraw(MintSystem* sys);
 void mint_SystemPostDraw(MintSystem* sys);
+
+void mint_SystemAddTexture(MintSystem* sys, MintTexture* mintTexture);
+void mint_SystemRemoveTexture(MintSystem* sys, MintTexture* mintTexture, char free);
 
 
 #endif
