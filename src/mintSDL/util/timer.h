@@ -10,6 +10,7 @@ struct MintFrameTimer {
 	float elapsed;
 	float secondsPerReport;
 	float secondsSinceLastReport;
+	float fpsAverage;
 };
 
 MintFrameTimer* mint_TimerSetup();

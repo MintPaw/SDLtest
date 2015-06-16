@@ -30,14 +30,15 @@ struct MintSystem {
 	int totalTextures;
 	char totalFonts;
 	float elapsed;
+	MintTexture* fpsCounter;
 	char stage;
 	char quit;
 
 	void (*start)(MintSystem* sys);
 };
 
-MintSystem* mint_SystemSetup();
-char mint_SystemInit(MintSystem* sys);
+MintSystem* mint_SystemSetup(char vsync);
+char mint_SystemInit(MintSystem* sys, char showFps);
 void mint_SystemAddFont(MintSystem* sys, char* path);
 void mint_SystemFullScreen(MintSystem* sys, char fullscreen);
 

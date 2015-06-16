@@ -96,9 +96,9 @@ int main(int argc, char* args[])
 	// sys->start = &setAlphaInputExample;
 	// sys->start = &animationExample;
 	// sys->start = &transformExample;
-	sys->start = &textExample;
+	// sys->start = &textExample;
 	// sys->start = &buttonExample;
-	// sys->start = &timerExample;
+	sys->start = &timerExample;
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
@@ -106,7 +106,7 @@ int main(int argc, char* args[])
 	// sys->start = &tilemapExample;
 	// sys->start = &systemExample;
 
-	mint_SystemInit(sys);
+	mint_SystemInit(sys, 1);
 
 	return 0;
 }
@@ -297,7 +297,7 @@ void textExample(MintSystem* sys)
 		mint_TextureLoadText(text, sys->fonts[0], "Test text", { 0, 0, 0, 0 });
 
 		mint_SystemDraw(sys);
-		
+
 		mint_TextureRender(text);
 	}
 

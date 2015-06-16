@@ -1,4 +1,44 @@
 
+
+struct MintSystem;
+
+
+struct MintSystem {
+	SDL_Window* sdlWindow;
+	SDL_Renderer* sdlRenderer;
+	MintInput* input;
+	MintFrameTimer* timer;
+	MintPhysWorld* world;
+	TTF_Font* fonts[MAX_FONTS];
+	SDL_Event event;
+	MintTexture* textures[MAX_TEXTURES];
+	int totalTextures;
+	char totalFonts;
+	float elapsed;
+	MintTexture* fpsCounter;
+	char stage;
+	char quit;
+
+	void (*start)(MintSystem* sys);
+};
+
+MintSystem* mint_SystemSetup();
+char mint_SystemInit(MintSystem* sys);
+void mint_SystemAddFont(MintSystem* sys, char* path);
+void mint_SystemFullScreen(MintSystem* sys, char fullscreen);
+
+void mint_SystemPreUpdate(MintSystem* sys);
+void mint_SystemUpdate(MintSystem* sys);
+void mint_SystemPostUpdate(MintSystem* sys);
+void mint_SystemPreDraw(MintSystem* sys);
+void mint_SystemDraw(MintSystem* sys);
+void mint_SystemPostDraw(MintSystem* sys);
+
+void mint_SystemAddTexture(MintSystem* sys, MintTexture* mintTexture);
+void mint_SystemRemoveTexture(MintSystem* sys, MintTexture* mintTexture, char free);
+void mint_SystemRemoveAll(MintSystem* sys);
+
+
 struct MintAnim;
 struct MintAnimMan;
 
@@ -7,6 +47,7 @@ struct MintAnimMan {
 	MintTexture* mintTexture;
 	MintAnim* anims;
 	MintAnim* currentAnim;
+	SDL_Rect* clipRect;
 	int totalAnims;
 };
 
@@ -39,64 +80,52 @@ void mint_AnimManInit(MintAnimMan* animMan, int totalAnims);
 void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath);
 
 
-void mint_DrawRect(SDL_Renderer* renderer, int x, int y, int width, int height, SDL_Color* colour);
-void mint_DrawLine(SDL_Renderer* renderer, int x1, int y1, int x2, int y2, SDL_Color* colour);
 
-
-struct MintRend;
-
-
-struct MintRend {
-	MintTexture* mintTexture;
-	SDL_Renderer* renderer;
-	SDL_Rect* _clipRect;
-	unsigned char _alpha;
-};
-
-SDL_Renderer* mint_RendCreateSdlRenderer(SDL_Window* window, char vsync);
-void mint_RendClearSdlRenderer(SDL_Renderer* renderer);
-void mint_RendHexToSDLColor(unsigned long colour, SDL_Color* sdlColour);
-unsigned long mint_RendSDLColorToHex(SDL_Color* sdlColor);
-
-MintRend* mint_RendSetup(MintTexture* mintTexture, SDL_Renderer* renderer);
-void mint_RendSetColour(MintRend* rend, SDL_Color* colour);
-void mint_RendSetAlpha(MintRend* rend, char alpha);
-void mint_RendFree(MintRend* rend);
+void mint_DrawRect(MintSystem* sys, int x, int y, int width, int height, SDL_Color* colour);
+void mint_DrawLine(MintSystem* sys, int x1, int y1, int x2, int y2, SDL_Color* colour);
 
 
 struct MintTexture;
 
 
 struct MintTexture {
+	MintSystem* sys;
 	SDL_Texture* texture;
 	MintAnimMan* animMan;
 	MintTrans* trans;
-	MintRend* rend;
 	MintPhys* phys;
 };
 
-MintTexture* mint_TextureFromPNG(SDL_Renderer* renderer, char* path);
-MintTexture* mint_TextureFromText(SDL_Renderer* renderer, TTF_Font* font, char* text, SDL_Color colour);
-MintTexture* mint_TextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surface);
+MintTexture* mint_TextureFromNothing(MintSystem* sys);
+MintTexture* mint_TextureFromPNG(MintSystem* sys, char* path);
+MintTexture* mint_TextureFromSurface(MintSystem* sys, SDL_Surface* surface);
 
+void mint_TextureLoadText(MintTexture* mintTexture, TTF_Font* font, char* text, SDL_Color colour);
 void mint_TextureUpdate(MintTexture* mintTexture, float elapsed);
 void mint_TextureRender(MintTexture* mintTexture);
 void mint_TextureFree(MintTexture* mintTexture);
+
 
 
 struct MintTilemap;
 
 
 struct MintTilemap {
-	MintTexture* map;
+	SDL_Renderer* renderer;
+	SDL_Texture* texture;
+	SDL_Rect tileRects[TOTAL_TILES];
+
 	int tileWidth;
 	int tileHeight;
+	int indexShift;
+
+	char layers[TOTAL_LAYERS][TILES_HIGH][TILES_WIDE];
 };
 
-MintTilemap* mint_TilemapCreate(SDL_Renderer* renderer, char* fileName, int tileWidth, int tileHeight);
-void mint_TilemapCreateFromCSV(SDL_Renderer* renderer, SDL_Surface* destSurface, char* path, MintTilemap* map);
+MintTilemap* mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWidth, int tileHeight, int indexShift);
+void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath);
 void mint_TilemapFree(MintTilemap* map);
-char** strspl(char* str, char* del);
+void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer);
 
 
 struct MintTrans;
@@ -112,6 +141,7 @@ struct MintTrans {
 	int _height;
 	int _x;
 	int _y;
+	unsigned char _alpha;
 };
 
 MintTrans* mint_TransSetup(MintTexture* mintTexture, int width, int height);
@@ -119,6 +149,9 @@ void mint_TransSetX(MintTrans* trans, int value);
 void mint_TransSetY(MintTrans* trans, int value);
 int mint_TransGetWidth(MintTrans* trans);
 int mint_TransGetHeight(MintTrans* trans);
+void mint_TransSetColour(MintTrans* trans, SDL_Color* colour);
+void mint_TransSetAlpha(MintTrans* trans, char alpha);
+
 void mint_TransFree(MintTrans* trans);
 
 
@@ -213,6 +246,10 @@ void mint_PhysStepWorld(MintPhysWorld* world, float elapsed);
 void mint_PhysUpdate(MintPhys* phys, float elapsed);
 void mint_PhysFree(MintPhys* phys);
 void mint_PhysFreeWorld(MintPhysWorld* world);
+
+
+void mint_ArrayPrint(int* array, unsigned int length);
+void mint_ArrayPrint(char* array, unsigned int length);
 
 
 struct MintInput;

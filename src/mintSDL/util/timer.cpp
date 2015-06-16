@@ -11,6 +11,7 @@ MintFrameTimer* mint_TimerSetup()
 	timer->frames = 0;
 	timer->ticks = 0;
 	timer->elapsed = 0;
+	timer->fpsAverage = 0;
 	timer->secondsPerReport = 0;
 	timer->secondsSinceLastReport = -1;
 	return timer;
@@ -18,10 +19,11 @@ MintFrameTimer* mint_TimerSetup()
 
 void mint_TimerUpdate(MintFrameTimer* timer, float seconds)
 {
-	timer->ticks = seconds * 1000.0;
+	timer->ticks = (int)(seconds * 1000.0);
 	timer->elapsed = seconds - timer->seconds;
 	timer->seconds = seconds;
 	timer->frames++;
+	timer->fpsAverage = timer->frames / timer->seconds;
 
 	if (timer->secondsSinceLastReport > 0) {
 		timer->secondsSinceLastReport -= timer->elapsed;

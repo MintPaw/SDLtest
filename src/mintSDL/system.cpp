@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 832;
 
@@ -14,7 +16,7 @@ const int SCREEN_HEIGHT = 832;
 void _updateLoop(MintSystem* sys);
 void _close(MintSystem* sys);
 
-MintSystem* mint_SystemSetup()
+MintSystem* mint_SystemSetup(char vsync)
 {
 	MintSystem* sys = (MintSystem*)malloc(sizeof(MintSystem));
 	sys->sdlWindow = NULL;
@@ -27,6 +29,7 @@ MintSystem* mint_SystemSetup()
 	sys->stage = -1;
 	sys->totalTextures = 0;
 	sys->totalFonts = 0;
+	sys->fpsCounter = NULL;
 	
 	int i;
 	for (i = 0; i < MAX_TEXTURES; i++) sys->textures[i] = NULL;
@@ -44,7 +47,7 @@ MintSystem* mint_SystemSetup()
 			return 0;
 		} else {
 			// TODO(jeru): Vsync option
-			if (true)
+			if (vsync)
 			{
 				sys->sdlRenderer = SDL_CreateRenderer(sys->sdlWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 			} else {
@@ -76,8 +79,12 @@ MintSystem* mint_SystemSetup()
 	return sys;
 }
 
-char mint_SystemInit(MintSystem* sys)
+char mint_SystemInit(MintSystem* sys, char showFps)
 {
+	if (showFps) {
+		sys->fpsCounter = mint_TextureFromNothing(sys);
+	}
+
 	sys->start(sys);
 
 	return 1;
@@ -131,6 +138,13 @@ void mint_SystemUpdate(MintSystem* sys)
 		if (sys->textures[i] == NULL) continue;
 		mint_TextureUpdate(sys->textures[i], sys->timer->elapsed);
 	}
+
+	if (sys->fpsCounter) {
+		char fpsText[16];
+		_itoa((int)sys->timer->fpsAverage, fpsText, 10);
+		strcat(fpsText, " avg fps");
+		mint_TextureLoadText(sys->fpsCounter, sys->fonts[0], fpsText, { 0, 0, 0, 0 } );
+	}
 }
 
 void mint_SystemPostUpdate(MintSystem* sys)
@@ -155,6 +169,8 @@ void mint_SystemDraw(MintSystem* sys)
 	if (sys->stage == POST_UPDATE) mint_SystemPreDraw(sys);
 	if (sys->stage != PRE_DRAW) printf("Warning: forcing bad call of draw");
 	sys->stage = DRAW;
+
+	mint_TextureRender(sys->fpsCounter);
 
 	int i;
 	for (i = 0; i < sys->totalTextures; i++) {
