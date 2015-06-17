@@ -43,9 +43,7 @@ void systemExample(MintSystem* sys);
 
 /*
 	Todo major:
-		Tilemap hits?
-		Debugger
-		Hitbox changes
+		Hitbox changes(offset only)
 		Pathfinding
 		Pooling
 		Textfields
@@ -53,6 +51,7 @@ void systemExample(MintSystem* sys);
 		Centre point/sizes is going to break when animations happen (They did)
 
 	Todo minor:
+		Debugger
 		Reset totalTextures
 		Remove elapsed
 		Add screen width/height to system
