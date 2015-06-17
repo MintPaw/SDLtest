@@ -1,6 +1,3 @@
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 832;
-
 #define _CRT_SECURE_NO_WARNINGS
 #define _CRTDBG_MAP_ALLOC
 
@@ -345,7 +342,7 @@ void timerExample(MintSystem* sys)
 	char dir = 1;
 	float speed = 1000;
 
-	objectAt.x = SCREEN_WIDTH / 2;
+	objectAt.x = sys->gameWidth / 2;
 	sys->timer->secondsPerReport = 1;
 	sys->timer->secondsSinceLastReport = 1;
 
@@ -355,9 +352,9 @@ void timerExample(MintSystem* sys)
 
 		objectAt.y += (int)(dir * sys->timer->elapsed * speed);
 
-		if (objectAt.y > SCREEN_HEIGHT) {
+		if (objectAt.y > sys->gameHeight) {
 			dir = -1;
-			objectAt.y = SCREEN_HEIGHT;
+			objectAt.y = sys->gameHeight;
 		}
 
 		if (objectAt.y < 0) {
@@ -439,17 +436,17 @@ void collisionExample(MintSystem* sys)
 			secondsTillRegen = 1;
 
 			if (rand() % 2) {
-				mint_TransSetX(box1->trans, rand() % (SCREEN_WIDTH - box1->trans->_width));
+				mint_TransSetX(box1->trans, rand() % (sys->gameWidth - box1->trans->_width));
 				mint_TransSetY(box1->trans, (rand() % 20) + 20);
 
-				mint_TransSetX(box2->trans, rand() % (SCREEN_WIDTH - box1->trans->_width));
-				mint_TransSetY(box2->trans, SCREEN_HEIGHT - box1->trans->_height - (rand() % 20) - 20);
+				mint_TransSetX(box2->trans, rand() % (sys->gameWidth - box1->trans->_width));
+				mint_TransSetY(box2->trans, sys->gameHeight - box1->trans->_height - (rand() % 20) - 20);
 			} else {
 				mint_TransSetX(box1->trans, 20);
-				mint_TransSetY(box1->trans, rand() % (SCREEN_HEIGHT - box1->trans->_height));
+				mint_TransSetY(box1->trans, rand() % (sys->gameHeight - box1->trans->_height));
 
-				mint_TransSetX(box2->trans, SCREEN_WIDTH - box1->trans->_width - (rand() % 20) - 20);
-				mint_TransSetY(box2->trans, rand() % (SCREEN_HEIGHT - box1->trans->_height));
+				mint_TransSetX(box2->trans, sys->gameWidth - box1->trans->_width - (rand() % 20) - 20);
+				mint_TransSetY(box2->trans, rand() % (sys->gameHeight - box1->trans->_height));
 			}
 
 			velo1.x = (float)(box2->trans->_x - box1->trans->_x);

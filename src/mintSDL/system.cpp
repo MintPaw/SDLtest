@@ -31,6 +31,8 @@ MintSystem* mint_SystemSetup(char vsync)
 	sys->totalFonts = 0;
 	sys->fpsCounter = NULL;
 	sys->tilemap = NULL;
+	sys->gameWidth = SCREEN_WIDTH;
+	sys->gameHeight = SCREEN_HEIGHT;
 	
 	int i;
 	for (i = 0; i < MAX_TEXTURES; i++) sys->textures[i] = NULL;
@@ -42,7 +44,7 @@ MintSystem* mint_SystemSetup(char vsync)
 		printf("SDL failed to init SDL_ERROR: %s\n", SDL_GetError());
 		return 0;
 	} else {
-		sys->sdlWindow = SDL_CreateWindow("SDL Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		sys->sdlWindow = SDL_CreateWindow("SDL Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, sys->gameWidth, sys->gameHeight, SDL_WINDOW_SHOWN);
 		if (sys->sdlWindow == NULL) {
 			printf("Failed to create window SDL_ERROR: %s\n", SDL_GetError());
 			return 0;

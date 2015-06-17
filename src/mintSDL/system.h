@@ -29,11 +29,13 @@ struct MintSystem {
 	SDL_Event event;
 	MintTexture* textures[MAX_TEXTURES];
 	MintTilemap* tilemap;
+	MintTexture* fpsCounter;
 	int totalTextures;
 	char totalFonts;
-	MintTexture* fpsCounter;
 	char stage;
 	char quit;
+	int gameWidth;
+	int gameHeight;
 
 	void (*start)(MintSystem* sys);
 };
