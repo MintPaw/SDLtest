@@ -98,7 +98,7 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 	int currentBody = 0;
 	for (i = 0; i < TILES_HIGH; i++) {
 		for (j = 0; j < TILES_WIDE; j++) {
-			if (tilemap->layers[1][i][j] == 0) continue;
+			if (tilemap->layers[PHYSICAL_1][i][j] == 0 && tilemap->layers[PHYSICAL_2][i][j] == 0) continue;
 
 			b2BodyDef groundBodyDef;
 			groundBodyDef.type = b2_staticBody;

@@ -104,9 +104,9 @@ int main(int argc, char* args[])
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
-	sys->start = &playerExample;
+	// sys->start = &playerExample;
 	// sys->start = &tilemapExample;
-	// sys->start = &systemExample;
+	sys->start = &systemExample;
 
 	mint_SystemInit(sys, 0);
 
