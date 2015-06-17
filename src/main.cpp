@@ -1,9 +1,13 @@
-#define _CRT_SECURE_NO_WARNINGS
-#define _CRTDBG_MAP_ALLOC
+#define WINDOWS
+#define VISUAL_STUDIOS_DEBUGGING
 
-#ifdef _CRTDBG_MAP_ALLOC
-	#include <stdlib.h>
-	#include <crtdbg.h>
+#ifdef WINDOWS
+	#ifdef VISUAL_STUDIOS_DEBUGGING
+		#define _CRT_SECURE_NO_WARNINGS
+		#define _CRTDBG_MAP_ALLOC
+		#include <stdlib.h>
+		#include <crtdbg.h>
+	#endif
 #endif
 
 #include <stdio.h>
