@@ -89,7 +89,7 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup(0);
 	mint_SystemAddFont(sys, "assets/font/OpenSansRegular.ttf");
-	// sys->debugDraw = 1;
+	sys->debugDraw = 1;
 
 	// sys->start = &gameExample;
 	// sys->start = &drawExample;
@@ -104,7 +104,7 @@ int main(int argc, char* args[])
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
-	// sys->start = &playerExample;
+	sys->start = &playerExample;
 	// sys->start = &tilemapExample;
 	// sys->start = &systemExample;
 

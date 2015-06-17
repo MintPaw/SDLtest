@@ -19,23 +19,28 @@ void mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dy
 	MintPhys* phys = (MintPhys*)malloc(sizeof(MintPhys));
 	phys->mintTexture = mintTexture;
 	mintTexture->phys = phys;
+	phys->world = physWorld;
 
+	mint_PhysGenerateFixture(phys, dynamic, density);
+}
+
+void mint_PhysGenerateFixture(MintPhys* phys, char dynamic, float density)
+{
 	b2BodyDef groundBodyDef;
 	groundBodyDef.type = dynamic ? b2_dynamicBody : b2_staticBody;
 	groundBodyDef.fixedRotation = true;
-	groundBodyDef.position.Set(mint_PhysPixelToMetre((float)mintTexture->x), mint_PhysPixelToMetre((float)mintTexture->y));
+	groundBodyDef.position.Set(mint_PhysPixelToMetre((float)phys->mintTexture->x), mint_PhysPixelToMetre((float)phys->mintTexture->y));
 
 	b2PolygonShape shape;
-	shape.SetAsBox(mint_PhysPixelToMetre((float)(mintTexture->width / 2)), mint_PhysPixelToMetre((float)(mintTexture->height / 2)));
+	shape.SetAsBox(mint_PhysPixelToMetre((float)(phys->mintTexture->width / 2)), mint_PhysPixelToMetre((float)(phys->mintTexture->height / 2)));
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &shape;
 	fixtureDef.density = density;
 	fixtureDef.friction = 0.3f;
 
-	phys->world = physWorld;
 	phys->shape = shape;
-	phys->body = physWorld->world->CreateBody(&groundBodyDef);
+	phys->body = phys->world->world->CreateBody(&groundBodyDef);
 	phys->body->CreateFixture(&fixtureDef);
 }
 
