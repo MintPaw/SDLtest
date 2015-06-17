@@ -9,6 +9,7 @@ const int SCREEN_HEIGHT = 832;
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include "mintSDL/system.h"
+#include "mintSDL/display/tilemap.h"
 #include "mintSDL/util/input.h"
 #include "mintSDL/util/timer.h"
 #include "mintSDL/maths/phys.h"
@@ -29,6 +30,7 @@ MintSystem* mint_SystemSetup(char vsync)
 	sys->totalTextures = 0;
 	sys->totalFonts = 0;
 	sys->fpsCounter = NULL;
+	sys->tilemap = NULL;
 	
 	int i;
 	for (i = 0; i < MAX_TEXTURES; i++) sys->textures[i] = NULL;
@@ -175,6 +177,14 @@ void mint_SystemDraw(MintSystem* sys)
 		if (sys->textures[i] == NULL) continue;
 		mint_TextureRender(sys->textures[i]);
 	}
+
+	if (sys->tilemap != NULL) {
+		mint_TilemapRenderLayer(sys->tilemap, 0);
+		mint_TilemapRenderLayer(sys->tilemap, 1);
+		mint_TilemapRenderLayer(sys->tilemap, 2);
+		mint_TilemapRenderLayer(sys->tilemap, 3);
+		mint_TilemapRenderLayer(sys->tilemap, 4);
+	}
 }
 
 void mint_SystemPostDraw(MintSystem* sys)
@@ -228,6 +238,7 @@ void _close(MintSystem* sys)
 	mint_InputFree(sys->input);
 	mint_TimerFree(sys->timer);
 	mint_PhysFreeWorld(sys->world);
+	if (sys->tilemap != NULL) mint_TilemapFree(sys->tilemap);
 
 	int i;
 	for (i = 0; i < sys->totalFonts; i++) {

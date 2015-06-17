@@ -14,6 +14,7 @@
 struct MintSystem;
 
 #include <SDL.h>
+#include "mintSDL/display/tilemap.h"
 #include "mintSDL/util/input.h"
 #include "mintSDL/util/timer.h"
 #include "mintSDL/maths/phys.h"
@@ -27,6 +28,7 @@ struct MintSystem {
 	TTF_Font* fonts[MAX_FONTS];
 	SDL_Event event;
 	MintTexture* textures[MAX_TEXTURES];
+	MintTilemap* tilemap;
 	int totalTextures;
 	char totalFonts;
 	MintTexture* fpsCounter;

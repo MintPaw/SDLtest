@@ -42,7 +42,6 @@ void systemExample(MintSystem* sys);
 
 /*
 	Todo major:
-		States/scenes
 		Hitbox changes
 		Debugger
 		Pathfinding
@@ -624,34 +623,25 @@ void playerExample(MintSystem* sys)
 
 void tilemapExample(MintSystem* sys)
 {	
-	MintTilemap* tilemap = mint_TilemapCreate(sys, "assets/img/tilemap.png", 64, 64, 0);
-
+	mint_TilemapCreate(sys, "assets/img/tilemap.png", 64, 64, 0);
 	mint_SystemFullScreen(sys, 1);
 
-	mint_TilemapGenerateFromTiled(tilemap, "assets/map/test1.tmx");
+	mint_TilemapGenerateFromTiled(sys->tilemap, "assets/map/test1.tmx");
 
 	for(;;)
 	{
-		mint_SystemPreUpdate(sys);
 		mint_SystemUpdate(sys);
-		mint_SystemPostUpdate(sys);
-		mint_SystemPreDraw(sys);
-
-		mint_TilemapRenderLayer(tilemap, 0);
-		mint_TilemapRenderLayer(tilemap, 1);
-		mint_TilemapRenderLayer(tilemap, 2);
-		mint_TilemapRenderLayer(tilemap, 3);
-		mint_TilemapRenderLayer(tilemap, 4);
-
 		mint_SystemDraw(sys);
-		mint_SystemPostDraw(sys);
 	}
-
-	mint_TilemapFree(tilemap);
 }
 
 void systemExample(MintSystem* sys)
 {
+	mint_SystemFullScreen(sys, 1);
+
+	mint_TilemapCreate(sys, "assets/img/tilemap.png", 64, 64, 0);
+	mint_TilemapGenerateFromTiled(sys->tilemap, "assets/map/test1.tmx");
+
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
 	mint_SystemAddTexture(sys, texture);
 

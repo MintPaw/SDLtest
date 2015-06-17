@@ -9,23 +9,23 @@
 #include "mintSDL/display/texture.h"
 #include "mintSDL/util/array.h"
 
-MintTilemap* mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWidth, int tileHeight, int indexShift)
+void mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWidth, int tileHeight, int indexShift)
 {
-	MintTilemap* tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
-	tilemap->renderer = sys->sdlRenderer;
-	tilemap->tileWidth = tileWidth;
-	tilemap->tileHeight = tileHeight;
-	tilemap->indexShift = indexShift - 1;
+	sys->tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
+	sys->tilemap->renderer = sys->sdlRenderer;
+	sys->tilemap->tileWidth = tileWidth;
+	sys->tilemap->tileHeight = tileHeight;
+	sys->tilemap->indexShift = indexShift - 1;
 	
 	SDL_Surface* surface = IMG_Load(graphicsPath);
 
 	if (surface == NULL) {
 		printf("Failed to create surface from %s, SDL_Error: %s\n", graphicsPath, SDL_GetError());
-		return NULL;
+		return;
 	}
 
-	tilemap->texture = SDL_CreateTextureFromSurface(sys->sdlRenderer, surface);
-	if (tilemap->texture == NULL) {
+	sys->tilemap->texture = SDL_CreateTextureFromSurface(sys->sdlRenderer, surface);
+	if (sys->tilemap->texture == NULL) {
 		printf("Failed to create texture from, SDL_Error: %s\n", SDL_GetError());
 	}
 
@@ -34,14 +34,12 @@ MintTilemap* mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWid
 	int currentRect = 0;
 	for (i = 0; i < surface->h / tileHeight; i++) {
 		for (j = 0; j < surface->w / tileWidth; j++) {
-			tilemap->tileRects[currentRect] = { j * tileWidth, i * tileHeight, tileWidth, tileHeight };
+			sys->tilemap->tileRects[currentRect] = { j * tileWidth, i * tileHeight, tileWidth, tileHeight };
 			currentRect++;
 		}
 	}
 
 	SDL_FreeSurface(surface);
-
-	return tilemap;
 }
 
 void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
