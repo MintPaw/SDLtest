@@ -6,7 +6,6 @@
 #include <SDL.h>
 #include "mintSDL/display/anim.h"
 #include "mintSDL/display/texture.h"
-#include "mintSDL/display/trans.h"
 #include "mintSDL/maths/geom.h"
 
 MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture)
@@ -151,15 +150,15 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 {
 	int i;
 	for (i = 0; i < anim->totalFrames; i++) {
-		mint_AnimDefineFrame(anim, i, frameWidth * i, 0, frameWidth, mint_TransGetHeight(anim->man->mintTexture->trans));
+		mint_AnimDefineFrame(anim, i, frameWidth * i, 0, frameWidth, anim->man->mintTexture->height);
 	}
 
 	anim->currentFrame = 0;
 	anim->loop = loop;
 
 	anim->man->clipRect = &anim->frameRects[0];
-	anim->man->mintTexture->trans->_width = anim->frameRects[0].w;
-	anim->man->mintTexture->trans->_height = anim->frameRects[0].h;
+	anim->man->mintTexture->width = anim->frameRects[0].w;
+	anim->man->mintTexture->height = anim->frameRects[0].h;
 }
 
 void mint_AnimUpdate(MintAnimMan* animMan, float elapsed)
@@ -181,7 +180,7 @@ void mint_AnimUpdateClip(MintAnimMan* animMan)
 
 void mint_AnimUpdateAsButton(MintAnimMan* animMan, MintInput* input)
 {
-	SDL_Rect rect = { animMan->mintTexture->trans->_x, animMan->mintTexture->trans->_y, animMan->mintTexture->trans->_width, animMan->mintTexture->trans->_height };
+	SDL_Rect rect = { animMan->mintTexture->x, animMan->mintTexture->y, animMan->mintTexture->width, animMan->mintTexture->height };
 	if (mint_GeomPointInRect(&input->mousePoint, &rect)) {
 		if (input->mouseButtonStatus[0]) {
 			mint_AnimGotoFrame(animMan, 2);

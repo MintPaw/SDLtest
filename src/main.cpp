@@ -89,7 +89,7 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup(0);
 	mint_SystemAddFont(sys, "assets/font/OpenSansRegular.ttf");
-	sys->debugDraw = 1;
+	// sys->debugDraw = 1;
 
 	// sys->start = &gameExample;
 	// sys->start = &drawExample;
@@ -106,7 +106,7 @@ int main(int argc, char* args[])
 	// sys->start = &texturePackerExample;
 	// sys->start = &playerExample;
 	// sys->start = &tilemapExample;
-	sys->start = &systemExample;
+	// sys->start = &systemExample;
 
 	mint_SystemInit(sys, 0);
 
@@ -184,7 +184,7 @@ void setColourInputExample(MintSystem* sys)
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_S)) colour.g -= 10;
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_E)) colour.b += 10;
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_D)) colour.b -= 10;
-		mint_TransSetColour(texture->trans, &colour);
+		mint_TextureSetColour(texture, &colour);
 
 		mint_SystemUpdate(sys);
 		mint_SystemPostUpdate(sys);
@@ -211,7 +211,7 @@ void setAlphaInputExample(MintSystem* sys)
 
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) alpha += 10;
 		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) alpha -= 10;
-		mint_TransSetAlpha(texture->trans, alpha);
+		mint_TextureSetAlpha(texture, alpha);
 
 		mint_SystemUpdate(sys);
 		mint_SystemPostUpdate(sys);
@@ -262,18 +262,18 @@ void transformExample(MintSystem* sys)
 	{
 		mint_SystemPreUpdate(sys);
 
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) arrow->trans->angle -= 10;
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_E)) arrow->trans->angle += 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Q)) arrow->angle -= 10;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_E)) arrow->angle += 10;
 
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_W)) arrow->trans->centre.y -= 1;
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_S)) arrow->trans->centre.y += 1;
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) arrow->trans->centre.x-= 1;
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_D)) arrow->trans->centre.x += 1;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_W)) arrow->centre.y -= 1;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_S)) arrow->centre.y += 1;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_A)) arrow->centre.x-= 1;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_D)) arrow->centre.x += 1;
 
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Z)) arrow->trans->flip = SDL_FLIP_NONE;
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_X)) arrow->trans->flip = SDL_FLIP_HORIZONTAL;
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_C)) arrow->trans->flip = SDL_FLIP_VERTICAL;
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_V)) arrow->trans->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_Z)) arrow->flip = SDL_FLIP_NONE;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_X)) arrow->flip = SDL_FLIP_HORIZONTAL;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_C)) arrow->flip = SDL_FLIP_VERTICAL;
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_V)) arrow->flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 
 		mint_SystemUpdate(sys);
 		mint_SystemPostUpdate(sys);
@@ -319,7 +319,7 @@ void buttonExample(MintSystem* sys)
 		mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(buttons[i]->animMan, 0), 100, 0);
 		mint_AnimPlay(mint_AnimGetByIndex(buttons[i]->animMan, 0));
 
-		mint_TransSetX(buttons[i]->trans, (mint_TransGetWidth(buttons[i]->trans) + 20) * i);
+		mint_TextureSetX(buttons[i], (buttons[i]->width + 20) * i);
 	}
 
 	for(;;)
@@ -428,8 +428,8 @@ void collisionExample(MintSystem* sys)
 	MintFloatPoint velo1;
 	MintFloatPoint velo2;
 
-	mint_TransSetColour(box1->trans, &red);
-	mint_TransSetColour(box2->trans, &blue);
+	mint_TextureSetColour(box1, &red);
+	mint_TextureSetColour(box2, &blue);
 
 	mint_PhysSetGravity(sys->world, 0, 5);
 
@@ -442,23 +442,23 @@ void collisionExample(MintSystem* sys)
 			secondsTillRegen = 1;
 
 			if (rand() % 2) {
-				mint_TransSetX(box1->trans, rand() % (sys->gameWidth - box1->trans->_width));
-				mint_TransSetY(box1->trans, (rand() % 20) + 20);
+				mint_TextureSetX(box1, rand() % (sys->gameWidth - box1->width));
+				mint_TextureSetY(box1, (rand() % 20) + 20);
 
-				mint_TransSetX(box2->trans, rand() % (sys->gameWidth - box1->trans->_width));
-				mint_TransSetY(box2->trans, sys->gameHeight - box1->trans->_height - (rand() % 20) - 20);
+				mint_TextureSetX(box2, rand() % (sys->gameWidth - box1->width));
+				mint_TextureSetY(box2, sys->gameHeight - box1->height - (rand() % 20) - 20);
 			} else {
-				mint_TransSetX(box1->trans, 20);
-				mint_TransSetY(box1->trans, rand() % (sys->gameHeight - box1->trans->_height));
+				mint_TextureSetX(box1, 20);
+				mint_TextureSetY(box1, rand() % (sys->gameHeight - box1->height));
 
-				mint_TransSetX(box2->trans, sys->gameWidth - box1->trans->_width - (rand() % 20) - 20);
-				mint_TransSetY(box2->trans, rand() % (sys->gameHeight - box1->trans->_height));
+				mint_TextureSetX(box2, sys->gameWidth - box1->width - (rand() % 20) - 20);
+				mint_TextureSetY(box2, rand() % (sys->gameHeight - box1->height));
 			}
 
-			velo1.x = (float)(box2->trans->_x - box1->trans->_x);
-			velo1.y = (float)(box2->trans->_y - box1->trans->_y);
-			velo2.x = (float)(box1->trans->_x - box2->trans->_x);
-			velo2.y = (float)(box1->trans->_y - box2->trans->_y);
+			velo1.x = (float)(box2->x - box1->x);
+			velo1.y = (float)(box2->y - box1->y);
+			velo2.x = (float)(box1->x - box2->x);
+			velo2.y = (float)(box1->y - box2->y);
 
 			mint_GeomNormalizeFloatPoint(&velo1, 10);
 			mint_GeomNormalizeFloatPoint(&velo2, 10);
@@ -501,7 +501,7 @@ void texturePackerExample(MintSystem* sys)
 		mint_AnimPlay(mint_AnimGetByIndex(player[i]->animMan, i));
 		mint_AnimGetByIndex(player[i]->animMan, i)->loop = 1;
 
-		mint_TransSetX(player[i]->trans, 50 * i);
+		mint_TextureSetX(player[i], 50 * i);
 	}
 
 	for(;;)
@@ -545,8 +545,10 @@ void playerExample(MintSystem* sys)
 
 	mint_AnimPlay(mint_AnimGetByName(player->animMan, "player_blue_SMG_downRight_running_"));
 
-	mint_TransSetX(player->trans, 200);
-	mint_TransSetY(player->trans, 200);
+	mint_TextureSetX(player, 200);
+	mint_TextureSetY(player, 200);
+
+	// mint_TextureResizeHit(player, 52, 66);
 
 	for(;;)
 	{
@@ -566,38 +568,38 @@ void playerExample(MintSystem* sys)
 
 		if (up && right) {
 			strcat(animStr, "upRight");
-			player->trans->flip = SDL_FLIP_NONE;
+			player->flip = SDL_FLIP_NONE;
 		} else if (down && right) {
 			strcat(animStr, "downRight");
-			player->trans->flip = SDL_FLIP_NONE;
+			player->flip = SDL_FLIP_NONE;
 		} else if (up && left) {
 			strcat(animStr, "upRight");
-			player->trans->flip = SDL_FLIP_HORIZONTAL;
+			player->flip = SDL_FLIP_HORIZONTAL;
 		} else if (down && left) {
 			strcat(animStr, "downRight");
-			player->trans->flip = SDL_FLIP_HORIZONTAL;
+			player->flip = SDL_FLIP_HORIZONTAL;
 		} else if (left) {
 			strcat(animStr, "right");
-			player->trans->flip = SDL_FLIP_HORIZONTAL;
+			player->flip = SDL_FLIP_HORIZONTAL;
 			dirStr = GEOM_LEFT;
 		} else if (right) {
 			strcat(animStr, "right");
-			player->trans->flip = SDL_FLIP_NONE;
+			player->flip = SDL_FLIP_NONE;
 			dirStr = GEOM_RIGHT;
 		} else if (up) {
 			strcat(animStr, "up");
-			player->trans->flip = SDL_FLIP_NONE;
+			player->flip = SDL_FLIP_NONE;
 			dirStr = GEOM_UP;
 		} else if (down) {
 			strcat(animStr, "down");
-			player->trans->flip = SDL_FLIP_NONE;
+			player->flip = SDL_FLIP_NONE;
 			dirStr = GEOM_DOWN;
 		} else {
 			if (dirStr == GEOM_LEFT) {
 				strcat(animStr, "right");
-				player->trans->flip = SDL_FLIP_HORIZONTAL;
+				player->flip = SDL_FLIP_HORIZONTAL;
 			} else {
-				player->trans->flip = SDL_FLIP_NONE;
+				player->flip = SDL_FLIP_NONE;
 			}
 
 			if (dirStr == GEOM_RIGHT) strcat(animStr, "right");
