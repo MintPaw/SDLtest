@@ -5,16 +5,19 @@
 #define TILES_HIGH 16
 #define TOTAL_LAYERS 5
 #define TOTAL_TILES 260
+#define TOTAL_BODIES 1024
 
 struct MintTilemap;
 
 #include <SDL.h>
+#include <Box2d/Box2D.h>
 #include "mintSDL/display/texture.h"
 
 struct MintTilemap {
-	SDL_Renderer* renderer;
+	MintSystem* sys;
 	SDL_Texture* texture;
 	SDL_Rect tileRects[TOTAL_TILES];
+	b2Body* bodies[TOTAL_BODIES];
 
 	int tileWidth;
 	int tileHeight;

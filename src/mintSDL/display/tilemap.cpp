@@ -5,6 +5,7 @@
 #include <string.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <Box2d/Box2D.h>
 #include "mintSDL/display/tilemap.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/util/array.h"
@@ -12,7 +13,7 @@
 void mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWidth, int tileHeight, int indexShift)
 {
 	sys->tilemap = (MintTilemap*)malloc(sizeof(MintTilemap));
-	sys->tilemap->renderer = sys->sdlRenderer;
+	sys->tilemap->sys = sys;
 	sys->tilemap->tileWidth = tileWidth;
 	sys->tilemap->tileHeight = tileHeight;
 	sys->tilemap->indexShift = indexShift - 1;
@@ -50,7 +51,7 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 		printf("Error loading the file.");
 		return;
 	}
-	//NOTE (luke): maybe there is a better way to read rows and cells from a CSV
+
 	char buffer[1024];
 	// NOTE(jeru): Note these limitations
 	memset(tilemap->layers, -1, sizeof(tilemap->layers));
@@ -91,6 +92,33 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 	}
 
 	fclose(data);
+
+	int i;
+	int j;
+	int currentBody = 0;
+	for (i = 0; i < TILES_HIGH; i++) {
+		for (j = 0; j < TILES_WIDE; j++) {
+
+			b2BodyDef groundBodyDef;
+			groundBodyDef.type = b2_staticBody;
+			groundBodyDef.fixedRotation = true;
+			groundBodyDef.position.Set(mint_PhysPixelToMetre(tilemap->tileWidth * j - tilemap->tileWidth / 2),
+			                           mint_PhysPixelToMetre(tilemap->tileWidth * i - tilemap->tileWidth / 2));
+
+
+			b2FixtureDef fixtureDef;
+			fixtureDef.density = 0;
+			fixtureDef.friction = 0;
+
+			b2PolygonShape shape;
+			fixtureDef.shape = &shape;
+			shape.SetAsBox(mint_PhysPixelToMetre((float)(tilemap->tileWidth / 2)), mint_PhysPixelToMetre((float)(tilemap->tileHeight / 2)));
+
+			tilemap->bodies[currentBody] = tilemap->sys->world->world->CreateBody(&groundBodyDef);
+			tilemap->bodies[currentBody]->CreateFixture(&fixtureDef);
+			currentBody++;
+		}
+	}
 }
 
 void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer)
@@ -107,7 +135,7 @@ void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer)
 			quad = { j * tilemap->tileWidth, i * tilemap->tileHeight, tilemap->tileWidth, tilemap->tileHeight };
 			clip = tilemap->tileRects[tilemap->layers[layer][i][j] + tilemap->indexShift];
 
-			SDL_RenderCopy(tilemap->renderer, tilemap->texture, &clip, &quad);
+			SDL_RenderCopy(tilemap->sys->sdlRenderer, tilemap->texture, &clip, &quad);
 		}
 	}
 }

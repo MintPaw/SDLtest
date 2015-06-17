@@ -638,13 +638,13 @@ void tilemapExample(MintSystem* sys)
 
 void systemExample(MintSystem* sys)
 {
-	mint_SystemFullScreen(sys, 1);
+	// mint_SystemFullScreen(sys, 1);
 
 	mint_TilemapCreate(sys, "assets/img/tilemap.png", 64, 64, 0);
 	mint_TilemapGenerateFromTiled(sys->tilemap, "assets/map/test1.tmx");
 
-	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
-	mint_SystemAddTexture(sys, texture);
+	// MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/pngSplash.png");
+	// mint_SystemAddTexture(sys, texture);
 
 	for(;;)
 	{
