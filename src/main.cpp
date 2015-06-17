@@ -50,6 +50,7 @@ void systemExample(MintSystem* sys);
 		Pooling
 		Textfields
 		Gamepad support
+		Centre point/sizes is going to break when animations happen (They did)
 
 	Todo minor:
 		Reset totalTextures
@@ -75,7 +76,6 @@ void systemExample(MintSystem* sys);
 		Mingw?
 
 	Notes:
-		Centre point is going to break when animations happen (They did)
 
 */
 
@@ -104,9 +104,9 @@ int main(int argc, char* args[])
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
-	// sys->start = &playerExample;
+	sys->start = &playerExample;
 	// sys->start = &tilemapExample;
-	sys->start = &systemExample;
+	// sys->start = &systemExample;
 
 	mint_SystemInit(sys, 0);
 

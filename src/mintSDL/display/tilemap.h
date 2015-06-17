@@ -7,6 +7,12 @@
 #define TOTAL_TILES 260
 #define TOTAL_BODIES 1024
 
+#define GRAPHICAL_BOT 0
+#define PHYSICAL_1 1
+#define PHYSICAL_2 2
+#define GRAPHICAL_TOP 3
+#define HELPER 4
+
 struct MintTilemap;
 
 #include <SDL.h>

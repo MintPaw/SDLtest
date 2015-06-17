@@ -184,10 +184,10 @@ void mint_SystemDraw(MintSystem* sys)
 
 	if (sys->tilemap != NULL) {
 		mint_TilemapRenderLayer(sys->tilemap, 0);
-		mint_TilemapRenderLayer(sys->tilemap, 1);
-		mint_TilemapRenderLayer(sys->tilemap, 2);
-		mint_TilemapRenderLayer(sys->tilemap, 3);
-		mint_TilemapRenderLayer(sys->tilemap, 4);
+		// mint_TilemapRenderLayer(sys->tilemap, 1);
+		// mint_TilemapRenderLayer(sys->tilemap, 2);
+		// mint_TilemapRenderLayer(sys->tilemap, 3);
+		// mint_TilemapRenderLayer(sys->tilemap, 4);
 	}
 
 	if (sys->debugDraw) {
