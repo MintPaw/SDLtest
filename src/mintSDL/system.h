@@ -29,7 +29,6 @@ struct MintSystem {
 	MintTexture* textures[MAX_TEXTURES];
 	int totalTextures;
 	char totalFonts;
-	float elapsed;
 	MintTexture* fpsCounter;
 	char stage;
 	char quit;

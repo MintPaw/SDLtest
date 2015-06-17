@@ -98,13 +98,13 @@ int main(int argc, char* args[])
 	// sys->start = &transformExample;
 	// sys->start = &textExample;
 	// sys->start = &buttonExample;
-	sys->start = &timerExample;
+	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
 	// sys->start = &playerExample;
 	// sys->start = &tilemapExample;
-	// sys->start = &systemExample;
+	sys->start = &systemExample;
 
 	mint_SystemInit(sys, 0);
 
@@ -237,7 +237,7 @@ void animationExample(MintSystem* sys)
 	{
 		mint_SystemPreUpdate(sys);
 
-		mint_TextureUpdate(texture, sys->elapsed);
+		mint_TextureUpdate(texture, sys->timer->elapsed);
 
 		mint_SystemUpdate(sys);
 		mint_SystemPostUpdate(sys);
@@ -354,7 +354,7 @@ void timerExample(MintSystem* sys)
 	{
 		mint_SystemPreUpdate(sys);
 
-		objectAt.y += (int)(dir * sys->elapsed * speed);
+		objectAt.y += (int)(dir * sys->timer->elapsed * speed);
 
 		if (objectAt.y > SCREEN_HEIGHT) {
 			dir = -1;
@@ -398,7 +398,7 @@ void physicsExample(MintSystem* sys)
 		mint_SystemPostUpdate(sys);
 		mint_SystemPreDraw(sys);
 
-		mint_TextureUpdate(texture, sys->elapsed);
+		mint_TextureUpdate(texture, sys->timer->elapsed);
 		mint_TextureRender(texture);
 
 		mint_SystemDraw(sys);
@@ -435,7 +435,7 @@ void collisionExample(MintSystem* sys)
 	{
 		mint_SystemPreUpdate(sys);
 
-		secondsTillRegen -= sys->elapsed;
+		secondsTillRegen -= sys->timer->elapsed;
 		if (secondsTillRegen <= 0) {
 			secondsTillRegen = 1;
 
@@ -467,8 +467,8 @@ void collisionExample(MintSystem* sys)
 
 		mint_SystemUpdate(sys);
 
-		mint_TextureUpdate(box1, sys->elapsed);
-		mint_TextureUpdate(box2, sys->elapsed);
+		mint_TextureUpdate(box1, sys->timer->elapsed);
+		mint_TextureUpdate(box2, sys->timer->elapsed);
 
 		mint_SystemPostUpdate(sys);
 		mint_SystemPreDraw(sys);
@@ -506,7 +506,7 @@ void texturePackerExample(MintSystem* sys)
 	{
 		mint_SystemPreUpdate(sys);
 
-		for (i = 0; i < ANIMS; i++) mint_TextureUpdate(player[i], sys->elapsed);
+		for (i = 0; i < ANIMS; i++) mint_TextureUpdate(player[i], sys->timer->elapsed);
 
 		mint_SystemUpdate(sys);
 		mint_SystemPostUpdate(sys);
@@ -607,7 +607,7 @@ void playerExample(MintSystem* sys)
 
 		mint_AnimPlay(mint_AnimGetByName(player->animMan, animStr));
 
-		mint_TextureUpdate(player, sys->elapsed);
+		mint_TextureUpdate(player, sys->timer->elapsed);
 
 		mint_SystemUpdate(sys);
 		mint_SystemPostUpdate(sys);

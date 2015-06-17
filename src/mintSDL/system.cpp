@@ -25,7 +25,6 @@ MintSystem* mint_SystemSetup(char vsync)
 	sys->timer = NULL;
 	sys->world = NULL;
 	sys->quit = 0;
-	sys->elapsed = 0;
 	sys->stage = -1;
 	sys->totalTextures = 0;
 	sys->totalFonts = 0;
@@ -129,9 +128,8 @@ void mint_SystemUpdate(MintSystem* sys)
 	sys->stage = UPDATE;
 
 	mint_TimerUpdate(sys->timer, (float)(SDL_GetTicks() / 1000.0));
-	sys->elapsed = sys->timer->elapsed;
 
-	mint_PhysStepWorld(sys->world, sys->elapsed);
+	mint_PhysStepWorld(sys->world, sys->timer->elapsed);
 
 	int i;
 	for (i = 0; i < sys->totalTextures; i++) {
