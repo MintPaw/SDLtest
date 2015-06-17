@@ -98,12 +98,13 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 	int currentBody = 0;
 	for (i = 0; i < TILES_HIGH; i++) {
 		for (j = 0; j < TILES_WIDE; j++) {
+			if (tilemap->layers[1][i][j] == 0) continue;
 
 			b2BodyDef groundBodyDef;
 			groundBodyDef.type = b2_staticBody;
 			groundBodyDef.fixedRotation = true;
-			groundBodyDef.position.Set(mint_PhysPixelToMetre(tilemap->tileWidth * j - tilemap->tileWidth / 2),
-			                           mint_PhysPixelToMetre(tilemap->tileWidth * i - tilemap->tileWidth / 2));
+			groundBodyDef.position.Set(mint_PhysPixelToMetre(tilemap->tileWidth * j),
+			                           mint_PhysPixelToMetre(tilemap->tileWidth * i));
 
 			b2FixtureDef fixtureDef;
 			fixtureDef.density = 0;
