@@ -105,7 +105,6 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 			groundBodyDef.position.Set(mint_PhysPixelToMetre(tilemap->tileWidth * j - tilemap->tileWidth / 2),
 			                           mint_PhysPixelToMetre(tilemap->tileWidth * i - tilemap->tileWidth / 2));
 
-
 			b2FixtureDef fixtureDef;
 			fixtureDef.density = 0;
 			fixtureDef.friction = 0;

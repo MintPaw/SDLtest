@@ -34,6 +34,7 @@ struct MintSystem {
 	char totalFonts;
 	char stage;
 	char quit;
+	char debugDraw;
 	int gameWidth;
 	int gameHeight;
 

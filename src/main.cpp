@@ -43,8 +43,9 @@ void systemExample(MintSystem* sys);
 
 /*
 	Todo major:
-		Hitbox changes
+		Tilemap hits?
 		Debugger
+		Hitbox changes
 		Pathfinding
 		Pooling
 		Textfields
@@ -88,6 +89,7 @@ int main(int argc, char* args[])
 
 	sys = mint_SystemSetup(0);
 	mint_SystemAddFont(sys, "assets/font/OpenSansRegular.ttf");
+	sys->debugDraw = 1;
 
 	// sys->start = &gameExample;
 	// sys->start = &drawExample;

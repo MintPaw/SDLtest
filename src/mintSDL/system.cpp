@@ -10,6 +10,7 @@ const int SCREEN_HEIGHT = 832;
 #include <SDL_image.h>
 #include "mintSDL/system.h"
 #include "mintSDL/display/tilemap.h"
+#include "mintSDL/display/draw.h"
 #include "mintSDL/util/input.h"
 #include "mintSDL/util/timer.h"
 #include "mintSDL/maths/phys.h"
@@ -25,8 +26,9 @@ MintSystem* mint_SystemSetup(char vsync)
 	sys->input = NULL;
 	sys->timer = NULL;
 	sys->world = NULL;
-	sys->quit = 0;
 	sys->stage = -1;
+	sys->quit = 0;
+	sys->debugDraw = 0;
 	sys->totalTextures = 0;
 	sys->totalFonts = 0;
 	sys->fpsCounter = NULL;
@@ -186,6 +188,25 @@ void mint_SystemDraw(MintSystem* sys)
 		mint_TilemapRenderLayer(sys->tilemap, 2);
 		mint_TilemapRenderLayer(sys->tilemap, 3);
 		mint_TilemapRenderLayer(sys->tilemap, 4);
+	}
+
+	if (sys->debugDraw) {
+		SDL_Color green = { 0, 255, 0, 255 };
+		b2Body* bodyList = sys->world->world->GetBodyList();
+
+		for(;;)
+		{
+			if (bodyList == NULL) break;
+			b2AABB aabb = bodyList->GetFixtureList()[0].GetAABB(0);
+			
+			mint_DrawRect(sys, mint_PhysMetreToPixel(aabb.GetCenter().x),
+			                   mint_PhysMetreToPixel(aabb.GetCenter().y),
+			                   mint_PhysMetreToPixel(aabb.GetExtents().x * 2),
+			                   mint_PhysMetreToPixel(aabb.GetExtents().y * 2),
+			                   &green);
+
+			bodyList = bodyList->GetNext();
+		}
 	}
 }
 
