@@ -20,14 +20,21 @@ void mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dy
 	phys->mintTexture = mintTexture;
 	mintTexture->phys = phys;
 	phys->world = physWorld;
+	phys->body = NULL;
+	phys->isDynamic = dynamic;
+	phys->density = density;
 
-	mint_PhysGenerateFixture(phys, dynamic, density);
+	mint_PhysGenerateFixture(phys);
 }
 
-void mint_PhysGenerateFixture(MintPhys* phys, char dynamic, float density)
+void mint_PhysGenerateFixture(MintPhys* phys)
 {
+	if (phys->body != NULL) {
+		phys->world->world->DestroyBody(phys->body);
+	}
+
 	b2BodyDef groundBodyDef;
-	groundBodyDef.type = dynamic ? b2_dynamicBody : b2_staticBody;
+	groundBodyDef.type = phys->isDynamic ? b2_dynamicBody : b2_staticBody;
 	groundBodyDef.fixedRotation = true;
 	groundBodyDef.position.Set(mint_PhysPixelToMetre((float)phys->mintTexture->x), mint_PhysPixelToMetre((float)phys->mintTexture->y));
 
@@ -36,10 +43,9 @@ void mint_PhysGenerateFixture(MintPhys* phys, char dynamic, float density)
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &shape;
-	fixtureDef.density = density;
+	fixtureDef.density = phys->density;
 	fixtureDef.friction = 0.3f;
 
-	phys->shape = shape;
 	phys->body = phys->world->world->CreateBody(&groundBodyDef);
 	phys->body->CreateFixture(&fixtureDef);
 }
@@ -49,8 +55,12 @@ void mint_PhysStepWorld(MintPhysWorld* world, float elapsed) { world->world->Ste
 float mint_PhysMetreToPixel(float metre) { return (float)(metre * 100); }
 float mint_PhysPixelToMetre(float pixel) { return (float)(pixel / 100); }
 void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY) { phys->body->ApplyForce({ forceX, forceY }, phys->body->GetWorldCenter(), 1); }
-void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY) { phys->body->SetLinearVelocity(b2Vec2(veloX, veloY)); }
+
+b2Vec2 mint_PhysGetDynamic(MintPhys* phys) { return phys->body->GetLinearVelocity(); }
+
 b2Vec2 mint_PhysGetVelocity(MintPhys* phys) { return phys->body->GetLinearVelocity(); }
+void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY) { phys->body->SetLinearVelocity(b2Vec2(veloX, veloY)); }
+
 void mint_PhysSetDamping(MintPhys* phys, float damping) { phys->body->SetLinearDamping(damping); }
 
 void mint_PhysUpdate(MintPhys* phys, float elapsed)

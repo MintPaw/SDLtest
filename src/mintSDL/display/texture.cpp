@@ -146,14 +146,13 @@ void mint_TextureSetY(MintTexture* mintTexture, int value)
 	}
 }
 
-void mint_TextureResize(MintTexture* mintTexture, int width, int height)
+void mint_TextureResizeHit(MintTexture* mintTexture, int width, int height)
 {
 	mintTexture->width = width;
 	mintTexture->height = height;
 
 	if (mintTexture->phys) {
-		b2Shape* shape = mintTexture->phys->body->GetFixtureList()[0].GetShape();
-		// body->SetTransform(b2Vec2(mint_PhysPixelToMetre((float)value), body->GetPosition().y), body->GetAngle());
+		mint_PhysGenerateFixture(mintTexture->phys);
 	}
 }
 

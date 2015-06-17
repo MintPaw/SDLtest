@@ -37,5 +37,6 @@ void mint_TextureSetX(MintTexture* mintTexture, int value);
 void mint_TextureSetY(MintTexture* mintTexture, int value);
 void mint_TextureSetColour(MintTexture* mintTexture, SDL_Color* colour);
 void mint_TextureSetAlpha(MintTexture* mintTexture, char alpha);
+void mint_TextureResizeHit(MintTexture* mintTexture, int width, int height);
 
 #endif

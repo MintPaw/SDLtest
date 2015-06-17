@@ -536,6 +536,7 @@ void playerExample(MintSystem* sys)
 	char dirStr = GEOM_RIGHT;
 
 	player = mint_TextureFromPNG(sys, "assets/img/player_blue.png");
+	mint_TextureResizeHit(player, 52, 66);
 	mint_PhysEnable(player, sys->world, 1, 1);
 	mint_PhysSetGravity(sys->world, 0, 0);
 	mint_PhysSetDamping(player->phys, 50);
@@ -547,8 +548,6 @@ void playerExample(MintSystem* sys)
 
 	mint_TextureSetX(player, 200);
 	mint_TextureSetY(player, 200);
-
-	// mint_TextureResizeHit(player, 52, 66);
 
 	for(;;)
 	{
