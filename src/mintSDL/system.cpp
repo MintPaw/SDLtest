@@ -144,7 +144,7 @@ void mint_SystemUpdate(MintSystem* sys)
 	}
 
 	if (sys->fpsCounter) {
-		char fpsText[16];
+		char fpsText[32];
 		_itoa((int)sys->timer->fpsAverage, fpsText, 10);
 		strcat(fpsText, " avg fps");
 		mint_TextureLoadText(sys->fpsCounter, sys->fonts[0], fpsText, { 0, 0, 0, 0 } );
@@ -173,8 +173,6 @@ void mint_SystemDraw(MintSystem* sys)
 	if (sys->stage == POST_UPDATE) mint_SystemPreDraw(sys);
 	if (sys->stage != PRE_DRAW) printf("Warning: forcing bad call of draw");
 	sys->stage = DRAW;
-
-	if (sys->fpsCounter) mint_TextureRender(sys->fpsCounter);
 
 	int i;
 	for (i = 0; i < sys->totalTextures; i++) {

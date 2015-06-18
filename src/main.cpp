@@ -1,46 +1,3 @@
-#define WINDOWS
-#define VISUAL_STUDIOS_DEBUGGING
-
-#ifdef WINDOWS
-	#ifdef VISUAL_STUDIOS_DEBUGGING
-		#define _CRT_SECURE_NO_WARNINGS
-		#define _CRTDBG_MAP_ALLOC
-		#include <stdlib.h>
-		#include <crtdbg.h>
-	#endif
-#endif
-
-#include <stdio.h>
-#include <string>
-#include <time.h>
-#include <SDL.h>
-#include "mintSDL/display/anim.h"
-#include "mintSDL/display/draw.h"
-#include "mintSDL/display/texture.h"
-#include "mintSDL/display/tilemap.h"
-#include "mintSDL/maths/phys.h"
-#include "mintSDL/maths/geom.h"
-#include "mintSDL/util/input.h"
-#include "mintSDL/util/timer.h"
-#include "mintSDL/system.h"
-
-void gameExample(MintSystem* sys);
-void drawExample(MintSystem* sys);
-void mintTextureExample(MintSystem* sys);
-void setColourInputExample(MintSystem* sys);
-void setAlphaInputExample(MintSystem* sys);
-void animationExample(MintSystem* sys);
-void transformExample(MintSystem* sys);
-void textExample(MintSystem* sys);
-void buttonExample(MintSystem* sys);
-void timerExample(MintSystem* sys);
-void physicsExample(MintSystem* sys);
-void collisionExample(MintSystem* sys);
-void texturePackerExample(MintSystem* sys);
-void playerExample(MintSystem* sys);
-void tilemapExample(MintSystem* sys);
-void systemExample(MintSystem* sys);
-
 /*
 	Todo major:
 		Hitbox changes(offset only)
@@ -78,6 +35,51 @@ void systemExample(MintSystem* sys);
 
 */
 
+#define WINDOWS
+#define VISUAL_STUDIOS_DEBUGGING
+// #define TEST_GAME
+
+#ifdef WINDOWS
+	#ifdef VISUAL_STUDIOS_DEBUGGING
+		#define _CRT_SECURE_NO_WARNINGS
+		#define _CRTDBG_MAP_ALLOC
+		#include <stdlib.h>
+		#include <crtdbg.h>
+	#endif
+#endif
+
+#include <stdio.h>
+#include <string>
+#include <time.h>
+#include <SDL.h>
+#include "game.h"
+#include "mintSDL/display/anim.h"
+#include "mintSDL/display/draw.h"
+#include "mintSDL/display/texture.h"
+#include "mintSDL/display/tilemap.h"
+#include "mintSDL/maths/phys.h"
+#include "mintSDL/maths/geom.h"
+#include "mintSDL/util/input.h"
+#include "mintSDL/util/timer.h"
+#include "mintSDL/system.h"
+
+void gameExample(MintSystem* sys);
+void drawExample(MintSystem* sys);
+void mintTextureExample(MintSystem* sys);
+void setColourInputExample(MintSystem* sys);
+void setAlphaInputExample(MintSystem* sys);
+void animationExample(MintSystem* sys);
+void transformExample(MintSystem* sys);
+void textExample(MintSystem* sys);
+void buttonExample(MintSystem* sys);
+void timerExample(MintSystem* sys);
+void physicsExample(MintSystem* sys);
+void collisionExample(MintSystem* sys);
+void texturePackerExample(MintSystem* sys);
+void playerExample(MintSystem* sys);
+void tilemapExample(MintSystem* sys);
+void systemExample(MintSystem* sys);
+
 MintSystem* sys;
 
 int main(int argc, char* args[])
@@ -86,9 +88,13 @@ int main(int argc, char* args[])
 	// _CrtSetBreakAlloc(202);
 #endif
 
+#ifdef TEST_GAME
+	return gameMain(argc, args);
+#endif
+
 	sys = mint_SystemSetup(0);
 	mint_SystemAddFont(sys, "assets/font/OpenSansRegular.ttf");
-	sys->debugDraw = 1;
+	// sys->debugDraw = 1;
 
 	// sys->start = &gameExample;
 	// sys->start = &drawExample;
@@ -101,13 +107,13 @@ int main(int argc, char* args[])
 	// sys->start = &buttonExample;
 	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
-	// sys->start = &collisionExample;
+	sys->start = &collisionExample;
 	// sys->start = &texturePackerExample;
-	sys->start = &playerExample;
+	// sys->start = &playerExample;
 	// sys->start = &tilemapExample;
 	// sys->start = &systemExample;
 
-	mint_SystemInit(sys, 0);
+	mint_SystemInit(sys, 1);
 
 	return 0;
 }

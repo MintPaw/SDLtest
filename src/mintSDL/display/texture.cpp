@@ -74,6 +74,9 @@ void mint_TextureLoadText(MintTexture* mintTexture, TTF_Font* font, char* text, 
 		printf("Failed to create surface from TTF, SDL_Error: %s\n", SDL_GetError());
 		return;
 	}
+	
+	mintTexture->width = surface->w;
+	mintTexture->height = surface->h;
 
 	mintTexture->texture = SDL_CreateTextureFromSurface(mintTexture->sys->sdlRenderer, surface);
 
