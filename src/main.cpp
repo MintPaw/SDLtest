@@ -37,7 +37,7 @@
 
 #define WINDOWS
 #define VISUAL_STUDIOS_DEBUGGING
-// #define TEST_GAME
+#define TEST_GAME
 
 #ifdef WINDOWS
 	#ifdef VISUAL_STUDIOS_DEBUGGING
@@ -52,7 +52,7 @@
 #include <string>
 #include <time.h>
 #include <SDL.h>
-#include "game.h"
+#include "game/game.h"
 #include "mintSDL/display/anim.h"
 #include "mintSDL/display/draw.h"
 #include "mintSDL/display/texture.h"

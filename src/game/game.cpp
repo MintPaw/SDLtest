@@ -1,5 +1,5 @@
 #include "mintSDL/system.h"
-#include "game.h"
+#include "game/game.h"
 
 int gameMain(int argc, char* args[])
 {
