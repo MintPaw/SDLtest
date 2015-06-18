@@ -5,5 +5,6 @@
 
 int gameMain(int argc, char* args[]);
 void gameLoop(MintSystem* sys);
+void startGame();
 
 #endif
