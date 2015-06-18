@@ -20,6 +20,7 @@ link_directories(
 add_executable(SDLtest
 	src/main.cpp
 	src/game/game.cpp
+	src/game/menu.cpp
 	src/mintSDL/display/anim.cpp
 	src/mintSDL/display/draw.cpp
 	src/mintSDL/display/texture.cpp
