@@ -51,10 +51,9 @@ void startGame()
 		// char animStr[99];
 		// char dirStr = GEOM_RIGHT;
 
-		MintTexture* player = NULL;
-		player_Setup(_sys, player);
+		MintTexture* player = player_Setup(_sys);
 
-		// mint_TextureSetX(player, 200);
-		// mint_TextureSetY(player, 200);
+		mint_TextureSetX(player, 200);
+		mint_TextureSetY(player, 200);
 	}
 }
