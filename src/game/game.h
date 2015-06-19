@@ -14,5 +14,6 @@ struct GameState {
 int gameMain(int argc, char* args[]);
 void gameLoop(MintSystem* sys);
 void startGame();
+void updateGame();
 
 #endif

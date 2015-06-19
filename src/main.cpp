@@ -39,9 +39,10 @@
 #define VISUAL_STUDIOS_DEBUGGING
 #define TEST_GAME
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #ifdef WINDOWS
 	#ifdef VISUAL_STUDIOS_DEBUGGING
-		#define _CRT_SECURE_NO_WARNINGS
 		#define _CRTDBG_MAP_ALLOC
 		#include <stdlib.h>
 		#include <crtdbg.h>
