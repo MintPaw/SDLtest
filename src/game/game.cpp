@@ -6,6 +6,7 @@
 #define GAME 2
 
 MintSystem* _sys;
+GameState* gameState;
 int state = 0;
 
 int gameMain(int argc, char* args[])
@@ -42,6 +43,10 @@ void gameLoop(MintSystem* extraSys)
 void startGame()
 {
 	// mint_SystemFullScreen(_sys, 1);
+	gameState = (GameState*)calloc(1, sizeof(GameState));
+	gameState->players;
+	gameState->totalPlayers = 0;
+
 	state = GAME;
 
 	{ // Setup tilemap
@@ -50,8 +55,8 @@ void startGame()
 	}
 
 	{ // Setup player
-
 		Player* player = player_Setup(_sys);
+		gameState->players[gameState->totalPlayers++] = player;
 
 		mint_TextureSetX(player->mintTexture, 200);
 		mint_TextureSetY(player->mintTexture, 200);
