@@ -63,8 +63,8 @@ void mint_PhysUpdate(MintTexture* mintTexture, float elapsed)
 	if (!mintTexture->body) return;
 
 	b2Vec2 pos = mintTexture->body->GetPosition();
-	pos.x = mint_PhysMetreToPixel(pos.x + mintTexture->hitboxOffset.x);
-	pos.y = mint_PhysMetreToPixel(pos.y + mintTexture->hitboxOffset.y);
+	pos.x = mint_PhysMetreToPixel(pos.x) + mintTexture->hitboxOffset.x;
+	pos.y = mint_PhysMetreToPixel(pos.y) + mintTexture->hitboxOffset.y;
 
 	mintTexture->x = (int)pos.x;
 	mintTexture->y = (int)pos.y;

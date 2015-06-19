@@ -15,7 +15,7 @@ int gameMain(int argc, char* args[])
 {
 	_sys = mint_SystemSetup(0);
 	mint_SystemAddFont(_sys, "assets/font/OpenSansRegular.ttf");
-	// _sys->debugDraw = 1;	
+	_sys->debugDraw = 1;	
 
 	_sys->start = &gameLoop;
 
@@ -46,8 +46,8 @@ void startGame()
 	state = GAME;
 
 	{ // Setup tilemap
-		mint_TilemapCreate(_sys, "assets/img/tilemap.png", 64, 64, 0);
-		mint_TilemapGenerateFromTiled(_sys->tilemap, "assets/map/test1.tmx");
+		// mint_TilemapCreate(_sys, "assets/img/tilemap.png", 64, 64, 0);
+		// mint_TilemapGenerateFromTiled(_sys->tilemap, "assets/map/test1.tmx");
 	}
 
 	{ // Setup player
