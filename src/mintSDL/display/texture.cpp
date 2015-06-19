@@ -25,6 +25,7 @@ MintTexture* mint_TextureFromNothing(MintSystem* sys)
 	mintTexture->x = 0;
 	mintTexture->y = 0;
 	mintTexture->alpha = NULL;
+	mintTexture->body = NULL;
 
 	return mintTexture;
 }

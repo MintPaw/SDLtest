@@ -13,9 +13,10 @@ struct MintTexture {
 	MintSystem* sys;
 	SDL_Texture* texture;
 	MintAnimMan* animMan;
-	b2Body* body;
 
+	b2Body* body;
 	char dynamic;
+	
 	float angle;
 	SDL_Point centre;
 	SDL_RendererFlip flip;
