@@ -21,7 +21,7 @@ MintTexture* mint_TextureFromNothing(MintSystem* sys)
 	mintTexture->height = 0;
 	mintTexture->alpha = NULL;
 	mintTexture->angle = 0;
-	mintTexture->centre = { mintTexture->width / 2,  mintTexture->height / 2 };
+	mintTexture->centre = { mintTexture->width / 2,  mintTexture->height / 2 }; 
 	mintTexture->flip = SDL_FLIP_NONE;
 	mintTexture->renderRect = { 0, 0, 0, 0 };
 

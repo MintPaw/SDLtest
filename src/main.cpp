@@ -37,7 +37,7 @@
 
 #define WINDOWS
 #define VISUAL_STUDIOS_DEBUGGING
-// #define TEST_GAME
+#define TEST_GAME
 
 #ifdef WINDOWS
 	#ifdef VISUAL_STUDIOS_DEBUGGING

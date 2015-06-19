@@ -5,7 +5,8 @@
 MintTexture* player_Setup(MintSystem* _sys)
 {
 	MintTexture* player = mint_TextureFromPNG(_sys, "assets/img/player_blue.png");
-	mint_TextureResizeHit(player, 52, 66);
+	mint_TextureResizeHit(player, 52, 22);
+	player->hitboxOffset = { 0, 44 };
 	mint_PhysEnable(player, 1, 1);
 	mint_PhysSetGravity(_sys, 0, 0);
 	mint_PhysSetDamping(player, 50);
