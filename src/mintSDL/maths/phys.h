@@ -1,8 +1,6 @@
 #ifndef PHYS_H
 #define PHYS_H
 
-struct MintFloatPoint;
-
 #include <SDL.h>
 #include <Box2D/Box2d.h>
 #include "mintSDL/display/texture.h"
