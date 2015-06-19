@@ -10,12 +10,12 @@ MintTexture* player_Setup(MintSystem* _sys)
 	mint_PhysSetGravity(_sys, 0, 0);
 	mint_PhysSetDamping(player, 50);
 
-	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
+	mint_AnimCreateFromXML(player, "assets/img/player_blue.xml");
 
 	int i;
-	for (i = 0; i < player->animMan->totalAnims; i++) mint_AnimGetByIndex(player->animMan, i)->loop = 1;
+	for (i = 0; i < player->totalAnims; i++) mint_AnimGetByIndex(player, i)->loop = 1;
 
-	mint_AnimPlay(mint_AnimGetByName(player->animMan, "player_blue_SMG_downRight_running_"));
+	mint_AnimPlay(mint_AnimGetByName(player, "player_blue_SMG_downRight_running_"));
 
 	return player;
 }

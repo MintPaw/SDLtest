@@ -8,29 +8,16 @@
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/geom.h"
 
-MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture)
+void mint_AnimInit(MintTexture* mintTexture, int totalAnims)
 {
-	MintAnimMan* animMan = (MintAnimMan*)malloc(sizeof(MintAnimMan));
-
-	animMan->totalAnims = 0;
-	animMan->currentAnim = NULL;
-	animMan->anims = NULL;
-	animMan->clipRect = NULL;
-	animMan->mintTexture = mintTexture;
-
-	return animMan;
-}
-
-void mint_AnimManInit(MintAnimMan* animMan, int totalAnims)
-{
-	animMan->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
-	animMan->totalAnims = totalAnims;
+	mintTexture->anims = (MintAnim*)malloc(sizeof(MintAnim) * totalAnims);
+	mintTexture->totalAnims = totalAnims;
 
 	int i;
-	for (i = 0; i < totalAnims; i++) animMan->anims[i].man = animMan;
+	for (i = 0; i < totalAnims; i++) mintTexture->anims[i].mintTexture = mintTexture;
 }
 
-void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath)
+void mint_AnimCreateFromXML(MintTexture* mintTexture, char* xmlPath)
 {
 	FILE* fp;
 	char buf[1024];
@@ -93,7 +80,7 @@ void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath)
 		}
 	}
 
-	mint_AnimManInit(animMan, totalAnims);
+	mint_AnimInit(mintTexture, totalAnims);
 
 	int startFrame = 0;
 	int endFrame = 0;
@@ -105,9 +92,9 @@ void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath)
 	for (i = 0; i < frameCount; i++) {
 		if (strcmp(currentName, names[i])) {
 			endFrame = i;
-			mint_AnimCreate(animMan, currentAnim, currentName, endFrame - startFrame, 60);
+			mint_AnimCreate(mintTexture, currentAnim, currentName, endFrame - startFrame, 60);
 			for (j = startFrame; j < endFrame; j++) {
-				mint_AnimDefineFrame(mint_AnimGetByIndex(animMan, currentAnim),
+				mint_AnimDefineFrame(mint_AnimGetByIndex(mintTexture, currentAnim),
 			                       j - startFrame,
 			                       rects[j].x,
 			                       rects[j].y,
@@ -121,9 +108,9 @@ void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath)
 	}
 }
 
-void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames, int frameRate)
+void mint_AnimCreate(MintTexture* mintTexture, int index, char* name, int totalFrames, int frameRate)
 {
-	MintAnim* anim = mint_AnimGetByIndex(animMan, index);
+	MintAnim* anim = mint_AnimGetByIndex(mintTexture, index);
 
 	anim->name = (char*)malloc(sizeof(char)*(strlen(name) + 1));
 	strcpy(anim->name, name);
@@ -150,58 +137,58 @@ void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop)
 {
 	int i;
 	for (i = 0; i < anim->totalFrames; i++) {
-		mint_AnimDefineFrame(anim, i, frameWidth * i, 0, frameWidth, anim->man->mintTexture->height);
+		mint_AnimDefineFrame(anim, i, frameWidth * i, 0, frameWidth, anim->mintTexture->height);
 	}
 
 	anim->currentFrame = 0;
 	anim->loop = loop;
 
-	anim->man->clipRect = &anim->frameRects[0];
-	anim->man->mintTexture->width = anim->frameRects[0].w;
-	anim->man->mintTexture->height = anim->frameRects[0].h;
+	anim->mintTexture->clipRect = &anim->frameRects[0];
+	anim->mintTexture->width = anim->frameRects[0].w;
+	anim->mintTexture->height = anim->frameRects[0].h;
 }
 
-void mint_AnimUpdate(MintAnimMan* animMan, float elapsed)
+void mint_AnimUpdate(MintTexture* mintTexture, float elapsed)
 {
-	if (!animMan->currentAnim) return;
-	MintAnim* anim = animMan->currentAnim;
+	if (!mintTexture->currentAnim) return;
+	MintAnim* anim = mintTexture->currentAnim;
 	
 	anim->_timeTillNextFrame -= elapsed;
 	if (anim->_timeTillNextFrame <= 0) {
 		anim->_timeTillNextFrame = (float)(1.0 / anim->frameRate);
-		mint_AnimNextFrame(animMan);
+		mint_AnimNextFrame(mintTexture);
 	}
 }
 
-void mint_AnimUpdateClip(MintAnimMan* animMan)
+void mint_AnimUpdateClip(MintTexture* mintTexture)
 {
-	animMan->clipRect = &animMan->currentAnim->frameRects[animMan->currentAnim->currentFrame];	
+	mintTexture->clipRect = &mintTexture->currentAnim->frameRects[mintTexture->currentAnim->currentFrame];	
 }
 
-void mint_AnimUpdateAsButton(MintAnimMan* animMan, MintInput* input)
+void mint_AnimUpdateAsButton(MintTexture* mintTexture, MintInput* input)
 {
-	SDL_Rect rect = { animMan->mintTexture->x, animMan->mintTexture->y, animMan->mintTexture->width, animMan->mintTexture->height };
+	SDL_Rect rect = { mintTexture->x, mintTexture->y, mintTexture->width, mintTexture->height };
 	if (mint_GeomPointInRect(&input->mousePoint, &rect)) {
 		if (input->mouseButtonStatus[0]) {
-			mint_AnimGotoFrame(animMan, 2);
+			mint_AnimGotoFrame(mintTexture, 2);
 		} else {
-			mint_AnimGotoFrame(animMan, 1);
+			mint_AnimGotoFrame(mintTexture, 1);
 		}
 	} else {
-		mint_AnimGotoFrame(animMan, 0);
+		mint_AnimGotoFrame(mintTexture, 0);
 	}
 }
 
-MintAnim* mint_AnimGetByIndex(MintAnimMan* animMan, int index)
+MintAnim* mint_AnimGetByIndex(MintTexture* mintTexture, int index)
 {
-	return &animMan->anims[index];
+	return &mintTexture->anims[index];
 }
 
-MintAnim* mint_AnimGetByName(MintAnimMan* animMan, char* name)
+MintAnim* mint_AnimGetByName(MintTexture* mintTexture, char* name)
 {
 	int i;
-	for (i = 0; i < animMan->totalAnims; i++) {
-		if (!strcmp(animMan->anims[i].name, name)) return &animMan->anims[i];
+	for (i = 0; i < mintTexture->totalAnims; i++) {
+		if (!strcmp(mintTexture->anims[i].name, name)) return &mintTexture->anims[i];
 	}
 
 	return NULL;
@@ -209,41 +196,38 @@ MintAnim* mint_AnimGetByName(MintAnimMan* animMan, char* name)
 
 void mint_AnimPlay(MintAnim* anim)
 {
-	anim->man->currentAnim = anim;
+	anim->mintTexture->currentAnim = anim;
 }
 
-void mint_AnimNextFrame(MintAnimMan* animMan)
+void mint_AnimNextFrame(MintTexture* mintTexture)
 {
-	if (animMan->currentAnim->currentFrame < animMan->currentAnim->totalFrames - 1) {
-		animMan->currentAnim->currentFrame++;
-	} else if (animMan->currentAnim->loop) {
-		animMan->currentAnim->currentFrame = 0;
+	if (mintTexture->currentAnim->currentFrame < mintTexture->currentAnim->totalFrames - 1) {
+		mintTexture->currentAnim->currentFrame++;
+	} else if (mintTexture->currentAnim->loop) {
+		mintTexture->currentAnim->currentFrame = 0;
 	}
 	
-	mint_AnimUpdateClip(animMan);
+	mint_AnimUpdateClip(mintTexture);
 }
 
-void mint_AnimGotoFrame(MintAnimMan* animMan, int index)
+void mint_AnimGotoFrame(MintTexture* mintTexture, int index)
 {
-	animMan->currentAnim->currentFrame = index;
-	mint_AnimUpdateClip(animMan);
+	mintTexture->currentAnim->currentFrame = index;
+	mint_AnimUpdateClip(mintTexture);
 }
 
-void mint_AnimManFree(MintAnimMan* animMan)
+void mint_AnimFree(MintTexture* mintTexture)
 {
 	int i;
-	for (i = 0; i < animMan->totalAnims; i++) {
-		free(animMan->anims[i].frameRects);
-		free(animMan->anims[i].name);
-		animMan->anims[i].name = NULL;
-		animMan->anims[i].frameRects = NULL;	
+	for (i = 0; i < mintTexture->totalAnims; i++) {
+		free(mintTexture->anims[i].frameRects);
+		free(mintTexture->anims[i].name);
+		mintTexture->anims[i].name = NULL;
+		mintTexture->anims[i].frameRects = NULL;	
 	}
 
-	if (animMan->anims) {
-		free(animMan->anims);
-		animMan->anims = NULL;
+	if (mintTexture->anims) {
+		free(mintTexture->anims);
+		mintTexture->anims = NULL;
 	}
-
-	free(animMan);
-	animMan = NULL;
 }

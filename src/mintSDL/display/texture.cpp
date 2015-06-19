@@ -14,7 +14,6 @@ MintTexture* mint_TextureFromNothing(MintSystem* sys)
 
 	mintTexture->texture = NULL;
 	mintTexture->sys = sys;
-	mintTexture->animMan = mint_AnimManSetup(mintTexture);
 
 	mintTexture->width = 0;
 	mintTexture->height = 0;
@@ -26,6 +25,11 @@ MintTexture* mint_TextureFromNothing(MintSystem* sys)
 	mintTexture->y = 0;
 	mintTexture->alpha = NULL;
 	mintTexture->body = NULL;
+
+	mintTexture->totalAnims = 0;
+	mintTexture->currentAnim = NULL;
+	mintTexture->anims = NULL;
+	mintTexture->clipRect = NULL;
 
 	return mintTexture;
 }
@@ -59,8 +63,6 @@ MintTexture* mint_TextureFromSurface(MintSystem* sys, SDL_Surface* surface)
 	mintTexture->width = surface->w;
 	mintTexture->height = surface->h;
 
-	mintTexture->animMan = mint_AnimManSetup(mintTexture);
-
 	return mintTexture;
 }
 
@@ -90,19 +92,19 @@ void mint_TextureLoadText(MintTexture* mintTexture, TTF_Font* font, char* text, 
 
 void mint_TextureUpdate(MintTexture* mintTexture, float elapsed)
 {
-	mint_AnimUpdate(mintTexture->animMan, elapsed);
+	mint_AnimUpdate(mintTexture, elapsed);
 	mint_PhysUpdate(mintTexture, elapsed);
 }
 
 void mint_TextureRender(MintTexture* mintTexture)
 {
 	SDL_Rect quad;
-	if (mintTexture->animMan->clipRect) {
-		quad = { mintTexture->x, mintTexture->y, mintTexture->animMan->clipRect->w, mintTexture->animMan->clipRect->h };
+	if (mintTexture->clipRect) {
+		quad = { mintTexture->x, mintTexture->y, mintTexture->clipRect->w, mintTexture->clipRect->h };
 
 		SDL_RenderCopyEx(mintTexture->sys->sdlRenderer,
 		                 mintTexture->texture,
-		                 mintTexture->animMan->clipRect,
+		                 mintTexture->clipRect,
 		                 &quad,
 		                 mintTexture->angle,
 		                 &mintTexture->centre,
@@ -122,7 +124,7 @@ void mint_TextureRender(MintTexture* mintTexture)
 void mint_TextureFree(MintTexture* mintTexture)
 {
 	SDL_DestroyTexture(mintTexture->texture);
-	mint_AnimManFree(mintTexture->animMan);
+	mint_AnimFree(mintTexture);
 	
 	free(mintTexture);
 	mintTexture = NULL;

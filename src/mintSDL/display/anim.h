@@ -2,46 +2,36 @@
 #define ANIM_H
 
 struct MintAnim;
-struct MintAnimMan;
 
 #include <SDL.h>
 #include "texture.h"
 #include "mintSDL/util/input.h"
 
-struct MintAnimMan {
-	MintTexture* mintTexture;
-	MintAnim* anims;
-	MintAnim* currentAnim;
-	SDL_Rect* clipRect;
-	int totalAnims;
-};
-
 struct MintAnim {
+	MintTexture* mintTexture;
 	char* name;
 	char loop;
 	int totalFrames;
 	int currentFrame;
 	int frameRate;
 	SDL_Rect* frameRects;
-	MintAnimMan* man;
 	float _timeTillNextFrame;
 };
 
-MintAnimMan* mint_AnimManSetup(MintTexture* mintTexture);
-void mint_AnimCreate(MintAnimMan* animMan, int index, char* name, int totalFrames, int frameRate);
+void mint_AnimCreate(MintTexture* mintTexture, int index, char* name, int totalFrames, int frameRate);
 void mint_AnimDefineFrame(MintAnim* anim, int frameNumber, int x, int y, int width, int height);
 void mint_AnimDefineFrames(MintAnim* anim, SDL_Rect* frameRects);
 void mint_AnimDefineLinearStripFrames(MintAnim* anim, int frameWidth, char loop);
-void mint_AnimUpdate(MintAnimMan* animMan, float elapsed);
-void mint_AnimUpdateClip(MintAnimMan* animMan);
-void mint_AnimUpdateAsButton(MintAnimMan* animMan, MintInput* input);
-MintAnim* mint_AnimGetByIndex(MintAnimMan* animMan, int index);
-MintAnim* mint_AnimGetByName(MintAnimMan* animMan, char* name);
+void mint_AnimUpdate(MintTexture* mintTexture, float elapsed);
+void mint_AnimUpdateClip(MintTexture* mintTexture);
+void mint_AnimUpdateAsButton(MintTexture* mintTexture, MintInput* input);
+MintAnim* mint_AnimGetByIndex(MintTexture* mintTexture, int index);
+MintAnim* mint_AnimGetByName(MintTexture* mintTexture, char* name);
 void mint_AnimPlay(MintAnim* anim);
-void mint_AnimNextFrame(MintAnimMan* animMan);
-void mint_AnimGotoFrame(MintAnimMan* animMan, int index);
-void mint_AnimManFree(MintAnimMan* animMan);
-void mint_AnimManInit(MintAnimMan* animMan, int totalAnims);
-void mint_AnimCreateFromXML(MintAnimMan* animMan, char* xmlPath);
+void mint_AnimNextFrame(MintTexture* mintTexture);
+void mint_AnimGotoFrame(MintTexture* mintTexture, int index);
+void mint_AnimInit(MintTexture* mintTexture, int totalAnims);
+void mint_AnimCreateFromXML(MintTexture* mintTexture, char* xmlPath);
+void mint_AnimFree(MintTexture* mintTexture);
 
 #endif

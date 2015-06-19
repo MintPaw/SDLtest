@@ -37,7 +37,7 @@
 
 #define WINDOWS
 #define VISUAL_STUDIOS_DEBUGGING
-#define TEST_GAME
+// #define TEST_GAME
 
 #ifdef WINDOWS
 	#ifdef VISUAL_STUDIOS_DEBUGGING
@@ -107,8 +107,8 @@ int main(int argc, char* args[])
 	// sys->start = &buttonExample;
 	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
-	sys->start = &collisionExample;
-	// sys->start = &texturePackerExample;
+	// sys->start = &collisionExample;
+	sys->start = &texturePackerExample;
 	// sys->start = &playerExample;
 	// sys->start = &tilemapExample;
 	// sys->start = &systemExample;
@@ -234,11 +234,11 @@ void setAlphaInputExample(MintSystem* sys)
 void animationExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/animation.png");
-	mint_AnimManInit(texture->animMan, 1);
+	mint_AnimInit(texture, 1);
 
-	mint_AnimCreate(texture->animMan, 0, "anim1", 4, 15);
-	mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(texture->animMan, 0), 64, 1);
-	mint_AnimPlay(mint_AnimGetByIndex(texture->animMan, 0));
+	mint_AnimCreate(texture, 0, "anim1", 4, 15);
+	mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(texture, 0), 64, 1);
+	mint_AnimPlay(mint_AnimGetByIndex(texture, 0));
 
 	for(;;)
 	{
@@ -319,10 +319,10 @@ void buttonExample(MintSystem* sys)
 	for (i = 0; i < 3; i++) {
 		buttons[i] = mint_TextureFromPNG(sys, "assets/img/button.png");
 
-		mint_AnimManInit(buttons[i]->animMan, 1);
-		mint_AnimCreate(buttons[i]->animMan, 0, "default", 3, 60);
-		mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(buttons[i]->animMan, 0), 100, 0);
-		mint_AnimPlay(mint_AnimGetByIndex(buttons[i]->animMan, 0));
+		mint_AnimInit(buttons[i], 1);
+		mint_AnimCreate(buttons[i], 0, "default", 3, 60);
+		mint_AnimDefineLinearStripFrames(mint_AnimGetByIndex(buttons[i], 0), 100, 0);
+		mint_AnimPlay(mint_AnimGetByIndex(buttons[i], 0));
 
 		mint_TextureSetX(buttons[i], (buttons[i]->width + 20) * i);
 	}
@@ -335,7 +335,7 @@ void buttonExample(MintSystem* sys)
 		mint_SystemPreDraw(sys);
 
 		for (i = 0; i < 3; i++) {
-			mint_AnimUpdateAsButton(buttons[i]->animMan, sys->input);
+			mint_AnimUpdateAsButton(buttons[i], sys->input);
 			mint_TextureRender(buttons[i]);
 		}
 
@@ -501,10 +501,10 @@ void texturePackerExample(MintSystem* sys)
 	int i;
 	for (i = 0; i < ANIMS; i++) {
 		player[i] = mint_TextureFromPNG(sys, "assets/img/player_blue.png");
-		mint_AnimCreateFromXML(player[i]->animMan, "assets/img/player_blue.xml");
+		mint_AnimCreateFromXML(player[i], "assets/img/player_blue.xml");
 		
-		mint_AnimPlay(mint_AnimGetByIndex(player[i]->animMan, i));
-		mint_AnimGetByIndex(player[i]->animMan, i)->loop = 1;
+		mint_AnimPlay(mint_AnimGetByIndex(player[i], i));
+		mint_AnimGetByIndex(player[i], i)->loop = 1;
 
 		mint_TextureSetX(player[i], 50 * i);
 	}
@@ -546,10 +546,10 @@ void playerExample(MintSystem* sys)
 	mint_PhysSetGravity(sys, 0, 0);
 	mint_PhysSetDamping(player, 50);
 	
-	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
-	for (i = 0; i < player->animMan->totalAnims; i++) mint_AnimGetByIndex(player->animMan, i)->loop = 1;
+	mint_AnimCreateFromXML(player, "assets/img/player_blue.xml");
+	for (i = 0; i < player->totalAnims; i++) mint_AnimGetByIndex(player, i)->loop = 1;
 
-	mint_AnimPlay(mint_AnimGetByName(player->animMan, "player_blue_SMG_downRight_running_"));
+	mint_AnimPlay(mint_AnimGetByName(player, "player_blue_SMG_downRight_running_"));
 
 	mint_TextureSetX(player, 200);
 	mint_TextureSetY(player, 200);
@@ -613,7 +613,7 @@ void playerExample(MintSystem* sys)
 
 		strcat(animStr, up || down || left || right ? "_running_" : "_standing_");
 
-		mint_AnimPlay(mint_AnimGetByName(player->animMan, animStr));
+		mint_AnimPlay(mint_AnimGetByName(player, animStr));
 
 		mint_TextureUpdate(player, sys->timer->elapsed);
 
