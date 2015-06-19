@@ -12,7 +12,7 @@ int gameMain(int argc, char* args[])
 {
 	_sys = mint_SystemSetup(0);
 	mint_SystemAddFont(_sys, "assets/font/OpenSansRegular.ttf");
-	// _sys->debugDraw = 1;
+	// _sys->debugDraw = 1;	
 
 	_sys->start = &gameLoop;
 
@@ -27,6 +27,13 @@ void gameLoop(MintSystem* extraSys)
 
 	for (;;)
 	{
+		{ // Update Player
+			char left;
+			char right;
+			char up;
+			char down;
+		}
+
 		mint_SystemUpdate(_sys);
 		mint_SystemDraw(_sys);
 	}
@@ -43,17 +50,10 @@ void startGame()
 	}
 
 	{ // Setup player
-		// char left;
-		// char right;
-		// char up;
-		// char down;
 
-		// char animStr[99];
-		// char dirStr = GEOM_RIGHT;
+		Player* player = player_Setup(_sys);
 
-		MintTexture* player = player_Setup(_sys);
-
-		mint_TextureSetX(player, 200);
-		mint_TextureSetY(player, 200);
+		mint_TextureSetX(player->mintTexture, 200);
+		mint_TextureSetY(player->mintTexture, 200);
 	}
 }
