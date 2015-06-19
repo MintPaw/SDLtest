@@ -396,10 +396,10 @@ void physicsExample(MintSystem* sys)
 	{
 		mint_SystemPreUpdate(sys);
 
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_RIGHT)) mint_PhysApplyForce(texture->phys, speed, 0);
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_LEFT)) mint_PhysApplyForce(texture->phys, -speed, 0);
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture->phys, 0, -speed);
-		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture->phys, 0, speed);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_RIGHT)) mint_PhysApplyForce(texture, speed, 0);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_LEFT)) mint_PhysApplyForce(texture, -speed, 0);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_UP)) mint_PhysApplyForce(texture, 0, -speed);
+		if (mint_InputCheckKey(sys->input, SDL_SCANCODE_DOWN)) mint_PhysApplyForce(texture, 0, speed);
 
 		mint_SystemUpdate(sys);
 		mint_SystemPostUpdate(sys);
@@ -468,8 +468,8 @@ void collisionExample(MintSystem* sys)
 			mint_GeomNormalizeFloatPoint(&velo1, 10);
 			mint_GeomNormalizeFloatPoint(&velo2, 10);
 
-			mint_PhysSetVelocity(box1->phys, velo1.x, velo1.y);
-			mint_PhysSetVelocity(box2->phys, velo2.x, velo2.y);
+			mint_PhysSetVelocity(box1, velo1.x, velo1.y);
+			mint_PhysSetVelocity(box2, velo2.x, velo2.y);
 		}
 
 		mint_SystemUpdate(sys);
@@ -544,7 +544,7 @@ void playerExample(MintSystem* sys)
 	mint_TextureResizeHit(player, 52, 66);
 	mint_PhysEnable(player, 1, 1);
 	mint_PhysSetGravity(sys, 0, 0);
-	mint_PhysSetDamping(player->phys, 50);
+	mint_PhysSetDamping(player, 50);
 	
 	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
 	for (i = 0; i < player->animMan->totalAnims; i++) mint_AnimGetByIndex(player->animMan, i)->loop = 1;
@@ -563,10 +563,10 @@ void playerExample(MintSystem* sys)
 		up = mint_InputCheckKey(sys->input, SDL_SCANCODE_UP);
 		down = mint_InputCheckKey(sys->input, SDL_SCANCODE_DOWN);
 
-		if (left) mint_PhysSetVelocity(player->phys, -5, mint_PhysGetVelocity(player->phys).y);
-		if (right) mint_PhysSetVelocity(player->phys, 5, mint_PhysGetVelocity(player->phys).y);
-		if (up) mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, -5);
-		if (down) mint_PhysSetVelocity(player->phys, mint_PhysGetVelocity(player->phys).x, 5);
+		if (left) mint_PhysSetVelocity(player, -5, mint_PhysGetVelocity(player).y);
+		if (right) mint_PhysSetVelocity(player, 5, mint_PhysGetVelocity(player).y);
+		if (up) mint_PhysSetVelocity(player, mint_PhysGetVelocity(player).x, -5);
+		if (down) mint_PhysSetVelocity(player, mint_PhysGetVelocity(player).x, 5);
 
 		strcpy(animStr, "player_blue_SMG_");
 

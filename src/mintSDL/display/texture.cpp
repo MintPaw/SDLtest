@@ -14,7 +14,6 @@ MintTexture* mint_TextureFromNothing(MintSystem* sys)
 
 	mintTexture->texture = NULL;
 	mintTexture->sys = sys;
-	mintTexture->phys = NULL;
 	mintTexture->animMan = mint_AnimManSetup(mintTexture);
 
 	mintTexture->width = 0;
@@ -91,7 +90,7 @@ void mint_TextureLoadText(MintTexture* mintTexture, TTF_Font* font, char* text, 
 void mint_TextureUpdate(MintTexture* mintTexture, float elapsed)
 {
 	mint_AnimUpdate(mintTexture->animMan, elapsed);
-	mint_PhysUpdate(mintTexture->phys, elapsed);
+	mint_PhysUpdate(mintTexture, elapsed);
 }
 
 void mint_TextureRender(MintTexture* mintTexture)
@@ -122,7 +121,6 @@ void mint_TextureRender(MintTexture* mintTexture)
 void mint_TextureFree(MintTexture* mintTexture)
 {
 	SDL_DestroyTexture(mintTexture->texture);
-	mint_PhysFree(mintTexture->phys);
 	mint_AnimManFree(mintTexture->animMan);
 	
 	free(mintTexture);
@@ -133,8 +131,8 @@ void mint_TextureSetX(MintTexture* mintTexture, int value)
 {
 	mintTexture->x = value;
 
-	if (mintTexture->phys) {
-		b2Body* body = mintTexture->phys->body;
+	if (mintTexture->body) {
+		b2Body* body = mintTexture->body;
 		body->SetTransform(b2Vec2(mint_PhysPixelToMetre((float)value), body->GetPosition().y), body->GetAngle());
 	}
 }
@@ -143,8 +141,8 @@ void mint_TextureSetY(MintTexture* mintTexture, int value)
 {
 	mintTexture->y = value;
 
-	if (mintTexture->phys) {
-		b2Body* body = mintTexture->phys->body;
+	if (mintTexture->body) {
+		b2Body* body = mintTexture->body;
 		body->SetTransform(b2Vec2(body->GetPosition().x, mint_PhysPixelToMetre((float)value)), body->GetAngle());
 	}
 }
@@ -154,8 +152,8 @@ void mint_TextureResizeHit(MintTexture* mintTexture, int width, int height)
 	mintTexture->width = width;
 	mintTexture->height = height;
 
-	if (mintTexture->phys) {
-		mint_PhysGenerateFixture(mintTexture->phys);
+	if (mintTexture) {
+		mint_PhysGenerateFixture(mintTexture);
 	}
 }
 

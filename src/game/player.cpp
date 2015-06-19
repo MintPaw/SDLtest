@@ -8,7 +8,7 @@ MintTexture* player_Setup(MintSystem* _sys)
 	mint_TextureResizeHit(player, 52, 66);
 	mint_PhysEnable(player, 1, 1);
 	mint_PhysSetGravity(_sys, 0, 0);
-	mint_PhysSetDamping(player->phys, 50);
+	mint_PhysSetDamping(player, 50);
 
 	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");
 
