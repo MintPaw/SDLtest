@@ -135,7 +135,7 @@ void mint_SystemUpdate(MintSystem* sys)
 
 	mint_TimerUpdate(sys->timer, (float)(SDL_GetTicks() / 1000.0));
 
-	mint_PhysStepWorld(sys->world, sys->timer->elapsed);
+	mint_PhysStepWorld(sys, sys->timer->elapsed);
 
 	int i;
 	for (i = 0; i < sys->totalTextures; i++) {
@@ -190,7 +190,7 @@ void mint_SystemDraw(MintSystem* sys)
 
 	if (sys->debugDraw) {
 		SDL_Color green = { 0, 255, 0, 255 };
-		b2Body* bodyList = sys->world->world->GetBodyList();
+		b2Body* bodyList = sys->world->GetBodyList();
 
 		for(;;)
 		{
@@ -258,7 +258,7 @@ void _close(MintSystem* sys)
 
 	mint_InputFree(sys->input);
 	mint_TimerFree(sys->timer);
-	mint_PhysFreeWorld(sys->world);
+	mint_PhysFreeWorld(sys);
 	if (sys->tilemap != NULL) mint_TilemapFree(sys->tilemap);
 
 	int i;

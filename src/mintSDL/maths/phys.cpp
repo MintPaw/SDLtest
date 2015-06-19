@@ -6,20 +6,18 @@
 #include "mintSDL/maths/phys.h"
 #include "mintSDL/maths/maths.h"
 
-MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY)
+b2World* mint_PhysSetupWorld(float gravityX, float gravityY)
 {
-	MintPhysWorld* world = (MintPhysWorld*)malloc(sizeof(MintPhysWorld));
-	world->world = new b2World({ gravityX, gravityY });
+	b2World* world = new b2World({ gravityX, gravityY });
 
 	return world;
 }
 
-void mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density)
+void mint_PhysEnable(MintTexture* mintTexture, char dynamic, float density)
 {
 	MintPhys* phys = (MintPhys*)malloc(sizeof(MintPhys));
 	phys->mintTexture = mintTexture;
 	mintTexture->phys = phys;
-	phys->world = physWorld;
 	phys->body = NULL;
 	phys->isDynamic = dynamic;
 	phys->density = density;
@@ -30,7 +28,7 @@ void mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dy
 void mint_PhysGenerateFixture(MintPhys* phys)
 {
 	if (phys->body != NULL) {
-		phys->world->world->DestroyBody(phys->body);
+		phys->mintTexture->sys->world->DestroyBody(phys->body);
 	}
 
 	b2BodyDef groundBodyDef;
@@ -46,12 +44,12 @@ void mint_PhysGenerateFixture(MintPhys* phys)
 	fixtureDef.density = phys->density;
 	fixtureDef.friction = 0.3f;
 
-	phys->body = phys->world->world->CreateBody(&groundBodyDef);
+	phys->body = phys->mintTexture->sys->world->CreateBody(&groundBodyDef);
 	phys->body->CreateFixture(&fixtureDef);
 }
 
-void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY) { world->world->SetGravity({ gravityX, gravityY }); }
-void mint_PhysStepWorld(MintPhysWorld* world, float elapsed) { world->world->Step((float)elapsed, 6, 2); }
+void mint_PhysSetGravity(MintSystem* sys, float gravityX, float gravityY) { sys->world->SetGravity({ gravityX, gravityY }); }
+void mint_PhysStepWorld(MintSystem* sys, float elapsed) { sys->world->Step((float)elapsed, 6, 2); }
 float mint_PhysMetreToPixel(float metre) { return (float)(metre * 100); }
 float mint_PhysPixelToMetre(float pixel) { return (float)(pixel / 100); }
 void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY) { phys->body->ApplyForce({ forceX, forceY }, phys->body->GetWorldCenter(), 1); }
@@ -81,9 +79,7 @@ void mint_PhysFree(MintPhys* phys)
 	phys = NULL;
 }
 
-void mint_PhysFreeWorld(MintPhysWorld* world)
+void mint_PhysFreeWorld(MintSystem* sys)
 {
-	world->world->~b2World();
-	free(world->world);
-	free(world);
+	sys->world->~b2World();
 }

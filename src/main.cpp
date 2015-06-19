@@ -37,7 +37,7 @@
 
 #define WINDOWS
 #define VISUAL_STUDIOS_DEBUGGING
-#define TEST_GAME
+// #define TEST_GAME
 
 #ifdef WINDOWS
 	#ifdef VISUAL_STUDIOS_DEBUGGING
@@ -387,10 +387,10 @@ void timerExample(MintSystem* sys)
 void physicsExample(MintSystem* sys)
 {
 	MintTexture* texture = mint_TextureFromPNG(sys, "assets/img/ball.png");
-	mint_PhysEnable(texture, sys->world, 1, 3);
+	mint_PhysEnable(texture, 1, 3);
 	float speed = 5;
 
-	mint_PhysSetGravity(sys->world, 0, 0);
+	mint_PhysSetGravity(sys, 0, 0);
 
 	for(;;)
 	{
@@ -427,8 +427,8 @@ void collisionExample(MintSystem* sys)
 	MintTexture* box1 = mint_TextureFromPNG(sys, "assets/img/box.png");
 	MintTexture* box2 = mint_TextureFromPNG(sys, "assets/img/box.png");
 
-	mint_PhysEnable(box1, sys->world, 1, 1);
-	mint_PhysEnable(box2, sys->world, 1, 1);
+	mint_PhysEnable(box1, 1, 1);
+	mint_PhysEnable(box2, 1, 1);
 
 	MintFloatPoint velo1;
 	MintFloatPoint velo2;
@@ -436,7 +436,7 @@ void collisionExample(MintSystem* sys)
 	mint_TextureSetColour(box1, &red);
 	mint_TextureSetColour(box2, &blue);
 
-	mint_PhysSetGravity(sys->world, 0, 5);
+	mint_PhysSetGravity(sys, 0, 5);
 
 	for(;;)
 	{
@@ -542,8 +542,8 @@ void playerExample(MintSystem* sys)
 
 	player = mint_TextureFromPNG(sys, "assets/img/player_blue.png");
 	mint_TextureResizeHit(player, 52, 66);
-	mint_PhysEnable(player, sys->world, 1, 1);
-	mint_PhysSetGravity(sys->world, 0, 0);
+	mint_PhysEnable(player, 1, 1);
+	mint_PhysSetGravity(sys, 0, 0);
 	mint_PhysSetDamping(player->phys, 50);
 	
 	mint_AnimCreateFromXML(player->animMan, "assets/img/player_blue.xml");

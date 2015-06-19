@@ -24,7 +24,7 @@ struct MintSystem {
 	SDL_Renderer* sdlRenderer;
 	MintInput* input;
 	MintFrameTimer* timer;
-	MintPhysWorld* world;
+	b2World* world;
 	TTF_Font* fonts[MAX_FONTS];
 	SDL_Event event;
 	MintTexture* textures[MAX_TEXTURES];

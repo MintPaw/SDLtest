@@ -114,7 +114,7 @@ void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath)
 			fixtureDef.shape = &shape;
 			shape.SetAsBox(mint_PhysPixelToMetre((float)(tilemap->tileWidth / 2)), mint_PhysPixelToMetre((float)(tilemap->tileHeight / 2)));
 
-			tilemap->bodies[currentBody] = tilemap->sys->world->world->CreateBody(&groundBodyDef);
+			tilemap->bodies[currentBody] = tilemap->sys->world->CreateBody(&groundBodyDef);
 			tilemap->bodies[currentBody]->CreateFixture(&fixtureDef);
 			currentBody++;
 		}

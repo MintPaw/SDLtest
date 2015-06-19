@@ -1,5 +1,17 @@
 
 
+int gameMain(int argc, char* args[]);
+void gameLoop(MintSystem* sys);
+void startGame();
+
+
+
+
+MintTexture* player_Setup(MintSystem* _sys);
+
+
+
+
 struct MintSystem;
 
 
@@ -8,22 +20,25 @@ struct MintSystem {
 	SDL_Renderer* sdlRenderer;
 	MintInput* input;
 	MintFrameTimer* timer;
-	MintPhysWorld* world;
+	b2World* world;
 	TTF_Font* fonts[MAX_FONTS];
 	SDL_Event event;
 	MintTexture* textures[MAX_TEXTURES];
+	MintTilemap* tilemap;
+	MintTexture* fpsCounter;
 	int totalTextures;
 	char totalFonts;
-	float elapsed;
-	MintTexture* fpsCounter;
 	char stage;
 	char quit;
+	char debugDraw;
+	int gameWidth;
+	int gameHeight;
 
 	void (*start)(MintSystem* sys);
 };
 
-MintSystem* mint_SystemSetup();
-char mint_SystemInit(MintSystem* sys);
+MintSystem* mint_SystemSetup(char vsync);
+char mint_SystemInit(MintSystem* sys, char showFps);
 void mint_SystemAddFont(MintSystem* sys, char* path);
 void mint_SystemFullScreen(MintSystem* sys, char fullscreen);
 
@@ -92,8 +107,16 @@ struct MintTexture {
 	MintSystem* sys;
 	SDL_Texture* texture;
 	MintAnimMan* animMan;
-	MintTrans* trans;
 	MintPhys* phys;
+
+	float angle;
+	SDL_Point centre;
+	SDL_RendererFlip flip;
+	int width;
+	int height;
+	int x;
+	int y;
+	unsigned char alpha;
 };
 
 MintTexture* mint_TextureFromNothing(MintSystem* sys);
@@ -105,15 +128,23 @@ void mint_TextureUpdate(MintTexture* mintTexture, float elapsed);
 void mint_TextureRender(MintTexture* mintTexture);
 void mint_TextureFree(MintTexture* mintTexture);
 
+void mint_TextureSetX(MintTexture* mintTexture, int value);
+void mint_TextureSetY(MintTexture* mintTexture, int value);
+void mint_TextureSetColour(MintTexture* mintTexture, SDL_Color* colour);
+void mint_TextureSetAlpha(MintTexture* mintTexture, char alpha);
+void mint_TextureResizeHit(MintTexture* mintTexture, int width, int height);
+
+
 
 
 struct MintTilemap;
 
 
 struct MintTilemap {
-	SDL_Renderer* renderer;
+	MintSystem* sys;
 	SDL_Texture* texture;
 	SDL_Rect tileRects[TOTAL_TILES];
+	b2Body* bodies[TOTAL_BODIES];
 
 	int tileWidth;
 	int tileHeight;
@@ -122,37 +153,10 @@ struct MintTilemap {
 	char layers[TOTAL_LAYERS][TILES_HIGH][TILES_WIDE];
 };
 
-MintTilemap* mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWidth, int tileHeight, int indexShift);
+void mint_TilemapCreate(MintSystem* sys, char* graphicsPath, int tileWidth, int tileHeight, int indexShift);
 void mint_TilemapGenerateFromTiled(MintTilemap* tilemap, char* dataPath);
 void mint_TilemapFree(MintTilemap* map);
 void mint_TilemapRenderLayer(MintTilemap* tilemap, char layer);
-
-
-struct MintTrans;
-
-
-struct MintTrans {
-	MintTexture* mintTexture;
-
-	float angle;
-	SDL_Point centre;
-	SDL_RendererFlip flip;
-	int _width;
-	int _height;
-	int _x;
-	int _y;
-	unsigned char _alpha;
-};
-
-MintTrans* mint_TransSetup(MintTexture* mintTexture, int width, int height);
-void mint_TransSetX(MintTrans* trans, int value);
-void mint_TransSetY(MintTrans* trans, int value);
-int mint_TransGetWidth(MintTrans* trans);
-int mint_TransGetHeight(MintTrans* trans);
-void mint_TransSetColour(MintTrans* trans, SDL_Color* colour);
-void mint_TransSetAlpha(MintTrans* trans, char alpha);
-
-void mint_TransFree(MintTrans* trans);
 
 
 struct MintTextBox;
@@ -225,18 +229,19 @@ struct MintPhysWorld {
 
 struct MintPhys {
 	MintTexture* mintTexture;
-	MintPhysWorld* world;
-	b2PolygonShape shape;
 	b2Body* body;
+	char isDynamic;
+	float density;
 
 	SDL_Rect rect;
 };
 
-MintPhysWorld* mint_PhysSetupWorld(float gravityX, float gravityY);
-void mint_PhysEnable(MintTexture* mintTexture, MintPhysWorld* physWorld, char dynamic, float density);
+b2World* mint_PhysSetupWorld(float gravityX, float gravityY);
+void mint_PhysEnable(MintTexture* mintTexture, char dynamic, float density);
+void mint_PhysGenerateFixture(MintPhys* phys);
 float mint_PhysMetreToPixel(float metre);
 float mint_PhysPixelToMetre(float pixel);
-void mint_PhysSetGravity(MintPhysWorld* world, float gravityX, float gravityY);
+void mint_PhysSetGravity(MintSystem* sys, float gravityX, float gravityY);
 void mint_PhysApplyForce(MintPhys* phys, float forceX, float forceY);
 void mint_PhysSetVelocity(MintPhys* phys, float veloX, float veloY);
 void mint_PhysSetDamping(MintPhys* phys, float damping);
@@ -280,6 +285,7 @@ struct MintFrameTimer {
 	float elapsed;
 	float secondsPerReport;
 	float secondsSinceLastReport;
+	float fpsAverage;
 };
 
 MintFrameTimer* mint_TimerSetup();
