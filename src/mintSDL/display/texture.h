@@ -13,23 +13,24 @@ struct MintTexture {
 	MintSystem* sys;
 	SDL_Texture* texture;
 
-	MintAnim* anims;
-	MintAnim* currentAnim;
-	SDL_Rect* clipRect;
-	int totalAnims;
+	int x;
+	int y;
+	int width;
+	int height;
+	float angle;
+	unsigned char alpha;
+	SDL_Point centre;
+	SDL_RendererFlip flip;
+	SDL_Rect renderRect;
+	SDL_Point hitboxOffset;
 
 	b2Body* body;
 	char dynamic;
 
-	float angle;
-	SDL_Point centre;
-	SDL_RendererFlip flip;
-	SDL_Rect renderRect;
-	int width;
-	int height;
-	int x;
-	int y;
-	unsigned char alpha;
+	MintAnim* anims;
+	MintAnim* currentAnim;
+	SDL_Rect* clipRect;
+	int totalAnims;
 };
 
 MintTexture* mint_TextureFromNothing(MintSystem* sys);

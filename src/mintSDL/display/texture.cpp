@@ -12,24 +12,27 @@ MintTexture* mint_TextureFromNothing(MintSystem* sys)
 {
 	MintTexture* mintTexture = (MintTexture*)malloc(sizeof(MintTexture));
 
-	mintTexture->texture = NULL;
 	mintTexture->sys = sys;
+	mintTexture->texture = NULL;
 
-	mintTexture->width = 0;
-	mintTexture->height = 0;
-	mintTexture->centre.x = mintTexture->width / 2;
-	mintTexture->centre.y = mintTexture->height / 2;
-	mintTexture->angle = 0;
-	mintTexture->flip = SDL_FLIP_NONE;
 	mintTexture->x = 0;
 	mintTexture->y = 0;
+	mintTexture->width = 0;
+	mintTexture->height = 0;
 	mintTexture->alpha = NULL;
-	mintTexture->body = NULL;
+	mintTexture->angle = 0;
+	mintTexture->centre = { mintTexture->width / 2,  mintTexture->height / 2 };
+	mintTexture->flip = SDL_FLIP_NONE;
+	mintTexture->renderRect = { 0, 0, 0, 0 };
 
-	mintTexture->totalAnims = 0;
+	mintTexture->body = NULL;
+	mintTexture->dynamic = 0;
+	mintTexture->hitboxOffset = { 0, 0 };
+
 	mintTexture->currentAnim = NULL;
 	mintTexture->anims = NULL;
 	mintTexture->clipRect = NULL;
+	mintTexture->totalAnims = 0;
 
 	return mintTexture;
 }
