@@ -174,6 +174,12 @@ void mint_SystemDraw(MintSystem* sys)
 	if (sys->stage != PRE_DRAW) printf("Warning: forcing bad call of draw");
 	sys->stage = DRAW;
 
+	if (sys->tilemap != NULL) {
+		mint_TilemapRenderLayer(sys->tilemap, 0);
+		mint_TilemapRenderLayer(sys->tilemap, 1);
+		mint_TilemapRenderLayer(sys->tilemap, 2);
+	}
+
 	int i;
 	for (i = 0; i < sys->totalTextures; i++) {
 		if (sys->textures[i] == NULL) continue;
@@ -181,9 +187,6 @@ void mint_SystemDraw(MintSystem* sys)
 	}
 
 	if (sys->tilemap != NULL) {
-		mint_TilemapRenderLayer(sys->tilemap, 0);
-		mint_TilemapRenderLayer(sys->tilemap, 1);
-		mint_TilemapRenderLayer(sys->tilemap, 2);
 		mint_TilemapRenderLayer(sys->tilemap, 3);
 		mint_TilemapRenderLayer(sys->tilemap, 4);
 	}
