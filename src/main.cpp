@@ -1,5 +1,6 @@
 /*
 	Todo major:
+		Real debug draw
 		Hitbox changes(offset only)
 		Pathfinding
 		Pooling
