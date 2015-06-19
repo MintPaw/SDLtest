@@ -98,27 +98,19 @@ void mint_TextureUpdate(MintTexture* mintTexture, float elapsed)
 
 void mint_TextureRender(MintTexture* mintTexture)
 {
-	SDL_Rect quad;
 	if (mintTexture->clipRect) {
-		quad = { mintTexture->x, mintTexture->y, mintTexture->clipRect->w, mintTexture->clipRect->h };
-
-		SDL_RenderCopyEx(mintTexture->sys->sdlRenderer,
-		                 mintTexture->texture,
-		                 mintTexture->clipRect,
-		                 &quad,
-		                 mintTexture->angle,
-		                 &mintTexture->centre,
-		                 mintTexture->flip);
+		mintTexture->renderRect = { mintTexture->x, mintTexture->y, mintTexture->clipRect->w, mintTexture->clipRect->h };
 	} else {
-		quad = { mintTexture->x, mintTexture->y, mintTexture->width, mintTexture->height };
-		SDL_RenderCopyEx(mintTexture->sys->sdlRenderer,
-		                 mintTexture->texture,
-		                 NULL,
-		                 &quad,
-		                 mintTexture->angle,
-		                 &mintTexture->centre,
-		                 mintTexture->flip);
+		mintTexture->renderRect = { mintTexture->x, mintTexture->y, mintTexture->width, mintTexture->height };
 	}
+
+	SDL_RenderCopyEx(mintTexture->sys->sdlRenderer,
+	                 mintTexture->texture,
+	                 mintTexture->clipRect,
+	                 &mintTexture->renderRect,
+	                 mintTexture->angle,
+	                 &mintTexture->centre,
+	                 mintTexture->flip);
 }
 
 void mint_TextureFree(MintTexture* mintTexture)

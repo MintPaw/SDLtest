@@ -98,7 +98,7 @@ int main(int argc, char* args[])
 
 	// sys->start = &gameExample;
 	// sys->start = &drawExample;
-	// sys->start = &mintTextureExample;
+	sys->start = &mintTextureExample;
 	// sys->start = &setColourInputExample;
 	// sys->start = &setAlphaInputExample;
 	// sys->start = &animationExample;
@@ -108,7 +108,7 @@ int main(int argc, char* args[])
 	// sys->start = &timerExample;
 	// sys->start = &physicsExample;
 	// sys->start = &collisionExample;
-	sys->start = &texturePackerExample;
+	// sys->start = &texturePackerExample;
 	// sys->start = &playerExample;
 	// sys->start = &tilemapExample;
 	// sys->start = &systemExample;

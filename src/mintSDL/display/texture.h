@@ -12,7 +12,7 @@ struct MintTexture;
 struct MintTexture {
 	MintSystem* sys;
 	SDL_Texture* texture;
-	
+
 	MintAnim* anims;
 	MintAnim* currentAnim;
 	SDL_Rect* clipRect;
@@ -24,6 +24,7 @@ struct MintTexture {
 	float angle;
 	SDL_Point centre;
 	SDL_RendererFlip flip;
+	SDL_Rect renderRect;
 	int width;
 	int height;
 	int x;
