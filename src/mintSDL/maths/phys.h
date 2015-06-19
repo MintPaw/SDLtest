@@ -2,7 +2,6 @@
 #define PHYS_H
 
 struct MintFloatPoint;
-struct MintPhysWorld;
 struct MintPhys;
 
 #include <SDL.h>
