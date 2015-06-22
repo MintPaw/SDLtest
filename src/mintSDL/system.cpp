@@ -14,6 +14,7 @@ const int SCREEN_HEIGHT = 832;
 #include "mintSDL/util/input.h"
 #include "mintSDL/util/timer.h"
 #include "mintSDL/maths/phys.h"
+#include "mintSDL/maths/maths.h"
 
 void _updateLoop(MintSystem* sys);
 void _close(MintSystem* sys);
@@ -59,7 +60,7 @@ MintSystem* mint_SystemSetup(char vsync)
 				sys->sdlRenderer = SDL_CreateRenderer(sys->sdlWindow, -1, SDL_RENDERER_ACCELERATED);
 			}
 			if (sys->sdlRenderer == NULL) {
-				printf("Failed to create renderer, SDL_Error: \n", SDL_GetError());
+				printf("Failed to create renderer, SDL_Error: %s\n", SDL_GetError());
 			}
 		}
 	}
@@ -145,7 +146,7 @@ void mint_SystemUpdate(MintSystem* sys)
 
 	if (sys->fpsCounter) {
 		char fpsText[32];
-		_itoa((int)sys->timer->fpsAverage, fpsText, 10);
+		strcpy(fpsText, itoa((int)sys->timer->fpsAverage));
 		strcat(fpsText, " avg fps");
 		mint_TextureLoadText(sys->fpsCounter, sys->fonts[0], fpsText, { 0, 0, 0, 0 } );
 	}

@@ -9,7 +9,7 @@ char* mint_IoAllText(char* fileName)
 	int i;
 	int chars;
 
-	fopen_s(&pFile, fileName, "rb");
+	pFile = fopen(fileName, "rb");
 
 	if (pFile == NULL) {
 		printf("Could not open the file");

@@ -23,7 +23,6 @@
 		Add magic number defines
 		Optimize XML
 		setX vs Xset
-		Box2D debug draw
 		Do scaling, this includes mass
 		Do a better job making all needed math structs and functions (Move MintFloatPoint and make point/rect structs)
 		Need to list all headers
