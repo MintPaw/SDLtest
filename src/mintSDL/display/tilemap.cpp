@@ -5,7 +5,7 @@
 #include <string.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <Box2d/Box2D.h>
+#include <Box2D/Box2D.h>
 #include "mintSDL/display/tilemap.h"
 #include "mintSDL/display/texture.h"
 #include "mintSDL/util/array.h"

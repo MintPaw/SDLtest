@@ -4,17 +4,15 @@ project (SDLtest)
 
 include_directories(
 	src
-	lib/win32/SDL2-2.0.3/include
-	lib/win32/SDL2_image-2.0.0/include
-	lib/win32/SDL2_ttf-2.0.12/include
-	lib/win32/Box2d/include
+	lib/linux/Box2d/include
+	lib/linux/SDL2-2.0.3/include
+	lib/linux/SDL2_image-2.0.0/include
+	lib/linux/SDL2_ttf-2.0.12/include
+	lib/linux/Box2d/include
 )
 
 link_directories(
-	lib/win32/SDL2-2.0.3/lib/x86
-	lib/win32/SDL2_image-2.0.0/lib/x86
-	lib/win32/SDL2_ttf-2.0.12/lib/x86
-	lib/win32/Box2d/lib
+	lib/linux/Box2d/lib
 )
 
 add_executable(SDLtest

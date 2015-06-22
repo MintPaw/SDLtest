@@ -16,7 +16,7 @@
 struct MintTilemap;
 
 #include <SDL.h>
-#include <Box2d/Box2D.h>
+#include <Box2D/Box2D.h>
 #include "mintSDL/display/texture.h"
 
 struct MintTilemap {

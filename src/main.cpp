@@ -36,8 +36,8 @@
 
 */
 
-#define WINDOWS
-#define VISUAL_STUDIOS_DEBUGGING
+// #define WINDOWS
+// #define VISUAL_STUDIOS_DEBUGGING
 #define TEST_GAME
 
 #define _CRT_SECURE_NO_WARNINGS

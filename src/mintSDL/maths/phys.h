@@ -2,7 +2,7 @@
 #define PHYS_H
 
 #include <SDL.h>
-#include <Box2D/Box2d.h>
+#include <Box2D/Box2D.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/geom.h"
 

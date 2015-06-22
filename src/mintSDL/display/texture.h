@@ -4,7 +4,7 @@
 struct MintTexture;
 
 #include <SDL_ttf.h>
-#include <Box2d/Box2d.h>
+#include <Box2D/Box2D.h>
 #include "mintSDL/system.h"
 #include "mintSDL/display/anim.h"
 #include "mintSDL/maths/phys.h"

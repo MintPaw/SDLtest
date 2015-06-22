@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <Box2d/Box2d.h>
+#include <Box2D/Box2D.h>
 #include "mintSDL/display/texture.h"
 #include "mintSDL/maths/phys.h"
 #include "mintSDL/maths/maths.h"
