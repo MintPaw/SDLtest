@@ -31,7 +31,7 @@ void mint_PhysGenerateFixture(MintTexture* mintTexture)
 	b2BodyDef groundBodyDef;
 	groundBodyDef.type = mintTexture->dynamic ? b2_dynamicBody : b2_staticBody;
 	groundBodyDef.fixedRotation = true;
-	groundBodyDef.position.Set(mint_PhysPixelToMetre((float)mintTexture->x), mint_PhysPixelToMetre((float)mintTexture->y));
+	groundBodyDef.position.Set(mint_PhysPixelToMetre(mintTexture->x + mintTexture->width / 2), mint_PhysPixelToMetre(mintTexture->y + mintTexture->height / 2));
 
 	b2PolygonShape shape;
 	shape.SetAsBox(mint_PhysPixelToMetre((float)(mintTexture->width / 2)), mint_PhysPixelToMetre((float)(mintTexture->height / 2)));
@@ -62,9 +62,11 @@ void mint_PhysUpdate(MintTexture* mintTexture, float elapsed)
 {
 	if (!mintTexture->body) return;
 
+	b2AABB aabb = mintTexture->body->GetFixtureList()[0].GetAABB(0);
 	b2Vec2 pos = mintTexture->body->GetPosition();
-	pos.x = mint_PhysMetreToPixel(pos.x) - mintTexture->hitboxOffset.x;
-	pos.y = mint_PhysMetreToPixel(pos.y) - mintTexture->hitboxOffset.y;
+
+	pos.x = mint_PhysMetreToPixel(aabb.GetCenter().x - aabb.GetExtents().x) - mintTexture->hitboxOffset.x;
+	pos.y = mint_PhysMetreToPixel(aabb.GetCenter().y - aabb.GetExtents().y) - mintTexture->hitboxOffset.y;
 
 	mintTexture->x = (int)pos.x;
 	mintTexture->y = (int)pos.y;

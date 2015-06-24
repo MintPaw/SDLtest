@@ -15,7 +15,7 @@ int gameMain(int argc, char* args[])
 {
 	_sys = mint_SystemSetup(0);
 	mint_SystemAddFont(_sys, "assets/font/OpenSansRegular.ttf");
-	// _sys->debugDraw = 1;	
+	_sys->debugDraw = 1;	
 
 	_sys->start = &gameLoop;
 

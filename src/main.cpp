@@ -9,6 +9,7 @@
 		Centre point/sizes is going to break when animations happen (They did)
 
 	Todo minor:
+		Remove mintTexutre->shape
 		Debugger
 		Reset totalTextures
 		Remove elapsed

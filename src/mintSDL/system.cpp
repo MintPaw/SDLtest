@@ -201,8 +201,8 @@ void mint_SystemDraw(MintSystem* sys)
 			if (bodyList == NULL) break;
 			b2AABB aabb = bodyList->GetFixtureList()[0].GetAABB(0);
 			
-			mint_DrawRect(sys, mint_PhysMetreToPixel(aabb.GetCenter().x),
-			                   mint_PhysMetreToPixel(aabb.GetCenter().y),
+			mint_DrawRect(sys, mint_PhysMetreToPixel(aabb.GetCenter().x - aabb.GetExtents().x),
+			                   mint_PhysMetreToPixel(aabb.GetCenter().y - aabb.GetExtents().y),
 			                   mint_PhysMetreToPixel(aabb.GetExtents().x * 2),
 			                   mint_PhysMetreToPixel(aabb.GetExtents().y * 2),
 			                   &green);

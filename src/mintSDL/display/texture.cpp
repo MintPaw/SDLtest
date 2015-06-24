@@ -131,7 +131,7 @@ void mint_TextureSetX(MintTexture* mintTexture, int value)
 
 	if (mintTexture->body) {
 		b2Body* body = mintTexture->body;
-		body->SetTransform(b2Vec2(mint_PhysPixelToMetre((float)value), body->GetPosition().y), body->GetAngle());
+		body->SetTransform(b2Vec2(mint_PhysPixelToMetre((float)value + mintTexture->width / 2), body->GetPosition().y), body->GetAngle());
 	}
 }
 
@@ -141,7 +141,7 @@ void mint_TextureSetY(MintTexture* mintTexture, int value)
 
 	if (mintTexture->body) {
 		b2Body* body = mintTexture->body;
-		body->SetTransform(b2Vec2(body->GetPosition().x, mint_PhysPixelToMetre((float)value)), body->GetAngle());
+		body->SetTransform(b2Vec2(body->GetPosition().x, mint_PhysPixelToMetre((float)value + mintTexture->height / 2)), body->GetAngle());
 	}
 }
 
