@@ -1,12 +1,10 @@
 /*
 	Todo major:
-		Real debug draw
-		Hitbox changes(offset only)
 		Pathfinding
 		Pooling
 		Textfields
 		Gamepad support
-		Centre point/sizes is going to break when animations happen (They did)
+		Centre point is going to break when animations happen (They did)
 
 	Todo minor:
 		Remove mintTexutre->shape
