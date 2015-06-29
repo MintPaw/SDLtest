@@ -34,7 +34,18 @@ void mint_PhysGenerateFixture(MintTexture* mintTexture)
 	groundBodyDef.position.Set(mint_PhysPixelToMetre(mintTexture->x + mintTexture->width / 2), mint_PhysPixelToMetre(mintTexture->y + mintTexture->height / 2));
 
 	b2PolygonShape shape;
-	shape.SetAsBox(mint_PhysPixelToMetre((float)(mintTexture->width / 2)), mint_PhysPixelToMetre((float)(mintTexture->height / 2)));
+	float perc = .8;
+	b2Vec2* verts = (b2Vec2*)malloc(8 * sizeof(b2Vec2));
+	verts[0].Set(mint_PhysPixelToMetre(-mintTexture->width / 2) * perc, mint_PhysPixelToMetre(-mintTexture->height / 2));
+	verts[1].Set(mint_PhysPixelToMetre(-mintTexture->width / 2), mint_PhysPixelToMetre(mintTexture->height / 2) * perc);
+	verts[2].Set(mint_PhysPixelToMetre(-mintTexture->width / 2), mint_PhysPixelToMetre(mintTexture->height / 2));
+	verts[3].Set(mint_PhysPixelToMetre(mintTexture->width / 2) * perc, mint_PhysPixelToMetre(mintTexture->height / 2));
+	verts[4].Set(mint_PhysPixelToMetre(mintTexture->width / 2), mint_PhysPixelToMetre(mintTexture->height / 2));
+	verts[5].Set(mint_PhysPixelToMetre(mintTexture->width / 2), mint_PhysPixelToMetre(-mintTexture->height / 2) * perc);
+	verts[6].Set(mint_PhysPixelToMetre(mintTexture->width / 2), mint_PhysPixelToMetre(-mintTexture->height / 2));
+	verts[7].Set(mint_PhysPixelToMetre(-mintTexture->width / 2) * perc, mint_PhysPixelToMetre(-mintTexture->height / 2));
+	shape.Set(verts, 8);
+	// shape.SetAsBox(mint_PhysPixelToMetre((float)(mintTexture->width / 2)), mint_PhysPixelToMetre((float)(mintTexture->height / 2)));
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &shape;
